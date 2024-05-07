@@ -135,9 +135,9 @@ public class Inloggning extends javax.swing.JFrame {
             String dbLösen = idb.fetchSingle(sqlFraga);
             //kollar om lösenordet stämmer överens med lösenordet som ligger lagrat i databasen
             if (String.valueOf(lösen).equals(dbLösen)){
-                //kollar om användaren är admin utifrån deras epost
+                
                 Boolean ärAdmin = checkAdmin(ePost);
-                //kollar om användaren är projektledare utifrånd eras epost
+                
                 Boolean ärProjektLedare = checkProjektLedare(ePost);
                 //om de är admin kommer en meny öppnas
                 if (ärAdmin == true){
@@ -193,6 +193,7 @@ public class Inloggning extends javax.swing.JFrame {
             
         if (anställningsIDString != null)
         {
+            //nedanstående rad kan eventuellt tas bort, testa 
            int anställningsIDInt = Integer.parseInt(anställningsIDString);
             projektLedareHittad = true;
         }
