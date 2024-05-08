@@ -170,7 +170,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         });
 
         nameDisplay.setEditable(false);
-        nameDisplay.setText(setDisplayText());
+        nameDisplay.setText(setDisplayText1("fornamn", aid));
         jScrollPane1.setViewportView(nameDisplay);
 
         surnameDisplay.setEditable(false);

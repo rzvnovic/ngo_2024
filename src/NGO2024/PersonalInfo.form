@@ -232,7 +232,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="setDisplayText()" type="code"/>
+                  <Connection code="setDisplayText1(&quot;fornamn&quot;, aid)" type="code"/>
                 </Property>
               </Properties>
             </Component>
