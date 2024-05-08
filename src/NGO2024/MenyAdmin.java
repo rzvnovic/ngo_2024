@@ -53,6 +53,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         searchField = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        SearchButton = new javax.swing.JButton();
         tabCountry = new javax.swing.JPanel();
         tabPartner = new javax.swing.JPanel();
         tabBranch = new javax.swing.JPanel();
@@ -153,10 +154,27 @@ public class MenyAdmin extends javax.swing.JFrame {
 
         searchField.setText("Search...");
         searchField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        searchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFieldActionPerformed(evt);
+            }
+        });
 
         searchButton.setText("...");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        SearchButton.setText("Search");
+        SearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabPersonelLayout = new javax.swing.GroupLayout(tabPersonel);
         tabPersonel.setLayout(tabPersonelLayout);
@@ -164,23 +182,26 @@ public class MenyAdmin extends javax.swing.JFrame {
             tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPersonelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SearchButton)
                     .addGroup(tabPersonelLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator1)
-                            .addComponent(jButton2)
+                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tabPersonelLayout.createSequentialGroup()
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(118, 118, 118)
+                                .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSeparator1)
+                                    .addComponent(jButton2)
+                                    .addGroup(tabPersonelLayout.createSequentialGroup()
+                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(tabPersonelLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(tabPersonelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(585, Short.MAX_VALUE))
+                                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(576, Short.MAX_VALUE))
         );
         tabPersonelLayout.setVerticalGroup(
             tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +210,9 @@ public class MenyAdmin extends javax.swing.JFrame {
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(245, 245, 245)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SearchButton)
+                .addGap(216, 216, 216)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -201,7 +224,7 @@ public class MenyAdmin extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton8)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         tabWindow.addTab("Personel", tabPersonel);
@@ -339,6 +362,37 @@ public class MenyAdmin extends javax.swing.JFrame {
         new NewPersonel().setVisible(true);
 
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
+    /*String personalNamn = searchField.getText();
+    int index = personalNamn.indexOf(" ");
+    String forNamn = personalNamn.substring(0,index-1);
+    String efterNamn = personalNamn.substring(index); 
+    System.out.println(forNamn + efterNamn);
+    
+    /*try{
+        String sqlFraga = "SELECT aid FROM anstalld WHERE fornamn = and efternamn = '" + 
+    }catch (Exeptcion e)
+            {
+                
+   */         
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_searchFieldActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+ String personalNamn = searchField.getText();
+    int index = personalNamn.indexOf(" ");
+    String forNamn = personalNamn.substring(0,index);
+    String efterNamn = personalNamn.substring(index + 1); 
+    System.out.println(forNamn + efterNamn);  
+    // TODO add your handling code here:
+    }//GEN-LAST:event_SearchButtonActionPerformed
     /*private void initWorkersList(){
         ArrayList<String> workersNameList = idb.fetchColumn("select concat(fornamn,efternamn) from anstalld");
         for(String name : workersNameList){
@@ -385,6 +439,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SearchButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

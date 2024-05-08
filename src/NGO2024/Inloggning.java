@@ -58,6 +58,12 @@ public class Inloggning extends javax.swing.JFrame {
             }
         });
 
+        jpswrdPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpswrdPasswordActionPerformed(evt);
+            }
+        });
+
         chcShowPassword.setText("Show Password");
         chcShowPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,6 +230,10 @@ public class Inloggning extends javax.swing.JFrame {
        
        
     }//GEN-LAST:event_chcSaveLoginActionPerformed
+
+    private void jpswrdPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpswrdPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpswrdPasswordActionPerformed
 
     /**
      * @param args the command line arguments
