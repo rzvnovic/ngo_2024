@@ -146,7 +146,7 @@ public class Inloggning extends javax.swing.JFrame {
                 }
                 //om de är projektledare kommer en meny öppnas
                 else if (ärProjektLedare == true){
-                    System.out.println("hej");
+                    new MenyHandläggare(idb, ePost).setVisible(true);
                 }
     
             }
