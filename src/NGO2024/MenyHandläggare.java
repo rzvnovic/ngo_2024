@@ -35,19 +35,6 @@ public class MenyHandläggare extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollProfil = new javax.swing.JScrollPane();
-        jPanelProfil = new javax.swing.JPanel();
-        jLblDinaKontaktuppgifter = new javax.swing.JLabel();
-        jLblFörnamnRubrik = new javax.swing.JLabel();
-        jLblEfternamnRubrik = new javax.swing.JLabel();
-        jLblTelefonRubrik = new javax.swing.JLabel();
-        jLblEpostRubrik = new javax.swing.JLabel();
-        jLblAdressRubrik = new javax.swing.JLabel();
-        jButtonUppdatera = new javax.swing.JButton();
-        jLblFörnamn = new javax.swing.JLabel();
-        jLblEfternamn = new javax.swing.JLabel();
-        jLblAdress = new javax.swing.JLabel();
-        jLblTelefon = new javax.swing.JLabel();
-        jLblEpost = new javax.swing.JLabel();
         jScrollAvdelning = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -73,105 +60,6 @@ public class MenyHandläggare extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLblDinaKontaktuppgifter.setText("Dina kontaktuppgifter");
-
-        jLblFörnamnRubrik.setText("Förnamn");
-
-        jLblEfternamnRubrik.setText("Efternamn");
-
-        jLblTelefonRubrik.setText("Telefon");
-
-        jLblEpostRubrik.setText("E-post");
-
-        jLblAdressRubrik.setText("Adress");
-
-        jButtonUppdatera.setText("Uppdatera");
-
-<<<<<<< HEAD
-        jButton1.setText("Uppdatera");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-=======
-        jLblFörnamn.setText("jLabel1");
->>>>>>> a985999a5f01d9086c6686e293fceb8381084b78
-
-        jLblEfternamn.setText("jLabel2");
-
-        jLblAdress.setText("jLabel3");
-
-        jLblTelefon.setText("jLabel4");
-
-        jLblEpost.setText("jLabel5");
-
-        javax.swing.GroupLayout jPanelProfilLayout = new javax.swing.GroupLayout(jPanelProfil);
-        jPanelProfil.setLayout(jPanelProfilLayout);
-        jPanelProfilLayout.setHorizontalGroup(
-            jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelProfilLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelProfilLayout.createSequentialGroup()
-                        .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblTelefonRubrik, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblEpostRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelProfilLayout.createSequentialGroup()
-                                .addComponent(jLblEpost, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                                .addGap(368, 368, 368))))
-                    .addGroup(jPanelProfilLayout.createSequentialGroup()
-                        .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLblEfternamnRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLblAdressRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLblDinaKontaktuppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonUppdatera)
-                                    .addComponent(jLblAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanelProfilLayout.createSequentialGroup()
-                                .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLblFörnamnRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLblFörnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(33, 33, 33)
-                                .addComponent(jLblEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        jPanelProfilLayout.setVerticalGroup(
-            jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelProfilLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLblDinaKontaktuppgifter)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblFörnamnRubrik)
-                    .addComponent(jLblEfternamnRubrik))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblFörnamn)
-                    .addComponent(jLblEfternamn))
-                .addGap(24, 24, 24)
-                .addComponent(jLblAdressRubrik)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLblAdress)
-                .addGap(24, 24, 24)
-                .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblTelefonRubrik)
-                    .addComponent(jLblEpostRubrik))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblTelefon)
-                    .addComponent(jLblEpost))
-                .addGap(43, 43, 43)
-                .addComponent(jButtonUppdatera)
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-
-        jScrollProfil.setViewportView(jPanelProfil);
-
         jTabbedPane1.addTab("Profil", jScrollProfil);
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
@@ -183,16 +71,12 @@ public class MenyHandläggare extends javax.swing.JFrame {
 
         jTxtFieldSökruta.setText("jTextField6");
 
-<<<<<<< HEAD
-        jButton2.setText("Sök");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSök.setText("Sök");
+        jButtonSök.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-=======
-        jButtonSök.setText("Sök");
->>>>>>> a985999a5f01d9086c6686e293fceb8381084b78
 
         jLblSökHandläggare.setText("Sök handläggare");
 
@@ -360,10 +244,6 @@ public class MenyHandläggare extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -401,22 +281,10 @@ public class MenyHandläggare extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSök;
-    private javax.swing.JButton jButtonUppdatera;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLblAdress;
-    private javax.swing.JLabel jLblAdressRubrik;
-    private javax.swing.JLabel jLblDinaKontaktuppgifter;
-    private javax.swing.JLabel jLblEfternamn;
-    private javax.swing.JLabel jLblEfternamnRubrik;
-    private javax.swing.JLabel jLblEpost;
-    private javax.swing.JLabel jLblEpostRubrik;
-    private javax.swing.JLabel jLblFörnamn;
-    private javax.swing.JLabel jLblFörnamnRubrik;
     private javax.swing.JLabel jLblSökHandläggare;
-    private javax.swing.JLabel jLblTelefon;
-    private javax.swing.JLabel jLblTelefonRubrik;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JMenu jMenu1;
@@ -425,7 +293,6 @@ public class MenyHandläggare extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanelProfil;
     private javax.swing.JPanel jPanelProjekt;
     private javax.swing.JScrollPane jScrollAvdelning;
     private javax.swing.JScrollPane jScrollHållbarhet;

@@ -22,12 +22,13 @@ public class PersonalInfo extends javax.swing.JFrame {
     private InfDB idb;
 
     //tas emot från klassen anställd
-    int aid = 1;
+    private static int aid;
 
     /**
      * Creates new form PersonalInfo
      */
-    public PersonalInfo() throws InfException {
+    public PersonalInfo(int aid) throws InfException {
+        this.aid = aid;
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         initComponents();
 
@@ -413,7 +414,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new PersonalInfo().setVisible(true);
+                    new PersonalInfo(aid).setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
                 }

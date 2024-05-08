@@ -147,7 +147,7 @@ public class Inloggning extends javax.swing.JFrame {
                 Boolean ärProjektLedare = checkProjektLedare(ePost);
                 //om de är admin kommer en meny öppnas
                 if (ärAdmin == true){
-                    new MenyAdmin(idb, ePost).setVisible(true);
+                    new MenyAdmin(ePost).setVisible(true);
                 this.setVisible(false);
                 }
                 //om de är projektledare kommer en meny öppnas

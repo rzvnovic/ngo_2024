@@ -11,21 +11,23 @@ package NGO2024;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MenyAdmin extends javax.swing.JFrame {
 
-    private static InfDB idb;
     private static String ePost;
+    private InfDB idb;
+    private static int aid;
     /**
      * Creates new form NewJFrame
      */
-    public MenyAdmin(InfDB idb, String ePost) {
-        this.idb = idb;
+    public MenyAdmin( String ePost) throws InfException {
+        idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         this.ePost = ePost;
         initComponents();
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -364,7 +366,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
-    /*String personalNamn = searchField.getText();
+        /*String personalNamn = searchField.getText();
     int index = personalNamn.indexOf(" ");
     String forNamn = personalNamn.substring(0,index-1);
     String efterNamn = personalNamn.substring(index); 
@@ -375,8 +377,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     }catch (Exeptcion e)
             {
                 
-   */         
-
+         */
 
 // TODO add your handling code here:
     }//GEN-LAST:event_searchFieldActionPerformed
@@ -386,20 +387,25 @@ public class MenyAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
- String personalNamn = searchField.getText();
-    int index = personalNamn.indexOf(" ");
-    String forNamn = personalNamn.substring(0,index);
-    String efterNamn = personalNamn.substring(index + 1); 
-    System.out.println(forNamn + efterNamn);  
-    // TODO add your handling code here:
-    }//GEN-LAST:event_SearchButtonActionPerformed
-    /*private void initWorkersList(){
-        ArrayList<String> workersNameList = idb.fetchColumn("select concat(fornamn,efternamn) from anstalld");
-        for(String name : workersNameList){
-            workersList.
+        String personalNamn = searchField.getText();
+        int index = personalNamn.indexOf(" ");
+        String fornamn = personalNamn.substring(0, index);
+        String efternamn = personalNamn.substring(index + 1);
+        
+        try{
+            String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
+            String dbSqlFraga = idb.fetchSingle(sqlFraga);
+            int aid = Integer.parseInt(dbSqlFraga);
+            new PersonalInfo(aid).setVisible(true);
         }
-    }*/
+        catch(Exception e){
+            
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchButtonActionPerformed
     
+
     /**
      * @param args the command line arguments
      */
@@ -433,7 +439,11 @@ public class MenyAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenyAdmin(idb, ePost).setVisible(true);
+                try {
+                    new MenyAdmin(ePost).setVisible(true);
+                } catch (InfException ex) {
+                    Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
