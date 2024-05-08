@@ -10,8 +10,12 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
+ * Klass som öppnar fönster för personalinfo med vissa gömda åtkomster för
+ * handledare.
+ * TODO: all data bör valideras genom valideringsklass.
+ * 
  * @author Cyrus
+ * 08/05/2024
  */
 public class PersonalInfo extends javax.swing.JFrame {
 
@@ -24,9 +28,9 @@ public class PersonalInfo extends javax.swing.JFrame {
      * Creates new form PersonalInfo
      */
     public PersonalInfo() throws InfException {
-        idb = new InfDB("ngo_2024","3306", "dbAdmin2024","dbAdmin2024PW");
+        idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         initComponents();
-        
+
     }
 
     public String setDisplayText() {
@@ -41,7 +45,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         }
         return name;
     }
-    
+
     public String setDisplayText1(String select, int aid) {
         String sqlQuerry;
         try {
@@ -53,6 +57,11 @@ public class PersonalInfo extends javax.swing.JFrame {
             return "error";
         }
         return sqlQuerry;
+    }
+    
+    public String setNewData(String select, int aid) {
+     
+        return "abd";
     }
 
     /**
@@ -159,24 +168,31 @@ public class PersonalInfo extends javax.swing.JFrame {
             }
         });
 
+        nameDisplay.setEditable(false);
         nameDisplay.setText(setDisplayText());
         jScrollPane1.setViewportView(nameDisplay);
 
+        surnameDisplay.setEditable(false);
         surnameDisplay.setText(setDisplayText1("efternamn", aid));
         jScrollPane2.setViewportView(surnameDisplay);
 
+        adressDisplay.setEditable(false);
         adressDisplay.setText(setDisplayText1("adress", aid));
         jScrollPane3.setViewportView(adressDisplay);
 
+        phonenumberDisplay.setEditable(false);
         phonenumberDisplay.setText(setDisplayText1("telefon" , aid));
         jScrollPane4.setViewportView(phonenumberDisplay);
 
+        emailDisplay.setEditable(false);
         emailDisplay.setText(setDisplayText1("epost", aid));
         jScrollPane5.setViewportView(emailDisplay);
 
+        isAdminDisplay.setEditable(false);
         isAdminDisplay.setText("IsAdmin (DEMO)");
         jScrollPane6.setViewportView(isAdminDisplay);
 
+        employeeIdDisplay.setEditable(false);
         employeeIdDisplay.setText(setDisplayText1("aid", aid));
         jScrollPane7.setViewportView(employeeIdDisplay);
 
@@ -304,39 +320,56 @@ public class PersonalInfo extends javax.swing.JFrame {
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
         // TODO add your handling code here:
         //MAKE VISABLE IF USER == HANDLÄGGARE
+        //ConfirmWindow confirmWindow = new ConfirmWindow();
+        //confirmWindow.setVisible(true);
+        //boolean confirmation = confirmWindow.isConfirmed(); // kolla in i detta
+        
+        //IF CONFIRM DO THIS
+        
+            String newName = nameField.getText();
+            String newSurname = surnameField.getText();
+            String newAdress = adressField.getText();
+            String newPhonenumber = phoneField.getText();
+            String newEmail = emailField.getText(); //OBS
+            nameDisplay.setText(newName);
+            surnameDisplay.setText(newSurname);
+            adressDisplay.setText(newAdress);
+            phonenumberDisplay.setText(newPhonenumber);
+            emailDisplay.setText(newEmail);
+        
     }//GEN-LAST:event_commitButtonActionPerformed
 
     private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
         // TODO add your handling code here:
-        if(nameField.getText().equals("Name")){
+        if (nameField.getText().equals("Name")) {
             nameField.setText("");
         }
     }//GEN-LAST:event_nameFieldMouseClicked
 
     private void surnameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_surnameFieldMouseClicked
         // TODO add your handling code here:
-        if(surnameField.getText().equals("Surname")){
+        if (surnameField.getText().equals("Surname")) {
             surnameField.setText("");
         }
     }//GEN-LAST:event_surnameFieldMouseClicked
 
     private void adressFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adressFieldMouseClicked
         // TODO add your handling code here:
-        if(adressField.getText().equals("Adress")){
+        if (adressField.getText().equals("Adress")) {
             adressField.setText("");
         }
     }//GEN-LAST:event_adressFieldMouseClicked
 
     private void phoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneFieldMouseClicked
         // TODO add your handling code here:
-        if(phoneField.getText().equals("Phonenumber")){
+        if (phoneField.getText().equals("Phonenumber")) {
             phoneField.setText("");
         }
     }//GEN-LAST:event_phoneFieldMouseClicked
 
     private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
         // TODO add your handling code here:
-        if(emailField.getText().equals("Email")){
+        if (emailField.getText().equals("Email")) {
             emailField.setText("");
         }
     }//GEN-LAST:event_emailFieldMouseClicked
@@ -344,10 +377,8 @@ public class PersonalInfo extends javax.swing.JFrame {
     private void generateNewPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateNewPasswordActionPerformed
         // TODO add your handling code here:
         // TODO PROGRAMMERA SÅ ETT RANDOM LÖSEN SKAPAS OCH LÄGG IN I DATABAS UNDER RÄTT AID.
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_generateNewPasswordActionPerformed
 
     /**
@@ -377,7 +408,7 @@ public class PersonalInfo extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PersonalInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

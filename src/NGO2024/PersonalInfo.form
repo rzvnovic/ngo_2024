@@ -230,6 +230,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextPane" name="nameDisplay">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="setDisplayText()" type="code"/>
                 </Property>
@@ -246,6 +247,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextPane" name="surnameDisplay">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="setDisplayText1(&quot;efternamn&quot;, aid)" type="code"/>
                 </Property>
@@ -262,6 +264,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextPane" name="adressDisplay">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="setDisplayText1(&quot;adress&quot;, aid)" type="code"/>
                 </Property>
@@ -278,6 +281,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextPane" name="phonenumberDisplay">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="setDisplayText1(&quot;telefon&quot; , aid)" type="code"/>
                 </Property>
@@ -294,6 +298,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextPane" name="emailDisplay">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="setDisplayText1(&quot;epost&quot;, aid)" type="code"/>
                 </Property>
@@ -310,6 +315,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextPane" name="isAdminDisplay">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" value="IsAdmin (DEMO)"/>
               </Properties>
             </Component>
@@ -324,6 +330,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextPane" name="employeeIdDisplay">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="setDisplayText1(&quot;aid&quot;, aid)" type="code"/>
                 </Property>
