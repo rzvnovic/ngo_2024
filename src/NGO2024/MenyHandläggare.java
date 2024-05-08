@@ -11,11 +11,15 @@ import oru.inf.InfException;
  * @author meldi
  */
 public class MenyHandläggare extends javax.swing.JFrame {
+    private static InfDB idb;
+    private static String ePost;
 
     /**
      * Creates new form MenyHandläggare
      */
-    public MenyHandläggare() {
+    public MenyHandläggare(InfDB idb, String ePost) {
+        this.idb = idb;
+        this.ePost = ePost;
         initComponents();
     }
 
@@ -362,7 +366,7 @@ public class MenyHandläggare extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenyHandläggare().setVisible(true);
+                new MenyHandläggare(idb, ePost).setVisible(true);
             }
         });
     }
