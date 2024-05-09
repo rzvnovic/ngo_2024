@@ -11,11 +11,9 @@ import oru.inf.InfException;
 
 /**
  * Klass som öppnar fönster för personalinfo med vissa gömda åtkomster för
- * handledare.
- * TODO: all data bör valideras genom valideringsklass.
- * 
- * @author Cyrus
- * 08/05/2024
+ * handledare. TODO: all data bör valideras genom valideringsklass.
+ *
+ * @author Cyrus 08/05/2024
  */
 public class PersonalInfo extends javax.swing.JFrame {
 
@@ -59,9 +57,9 @@ public class PersonalInfo extends javax.swing.JFrame {
         }
         return sqlQuerry;
     }
-    
+
     public String setNewData(String select, int aid) {
-     
+
         return "abd";
     }
 
@@ -124,11 +122,6 @@ public class PersonalInfo extends javax.swing.JFrame {
         surnameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 surnameFieldMouseClicked(evt);
-            }
-        });
-        surnameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                surnameFieldActionPerformed(evt);
             }
         });
 
@@ -305,10 +298,6 @@ public class PersonalInfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void surnameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surnameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_surnameFieldActionPerformed
-
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
@@ -324,21 +313,41 @@ public class PersonalInfo extends javax.swing.JFrame {
         //ConfirmWindow confirmWindow = new ConfirmWindow();
         //confirmWindow.setVisible(true);
         //boolean confirmation = confirmWindow.isConfirmed(); // kolla in i detta
-        
+
         //IF CONFIRM DO THIS
+        String newName = nameField.getText();
+        String newSurname = surnameField.getText();
+        String newAdress = adressField.getText();
+        String newPhonenumber = phoneField.getText();
+        String newEmail = emailField.getText(); //OBS
         
-            String newName = nameField.getText();
-            String newSurname = surnameField.getText();
-            String newAdress = adressField.getText();
-            String newPhonenumber = phoneField.getText();
-            String newEmail = emailField.getText(); //OBS
-            nameDisplay.setText(newName);
-            surnameDisplay.setText(newSurname);
-            adressDisplay.setText(newAdress);
-            phonenumberDisplay.setText(newPhonenumber);
-            emailDisplay.setText(newEmail);
+        if (!newName.equals("Name") && !newSurname.equals("Surname") && !newAdress.equals("Adress") && !newPhonenumber.equals("Phonenumber") && !newEmail.equals("Email")) {
+        nameDisplay.setText(newName);
+        surnameDisplay.setText(newSurname);
+        adressDisplay.setText(newAdress);
+        phonenumberDisplay.setText(newPhonenumber);
+        emailDisplay.setText(newEmail);
+        }
+        
+        updateDatabase("fornamn", newName, aid);
+        updateDatabase("efternamn", newSurname, aid);
+        updateDatabase("adress", newAdress, aid);
+        updateDatabase("telefon", newPhonenumber, aid);
+        updateDatabase("epost", newEmail, aid);
+                
         
     }//GEN-LAST:event_commitButtonActionPerformed
+
+    private void updateDatabase(String column, String value, int aid) {
+        if (!value.equals("Name") && !value.equals("Surname") && !value.equals("Adress") && !value.equals("Phonenumber") && !value.equals("Email")) {
+            try {
+                String sqlQuerry = ("UPDATE ngo_2024.anstalld t SET t." + column + " = '" + value + "' WHERE t.aid = " + aid + ";");
+                idb.update(sqlQuerry);
+            } catch (InfException ex) {
+                Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
         // TODO add your handling code here:
