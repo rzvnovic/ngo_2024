@@ -93,7 +93,7 @@ public class Validering {
         Boolean adminHittad = false;
 
         try {
-            String sqlFrågaAdmin = "select aid from admin where aid in (select aid from anstalld where epost = '" + aid + "')";
+            String sqlFrågaAdmin = "select aid from admin where aid = " + aid;
             String anställningsIDS = idb.fetchSingle(sqlFrågaAdmin);
 
             if (anställningsIDS != null) {
@@ -118,7 +118,7 @@ public class Validering {
         Boolean projektLedareHittad = false;
 
         try {
-            String sqlFrågaProjekt = "select projektchef from projekt where projektchef in (select aid from anstalld where epost = '" + aid + "')";
+            String sqlFrågaProjekt = "select projektchef from projekt where projektchef = " + aid;
             String anställningsIDString = idb.fetchSingle(sqlFrågaProjekt);
 
             if (anställningsIDString != null) {
