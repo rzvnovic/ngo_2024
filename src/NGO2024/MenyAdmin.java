@@ -17,14 +17,16 @@ import java.util.logging.Logger;
 public class MenyAdmin extends javax.swing.JFrame {
 
     private static String ePost;
+    private static int userAnställningsId;
     private InfDB idb;
     private static int aid;
     /**
      * Creates new form NewJFrame
      */
-    public MenyAdmin( String ePost) throws InfException {
+    public MenyAdmin( String ePost, int userAnställningsId) throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         this.ePost = ePost;
+        this.userAnställningsId = userAnställningsId; 
         initComponents();
     }
 
@@ -440,7 +442,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new MenyAdmin(ePost).setVisible(true);
+                    new MenyAdmin(ePost, userAnställningsId).setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
                 }
