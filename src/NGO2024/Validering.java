@@ -38,7 +38,7 @@ public class Validering {
      * @param ePost
      * @return true om admin, false om inte admin
      */
-    private Boolean checkAdmin(String ePost) {
+    public Boolean checkAdmin(String ePost) {
         Boolean adminHittad = false;
 
         try {
@@ -62,7 +62,7 @@ public class Validering {
      * @param ePost
      * @return true om projektledare, false om inte
      */
-    private Boolean checkProjektLedare(String ePost) {
+    public Boolean checkProjektLedare(String ePost) {
         Boolean projektLedareHittad = false;
 
         try {
@@ -89,7 +89,7 @@ public class Validering {
      * @param aid
      * @return true om admin, false om inte admin
      */
-    private Boolean checkAdminAid(int aid) {
+    public Boolean checkAdminAid(int aid) {
         Boolean adminHittad = false;
 
         try {
@@ -114,7 +114,7 @@ public class Validering {
      * @param aid
      * @return true om projektledare, false om inte
      */
-    private Boolean checkProjektLedareAid(int aid) {
+    public Boolean checkProjektLedareAid(int aid) {
         Boolean projektLedareHittad = false;
 
         try {
