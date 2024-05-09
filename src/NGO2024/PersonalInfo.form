@@ -212,7 +212,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="commitButtonActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="if(!Validering.checkAdminAid(userAid)){"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="if(!validering.checkAdminAid(userAid)){"/>
             <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="}"/>
           </AuxValues>
         </Component>
@@ -224,7 +224,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminOkButtonActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="if(Validering.checkAdminAid(userAid)){"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="if(validering.checkAdminAid(userAid)){"/>
             <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="}"/>
           </AuxValues>
         </Component>

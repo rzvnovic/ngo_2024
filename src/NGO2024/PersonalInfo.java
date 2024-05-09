@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import java.util.*;
 
 /**
  * Klass som öppnar fönster för personalinfo med vissa gömda åtkomster för
@@ -22,14 +23,16 @@ public class PersonalInfo extends javax.swing.JFrame {
     //tas emot från klassen anställd
     private static int aid;
     private static int userAid;
+    private static Validering validering;
 
     /**
      * Creates new form PersonalInfo
      */
-    public PersonalInfo(int aid, int userAid) throws InfException {
+    public PersonalInfo(int aid, int userAid, Validering validering) throws InfException {
         this.aid = userAid;
         this.aid = aid;
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
+        this.validering = validering;
         initComponents();
 
     }
@@ -83,9 +86,9 @@ public class PersonalInfo extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         emailField = new javax.swing.JTextField();
         makeAdminBox = new javax.swing.JCheckBox();
-        if(!Validering.checkAdminAid(userAid)){
+        if(!validering.checkAdminAid(userAid)){
             commitButton = new javax.swing.JButton();
-            if(Validering.checkAdminAid(userAid)){
+            if(validering.checkAdminAid(userAid)){
                 adminOkButton = new javax.swing.JButton();
                 jScrollPane1 = new javax.swing.JScrollPane();
                 nameDisplay = new javax.swing.JTextPane();
@@ -326,22 +329,22 @@ public class PersonalInfo extends javax.swing.JFrame {
         String newAdress = adressField.getText();
         String newPhonenumber = phoneField.getText();
         String newEmail = emailField.getText(); //OBS
-        
+
         if (!newName.equals("Name") && !newSurname.equals("Surname") && !newAdress.equals("Adress") && !newPhonenumber.equals("Phonenumber") && !newEmail.equals("Email")) {
-        nameDisplay.setText(newName);
-        surnameDisplay.setText(newSurname);
-        adressDisplay.setText(newAdress);
-        phonenumberDisplay.setText(newPhonenumber);
-        emailDisplay.setText(newEmail);
+            nameDisplay.setText(newName);
+            surnameDisplay.setText(newSurname);
+            adressDisplay.setText(newAdress);
+            phonenumberDisplay.setText(newPhonenumber);
+            emailDisplay.setText(newEmail);
         }
-        
+
         updateDatabase("fornamn", newName, aid);
         updateDatabase("efternamn", newSurname, aid);
         updateDatabase("adress", newAdress, aid);
         updateDatabase("telefon", newPhonenumber, aid);
         updateDatabase("epost", newEmail, aid);
-                
-        
+
+
     }//GEN-LAST:event_commitButtonActionPerformed
 
     private void updateDatabase(String column, String value, int aid) {
@@ -393,7 +396,22 @@ public class PersonalInfo extends javax.swing.JFrame {
     private void generateNewPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateNewPasswordActionPerformed
         // TODO add your handling code here:
         // TODO PROGRAMMERA SÅ ETT RANDOM LÖSEN SKAPAS OCH LÄGG IN I DATABAS UNDER RÄTT AID.
-
+        String lowercase = "abcdefghijklmnopqrstuvwxyz";
+        String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String numbers = "0123456789";
+        
+        String allChars = lowercase + uppercase + numbers;
+        
+        Random r = new Random();
+        
+        
+        String newPassword = null;
+        for(int i = 0; i<12; i++){
+            int numb = r.nextInt(0, allChars.length());
+            newPassword = newPassword + allChars.charAt(numb);
+        }
+        System.out.print(newPassword);
+        
 
     }//GEN-LAST:event_generateNewPasswordActionPerformed
 
@@ -429,7 +447,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new PersonalInfo(aid, userAid).setVisible(true);
+                    new PersonalInfo(aid, userAid, validering).setVisible(true);
                     Validering validering = new Validering();
                 } catch (InfException ex) {
                     Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
