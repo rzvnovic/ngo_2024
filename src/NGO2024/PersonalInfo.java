@@ -430,6 +430,7 @@ public class PersonalInfo extends javax.swing.JFrame {
             public void run() {
                 try {
                     new PersonalInfo(aid, userAid).setVisible(true);
+                    Validering validering = new Validering();
                 } catch (InfException ex) {
                     Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
                 }

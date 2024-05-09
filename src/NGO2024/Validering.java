@@ -17,7 +17,7 @@ import oru.inf.InfDB;
  */
 public class Validering {
 
-    private final InfDB idb;
+    private static InfDB idb;
     //DENNA METOD KAN GÖRAS BÄTTRE OM ÖNSKAS MED HÅRDARE KONTROLL FYI 
 
     public Validering() throws InfException {
@@ -89,7 +89,7 @@ public class Validering {
      * @param aid
      * @return true om admin, false om inte admin
      */
-    public Boolean checkAdminAid(int aid) {
+    public  Boolean checkAdminAid(int aid) {
         Boolean adminHittad = false;
 
         try {
@@ -114,7 +114,7 @@ public class Validering {
      * @param aid
      * @return true om projektledare, false om inte
      */
-    public Boolean checkProjektLedareAid(int aid) {
+    public static Boolean checkProjektLedareAid(int aid) {
         Boolean projektLedareHittad = false;
 
         try {
