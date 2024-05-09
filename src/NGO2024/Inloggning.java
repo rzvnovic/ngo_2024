@@ -153,7 +153,7 @@ public class Inloggning extends javax.swing.JFrame {
                 }
                 //om de är projektledare kommer en meny öppnas
                 else if (ärProjektLedare == true){
-                    new MenyHandläggare(idb, ePost).setVisible(true);
+                    new MenyHandläggare(idb, ePost, userAnställningsId).setVisible(true);
                 }
     
             }
@@ -203,6 +203,7 @@ public class Inloggning extends javax.swing.JFrame {
         {
             //nedanstående rad kan eventuellt tas bort, testa 
            int anställningsIDInt = Integer.parseInt(anställningsIDString);
+           userAnställningsId = anställningsIDInt;
             projektLedareHittad = true;
         }
         

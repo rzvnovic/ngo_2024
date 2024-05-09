@@ -21,11 +21,13 @@ public class PersonalInfo extends javax.swing.JFrame {
 
     //tas emot från klassen anställd
     private static int aid;
+    private static int userAid;
 
     /**
      * Creates new form PersonalInfo
      */
-    public PersonalInfo(int aid) throws InfException {
+    public PersonalInfo(int aid, int userAid) throws InfException {
+        this.aid = userAid;
         this.aid = aid;
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         initComponents();
@@ -81,86 +83,90 @@ public class PersonalInfo extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         emailField = new javax.swing.JTextField();
         makeAdminBox = new javax.swing.JCheckBox();
-        commitButton = new javax.swing.JButton();
-        adminOkButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        nameDisplay = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        surnameDisplay = new javax.swing.JTextPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        adressDisplay = new javax.swing.JTextPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        phonenumberDisplay = new javax.swing.JTextPane();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        emailDisplay = new javax.swing.JTextPane();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        isAdminDisplay = new javax.swing.JTextPane();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        employeeIdDisplay = new javax.swing.JTextPane();
-        generateNewPassword = new javax.swing.JToggleButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        if(!Validering.checkAdminAid(userAid)){
+            commitButton = new javax.swing.JButton();
+            if(Validering.checkAdminAid(userAid)){
+                adminOkButton = new javax.swing.JButton();
+                jScrollPane1 = new javax.swing.JScrollPane();
+                nameDisplay = new javax.swing.JTextPane();
+                jScrollPane2 = new javax.swing.JScrollPane();
+                surnameDisplay = new javax.swing.JTextPane();
+                jScrollPane3 = new javax.swing.JScrollPane();
+                adressDisplay = new javax.swing.JTextPane();
+                jScrollPane4 = new javax.swing.JScrollPane();
+                phonenumberDisplay = new javax.swing.JTextPane();
+                jScrollPane5 = new javax.swing.JScrollPane();
+                emailDisplay = new javax.swing.JTextPane();
+                jScrollPane6 = new javax.swing.JScrollPane();
+                isAdminDisplay = new javax.swing.JTextPane();
+                jScrollPane7 = new javax.swing.JScrollPane();
+                employeeIdDisplay = new javax.swing.JTextPane();
+                generateNewPassword = new javax.swing.JToggleButton();
+                jMenuBar1 = new javax.swing.JMenuBar();
+                jMenu1 = new javax.swing.JMenu();
+                jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nameField.setText("Name");
-        nameField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nameFieldMouseClicked(evt);
+                nameField.setText("Name");
+                nameField.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        nameFieldMouseClicked(evt);
+                    }
+                });
+                nameField.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        nameFieldActionPerformed(evt);
+                    }
+                });
+
+                jLabel1.setText("Information");
+
+                surnameField.setText("Surname");
+                surnameField.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        surnameFieldMouseClicked(evt);
+                    }
+                });
+
+                adressField.setText("Adress");
+                adressField.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        adressFieldMouseClicked(evt);
+                    }
+                });
+
+                phoneField.setText("Phonenumber");
+                phoneField.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        phoneFieldMouseClicked(evt);
+                    }
+                });
+
+                emailField.setText("Email");
+                emailField.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        emailFieldMouseClicked(evt);
+                    }
+                });
+
+                makeAdminBox.setText("Admin");
+
+                commitButton.setText("Ok");
+                commitButton.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        commitButtonActionPerformed(evt);
+                    }
+                });
             }
-        });
-        nameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameFieldActionPerformed(evt);
-            }
-        });
 
-        jLabel1.setText("Information");
-
-        surnameField.setText("Surname");
-        surnameField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                surnameFieldMouseClicked(evt);
-            }
-        });
-
-        adressField.setText("Adress");
-        adressField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                adressFieldMouseClicked(evt);
-            }
-        });
-
-        phoneField.setText("Phonenumber");
-        phoneField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                phoneFieldMouseClicked(evt);
-            }
-        });
-
-        emailField.setText("Email");
-        emailField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                emailFieldMouseClicked(evt);
-            }
-        });
-
-        makeAdminBox.setText("Admin");
-
-        commitButton.setText("Ok");
-        commitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                commitButtonActionPerformed(evt);
-            }
-        });
-
-        adminOkButton.setText("Ok");
-        adminOkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminOkButtonActionPerformed(evt);
-            }
-        });
+            adminOkButton.setText("Ok");
+            adminOkButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    adminOkButtonActionPerformed(evt);
+                }
+            });
+        }
 
         nameDisplay.setEditable(false);
         nameDisplay.setText(setDisplayText1("fornamn", aid));
@@ -423,7 +429,8 @@ public class PersonalInfo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new PersonalInfo(aid).setVisible(true);
+                    new PersonalInfo(aid, userAid).setVisible(true);
+                    Validering validering = new Validering();
                 } catch (InfException ex) {
                     Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
                 }

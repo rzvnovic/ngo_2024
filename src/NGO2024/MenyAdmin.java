@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class MenyAdmin extends javax.swing.JFrame {
 
     private static String ePost;
-    private static int userAnställningsId;
+    private static int userAid;
     private InfDB idb;
     private static int aid;
     /**
@@ -26,7 +26,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     public MenyAdmin( String ePost, int userAnställningsId) throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         this.ePost = ePost;
-        this.userAnställningsId = userAnställningsId; 
+        this.userAid = userAnställningsId; 
         initComponents();
     }
 
@@ -398,7 +398,7 @@ public class MenyAdmin extends javax.swing.JFrame {
             String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
             String dbSqlFraga = idb.fetchSingle(sqlFraga);
             int aid = Integer.parseInt(dbSqlFraga);
-            new PersonalInfo(aid).setVisible(true);
+            new PersonalInfo(aid,userAid).setVisible(true);
         }
         catch(Exception e){
             
@@ -442,7 +442,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new MenyAdmin(ePost, userAnställningsId).setVisible(true);
+                    new MenyAdmin(ePost, userAid).setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -13,13 +13,15 @@ import oru.inf.InfException;
 public class MenyHandläggare extends javax.swing.JFrame {
     private static InfDB idb;
     private static String ePost;
+    private static int userAnställningsId;
 
     /**
      * Creates new form MenyHandläggare
      */
-    public MenyHandläggare(InfDB idb, String ePost) {
+    public MenyHandläggare(InfDB idb, String ePost, int userAnställningsId) {
         this.idb = idb;
         this.ePost = ePost;
+        this.userAnställningsId = userAnställningsId;
         initComponents();
     }
 
@@ -274,7 +276,7 @@ public class MenyHandläggare extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenyHandläggare(idb, ePost).setVisible(true);
+                new MenyHandläggare(idb, ePost, userAnställningsId).setVisible(true);
             }
         });
     }
