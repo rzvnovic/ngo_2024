@@ -13,7 +13,7 @@ import oru.inf.InfException;
  *
  * @author Cyrus
  */
-public class Samarbetspartnerinfocyruss extends javax.swing.JFrame {
+public class Samarbetspartnerinfo extends javax.swing.JFrame {
 
     private InfDB idb;
 
@@ -23,7 +23,7 @@ public class Samarbetspartnerinfocyruss extends javax.swing.JFrame {
     /**
      * Creates new form PersonalInfo
      */
-    public Samarbetspartnerinfocyruss() throws InfException {
+    public Samarbetspartnerinfo() throws InfException {
         idb = new InfDB("ngo_2024","3306", "dbAdmin2024","dbAdmin2024PW");
         initComponents();
         
@@ -84,12 +84,12 @@ public class Samarbetspartnerinfocyruss extends javax.swing.JFrame {
         generateNewPassword = new javax.swing.JToggleButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         contactMailDisplay = new javax.swing.JTextPane();
-        jTextField1 = new javax.swing.JTextField();
+        BranchField = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
-        jTextField2 = new javax.swing.JTextField();
+        branchDisplay = new javax.swing.JTextPane();
+        cityField = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
+        cityDisplay = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -182,15 +182,17 @@ public class Samarbetspartnerinfocyruss extends javax.swing.JFrame {
         contactMailDisplay.setEditable(false);
         jScrollPane7.setViewportView(contactMailDisplay);
 
-        jTextField1.setText("Branch");
+        BranchField.setText("Branch");
 
-        jTextPane2.setEditable(false);
-        jScrollPane8.setViewportView(jTextPane2);
+        branchDisplay.setText(setDisplayText1("branch", pid));
+        branchDisplay.setEditable(false);
+        jScrollPane8.setViewportView(branchDisplay);
 
-        jTextField2.setText("City");
+        cityField.setText("City");
 
-        jTextPane3.setEditable(false);
-        jScrollPane6.setViewportView(jTextPane3);
+        cityDisplay.setText(setDisplayText1("stad", pid));
+        cityDisplay.setEditable(false);
+        jScrollPane6.setViewportView(cityDisplay);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,8 +201,8 @@ public class Samarbetspartnerinfocyruss extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField1)
+                    .addComponent(cityField)
+                    .addComponent(BranchField)
                     .addComponent(generateNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameField)
@@ -256,9 +258,9 @@ public class Samarbetspartnerinfocyruss extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BranchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(adminOkButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -372,14 +374,16 @@ public class Samarbetspartnerinfocyruss extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Samarbetspartnerinfocyruss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Samarbetspartnerinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Samarbetspartnerinfocyruss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Samarbetspartnerinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Samarbetspartnerinfocyruss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Samarbetspartnerinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Samarbetspartnerinfocyruss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Samarbetspartnerinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -387,18 +391,22 @@ public class Samarbetspartnerinfocyruss extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Samarbetspartnerinfocyruss().setVisible(true);
+                    new Samarbetspartnerinfo().setVisible(true);
                 } catch (InfException ex) {
-                    Logger.getLogger(Samarbetspartnerinfocyruss.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Samarbetspartnerinfo.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField BranchField;
     private javax.swing.JButton adminOkButton;
     private javax.swing.JTextPane adressDisplay;
     private javax.swing.JTextField adressField;
+    private javax.swing.JTextPane branchDisplay;
+    private javax.swing.JTextPane cityDisplay;
+    private javax.swing.JTextField cityField;
     private javax.swing.JTextPane contactMailDisplay;
     private javax.swing.JTextField contactMailField;
     private javax.swing.JTextPane contactPersonDisplay;
@@ -416,10 +424,6 @@ public class Samarbetspartnerinfocyruss extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
     private javax.swing.JTextField kontaktPerson;
     private javax.swing.JTextPane nameDisplay;
     private javax.swing.JTextField nameField;
