@@ -13,7 +13,7 @@ import oru.inf.InfException;
  *
  * @author Cyrus
  */
-public class Samarbetspartnerinfo extends javax.swing.JFrame {
+public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
     private InfDB idb;
 
@@ -23,7 +23,7 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
     /**
      * Creates new form PersonalInfo
      */
-    public Samarbetspartnerinfo() throws InfException {
+    public SamarbetspartnerInfo() throws InfException {
         idb = new InfDB("ngo_2024","3306", "dbAdmin2024","dbAdmin2024PW");
         initComponents();
         
@@ -81,13 +81,16 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
         adressDisplay = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         phonenumberDisplay = new javax.swing.JTextPane();
+        //TODO programmera en kod som visar display från contact mail
         jScrollPane7 = new javax.swing.JScrollPane();
         contactMailDisplay = new javax.swing.JTextPane();
         BranchField = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
+        //TODO proggrammera en kod som visar display från branch
         branchDisplay = new javax.swing.JTextPane();
         cityField = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
+        //TODO proggramera så att City står här
         cityDisplay = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -298,6 +301,7 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
     private void adminOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminOkButtonActionPerformed
         // TODO add your handling code here:
         //MAKE ViSABLE IF USER == ADMIN
+        //skriv kod som implementerar detta in i databasen (ändringarna) genom idb.update() metod.
     }//GEN-LAST:event_adminOkButtonActionPerformed
 
     private void contactMailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactMailFieldActionPerformed
@@ -362,14 +366,18 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Samarbetspartnerinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Samarbetspartnerinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Samarbetspartnerinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Samarbetspartnerinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -379,9 +387,9 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Samarbetspartnerinfo().setVisible(true);
+                    new SamarbetspartnerInfo().setVisible(true);
                 } catch (InfException ex) {
-                    Logger.getLogger(Samarbetspartnerinfo.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

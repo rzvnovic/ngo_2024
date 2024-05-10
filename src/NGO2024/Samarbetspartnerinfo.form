@@ -291,6 +291,7 @@
         </Container>
         <Container class="javax.swing.JScrollPane" name="jScrollPane7">
           <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="//TODO programmera en kod som visar display fr&#xe5;n contact mail"/>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
@@ -323,6 +324,7 @@
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="//TODO proggrammera en kod som visar display fr&#xe5;n branch"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="branchDisplay.setText(setDisplayText1(&quot;branch&quot;, pid));"/>
               </AuxValues>
             </Component>
@@ -345,6 +347,7 @@
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="//TODO proggramera s&#xe5; att City st&#xe5;r h&#xe4;r"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="cityDisplay.setText(setDisplayText1(&quot;stad&quot;, pid));"/>
               </AuxValues>
             </Component>

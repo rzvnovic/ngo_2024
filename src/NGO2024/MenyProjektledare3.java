@@ -5,7 +5,7 @@
 package NGO2024;
 
 /**
- *
+ *  Denna klass kan troligen tas bort //cyrus
  * @author GF63
  */
 public class MenyProjektledare3 extends javax.swing.JFrame {
