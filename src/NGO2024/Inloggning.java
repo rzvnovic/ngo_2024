@@ -20,7 +20,7 @@ public class Inloggning extends javax.swing.JFrame {
     /**
      * Creates new form Inloggning
      */
-    public Inloggning(InfDB idb, Validering validering) {
+    public Inloggning(InfDB idb) {
         this.validering = validering;
         this.idb = idb;
         initComponents();
@@ -150,7 +150,7 @@ public class Inloggning extends javax.swing.JFrame {
                 Boolean ärProjektLedare = checkProjektLedare(ePost);
                 //om de är admin kommer en meny öppnas
                 if (ärAdmin == true){
-                    new MenyAdmin(ePost, userAid, validering).setVisible(true);
+                    new MenyAdmin(ePost, userAid).setVisible(true);
                 this.setVisible(false);
                 }
                 //om de är projektledare kommer en meny öppnas

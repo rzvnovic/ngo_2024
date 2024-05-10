@@ -24,10 +24,11 @@ public class MenyAdmin extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public MenyAdmin( String ePost, int userAnställningsId, Validering validering) throws InfException {
+    public MenyAdmin( String ePost, int userAnställningsId) throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         this.ePost = ePost;
-        this.userAid = userAnställningsId; 
+        this.userAid = userAnställningsId;
+        validering = new Validering();
         initComponents();
     }
 
@@ -369,18 +370,6 @@ public class MenyAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
-        /*String personalNamn = searchField.getText();
-    int index = personalNamn.indexOf(" ");
-    String forNamn = personalNamn.substring(0,index-1);
-    String efterNamn = personalNamn.substring(index); 
-    System.out.println(forNamn + efterNamn);
-    
-    /*try{
-        String sqlFraga = "SELECT aid FROM anstalld WHERE fornamn = and efternamn = '" + 
-    }catch (Exeptcion e)
-            {
-                
-         */
 
 // TODO add your handling code here:
     }//GEN-LAST:event_searchFieldActionPerformed
@@ -394,12 +383,12 @@ public class MenyAdmin extends javax.swing.JFrame {
         int index = personalNamn.indexOf(" ");
         String fornamn = personalNamn.substring(0, index);
         String efternamn = personalNamn.substring(index + 1);
-        
+        System.out.print(fornamn + efternamn);
         try{
             String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
             String dbSqlFraga = idb.fetchSingle(sqlFraga);
             int aid = Integer.parseInt(dbSqlFraga);
-            new PersonalInfo(aid,userAid, validering).setVisible(true);
+            new PersonalInfo(aid, userAid).setVisible(true);
         }
         catch(Exception e){
             
@@ -443,7 +432,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new MenyAdmin(ePost, userAid, validering).setVisible(true);
+                    new MenyAdmin(ePost, userAid).setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -28,15 +28,17 @@ public class PersonalInfo extends javax.swing.JFrame {
     /**
      * Creates new form PersonalInfo
      */
-    public PersonalInfo(int aid, int userAid, Validering validering) throws InfException {
+    public PersonalInfo(int aid, int userAid) throws InfException {
         this.aid = userAid;
         this.aid = aid;
+        this.validering = validering;
+        validering = new Validering();
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         } catch (InfException ex) {
             Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.validering = validering;
+        
         initComponents();
 
     }
@@ -451,7 +453,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new PersonalInfo(aid, userAid, validering).setVisible(true);
+                    new PersonalInfo(aid, userAid).setVisible(true);
                     Validering validering = new Validering();
                 } catch (InfException ex) {
                     Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);

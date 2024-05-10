@@ -12,7 +12,6 @@ import oru.inf.InfException;
  */
 public class StartClass {
     private static InfDB idb;
-    private static Validering validering;
     /**
      * @param args the command line arguments
      */
@@ -20,7 +19,7 @@ public class StartClass {
         try{
         // TODO code application logic here
         idb = new InfDB("ngo_2024","3306", "dbAdmin2024","dbAdmin2024PW");
-        new Inloggning(idb, validering).setVisible(true);
+        new Inloggning(idb).setVisible(true);
         System.out.println("funkar");
     }
         catch (InfException ex){
