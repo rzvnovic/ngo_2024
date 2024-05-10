@@ -31,7 +31,11 @@ public class PersonalInfo extends javax.swing.JFrame {
     public PersonalInfo(int aid, int userAid, Validering validering) throws InfException {
         this.aid = userAid;
         this.aid = aid;
-        idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
+        try {
+            idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
+        } catch (InfException ex) {
+            Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.validering = validering;
         initComponents();
 

@@ -15,11 +15,13 @@ import oru.inf.InfException;
 public class Inloggning extends javax.swing.JFrame {
 
     private InfDB idb;
-    private int userAnställningsId; 
+    private int userAid;
+    private Validering validering;
     /**
      * Creates new form Inloggning
      */
-    public Inloggning(InfDB idb) {
+    public Inloggning(InfDB idb, Validering validering) {
+        this.validering = validering;
         this.idb = idb;
         initComponents();
         lblfelMeddelande.setVisible(false);
@@ -148,12 +150,12 @@ public class Inloggning extends javax.swing.JFrame {
                 Boolean ärProjektLedare = checkProjektLedare(ePost);
                 //om de är admin kommer en meny öppnas
                 if (ärAdmin == true){
-                    new MenyAdmin(ePost, userAnställningsId).setVisible(true);
+                    new MenyAdmin(ePost, userAid, validering).setVisible(true);
                 this.setVisible(false);
                 }
                 //om de är projektledare kommer en meny öppnas
                 else if (ärProjektLedare == true){
-                    new MenyHandläggare(idb, ePost, userAnställningsId).setVisible(true);
+                    new MenyHandläggare(idb, ePost, userAid).setVisible(true);
                 }
     
             }
@@ -178,7 +180,7 @@ public class Inloggning extends javax.swing.JFrame {
         if (anställningsIDS != null)
         {
            int anställningsIDInt = Integer.parseInt(anställningsIDS);
-           userAnställningsId = anställningsIDInt;
+           userAid = anställningsIDInt;
             adminHittad = true;
         }
         
@@ -203,7 +205,7 @@ public class Inloggning extends javax.swing.JFrame {
         {
             //nedanstående rad kan eventuellt tas bort, testa 
            int anställningsIDInt = Integer.parseInt(anställningsIDString);
-           userAnställningsId = anställningsIDInt;
+           userAid = anställningsIDInt;
             projektLedareHittad = true;
         }
         
