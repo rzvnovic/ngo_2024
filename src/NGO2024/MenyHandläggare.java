@@ -35,190 +35,229 @@ public class MenyHandläggare extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jScrollProfil = new javax.swing.JScrollPane();
-        jScrollAvdelning = new javax.swing.JScrollPane();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jTxtFieldSökruta = new javax.swing.JTextField();
-        jButtonSök = new javax.swing.JButton();
+        HandläggarMeny = new javax.swing.JTabbedPane();
+        profilTab = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        visaKnapp = new javax.swing.JButton();
+        avdelningTab = new javax.swing.JPanel();
         jLblSökHandläggare = new javax.swing.JLabel();
-        jScrollHållbarhet = new javax.swing.JScrollPane();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jScrollProjekt = new javax.swing.JScrollPane();
-        jPanelProjekt = new javax.swing.JPanel();
-        jScrollPaneAllaProjekt = new javax.swing.JScrollPane();
-        jTblAllaProjekt = new javax.swing.JTable();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        avdelningSokruta = new javax.swing.JTextField();
+        avdelningSok = new javax.swing.JButton();
+        projektTab = new javax.swing.JPanel();
+        jLblSökHandläggare4 = new javax.swing.JLabel();
+        projektSokruta = new javax.swing.JTextField();
+        projektSok = new javax.swing.JButton();
+        samarbetspartnerTab2 = new javax.swing.JPanel();
+        jLblSökHandläggare5 = new javax.swing.JLabel();
+        samarbetspartnerSokruta = new javax.swing.JTextField();
+        samarbetspartnerSok = new javax.swing.JButton();
+        hållbarhetsmalTab = new javax.swing.JPanel();
+        jLblSökHallbarhetsmål = new javax.swing.JLabel();
+        hallbarhetsmalSokruta = new javax.swing.JTextField();
+        hallbarhetsmalSok = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.addTab("Profil", jScrollProfil);
+        jLabel1.setText("Info");
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList2);
+        visaKnapp.setText("Visa Profil:");
 
-        jTxtFieldSökruta.setText("jTextField6");
-
-        jButtonSök.setText("Sök");
-        jButtonSök.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLblSökHandläggare.setText("Sök handläggare");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout profilTabLayout = new javax.swing.GroupLayout(profilTab);
+        profilTab.setLayout(profilTabLayout);
+        profilTabLayout.setHorizontalGroup(
+            profilTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profilTabLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(profilTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(visaKnapp))
+                .addContainerGap(615, Short.MAX_VALUE))
+        );
+        profilTabLayout.setVerticalGroup(
+            profilTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profilTabLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTxtFieldSökruta)
-                        .addComponent(jLblSökHandläggare, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
-                    .addComponent(jButtonSök))
-                .addGap(0, 288, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLblSökHandläggare)
-                        .addGap(8, 8, 8)
-                        .addComponent(jTxtFieldSökruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonSök)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        jScrollAvdelning.setViewportView(jPanel4);
-
-        jTabbedPane1.addTab("Avdelning", jScrollAvdelning);
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList1);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(392, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jScrollHållbarhet.setViewportView(jPanel5);
-
-        jTabbedPane1.addTab("Hållbarhetsmål", jScrollHållbarhet);
-
-        jTblAllaProjekt.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Namn", "Beskrivning", "Startdatum", "Slutdatum", "Status", "Prioritet", "Samarbetspartner", "Kostnad", "Land", "Projektchef"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPaneAllaProjekt.setViewportView(jTblAllaProjekt);
-
-        jCheckBox4.setText("Mina projekt");
-
-        jCheckBox5.setText("Avdelningens projekt");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout jPanelProjektLayout = new javax.swing.GroupLayout(jPanelProjekt);
-        jPanelProjekt.setLayout(jPanelProjektLayout);
-        jPanelProjektLayout.setHorizontalGroup(
-            jPanelProjektLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelProjektLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelProjektLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelProjektLayout.createSequentialGroup()
-                        .addComponent(jCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCheckBox5)
-                        .addGap(336, 336, 336)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPaneAllaProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        jPanelProjektLayout.setVerticalGroup(
-            jPanelProjektLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelProjektLayout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanelProjektLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneAllaProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(visaKnapp)
+                .addContainerGap(302, Short.MAX_VALUE))
         );
 
-        jScrollProjekt.setViewportView(jPanelProjekt);
+        HandläggarMeny.addTab("Profil", profilTab);
 
-        jTabbedPane1.addTab("Projekt", jScrollProjekt);
-        jTabbedPane1.addTab("Samarbetspartner", jTabbedPane2);
+        jLblSökHandläggare.setText("Sök Handläggare");
+
+        avdelningSokruta.setColumns(8);
+
+        avdelningSok.setText("Sök");
+        avdelningSok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avdelningSokjButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout avdelningTabLayout = new javax.swing.GroupLayout(avdelningTab);
+        avdelningTab.setLayout(avdelningTabLayout);
+        avdelningTabLayout.setHorizontalGroup(
+            avdelningTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(avdelningTabLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(avdelningTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(avdelningSok)
+                    .addComponent(jLblSökHandläggare, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(avdelningSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 567, Short.MAX_VALUE))
+        );
+        avdelningTabLayout.setVerticalGroup(
+            avdelningTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(avdelningTabLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLblSökHandläggare)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(avdelningSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(avdelningSok)
+                .addContainerGap(268, Short.MAX_VALUE))
+        );
+
+        HandläggarMeny.addTab("Avdelning", avdelningTab);
+
+        jLblSökHandläggare4.setText("Sök Projekt");
+
+        projektSokruta.setColumns(8);
+
+        projektSok.setText("Sök");
+        projektSok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projektSokjButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout projektTabLayout = new javax.swing.GroupLayout(projektTab);
+        projektTab.setLayout(projektTabLayout);
+        projektTabLayout.setHorizontalGroup(
+            projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(projektTabLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(projektSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projektSok)
+                    .addComponent(jLblSökHandläggare4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 567, Short.MAX_VALUE))
+        );
+        projektTabLayout.setVerticalGroup(
+            projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(projektTabLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLblSökHandläggare4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(projektSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(projektSok)
+                .addContainerGap(268, Short.MAX_VALUE))
+        );
+
+        HandläggarMeny.addTab("Projekt", projektTab);
+
+        jLblSökHandläggare5.setText("Sök Samarbetspartner");
+
+        samarbetspartnerSokruta.setColumns(8);
+
+        samarbetspartnerSok.setText("Sök");
+        samarbetspartnerSok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                samarbetspartnerSokjButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout samarbetspartnerTab2Layout = new javax.swing.GroupLayout(samarbetspartnerTab2);
+        samarbetspartnerTab2.setLayout(samarbetspartnerTab2Layout);
+        samarbetspartnerTab2Layout.setHorizontalGroup(
+            samarbetspartnerTab2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(samarbetspartnerTab2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(samarbetspartnerTab2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(samarbetspartnerSok)
+                    .addComponent(samarbetspartnerSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblSökHandläggare5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 564, Short.MAX_VALUE))
+        );
+        samarbetspartnerTab2Layout.setVerticalGroup(
+            samarbetspartnerTab2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(samarbetspartnerTab2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLblSökHandläggare5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(samarbetspartnerSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(samarbetspartnerSok)
+                .addContainerGap(268, Short.MAX_VALUE))
+        );
+
+        HandläggarMeny.addTab("Samarbetspartner", samarbetspartnerTab2);
+
+        jLblSökHallbarhetsmål.setText("Sök Hållbarhetsmål");
+
+        hallbarhetsmalSokruta.setColumns(8);
+        hallbarhetsmalSokruta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hallbarhetsmalSokrutaActionPerformed(evt);
+            }
+        });
+
+        hallbarhetsmalSok.setText("Sök");
+        hallbarhetsmalSok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hallbarhetsmalSokjButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout hållbarhetsmalTabLayout = new javax.swing.GroupLayout(hållbarhetsmalTab);
+        hållbarhetsmalTab.setLayout(hållbarhetsmalTabLayout);
+        hållbarhetsmalTabLayout.setHorizontalGroup(
+            hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hållbarhetsmalTabLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(hallbarhetsmalSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hallbarhetsmalSok)
+                    .addComponent(jLblSökHallbarhetsmål, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 567, Short.MAX_VALUE))
+        );
+        hållbarhetsmalTabLayout.setVerticalGroup(
+            hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hållbarhetsmalTabLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLblSökHallbarhetsmål)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hallbarhetsmalSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hallbarhetsmalSok)
+                .addContainerGap(268, Short.MAX_VALUE))
+        );
+
+        HandläggarMeny.addTab("Hållbarhetsmål", hållbarhetsmalTab);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                .addComponent(HandläggarMeny, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                .addComponent(HandläggarMeny, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jLabel2.setText("jLabel2");
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -242,9 +281,25 @@ public class MenyHandläggare extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void avdelningSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdelningSokjButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_avdelningSokjButton2ActionPerformed
+
+    private void projektSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektSokjButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_projektSokjButton2ActionPerformed
+
+    private void samarbetspartnerSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_samarbetspartnerSokjButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_samarbetspartnerSokjButton2ActionPerformed
+
+    private void hallbarhetsmalSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalSokjButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hallbarhetsmalSokjButton2ActionPerformed
+
+    private void hallbarhetsmalSokrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalSokrutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hallbarhetsmalSokrutaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,30 +337,30 @@ public class MenyHandläggare extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonSök;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTabbedPane HandläggarMeny;
+    private javax.swing.JButton avdelningSok;
+    private javax.swing.JTextField avdelningSokruta;
+    private javax.swing.JPanel avdelningTab;
+    private javax.swing.JButton hallbarhetsmalSok;
+    private javax.swing.JTextField hallbarhetsmalSokruta;
+    private javax.swing.JPanel hållbarhetsmalTab;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLblSökHallbarhetsmål;
     private javax.swing.JLabel jLblSökHandläggare;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JLabel jLblSökHandläggare4;
+    private javax.swing.JLabel jLblSökHandläggare5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanelProjekt;
-    private javax.swing.JScrollPane jScrollAvdelning;
-    private javax.swing.JScrollPane jScrollHållbarhet;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPaneAllaProjekt;
-    private javax.swing.JScrollPane jScrollProfil;
-    private javax.swing.JScrollPane jScrollProjekt;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTblAllaProjekt;
-    private javax.swing.JTextField jTxtFieldSökruta;
+    private javax.swing.JPanel profilTab;
+    private javax.swing.JButton projektSok;
+    private javax.swing.JTextField projektSokruta;
+    private javax.swing.JPanel projektTab;
+    private javax.swing.JButton samarbetspartnerSok;
+    private javax.swing.JTextField samarbetspartnerSokruta;
+    private javax.swing.JPanel samarbetspartnerTab2;
+    private javax.swing.JButton visaKnapp;
     // End of variables declaration//GEN-END:variables
 }

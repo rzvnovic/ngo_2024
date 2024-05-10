@@ -4,17 +4,41 @@
  */
 package NGO2024;
 
+import NGO2024.Validering;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import oru.inf.InfException;
+import java.util.*;
+import oru.inf.InfDB;
+
 /**
  *
  * @author Cyrus
  */
 public class NewPersonel extends javax.swing.JFrame {
 
+    private InfDB idb;
+    private static int aid;
+    private static int userAid;
+    private static Validering validering;
+
     /**
      * Creates new form newPersonel
+     *
+     * @throws oru.inf.InfException
      */
-    public NewPersonel() {
+    public NewPersonel() throws InfException {
+
+        validering = new Validering();
+
+        try {
+            idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
+        } catch (InfException ex) {
+            Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         initComponents();
+
     }
 
     /**
@@ -31,12 +55,10 @@ public class NewPersonel extends javax.swing.JFrame {
         adressField = new javax.swing.JTextField();
         emailField = new javax.swing.JTextField();
         phoneNumField = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         makeAdminCheckBox = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,27 +102,18 @@ public class NewPersonel extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButton1.setText("Create");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         makeAdminCheckBox.setText("Admin");
 
         jLabel1.setText("Personel details");
+
+        jFormattedTextField1.setText("jFormattedTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,23 +122,15 @@ public class NewPersonel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(phoneNumField))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(phoneNumField))
                     .addComponent(makeAdminCheckBox)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,10 +154,7 @@ public class NewPersonel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(phoneNumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(makeAdminCheckBox)
                 .addGap(4, 4, 4)
@@ -164,47 +166,63 @@ public class NewPersonel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void surnameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surnameFieldActionPerformed
-        
+
     }//GEN-LAST:event_surnameFieldActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
-        if(nameField.getText().equals("Name")){
+        if (nameField.getText().equals("Name")) {
             nameField.setText("");
         }
-        
+
     }//GEN-LAST:event_nameFieldMouseClicked
 
     private void surnameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_surnameFieldMouseClicked
-        if(surnameField.getText().equals("Surname")){
+        if (surnameField.getText().equals("Surname")) {
             surnameField.setText("");
-       }
+        }
     }//GEN-LAST:event_surnameFieldMouseClicked
 
     private void adressFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adressFieldMouseClicked
-        if(adressField.getText().equals("Adress")){
+        if (adressField.getText().equals("Adress")) {
             adressField.setText("");
         }
     }//GEN-LAST:event_adressFieldMouseClicked
 
     private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
-        if(emailField.getText().equals("Email")){
+        if (emailField.getText().equals("Email")) {
             emailField.setText("");
         }
     }//GEN-LAST:event_emailFieldMouseClicked
 
     private void phoneNumFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneNumFieldMouseClicked
-        if(phoneNumField.getText().equals("Phonenumber")){
+        if (phoneNumField.getText().equals("Phonenumber")) {
             phoneNumField.setText("");
         }
     }//GEN-LAST:event_phoneNumFieldMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String newName = nameField.getText();
+        String newSurname = surnameField.getText();
+        String newAdress = adressField.getText();
+        String newPhonenumber = phoneNumField.getText();
+        String newEmail = emailField.getText();
+
+        if ((!newName.equals("Name") && !newSurname.equals("Surname") && !newAdress.equals("Adress") && !newPhonenumber.equals("Phonenumber") && !newEmail.equals("Email"))) {
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void updateDatabase(String column, String value, int aid) {
+        if (!value.equals("Name") && !value.equals("Surname") && !value.equals("Adress") && !value.equals("Phonenumber") && !value.equals("Email")) {
+            try {
+                String sqlQuerry = ("INSERT INTO ngo_2024.anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES '" + aid + '"' + newName + '"'+ newSurname +'"' + newAdress +'"'+ newEmail + '"'+ newPhonenumber +"');");
+                idb.insert(sqlQuerry);
+            } catch (InfException ex) {
+                Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -246,9 +264,7 @@ public class NewPersonel extends javax.swing.JFrame {
     private javax.swing.JTextField adressField;
     private javax.swing.JTextField emailField;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JCheckBox makeAdminCheckBox;
     private javax.swing.JTextField nameField;
