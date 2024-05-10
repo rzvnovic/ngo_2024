@@ -31,7 +31,7 @@ public class PersonalInfo extends javax.swing.JFrame {
      */
     public PersonalInfo(int aid, int userAid) throws InfException {
         
-        this.userAid = 1;
+        this.userAid = 6;
         this.aid = 3;
         validering = new Validering();
        
@@ -274,7 +274,7 @@ public class PersonalInfo extends javax.swing.JFrame {
                                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))))
-                    .addComponent(newPasswordDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(newPasswordDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -358,19 +358,22 @@ public class PersonalInfo extends javax.swing.JFrame {
         String newPhonenumber = phoneField.getText();
         String newEmail = emailField.getText(); //OBS
 
-        if (!newName.equals("Name") && !newSurname.equals("Surname") && !newAdress.equals("Adress") && !newPhonenumber.equals("Phonenumber") && !newEmail.equals("Email")) {
+        if (!newName.equals("Name") && !newSurname.equals("Surname") &&
+                !newAdress.equals("Adress") &&
+                !newPhonenumber.equals("Phonenumber") &&
+                !newEmail.equals("Email")) {
             nameDisplay.setText(newName);
             surnameDisplay.setText(newSurname);
             adressDisplay.setText(newAdress);
             phonenumberDisplay.setText(newPhonenumber);
             emailDisplay.setText(newEmail);
-        }
 
         updateDatabase("fornamn", newName, aid);
         updateDatabase("efternamn", newSurname, aid);
         updateDatabase("adress", newAdress, aid);
         updateDatabase("telefon", newPhonenumber, aid);
         updateDatabase("epost", newEmail, aid);
+        }
     }//GEN-LAST:event_adminOkButtonActionPerformed
 
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed

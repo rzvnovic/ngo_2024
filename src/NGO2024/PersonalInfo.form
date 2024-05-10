@@ -91,7 +91,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <Component id="newPasswordDisplay" min="-2" pref="173" max="-2" attributes="0"/>
+                      <Component id="newPasswordDisplay" min="-2" pref="212" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="125" max="32767" attributes="0"/>
               </Group>

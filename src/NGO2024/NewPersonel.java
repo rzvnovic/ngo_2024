@@ -55,10 +55,11 @@ public class NewPersonel extends javax.swing.JFrame {
         adressField = new javax.swing.JTextField();
         emailField = new javax.swing.JTextField();
         phoneNumField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        createButton = new javax.swing.JButton();
         makeAdminCheckBox = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        dateOfEmploymentField = new javax.swing.JFormattedTextField();
+        formatText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,10 +103,10 @@ public class NewPersonel extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Create");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        createButton.setText("Create");
+        createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                createButtonActionPerformed(evt);
             }
         });
 
@@ -113,7 +114,10 @@ public class NewPersonel extends javax.swing.JFrame {
 
         jLabel1.setText("Personel details");
 
-        jFormattedTextField1.setText("jFormattedTextField1");
+        dateOfEmploymentField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
+        dateOfEmploymentField.setText("Date of employment");
+
+        formatText.setText("yyyy-mm-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,21 +125,24 @@ public class NewPersonel extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(phoneNumField))
                     .addComponent(makeAdminCheckBox)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(dateOfEmploymentField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(phoneNumField, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(formatText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(221, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -154,11 +161,13 @@ public class NewPersonel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(phoneNumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateOfEmploymentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(formatText))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(makeAdminCheckBox)
                 .addGap(4, 4, 4)
-                .addComponent(jButton1)
+                .addComponent(createButton)
                 .addContainerGap(148, Short.MAX_VALUE))
         );
 
@@ -200,23 +209,57 @@ public class NewPersonel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_phoneNumFieldMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         String newName = nameField.getText();
         String newSurname = surnameField.getText();
         String newAdress = adressField.getText();
-        String newPhonenumber = phoneNumField.getText();
         String newEmail = emailField.getText();
+        String newPhonenumber = phoneNumField.getText();
+        String newEmploymentDate = dateOfEmploymentField.getText();
 
-        if ((!newName.equals("Name") && !newSurname.equals("Surname") && !newAdress.equals("Adress") && !newPhonenumber.equals("Phonenumber") && !newEmail.equals("Email"))) {
+        if ((!newName.equals("Name") 
+                && !newSurname.equals("Surname") 
+                && !newAdress.equals("Adress") 
+                && !newPhonenumber.equals("Phonenumber")
+                && !newEmploymentDate.equals("Date of employment") 
+                && !newEmail.equals("Email"))) {
 
         }
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-    private void updateDatabase(String column, String value, int aid) {
-        if (!value.equals("Name") && !value.equals("Surname") && !value.equals("Adress") && !value.equals("Phonenumber") && !value.equals("Email")) {
+    }//GEN-LAST:event_createButtonActionPerformed
+    /**
+     * Metod som lägger till uppgifter i databasen
+     * TODO 
+     * @param newName
+     * @param newSurname
+     * @param newAdress
+     * @param newEmail
+     * @param newPhonenumber
+     * @param newDateOfEmployment
+     * @param newAvdelning 
+     */
+    private void updateDatabase(String newName, 
+            String newSurname, String newAdress, 
+            String newEmail, 
+            String newPhonenumber, 
+            String newDateOfEmployment, 
+            String newAvdelning) {
+        if (!newName.equals("Name") 
+                && !newSurname.equals("Surname") 
+                && !newAdress.equals("Adress") 
+                && !newPhonenumber.equals("Phonenumber") 
+                && !newEmail.equals("Email")) {
             try {
-                String sqlQuerry = ("INSERT INTO ngo_2024.anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES '" + aid + '"' + newName + '"'+ newSurname +'"' + newAdress +'"'+ newEmail + '"'+ newPhonenumber +"');");
+                String sqlQuerry = ("INSERT INTO ngo_2024.anstalld "
+                        + "(aid, fornamn, efternamn, adress, epost, telefon,"
+                        + " anstallningsdatum, losenord, avdelning) VALUES '" + 
+                        idb.getAutoIncrement("anstalld", "aid") + "'" + 
+                        newName + "'"+ newSurname + "'" + newAdress +"'"+ 
+                        newEmail +"'"+ newPhonenumber +"'"+ 
+                        newDateOfEmployment +"'"+ 
+                        generateNewPassword() +"'"+ newAvdelning + "');");
+                
                 idb.insert(sqlQuerry);
             } catch (InfException ex) {
                 Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
@@ -224,6 +267,30 @@ public class NewPersonel extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Genererar nytt lösenord baserat på random metoden
+     * @return nyttLösen 
+     */
+    private String generateNewPassword() {                                                    
+        // TODO add your handling code here:
+        // TODO PROGRAMMERA SÅ ETT RANDOM LÖSEN SKAPAS OCH LÄGG IN I DATABAS UNDER RÄTT AID.
+        String lowercase = "abcdefghijklmnopqrstuvwxyz";
+        String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String numbers = "0123456789";
+        
+        String allChars = lowercase + uppercase + numbers;
+        
+        Random r = new Random();
+        
+        
+        String newPassword = "" + allChars.charAt(r.nextInt(0, allChars.length()));
+        for(int i = 0; i<12; i++){
+            int numb = r.nextInt(0, allChars.length());
+            newPassword = newPassword + allChars.charAt(numb);
+        }
+        return newPassword;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -255,16 +322,21 @@ public class NewPersonel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewPersonel().setVisible(true);
+                try {
+                    new NewPersonel().setVisible(true);
+                } catch (InfException ex) {
+                    Logger.getLogger(NewPersonel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adressField;
+    private javax.swing.JButton createButton;
+    private javax.swing.JFormattedTextField dateOfEmploymentField;
     private javax.swing.JTextField emailField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JLabel formatText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JCheckBox makeAdminCheckBox;
     private javax.swing.JTextField nameField;
