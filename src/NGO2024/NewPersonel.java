@@ -12,7 +12,7 @@ import java.util.*;
 import oru.inf.InfDB;
 
 /**
- *
+ * Klass som lägger till ny personal.
  * @author Cyrus
  */
 public class NewPersonel extends javax.swing.JFrame {
@@ -230,7 +230,11 @@ public class NewPersonel extends javax.swing.JFrame {
     }//GEN-LAST:event_createButtonActionPerformed
     /**
      * Metod som lägger till uppgifter i databasen
-     * TODO 
+     * TODO om knappen är incheckad så ska personen läggas till i ADMIN
+     * om ej incheckad så i handläggare
+     * TODO validera DATUM och EPOST
+     * TODO testa om det fungerar
+     * TODO ändra namn 
      * @param newName
      * @param newSurname
      * @param newAdress
@@ -269,7 +273,7 @@ public class NewPersonel extends javax.swing.JFrame {
 
     /**
      * Genererar nytt lösenord baserat på random metoden
-     * @return nyttLösen 
+     * @return nyttLösenord
      */
     private String generateNewPassword() {                                                    
         // TODO add your handling code here:

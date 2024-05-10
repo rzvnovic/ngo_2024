@@ -65,6 +65,11 @@ public class MenyHandläggare extends javax.swing.JFrame {
         jLabel1.setText("Info");
 
         visaKnapp.setText("Visa Profil:");
+        visaKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaKnappActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout profilTabLayout = new javax.swing.GroupLayout(profilTab);
         profilTab.setLayout(profilTabLayout);
@@ -247,7 +252,7 @@ public class MenyHandläggare extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(HandläggarMeny, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                .addComponent(HandläggarMeny)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -300,6 +305,12 @@ public class MenyHandläggare extends javax.swing.JFrame {
     private void hallbarhetsmalSokrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalSokrutaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_hallbarhetsmalSokrutaActionPerformed
+
+    private void visaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaKnappActionPerformed
+        // TODO add your handling code here:
+        //SKA ÖPPNA UPP PERSONALINFO
+        //@param UserAID, AID
+    }//GEN-LAST:event_visaKnappActionPerformed
 
     /**
      * @param args the command line arguments

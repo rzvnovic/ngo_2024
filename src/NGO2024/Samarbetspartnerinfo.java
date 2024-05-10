@@ -81,7 +81,6 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
         adressDisplay = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         phonenumberDisplay = new javax.swing.JTextPane();
-        generateNewPassword = new javax.swing.JToggleButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         contactMailDisplay = new javax.swing.JTextPane();
         BranchField = new javax.swing.JTextField();
@@ -171,13 +170,6 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
         phonenumberDisplay.setText(setDisplayText1("telefon" , pid));
         jScrollPane4.setViewportView(phonenumberDisplay);
 
-        generateNewPassword.setText("Generate new password");
-        generateNewPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateNewPasswordActionPerformed(evt);
-            }
-        });
-
         contactMailDisplay.setText(setDisplayText1("kontaktepost", pid));
         contactMailDisplay.setEditable(false);
         jScrollPane7.setViewportView(contactMailDisplay);
@@ -200,30 +192,35 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cityField)
-                    .addComponent(BranchField)
-                    .addComponent(generateNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameField)
-                    .addComponent(kontaktPerson)
-                    .addComponent(adressField)
-                    .addComponent(phoneField)
-                    .addComponent(contactMailField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(adminOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane6)
-                    .addComponent(jScrollPane8)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane4)
-                    .addComponent(jScrollPane7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(adminOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cityField)
+                            .addComponent(BranchField)
+                            .addComponent(phoneField)
+                            .addComponent(contactMailField)
+                            .addComponent(kontaktPerson)
+                            .addComponent(adressField)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(108, 108, 108)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane6)
+                            .addComponent(jScrollPane8)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane3)
+                            .addComponent(jScrollPane4)
+                            .addComponent(jScrollPane7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,17 +257,14 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(BranchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(adminOkButton))
+                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(40, 40, 40)
-                .addComponent(generateNewPassword)
-                .addGap(39, 39, 39))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(adminOkButton)
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -300,12 +294,6 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void generateNewPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateNewPasswordActionPerformed
-        // TODO add your handling code here:
-        // TODO PROGRAMMERA SÅ ETT RANDOM LÖSEN SKAPAS OCH LÄGG IN I DATABAS UNDER RÄTT AID.
-
-    }//GEN-LAST:event_generateNewPasswordActionPerformed
 
     private void adminOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminOkButtonActionPerformed
         // TODO add your handling code here:
@@ -410,7 +398,6 @@ public class Samarbetspartnerinfo extends javax.swing.JFrame {
     private javax.swing.JTextPane contactMailDisplay;
     private javax.swing.JTextField contactMailField;
     private javax.swing.JTextPane contactPersonDisplay;
-    private javax.swing.JToggleButton generateNewPassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
