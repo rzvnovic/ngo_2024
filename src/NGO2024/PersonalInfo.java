@@ -525,10 +525,20 @@ public class PersonalInfo extends javax.swing.JFrame {
         // TODO ta bort / lägg till aid i admin tabell
         
     }//GEN-LAST:event_makeAdminBoxActionPerformed
-
+    
+    /**
+     * Metod som tar bort profilen som sökts up.
+     * @param evt 
+     */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
         // TODO tar bort profilen ur tabellen genom idb.delete()
+        String sqlQueery = ("DELETE FROM ngo_2024.anstalld WHERE aid =" + aid + ";");
+        try {
+            idb.delete(sqlQueery);
+        } catch (InfException ex) {
+            Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
     /**
      * metod som gör ett text fält synligt och skriver ut senaste genererade

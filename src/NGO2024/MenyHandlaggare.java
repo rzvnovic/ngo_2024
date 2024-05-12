@@ -4,24 +4,27 @@
  */
 package NGO2024;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 /**
  *
  * @author meldi
  */
-public class MenyHandläggare extends javax.swing.JFrame {
-    private static InfDB idb;
-    private static String ePost;
-    private static int userAnställningsId;
+public class MenyHandlaggare extends javax.swing.JFrame {
+    private InfDB idb;
+    private static int userAid;
+    private Validering validering;
 
     /**
      * Creates new form MenyHandläggare
      */
-    public MenyHandläggare(InfDB idb, String ePost, int userAnställningsId) {
-        this.idb = idb;
-        this.ePost = ePost;
-        this.userAnställningsId = userAnställningsId;
+    public MenyHandlaggare(int userAid) throws InfException {
+        idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
+        this.userAid = userAid;
+        validering = new Validering();
+
         initComponents();
     }
 
@@ -310,6 +313,12 @@ public class MenyHandläggare extends javax.swing.JFrame {
         // TODO add your handling code here:
         //SKA ÖPPNA UPP PERSONALINFO
         //@param UserAID, AID
+        int aid = userAid; // Fungerar för syftet av denna metod.
+        try {
+            new PersonalInfo(aid, userAid).setVisible(true);
+        } catch (InfException ex) {
+            Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_visaKnappActionPerformed
 
     /**
@@ -329,20 +338,27 @@ public class MenyHandläggare extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenyHandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenyHandlaggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenyHandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenyHandlaggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenyHandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenyHandlaggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenyHandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenyHandlaggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenyHandläggare(idb, ePost, userAnställningsId).setVisible(true);
+                try {
+                    new MenyHandlaggare(userAid).setVisible(true);
+                } catch (InfException ex) {
+                    Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

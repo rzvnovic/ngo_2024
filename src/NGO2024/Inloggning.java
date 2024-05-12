@@ -155,7 +155,7 @@ public class Inloggning extends javax.swing.JFrame {
                 }
                 //om de är projektledare kommer en meny öppnas
                 else if (ärProjektLedare == true){
-                    new MenyHandläggare(idb, ePost, userAid).setVisible(true);
+                    new MenyHandlaggare(userAid).setVisible(true);
                 }
     
             }
@@ -168,7 +168,8 @@ public class Inloggning extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnLoggaInActionPerformed
-
+    
+    
     private Boolean checkAdmin (String ePost)
     {
         Boolean adminHittad = false; 
@@ -193,6 +194,7 @@ public class Inloggning extends javax.swing.JFrame {
         return adminHittad; 
     }
     
+    //metod värdeful med usless här, flytta till valideringsklassen. //Cyrus
     private Boolean checkProjektLedare (String ePost)
     {
         Boolean projektLedareHittad = false; 

@@ -51,7 +51,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         tabPersonel = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
+        addNewEmployeeButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         searchField = new javax.swing.JTextField();
         SearchButton = new javax.swing.JButton();
@@ -130,10 +130,10 @@ public class MenyAdmin extends javax.swing.JFrame {
 
         tabWindow.addTab("test", tabTest);
 
-        jButton8.setText("Add new personel");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        addNewEmployeeButton.setText("Add new personel");
+        addNewEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                addNewEmployeeButtonActionPerformed(evt);
             }
         });
 
@@ -159,7 +159,7 @@ public class MenyAdmin extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(searchField)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                    .addComponent(addNewEmployeeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabPersonelLayout.createSequentialGroup()
                         .addGap(49, 49, 49)
@@ -177,7 +177,7 @@ public class MenyAdmin extends javax.swing.JFrame {
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SearchButton))
                 .addGap(18, 18, 18)
-                .addComponent(jButton8)
+                .addComponent(addNewEmployeeButton)
                 .addGap(317, 317, 317)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(138, Short.MAX_VALUE))
@@ -306,14 +306,14 @@ public class MenyAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void addNewEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewEmployeeButtonActionPerformed
         try {
             new NewPersonel().setVisible(true);
         } catch (InfException ex) {
             Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_addNewEmployeeButtonActionPerformed
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
 
@@ -384,11 +384,11 @@ public class MenyAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SearchButton;
+    private javax.swing.JButton addNewEmployeeButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList2;
