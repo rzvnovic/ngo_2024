@@ -231,7 +231,7 @@ public class NewPartner extends javax.swing.JFrame {
             if (fieldValidation(newContact, "Contact")) {
                 insertValue("kontaktperson", newContact, newPid);
             }
-            if (fieldValidation(newEmail, "Email")) {
+            if (fieldValidation(newEmail, "Email")&& Validering.giltigEpost(newEmail)) {
                 insertValue("kontaktepost", newEmail, newPid);
             }
             if (fieldValidation(newPhonenumber, "Phonenumber")) {
