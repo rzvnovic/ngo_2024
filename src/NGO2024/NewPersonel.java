@@ -12,14 +12,12 @@ import java.util.*;
 import oru.inf.InfDB;
 
 /**
- * Klass som lägger till ny personal.
- * TODO Validera altl och tänk ett steg ytterligare på formateringen.
- * Troligen bör den gå igenom någon typ av validering den med.
- *      Möjligen att vi skriver att char at index 4/7 MÅSTE vara -
- *      Char at 1 , 2 , 3, 5 , 6 , 8, 9 måste vara int eller char 0123456789.
- *      Kan göras med en loop! en ifFound loop som returnar true.
- *      plus logik
- *      WIP
+ * Klass som lägger till ny personal. TODO Validera altl och tänk ett steg
+ * ytterligare på formateringen. Troligen bör den gå igenom någon typ av
+ * validering den med. Möjligen att vi skriver att char at index 4/7 MÅSTE vara
+ * - Char at 1 , 2 , 3, 5 , 6 , 8, 9 måste vara int eller char 0123456789. Kan
+ * göras med en loop! en ifFound loop som returnar true. plus logik WIP
+ *
  * @author Cyrus
  * @version 10/05/2024
  */
@@ -225,11 +223,13 @@ public class NewPersonel extends javax.swing.JFrame {
         String newPhonenumber = phoneNumField.getText();
         String newEmploymentDate = dateOfEmploymentField.getText();
 
-        if ((!newName.equals("Name") 
-                && !newSurname.equals("Surname") 
-                && !newAdress.equals("Adress") 
+        
+        
+        if ((!newName.equals("Name")
+                && !newSurname.equals("Surname")
+                && !newAdress.equals("Adress")
                 && !newPhonenumber.equals("Phonenumber")
-                && !newEmploymentDate.equals("Date of employment") 
+                && !newEmploymentDate.equals("Date of employment")
                 && !newEmail.equals("Email"))) {
 
         }
@@ -237,41 +237,40 @@ public class NewPersonel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_createButtonActionPerformed
     /**
-     * Metod som lägger till uppgifter i databasen
-     * TODO om knappen är incheckad så ska personen läggas till i ADMIN
-     * om ej incheckad så i handläggare
-     * TODO validera DATUM och EPOST
-     * TODO testa om det fungerar, speciellt AID (idb.getAutoIncrement())
-     * TODO ändra namn 
+     * Metod som lägger till uppgifter i databasen TODO om knappen är incheckad
+     * så ska personen läggas till i ADMIN om ej incheckad så i handläggare TODO
+     * validera DATUM och EPOST TODO testa om det fungerar, speciellt AID
+     * (idb.getAutoIncrement()) TODO ändra namn
+     *
      * @param newName
      * @param newSurname
      * @param newAdress
      * @param newEmail
      * @param newPhonenumber
      * @param newDateOfEmployment
-     * @param newAvdelning 
+     * @param newAvdelning
      */
-    private void updateDatabase(String newName, 
-            String newSurname, String newAdress, 
-            String newEmail, 
-            String newPhonenumber, 
-            String newDateOfEmployment, 
+    private void updateDatabase(String newName,
+            String newSurname, String newAdress,
+            String newEmail,
+            String newPhonenumber,
+            String newDateOfEmployment,
             String newAvdelning) {
-        if (!newName.equals("Name") 
-                && !newSurname.equals("Surname") 
-                && !newAdress.equals("Adress") 
-                && !newPhonenumber.equals("Phonenumber") 
+        if (!newName.equals("Name")
+                && !newSurname.equals("Surname")
+                && !newAdress.equals("Adress")
+                && !newPhonenumber.equals("Phonenumber")
                 && !newEmail.equals("Email")) {
             try {
                 String sqlQuerry = ("INSERT INTO ngo_2024.anstalld "
                         + "(aid, fornamn, efternamn, adress, epost, telefon,"
-                        + " anstallningsdatum, losenord, avdelning) VALUES '" + 
-                        idb.getAutoIncrement("anstalld", "aid") + "'" + 
-                        newName + "'"+ newSurname + "'" + newAdress +"'"+ 
-                        newEmail +"'"+ newPhonenumber +"'"+ 
-                        newDateOfEmployment +"'"+ 
-                        generateNewPassword() +"'"+ newAvdelning + "');");
-                
+                        + " anstallningsdatum, losenord, avdelning) VALUES '"
+                        + idb.getAutoIncrement("anstalld", "aid") + "'"
+                        + newName + "'" + newSurname + "'" + newAdress + "'"
+                        + newEmail + "'" + newPhonenumber + "'"
+                        + newDateOfEmployment + "'"
+                        + generateNewPassword() + "'" + newAvdelning + "');");
+
                 idb.insert(sqlQuerry);
             } catch (InfException ex) {
                 Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
@@ -281,28 +280,36 @@ public class NewPersonel extends javax.swing.JFrame {
 
     /**
      * Genererar nytt lösenord baserat på random metoden
+     *
      * @return nyttLösenord
      */
-    private String generateNewPassword() {                                                    
+    private String generateNewPassword() {
         // TODO add your handling code here:
         // TODO PROGRAMMERA SÅ ETT RANDOM LÖSEN SKAPAS OCH LÄGG IN I DATABAS UNDER RÄTT AID.
         String lowercase = "abcdefghijklmnopqrstuvwxyz";
         String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";
-        
+
         String allChars = lowercase + uppercase + numbers;
-        
+
         Random r = new Random();
-        
-        
+
         String newPassword = "" + allChars.charAt(r.nextInt(0, allChars.length()));
-        for(int i = 0; i < 12; i++){
+        for (int i = 0; i < 12; i++) {
             int numb = r.nextInt(0, allChars.length());
             newPassword = newPassword + allChars.charAt(numb);
         }
         return newPassword;
     }
-    
+
+    private boolean fieldValidation(String newText, String validationText) {
+        boolean validated = true;
+        if (newText.equals(validationText) || newText.isEmpty() || newText.isBlank()) {
+            return validated = false;
+        }
+        return validated;
+    }
+
     /**
      * @param args the command line arguments
      */

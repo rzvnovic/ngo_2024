@@ -34,6 +34,7 @@
                   <Component id="contactPhoneField" alignment="0" max="32767" attributes="0"/>
                   <Component id="branchField" alignment="0" pref="194" max="32767" attributes="0"/>
                   <Component id="cityField" max="32767" attributes="0"/>
+                  <Component id="adressField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="317" max="32767" attributes="0"/>
           </Group>
@@ -53,10 +54,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="contactPhoneField" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="adressField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="branchField" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="cityField" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="96" max="32767" attributes="0"/>
+              <EmptySpace pref="64" max="32767" attributes="0"/>
               <Component id="createButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
@@ -124,6 +127,14 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cityFieldMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="adressField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Adress"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adressFieldMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>
