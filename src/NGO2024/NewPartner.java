@@ -12,12 +12,14 @@ import java.util.*;
 import oru.inf.InfDB;
 
 /**
- * Klass som lägger till ny personal. TODO Validera altl och tänk ett steg
- * ytterligare på formateringen. Troligen bör den gå igenom någon typ av
- * validering den med. Möjligen att vi skriver att char at index 4/7 MÅSTE vara
- * - Char at 1 , 2 , 3, 5 , 6 , 8, 9 måste vara int eller char 0123456789. Kan
- * göras med en loop! en ifFound loop som returnar true. plus logik WIP
- *
+ * Klass som lägger till ny personal.
+ * TODO Validera altl och tänk ett steg ytterligare på formateringen.
+ * Troligen bör den gå igenom någon typ av validering den med.
+ *      Möjligen att vi skriver att char at index 4/7 MÅSTE vara -
+ *      Char at 1 , 2 , 3, 5 , 6 , 8, 9 måste vara int eller char 0123456789.
+ *      Kan göras med en loop! en ifFound loop som returnar true.
+ *      plus logik
+ *      WIP
  * @author Cyrus
  * @version 10/05/2024
  */
@@ -64,7 +66,8 @@ public class NewPartner extends javax.swing.JFrame {
         createButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cityField = new javax.swing.JTextField();
-        adressField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,10 +127,12 @@ public class NewPartner extends javax.swing.JFrame {
             }
         });
 
-        adressField.setText("Adress");
-        adressField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                adressFieldMouseClicked(evt);
+        jLabel2.setText("Stad finns inte registrerad.");
+
+        jButton1.setText("Lägg till stad");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -145,9 +150,15 @@ public class NewPartner extends javax.swing.JFrame {
                     .addComponent(nameField)
                     .addComponent(contactPhoneField)
                     .addComponent(branchField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(cityField)
-                    .addComponent(adressField))
-                .addContainerGap(317, Short.MAX_VALUE))
+                    .addComponent(cityField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(102, 102, 102))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,16 +170,18 @@ public class NewPartner extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contactEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(contactEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contactPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(contactPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(branchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(createButton)
                 .addGap(54, 54, 54))
         );
@@ -212,81 +225,77 @@ public class NewPartner extends javax.swing.JFrame {
     }//GEN-LAST:event_branchFieldMouseClicked
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        ArrayList<String> valueList = new ArrayList<String>();
         String newName = nameField.getText();
         String newContact = contactField.getText();
         String newEmail = contactEmailField.getText();
         String newPhonenumber = contactPhoneField.getText();
-        String newAdress = adressField.getText();
         String newBranch = branchField.getText();
         String newCity = cityField.getText();
-
+        
         String newPid;
         try {
             newPid = idb.getAutoIncrement("partner", "pid");
-            String sqlQuerry = ("INSERT INTO ngo_2024.partner (pid) VALUES (" + newPid + ");");
-            idb.insert(sqlQuerry);
-            if (fieldValidation(newName, "Name")) {
-                insertValue("namn", newName, newPid);
-            }
-            if (fieldValidation(newContact, "Contact")) {
-                insertValue("kontaktperson", newContact, newPid);
-            }
-            if (fieldValidation(newEmail, "Email")&& Validering.giltigEpost(newEmail)) {
-                insertValue("kontaktepost", newEmail, newPid);
-            }
-            if (fieldValidation(newPhonenumber, "Phonenumber")) {
-                insertValue("telefon", newPhonenumber, newPid);
-            }
-            if (fieldValidation(newBranch, "Adress")) {
-                insertValue("adress", newAdress, newPid);
-            }
-            if (fieldValidation(newBranch, "Contact field of operations")) {
-                insertValue("Branch", newBranch, newPid);
-            }
-
-            cityValidation(newCity, newPid);
+        
+        if(fieldValidation(newName, "Name")){
+            valueList.add(newName);
+        }
+        if(fieldValidation(newContact, "Contact")){
+            valueList.add(newContact);
+        }
+        if(fieldValidation(newEmail, "Email") && ){
+            valueList.add(newEmail);
+        }
+        if(fieldValidation(newPhonenumber, "Phonenumber")){
+            valueList.add(newPhonenumber);
+        }
+        if(fieldValidation(newBranch, "Contact field of operations")){
+            valueList.add(newBranch);
+        }
+        
+        String sqlQuerry = ("INSERT INTO ngo_2024.partner (pid, namn, kontaktperson, kontaktepost, telefon, adress, branch) VALUES (" +newPid+", '"+valueList.get(0)+"', '"+valueList.get(1)+"', '"+valueList.get(2)+"', '"+valueList.get(3)+"', '"+valueList.get(4)+"', '"+valueList.get(5)+"', );");
+        idb.
         } catch (InfException ex) {
             Logger.getLogger(NewPartner.class.getName()).log(Level.SEVERE, null, ex);
         }
+        // TODO add your handling code here:
     }//GEN-LAST:event_createButtonActionPerformed
-
+    
     private void cityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseClicked
         if (cityField.getText().equals("City")) {
             cityField.setText("");
         }
     }//GEN-LAST:event_cityFieldMouseClicked
 
-    private void adressFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adressFieldMouseClicked
-        if (adressField.getText().equals("Adress")) {
-            adressField.setText("");
-        }
-    }//GEN-LAST:event_adressFieldMouseClicked
-
-    private boolean fieldValidation(String newText, String validationText) {
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
+    private boolean fieldValidation(String newText, String validationText){
         boolean validated = true;
-        if (newText.equals(validationText) || newText.isEmpty() || newText.isBlank()) {
+        if(newText.equals(validationText) || newText.isEmpty() || newText.isBlank()){
             return validated = false;
         }
         return validated;
     }
-
-    private void insertValue(String column, String value, String newPid) throws InfException{
-        String sqlQuerry = ("UPDATE ngo_2024.partner t SET t."+column+" = '" + value + "' WHERE t.pid = " + newPid + ";");
-        idb.update(sqlQuerry);
-    }
-
-    private void cityValidation(String newCity, String newPid) throws InfException {
+    
+    private void cityValidation(String newCity, String newPid ) throws InfException{
         ArrayList<String> cityList = idb.fetchColumn("Select namn from stad;");
-        for (String cityName : cityList) {
-            if (cityName.equals(newCity)) {
+        boolean cityValidated = false;
+        for(String cityName : cityList){
+            if(cityName.equals(newCity)){
                 String sid = idb.fetchSingle("select sid from stad where namn =" + newCity + ";");
-                idb.update("UPDATE ngo_2024.partner t SET t.stad = " + sid + " WHERE t.pid = " + newPid + ";");
-                return;
-            }
+                idb.update("UPDATE ngo_2024.partner t SET t.stad = "+ sid +" WHERE t.pid = "+newPid+";");
+                cityValidated = true;
+            }   
         }
-        //Todo gör synliga rutor
-        //alt gör så användaren får mata in land   
+        if(!cityValidated){
+            //Todo gör synliga rutor
+            //alt gör så användaren får mata in land
+        }   
     }
+    
 
     /**
      * @param args the command line arguments
@@ -314,6 +323,9 @@ public class NewPartner extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(NewPartner.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -328,14 +340,15 @@ public class NewPartner extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField adressField;
     private javax.swing.JTextField branchField;
     private javax.swing.JTextField cityField;
     private javax.swing.JTextField contactEmailField;
     private javax.swing.JTextField contactField;
     private javax.swing.JTextField contactPhoneField;
     private javax.swing.JButton createButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField nameField;
     // End of variables declaration//GEN-END:variables
 }

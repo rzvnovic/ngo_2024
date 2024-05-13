@@ -24,6 +24,7 @@ public class Validering {
         this.idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
     }
 
+    //contains @ och ends with .com / .se / .net
     public static Boolean giltigEpost(String ePost) {
         Boolean giltigtFormat = false;
 
