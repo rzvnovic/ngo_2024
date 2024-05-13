@@ -271,7 +271,7 @@ public class NewPartner extends javax.swing.JFrame {
     }
 
     private void insertValue(String column, String value, String newPid) throws InfException{
-        String sqlQuerry = ("UPDATE ngo_2024.partner t SET t."+column+" = " + value + " WHERE t.pid = " + newPid + ";");
+        String sqlQuerry = ("UPDATE ngo_2024.partner t SET t."+column+" = '" + value + "' WHERE t.pid = " + newPid + ";");
         idb.update(sqlQuerry);
     }
 
