@@ -13,7 +13,15 @@ import oru.inf.InfDB;
 
 /**
  * Klass som lägger till ny personal.
+ * TODO Validera altl och tänk ett steg ytterligare på formateringen.
+ * Troligen bör den gå igenom någon typ av validering den med.
+ *      Möjligen att vi skriver att char at index 4/7 MÅSTE vara -
+ *      Char at 1 , 2 , 3, 5 , 6 , 8, 9 måste vara int eller char 0123456789.
+ *      Kan göras med en loop! en ifFound loop som returnar true.
+ *      plus logik
+ *      WIP
  * @author Cyrus
+ * @version 10/05/2024
  */
 public class NewPersonel extends javax.swing.JFrame {
 
@@ -233,7 +241,7 @@ public class NewPersonel extends javax.swing.JFrame {
      * TODO om knappen är incheckad så ska personen läggas till i ADMIN
      * om ej incheckad så i handläggare
      * TODO validera DATUM och EPOST
-     * TODO testa om det fungerar
+     * TODO testa om det fungerar, speciellt AID (idb.getAutoIncrement())
      * TODO ändra namn 
      * @param newName
      * @param newSurname
@@ -288,7 +296,7 @@ public class NewPersonel extends javax.swing.JFrame {
         
         
         String newPassword = "" + allChars.charAt(r.nextInt(0, allChars.length()));
-        for(int i = 0; i<12; i++){
+        for(int i = 0; i < 12; i++){
             int numb = r.nextInt(0, allChars.length());
             newPassword = newPassword + allChars.charAt(numb);
         }

@@ -30,11 +30,11 @@ public class PersonalInfo extends javax.swing.JFrame {
      * Creates new form PersonalInfo
      */
     public PersonalInfo(int aid, int userAid) throws InfException {
-        
-        this.userAid = 6;
-        this.aid = 3;
+
+        this.userAid = 6; //såklart inte någon hårdkodning här
+        this.aid = 3;     //---------------||-----------------
         validering = new Validering();
-       
+
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         } catch (InfException ex) {
@@ -45,25 +45,28 @@ public class PersonalInfo extends javax.swing.JFrame {
         newPasswordDisplay.setVisible(false);
 
     }
+
     /**
-     * metod som sätter synlighet baserat på användarens aid
-     * Admins har mer synlighet än handläggare
+     * metod som sätter synlighet baserat på användarens aid Admins har mer
+     * synlighet än handläggare
      */
-    public void adminVissebillity(){
-        if(validering.checkAdminAid(userAid)){
+    public void adminVissebillity() {
+        if (validering.checkAdminAid(userAid)) {
             commitButton.setVisible(false);
-        }
-        else{            
+        } else {
             adminOkButton.setVisible(false);
             emailField.setVisible(false);
             makeAdminBox.setVisible(false);
             generateNewPassword.setVisible(false);
+            deleteButton.setVisible(false);
         }
     }
+
     /**
      * Metod som konstruerar en sqlquerry och lägger den mot databasen
+     *
      * @param select vad som ska hämtas
-     * @param aid 
+     * @param aid
      * @return svaret
      */
     public String setDisplayText1(String select, int aid) {
@@ -82,21 +85,22 @@ public class PersonalInfo extends javax.swing.JFrame {
 
         return "abd";
     }
-    
+
     /**
      * metod som tar emot aid och returnerar en sträng baserat på validering
      * klassens checkAdminAid
+     *
      * @param aid
      * @return isAdmin om admin, isNotAdmin om not admin
      */
-    public String isAdmin(int aid){
-        if(validering.checkAdminAid(aid)){
+    public String isAdmin(int aid) {
+        if (validering.checkAdminAid(aid)) {
             return "IsAdmin";
-        }
-        else{
+        } else {
             return "IsNotAdmin";
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -376,39 +380,42 @@ public class PersonalInfo extends javax.swing.JFrame {
         String newPhonenumber = phoneField.getText();
         String newEmail = emailField.getText(); //OBS
 
-        if (!newName.equals("Name") && !newSurname.equals("Surname") &&
-                !newAdress.equals("Adress") &&
-                !newPhonenumber.equals("Phonenumber") &&
-                !newEmail.equals("Email")) {
+        if (!newName.equals("Name") && !newSurname.equals("Surname")
+                && !newAdress.equals("Adress")
+                && !newPhonenumber.equals("Phonenumber")
+                && !newEmail.equals("Email")) {
             nameDisplay.setText(newName);
             surnameDisplay.setText(newSurname);
             adressDisplay.setText(newAdress);
             phonenumberDisplay.setText(newPhonenumber);
             emailDisplay.setText(newEmail);
 
-        updateDatabase("fornamn", newName, aid);
-        updateDatabase("efternamn", newSurname, aid);
-        updateDatabase("adress", newAdress, aid);
-        updateDatabase("telefon", newPhonenumber, aid);
-        updateDatabase("epost", newEmail, aid);
+            updateDatabase("fornamn", newName, aid);
+            updateDatabase("efternamn", newSurname, aid);
+            updateDatabase("adress", newAdress, aid);
+            updateDatabase("telefon", newPhonenumber, aid);
+            updateDatabase("epost", newEmail, aid);
         }
     }//GEN-LAST:event_adminOkButtonActionPerformed
-
+    /**
+     * knappen gör en del saker kan vara värt att splitta i flera metoder.
+     *
+     * @param evt
+     */
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
-        // TODO add your handling code here:
-        //MAKE VISABLE IF USER == HANDLÄGGARE
-        //ConfirmWindow confirmWindow = new ConfirmWindow();
-        //confirmWindow.setVisible(true);
-        //boolean confirmation = confirmWindow.isConfirmed(); // kolla in i detta
 
-        //IF CONFIRM DO THIS
         String newName = nameField.getText();
         String newSurname = surnameField.getText();
         String newAdress = adressField.getText();
         String newPhonenumber = phoneField.getText();
         String newEmail = emailField.getText(); //OBS
 
-        if (!newName.equals("Name") && !newSurname.equals("Surname") && !newAdress.equals("Adress") && !newPhonenumber.equals("Phonenumber") && !newEmail.equals("Email")) {
+        if (!newName.equals("Name")
+                && !newSurname.equals("Surname")
+                && !newAdress.equals("Adress")
+                && !newPhonenumber.equals("Phonenumber")
+                && !newEmail.equals("Email")) {
+
             nameDisplay.setText(newName);
             surnameDisplay.setText(newSurname);
             adressDisplay.setText(newAdress);
@@ -426,24 +433,31 @@ public class PersonalInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_commitButtonActionPerformed
     /**
      * metod som uppdaterar databasen med information som är inmatat i ett fält.
-     * 
+     *
      * @param column vilken kolumn som bör uppdateras
-     * @param value vad cellen skall uppdateras med 
+     * @param value vad cellen skall uppdateras med
      * @param aid vilken aid som ändringen ska ske på
      */
     private void updateDatabase(String column, String value, int aid) {
-        if (!value.equals("Name") && !value.equals("Surname") && !value.equals("Adress") && !value.equals("Phonenumber") && !value.equals("Email")) {
+        if (!value.equals("Name")
+                && !value.equals("Surname")
+                && !value.equals("Adress")
+                && !value.equals("Phonenumber") && !value.equals("Email")) {
             try {
-                String sqlQuerry = ("UPDATE ngo_2024.anstalld t SET t." + column + " = '" + value + "' WHERE t.aid = " + aid + ";");
+                String sqlQuerry = ("UPDATE ngo_2024.anstalld t SET t."
+                        + column + " = '"
+                        + value + "' WHERE t.aid = " + aid + ";");
                 idb.update(sqlQuerry);
             } catch (InfException ex) {
                 Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-     /**
+
+    /**
      * metod tar bort text från fältet om det klickas
-     * @param evt 
+     *
+     * @param evt
      */
     private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
         // TODO add your handling code here:
@@ -451,9 +465,10 @@ public class PersonalInfo extends javax.swing.JFrame {
             nameField.setText("");
         }
     }//GEN-LAST:event_nameFieldMouseClicked
-     /**
+    /**
      * metod tar bort text från fältet om det klickas
-     * @param evt 
+     *
+     * @param evt
      */
     private void surnameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_surnameFieldMouseClicked
         // TODO add your handling code here:
@@ -461,9 +476,10 @@ public class PersonalInfo extends javax.swing.JFrame {
             surnameField.setText("");
         }
     }//GEN-LAST:event_surnameFieldMouseClicked
-     /**
+    /**
      * metod tar bort text från fältet om det klickas
-     * @param evt 
+     *
+     * @param evt
      */
     private void adressFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adressFieldMouseClicked
         // TODO add your handling code here:
@@ -471,9 +487,10 @@ public class PersonalInfo extends javax.swing.JFrame {
             adressField.setText("");
         }
     }//GEN-LAST:event_adressFieldMouseClicked
-     /**
+    /**
      * metod tar bort text från fältet om det klickas
-     * @param evt 
+     *
+     * @param evt
      */
     private void phoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneFieldMouseClicked
         // TODO add your handling code here:
@@ -483,7 +500,8 @@ public class PersonalInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_phoneFieldMouseClicked
     /**
      * metod tar bort text från fältet om det klickas
-     * @param evt 
+     *
+     * @param evt
      */
     private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
         // TODO add your handling code here:
@@ -492,10 +510,11 @@ public class PersonalInfo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_emailFieldMouseClicked
     /**
-     * Kod som genererar ett lösenord baserat på tecken valda genom random metod.
-     * Lägger även in lösenordet i databasen under aid som skickats in som
-     * parameter från föregående klass.
-     * @param evt 
+     * Kod som genererar ett lösenord baserat på tecken valda genom random
+     * metod. Lägger även in lösenordet i databasen under aid som skickats in
+     * som parameter från föregående klass.
+     *
+     * @param evt
      */
     private void generateNewPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateNewPasswordActionPerformed
         // TODO add your handling code here:
@@ -503,20 +522,19 @@ public class PersonalInfo extends javax.swing.JFrame {
         String lowercase = "abcdefghijklmnopqrstuvwxyz";
         String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";
-        
+
         String allChars = lowercase + uppercase + numbers;
-        
+
         Random r = new Random();
-        
-        
+
         String newPassword = "" + allChars.charAt(r.nextInt(0, allChars.length()));
-        for(int i = 0; i<12; i++){
+        for (int i = 0; i < 12; i++) {
             int numb = r.nextInt(0, allChars.length());
             newPassword = newPassword + allChars.charAt(numb);
         }
         System.out.print(newPassword);
-        
-        String sqlQuerry = "UPDATE ngo_2024.anstalld t SET t.losenord = '" + newPassword + "' WHERE t.aid =" +  aid + ";";
+
+        String sqlQuerry = "UPDATE ngo_2024.anstalld t SET t.losenord = '" + newPassword + "' WHERE t.aid =" + aid + ";";
         try {
             idb.update(sqlQuerry);
         } catch (InfException ex) {
@@ -528,12 +546,13 @@ public class PersonalInfo extends javax.swing.JFrame {
     private void makeAdminBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAdminBoxActionPerformed
         // TODO add your handling code here:
         // TODO ta bort / lägg till aid i admin tabell
-        
+
     }//GEN-LAST:event_makeAdminBoxActionPerformed
-    
+
     /**
      * Metod som tar bort profilen som sökts up.
-     * @param evt 
+     *
+     * @param evt
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
@@ -548,14 +567,15 @@ public class PersonalInfo extends javax.swing.JFrame {
     /**
      * metod som gör ett text fält synligt och skriver ut senaste genererade
      * lösenord.
-     * @param newPassword 
+     *
+     * @param newPassword
      */
-    public void setPasswordField(String newPassword){
+    public void setPasswordField(String newPassword) {
         newPasswordDisplay.setVisible(true);
         String displayMsg = ("newPasswordIs: " + newPassword);
         newPasswordDisplay.setText(displayMsg);
     }
-    
+
     /**
      * @param args the command line arguments
      */
