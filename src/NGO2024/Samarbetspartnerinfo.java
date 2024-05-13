@@ -18,30 +18,47 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     private InfDB idb;
 
     //tas emot från klassen anställd
-    int pid = 1;
-
+    private static int pid = 1;
+    private static int userAid = 6;
+    private static Validering validering;
     /**
      * Creates new form PersonalInfo
      */
-    public SamarbetspartnerInfo() throws InfException {
-        idb = new InfDB("ngo_2024","3306", "dbAdmin2024","dbAdmin2024PW");
-        initComponents();
+    public SamarbetspartnerInfo(int userAid,int pid) throws InfException {
         
+        this.userAid = userAid;
+        this.pid = pid;
+        
+        validering = new Validering();
+        
+        
+        
+        idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
+        initComponents();
+        adminVissebillity();
+
     }
 
-    public String setDisplayText() {
-        String name;
-        try {
-            String sqlFraga = ("select namn from partner where pid = 1");
-            name = idb.fetchSingle(sqlFraga);
-            System.out.println("Result from database: " + name); // Print the result
-        } catch (Exception e) {
-            e.printStackTrace(); // Print the exception stack trace for debugging
-            return "error";
+      public void adminVissebillity(){
+        if(validering.checkAdminAid(userAid)){
+          
         }
-        return name;
+        else{   
+            nameDisplay.setLocation(nameField.getLocation());
+            
+            adminOkButton.setVisible(false);
+            deleteButton.setVisible(false);
+            nameField.setVisible(false);
+            kontaktPersonField.setVisible(false);
+            adressField.setVisible(false);
+            phoneField.setVisible(false);
+            emailField.setVisible(false);
+            branchField.setVisible(false);
+            cityField.setVisible(false);
+           
+        }
     }
-    
+
     public String setDisplayText1(String select, int pid) {
         String sqlQuerry;
         try {
@@ -67,11 +84,11 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         nameField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        kontaktPerson = new javax.swing.JTextField();
+        kontaktPersonField = new javax.swing.JTextField();
         adressField = new javax.swing.JTextField();
         phoneField = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        contactMailField = new javax.swing.JTextField();
+        emailField = new javax.swing.JTextField();
         adminOkButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         nameDisplay = new javax.swing.JTextPane();
@@ -83,8 +100,8 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         phonenumberDisplay = new javax.swing.JTextPane();
         //TODO programmera en kod som visar display från contact mail
         jScrollPane7 = new javax.swing.JScrollPane();
-        contactMailDisplay = new javax.swing.JTextPane();
-        BranchField = new javax.swing.JTextField();
+        emailDisplay = new javax.swing.JTextPane();
+        branchField = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
         //TODO proggrammera en kod som visar display från branch
         branchDisplay = new javax.swing.JTextPane();
@@ -92,6 +109,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         //TODO proggramera så att City står här
         cityDisplay = new javax.swing.JTextPane();
+        deleteButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -112,15 +130,15 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
         jLabel1.setText("Information");
 
-        kontaktPerson.setText("Contact person");
-        kontaktPerson.addMouseListener(new java.awt.event.MouseAdapter() {
+        kontaktPersonField.setText("Contact person");
+        kontaktPersonField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                kontaktPersonMouseClicked(evt);
+                kontaktPersonFieldMouseClicked(evt);
             }
         });
-        kontaktPerson.addActionListener(new java.awt.event.ActionListener() {
+        kontaktPersonField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktPersonActionPerformed(evt);
+                kontaktPersonFieldActionPerformed(evt);
             }
         });
 
@@ -128,6 +146,11 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         adressField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 adressFieldMouseClicked(evt);
+            }
+        });
+        adressField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adressFieldActionPerformed(evt);
             }
         });
 
@@ -143,10 +166,15 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             }
         });
 
-        contactMailField.setText("Contact mail");
-        contactMailField.addActionListener(new java.awt.event.ActionListener() {
+        emailField.setText("Email");
+        emailField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                emailFieldMouseClicked(evt);
+            }
+        });
+        emailField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contactMailFieldActionPerformed(evt);
+                emailFieldActionPerformed(evt);
             }
         });
 
@@ -158,7 +186,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         });
 
         nameDisplay.setEditable(false);
-        nameDisplay.setText(setDisplayText());
+        nameDisplay.setText(setDisplayText1("Namn",pid));
         jScrollPane1.setViewportView(nameDisplay);
 
         contactPersonDisplay.setEditable(false);
@@ -173,21 +201,40 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         phonenumberDisplay.setText(setDisplayText1("telefon" , pid));
         jScrollPane4.setViewportView(phonenumberDisplay);
 
-        contactMailDisplay.setText(setDisplayText1("kontaktepost", pid));
-        contactMailDisplay.setEditable(false);
-        jScrollPane7.setViewportView(contactMailDisplay);
+        emailDisplay.setEditable(false);
+        emailDisplay.setText(setDisplayText1("kontaktepost",pid));
+        jScrollPane7.setViewportView(emailDisplay);
 
-        BranchField.setText("Branch");
+        branchField.setText("Branch");
+        branchField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                branchFieldMouseClicked(evt);
+            }
+        });
 
-        branchDisplay.setText(setDisplayText1("branch", pid));
         branchDisplay.setEditable(false);
+        branchDisplay.setText(setDisplayText1("Branch",pid));
         jScrollPane8.setViewportView(branchDisplay);
 
         cityField.setText("City");
+        cityField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cityFieldMouseClicked(evt);
+            }
+        });
 
-        cityDisplay.setText(setDisplayText1("stad", pid));
         cityDisplay.setEditable(false);
+        cityDisplay.setText(setDisplayText1("City",pid));
         jScrollPane6.setViewportView(cityDisplay);
+
+        deleteButton.setBackground(new java.awt.Color(102, 0, 0));
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -197,22 +244,24 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(adminOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cityField)
-                            .addComponent(BranchField)
+                            .addComponent(branchField)
                             .addComponent(phoneField)
-                            .addComponent(contactMailField)
-                            .addComponent(kontaktPerson)
+                            .addComponent(emailField)
+                            .addComponent(kontaktPersonField)
                             .addComponent(adressField)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(108, 108, 108)
+                        .addGap(108, 108, 108))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(adminOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(264, 264, 264)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane6)
                             .addComponent(jScrollPane8)
@@ -222,7 +271,10 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
                             .addComponent(jScrollPane4)
                             .addComponent(jScrollPane7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -236,7 +288,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kontaktPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kontaktPersonField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,11 +306,11 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(contactMailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(BranchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(branchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -266,7 +318,9 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(adminOkButton)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(adminOkButton)
+                    .addComponent(deleteButton))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
 
@@ -302,11 +356,48 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
         //MAKE ViSABLE IF USER == ADMIN
         //skriv kod som implementerar detta in i databasen (ändringarna) genom idb.update() metod.
-    }//GEN-LAST:event_adminOkButtonActionPerformed
+        //TODO Koppla stad via stad tabelle!!!!!
+        String newName = nameField.getText();
+        String newContact = kontaktPersonField.getText();
+        String newAdress = adressField.getText();
+        String newPhonenumber = phoneField.getText();
+        String newEmail = emailField.getText(); //OBS
+        String newBranch = branchField.getText();
+        String newCity = cityField.getText();
+        //if(!parameterSomSkaKollas.equals(ParameterSomFannsFrånBörjan/FårInteVaraDär){
+            
+        //}
+        if (!newName.equals("Name") && !newContact.equals("Contact persson") && !newAdress.equals("Adress") && !newPhonenumber.equals("Phonenumber") && !newEmail.equals("Email") && !newBranch.equals("Branch") && !newCity.equals("City")) {
+            nameDisplay.setText(newName);
+            contactPersonDisplay.setText(newContact);
+            adressDisplay.setText(newAdress);
+            phonenumberDisplay.setText(newPhonenumber);
+            emailDisplay.setText(newEmail);
+            branchDisplay.setText(newBranch);
+            cityDisplay.setText(newCity);
+        }
 
-    private void contactMailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactMailFieldActionPerformed
+        updateDatabase("namn", newName, pid);
+        updateDatabase("kontaktperson", newContact, pid);
+        updateDatabase("adress", newAdress, pid);
+        updateDatabase("telefon", newPhonenumber, pid);
+        updateDatabase("kontaktepost", newEmail, pid);
+        updateDatabase("branch", newBranch, pid);
+    }//GEN-LAST:event_adminOkButtonActionPerformed
+   // Hantera NullPointerExecption från getText vid tomt TextField. 
+    private void updateDatabase(String column, String value, int pid) {
+        if (!value.equals("Name") && !value.equals("Adress") && !value.equals("Phonenumber") && !value.equals("Email") && !value.isEmpty() && !value.equals(" ")) {
+            try {
+                String sqlQuerry = ("UPDATE ngo_2024.partner t SET t." + column + " = '" + value + "' WHERE t.pid = " + pid + ";");
+                idb.update(sqlQuerry);
+            } catch (InfException ex) {
+                Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_contactMailFieldActionPerformed
+    }//GEN-LAST:event_emailFieldActionPerformed
 
     private void phoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneFieldActionPerformed
         // TODO add your handling code here:
@@ -314,28 +405,28 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
     private void phoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneFieldMouseClicked
         // TODO add your handling code here:
-        if(phoneField.getText().equals("Phonenumber")){
+        if (phoneField.getText().equals("Phonenumber")) {
             phoneField.setText("");
         }
     }//GEN-LAST:event_phoneFieldMouseClicked
 
     private void adressFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adressFieldMouseClicked
         // TODO add your handling code here:
-        if(adressField.getText().equals("Adress")){
+        if (adressField.getText().equals("Adress")) {
             adressField.setText("");
         }
     }//GEN-LAST:event_adressFieldMouseClicked
 
-    private void kontaktPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktPersonActionPerformed
+    private void kontaktPersonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktPersonFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktPersonActionPerformed
+    }//GEN-LAST:event_kontaktPersonFieldActionPerformed
 
-    private void kontaktPersonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kontaktPersonMouseClicked
+    private void kontaktPersonFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kontaktPersonFieldMouseClicked
         // TODO add your handling code here:
-        if(kontaktPerson.getText().equals("Surname")){
-            kontaktPerson.setText("");
+        if (kontaktPersonField.getText().equals("Contact person")) {
+            kontaktPersonField.setText("");
         }
-    }//GEN-LAST:event_kontaktPersonMouseClicked
+    }//GEN-LAST:event_kontaktPersonFieldMouseClicked
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
@@ -343,10 +434,43 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
     private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
         // TODO add your handling code here:
-        if(nameField.getText().equals("Name")){
+        if (nameField.getText().equals("Name")) {
             nameField.setText("");
         }
     }//GEN-LAST:event_nameFieldMouseClicked
+
+    private void adressFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adressFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adressFieldActionPerformed
+
+    private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
+if (emailField.getText().equals("Email")) {
+            emailField.setText("");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFieldMouseClicked
+
+    private void branchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchFieldMouseClicked
+if (branchField.getText().equals("Branch")) {
+            branchField.setText("");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_branchFieldMouseClicked
+
+    private void cityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseClicked
+if (cityField.getText().equals("City")) {
+            cityField.setText("");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_cityFieldMouseClicked
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+        // TODO tar bort profilen ur tabellen genom idb.delete()
+        String sqlQueery = ("DELETE FROM ngo_2024.partner WHERE pid =" + pid + ";");
+        try {
+            idb.delete(sqlQueery);
+        } catch (InfException ex) {
+            Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,12 +506,12 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new SamarbetspartnerInfo().setVisible(true);
+                    new SamarbetspartnerInfo(userAid, pid).setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -396,16 +520,17 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField BranchField;
     private javax.swing.JButton adminOkButton;
     private javax.swing.JTextPane adressDisplay;
     private javax.swing.JTextField adressField;
     private javax.swing.JTextPane branchDisplay;
+    private javax.swing.JTextField branchField;
     private javax.swing.JTextPane cityDisplay;
     private javax.swing.JTextField cityField;
-    private javax.swing.JTextPane contactMailDisplay;
-    private javax.swing.JTextField contactMailField;
     private javax.swing.JTextPane contactPersonDisplay;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JTextPane emailDisplay;
+    private javax.swing.JTextField emailField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -419,7 +544,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField kontaktPerson;
+    private javax.swing.JTextField kontaktPersonField;
     private javax.swing.JTextPane nameDisplay;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField phoneField;
