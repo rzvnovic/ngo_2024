@@ -24,13 +24,28 @@ public class Validering {
         this.idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
     }
 
-    public static Boolean epostHarGiltigtFormat(String ePost) {
+    public static Boolean giltigEpost(String ePost) {
         Boolean giltigtFormat = false;
 
         if (ePost.endsWith("@example.com")) {
             giltigtFormat = true;
         }
         return giltigtFormat;
+    }
+    
+    /**
+     * Metod som validerar inputs, ser till att de inte är tomma samt inte består
+     * av endast blanksteg samt ser till att det inte är vad redan står i rutan.
+     * @param newText
+     * @param validationText
+     * @return true om överens, false om inte.
+     */
+    public boolean fieldValidation(String newText, String validationText) {
+        boolean validated = true;
+        if (newText.equals(validationText) || newText.isEmpty() || newText.isBlank()) {
+            return validated = false;
+        }
+        return validated;
     }
 
     /**
