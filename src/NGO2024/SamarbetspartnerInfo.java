@@ -13,7 +13,7 @@ import oru.inf.InfException;
  *
  * @author Cyrus
  */
-public class SamarbetspartnerInfo1 extends javax.swing.JFrame {
+public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
     private InfDB idb;
 
@@ -24,7 +24,7 @@ public class SamarbetspartnerInfo1 extends javax.swing.JFrame {
     /**
      * Creates new form PersonalInfo
      */
-    public SamarbetspartnerInfo1(String userAid,String pid) throws InfException {
+    public SamarbetspartnerInfo(String userAid,String pid) throws InfException {
         
         this.userAid = userAid;
         this.pid = pid;
@@ -481,14 +481,30 @@ if (cityField.getText().equals("City")) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SamarbetspartnerInfo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SamarbetspartnerInfo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SamarbetspartnerInfo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SamarbetspartnerInfo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -510,9 +526,9 @@ if (cityField.getText().equals("City")) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new SamarbetspartnerInfo1(userAid, pid).setVisible(true);
+                    new SamarbetspartnerInfo(userAid, pid).setVisible(true);
                 } catch (InfException ex) {
-                    Logger.getLogger(SamarbetspartnerInfo1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SamarbetspartnerInfo.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
