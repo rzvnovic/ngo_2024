@@ -46,7 +46,6 @@ public class NewLand extends javax.swing.JFrame {
             Logger.getLogger(NewLand.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
-
     }
     
    /* public String setUserName() throws InfException{
@@ -170,7 +169,6 @@ public class NewLand extends javax.swing.JFrame {
         if (pNameField.getText().equals("Name")) {
             pNameField.setText("");
         }
-
     }//GEN-LAST:event_pNameFieldMouseClicked
 
     private void budgetFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_budgetFieldMouseClicked
@@ -186,6 +184,8 @@ public class NewLand extends javax.swing.JFrame {
         String newEndDate = endDateFeild.getText();
         String newBudget = budgetField.getText();
         int priority = priorityBox.getSelectedIndex();
+        
+        //TODO
         String newCountry = countryField.getText();
 
         String newPid;
@@ -260,7 +260,7 @@ public class NewLand extends javax.swing.JFrame {
     }
 
     /**
-     * todo ändra till land
+     * TODO ändra till land
      * @param newCity
      * @param newPid
      * @throws InfException 
@@ -303,21 +303,6 @@ public class NewLand extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewLand.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

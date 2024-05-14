@@ -223,67 +223,60 @@ public class NewPersonel extends javax.swing.JFrame {
         String newPhonenumber = phoneNumField.getText();
         String newEmploymentDate = dateOfEmploymentField.getText();
 
-        
-        
-        if ((!newName.equals("Name")
-                && !newSurname.equals("Surname")
-                && !newAdress.equals("Adress")
-                && !newPhonenumber.equals("Phonenumber")
-                && !newEmploymentDate.equals("Date of employment")
-                && !newEmail.equals("Email"))) {
-
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_createButtonActionPerformed
-    /**
-     * Metod som lägger till uppgifter i databasen TODO om knappen är incheckad
-     * så ska personen läggas till i ADMIN om ej incheckad så i handläggare TODO
-     * validera DATUM och EPOST TODO testa om det fungerar, speciellt AID
-     * (idb.getAutoIncrement()) TODO ändra namn
-     *
-     * @param newName
-     * @param newSurname
-     * @param newAdress
-     * @param newEmail
-     * @param newPhonenumber
-     * @param newDateOfEmployment
-     * @param newAvdelning
-     */
-    private void updateDatabase(String newName,
-            String newSurname, String newAdress,
-            String newEmail,
-            String newPhonenumber,
-            String newDateOfEmployment,
-            String newAvdelning) {
-        if (!newName.equals("Name")
-                && !newSurname.equals("Surname")
-                && !newAdress.equals("Adress")
-                && !newPhonenumber.equals("Phonenumber")
-                && !newEmail.equals("Email")) {
-            try {
-                String sqlQuerry = ("INSERT INTO ngo_2024.anstalld "
-                        + "(aid, fornamn, efternamn, adress, epost, telefon,"
-                        + " anstallningsdatum, losenord, avdelning) VALUES '"
-                        + idb.getAutoIncrement("anstalld", "aid") + "'"
-                        + newName + "'" + newSurname + "'" + newAdress + "'"
-                        + newEmail + "'" + newPhonenumber + "'"
-                        + newDateOfEmployment + "'"
-                        + generateNewPassword() + "'" + newAvdelning + "');");
-
-                idb.insert(sqlQuerry);
-            } catch (InfException ex) {
-                Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            String newAid = idb.getAutoIncrement("anstalld", "aid");
+            String sqlQuerry = ("INSERT INTO ngo_2024.anstalld (pid) VALUES (" + newAid + ");");
+            idb.insert(sqlQuerry);
+            //använd valideringsklass
+            if (fieldValidation(newName, "Name")) {
+                insertValue("fornamn", newName, newAid);
             }
-        }
+            //använd valideringsklass
+            if (fieldValidation(newSurname, "Surname")) {
+                insertValue("efternamn", newSurname, newAid);
+            }
+            //använd valideringsklass, validera datum TODO
+            if (fieldValidation(newAdress, "Adress")) {
+                insertValue("adress", newAdress, newAid);
+            }
+            //använd valideringsklass, validera datum TODO
+            if (fieldValidation(newEmail, "Email")) {
+                insertValue("epost", newEmail, newAid);
+            }
+            //använd valideringsklass
+            if (fieldValidation(newPhonenumber, "Phonenumber")) {
+                insertValue("telefon", newPhonenumber, newAid);
+            }
+            if (fieldValidation(newEmploymentDate, "Date of employment")) {
+                insertValue("anstallningsdatum", newEmploymentDate, newAid);
+            }
+            insertValue("losenord", generateNewPassword(), newAid);
+            
+            makeAdminCheckBox.getAccessibleContext();
+
+        } catch (InfException ex) {
+            Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
+        }                    
+    }//GEN-LAST:event_createButtonActionPerformed
+    
+    /**
+     * Metod som sätter in värden i databasen på senast skapde rad.
+     * @param column
+     * @param value
+     * @param newAid
+     * @throws InfException 
+     */
+    private void insertValue(String column, String value, String newAid) throws InfException{
+        String sqlQuerry = ("UPDATE ngo_2024.anstalld t SET t."+column+" = '" + value + "' WHERE t.aid = " + newAid + ";");
+        idb.update(sqlQuerry);
     }
 
     /**
-     * Genererar nytt lösenord baserat på random metoden
+     * Genererar nytt lösenord baserat på random klassen
      *
      * @return nyttLösenord
      */
-    private String generateNewPassword() {
+    private String generateNewPassword(){
         // TODO add your handling code here:
         // TODO PROGRAMMERA SÅ ETT RANDOM LÖSEN SKAPAS OCH LÄGG IN I DATABAS UNDER RÄTT AID.
         String lowercase = "abcdefghijklmnopqrstuvwxyz";

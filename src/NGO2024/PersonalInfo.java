@@ -81,11 +81,6 @@ public class PersonalInfo extends javax.swing.JFrame {
         return sqlQuerry;
     }
 
-    public String setNewData(String select, int aid) {
-
-        return "abd";
-    }
-
     /**
      * metod som tar emot aid och returnerar en sträng baserat på validering
      * klassens checkAdminAid
