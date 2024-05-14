@@ -15,15 +15,15 @@ import java.util.*;
  */
 public class MenyHandlaggare extends javax.swing.JFrame {
     private InfDB idb;
-    private static int userAid;
+    private static String userAid;
     private Validering validering;
 
     /**
      * Creates new form MenyHandläggare
      */
-    public MenyHandlaggare(int userAid) throws InfException {
+    public MenyHandlaggare(String userAid) throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
-        this.userAid = 1;
+        this.userAid = "1";
         validering = new Validering();
 
         initComponents();
@@ -411,7 +411,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         // TODO add your handling code here:
         //SKA ÖPPNA UPP PERSONALINFO
         //@param UserAID, AID
-        int aid = userAid; // Fungerar för syftet av denna metod.
+        String aid = userAid; // Fungerar för syftet av denna metod.
         try {
             new PersonalInfo(aid, userAid).setVisible(true);
         } catch (InfException ex) {
