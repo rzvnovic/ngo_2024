@@ -9,11 +9,13 @@ import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.*;
+
 /**
  *
  * @author meldi
  */
 public class MenyHandlaggare extends javax.swing.JFrame {
+
     private InfDB idb;
     private static String userAid;
     private Validering validering;
@@ -59,6 +61,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         minaProjectField = new javax.swing.JLabel();
         showUserProjectsButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        showDeptProjectButton = new javax.swing.JButton();
         samarbetspartnerTab2 = new javax.swing.JPanel();
         jLblSökHandläggare5 = new javax.swing.JLabel();
         samarbetspartnerSokruta = new javax.swing.JTextField();
@@ -201,6 +204,13 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             }
         });
 
+        showDeptProjectButton.setText("Show department project");
+        showDeptProjectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showDeptProjectButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout projektTabLayout = new javax.swing.GroupLayout(projektTab);
         projektTab.setLayout(projektTabLayout);
         projektTabLayout.setHorizontalGroup(
@@ -212,12 +222,13 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                     .addComponent(projektSok)
                     .addComponent(jLblSökHandläggare4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator1)
-                    .addComponent(showUserProjectsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                    .addComponent(showUserProjectsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(showDeptProjectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(projektTabLayout.createSequentialGroup()
                         .addComponent(minaProjectField)
-                        .addGap(0, 473, Short.MAX_VALUE))
+                        .addGap(0, 450, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -238,7 +249,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(showUserProjectsButton)
-                        .addGap(0, 188, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(showDeptProjectButton)
+                        .addGap(0, 155, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -421,7 +434,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
     /**
      * Sätter user projects till rutan projectListField
-     * @param evt 
+     *
+     * @param evt
      */
     private void showUserProjectsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showUserProjectsButtonActionPerformed
         try {
@@ -432,104 +446,143 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_showUserProjectsButtonActionPerformed
 
-    
+    private void showDeptProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDeptProjectButtonActionPerformed
+        try {
+            // TODO
+            projectListField.setText(findDeptProject());
+        } catch (InfException ex) {
+            Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_showDeptProjectButtonActionPerformed
+
     /**
      * metod som lägger in varje tabelles rad på en ny rad i en textsträng.
-     * 
-     * Kan vara värt att undersöka och endast visa de mål som är aktiva för avdelning 
-     * TODO
-     * DEBUGG för att se VARFÖR den skriver ut NULL
+     *
+     * Kan vara värt att undersöka och endast visa de mål som är aktiva för
+     * avdelning TODO DEBUGG för att se VARFÖR den skriver ut NULL
+     *
      * @return message
-     * @throws InfException 
+     * @throws InfException
      */
-    public String fetchHallbarhetsmal() throws InfException{
+    public String fetchHallbarhetsmal() throws InfException {
         ArrayList<String> namnLista = idb.fetchColumn("Select namn from hallbarhetsmal;");
         ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from hallbarhetsmal;");
-        
+
         String message = "";
         String contentName = null;
         String contentBesk = null;
-        for(int i = 0; i < namnLista.size(); i++){
-                contentName = namnLista.get(i);
-                contentBesk = beskrivningLista.get(i);
-                message = message +"\n"+ contentName +"\n"+contentBesk+"\n";
+        for (int i = 0; i < namnLista.size(); i++) {
+            contentName = namnLista.get(i);
+            contentBesk = beskrivningLista.get(i);
+            message = message + "\n" + contentName + "\n" + contentBesk + "\n";
         }
         return message.trim();
     }
-    
-    /**
-     * Metod som returnar en message med projekt som ANVÄNDAREN har koppling till.
-     * Kallas med knapptryck "Visa mina projekt" / "Show my projects"
-     * @return String message
-     * @throws InfException 
-     */
-    public String findUserProjects() throws InfException{
-      ArrayList<String> userProjectList = idb.fetchColumn("Select pid from ans_proj where aid = "+userAid+";");
-                ArrayList<String> userNamnLista = new ArrayList<String>();
-                ArrayList<String> userBeskrivningsLista = new ArrayList<String>();
 
-      for(int i = 0; i < userProjectList.size(); i++){
-                  userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid ="+ userProjectList.get(i)+";"));
-                  userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid ="+ userProjectList.get(i)+";"));
-      }
-      String message = "";
-      String contentName = null;
-      String contentBesk = null;
-      for(int i = 0; i < userNamnLista.size(); i++){
-          contentName = userNamnLista.get(i);
-          contentBesk = userBeskrivningsLista.get(i);
-          message = message +"\n"+ contentName +"\n"+contentBesk+"\n";
-      }
-      return message.trim();
+    public String findDeptProject() throws InfException {
+        String avdId = idb.fetchSingle("Select avdelning from anstalld where aid =" + userAid + ";");
+        ArrayList<String> aidList = idb.fetchColumn("Select aid from anstalld where avdelning =" + avdId + ";");
+        ArrayList<String> pidList = new ArrayList<String>();
+
+        for (int i = 0; i < aidList.size(); i++) {
+            String sqlQuerry = idb.fetchSingle("Select pid from ans_proj where aid =" + aidList.get(i) + ";");
+            if (sqlQuerry != null && !pidList.contains(sqlQuerry)) {
+                pidList.add(sqlQuerry);
+            }
+        }
+
+        ArrayList<String> namnLista = new ArrayList<>();
+        ArrayList<String> beskrivningsLista = new ArrayList<String>();
+
+        for (int i = 0; i < pidList.size(); i++) {
+            namnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid =" + pidList.get(i) + ";"));
+            beskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid =" + pidList.get(i) + ";"));
+        }
+        String message = "";
+        String contentName = null;
+        String contentBesk = null;
+        for (int i = 0; i < pidList.size(); i++) {
+            contentName = namnLista.get(i);
+            contentBesk = beskrivningsLista.get(i);
+            message = message + "\n" + contentName + "\n" + contentBesk + "\n";
+        }
+        return message.trim();
     }
-    
+
+    /**
+     * Metod som returnar en message med projekt som ANVÄNDAREN har koppling
+     * till. Kallas med knapptryck "Visa mina projekt" / "Show my projects"
+     *
+     * @return String message
+     * @throws InfException
+     */
+    public String findUserProjects() throws InfException {
+        ArrayList<String> userProjectList = idb.fetchColumn("Select pid from ans_proj where aid = " + userAid + ";");
+        ArrayList<String> userNamnLista = new ArrayList<String>();
+        ArrayList<String> userBeskrivningsLista = new ArrayList<String>();
+
+        for (int i = 0; i < userProjectList.size(); i++) {
+            userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid =" + userProjectList.get(i) + ";"));
+            userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid =" + userProjectList.get(i) + ";"));
+        }
+        String message = "";
+        String contentName = null;
+        String contentBesk = null;
+        for (int i = 0; i < userNamnLista.size(); i++) {
+            contentName = userNamnLista.get(i);
+            contentBesk = userBeskrivningsLista.get(i);
+            message = message + "\n" + contentName + "\n" + contentBesk + "\n";
+        }
+        return message.trim();
+    }
+
     /**
      * Ej nöjd.
-     * 
+     *
      * Lägg till param (-1.alla, 0.dina, 1.avdelning)
-     * 
-     * 
+     *
+     *
      * @return
-     * @throws InfException 
+     * @throws InfException
      */
-    public String fetchProject() throws InfException{
+    public String fetchProject() throws InfException {
         ArrayList<String> namnLista = idb.fetchColumn("Select projektnamn from projekt;");
         ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from projekt;");
-        
+
         String message = "";
         String contentName = null;
         String contentBesk = null;
-        for(int i = 0; i < namnLista.size(); i++){
-                contentName = namnLista.get(i);
-                contentBesk = beskrivningLista.get(i);
-                message = message +"\n"+ contentName +"\n"+contentBesk+"\n";
+        for (int i = 0; i < namnLista.size(); i++) {
+            contentName = namnLista.get(i);
+            contentBesk = beskrivningLista.get(i);
+            message = message + "\n" + contentName + "\n" + contentBesk + "\n";
         }
         return message.trim();
     }
-    
+
     /**
-     * SKA BARA VISA PÅ RÄTT AVDELNING SÅ 
-     * SQL QUERRY bör ändras till where avdId = userAid's avdId
+     * SKA BARA VISA PÅ RÄTT AVDELNING SÅ SQL QUERRY bör ändras till where avdId
+     * = userAid's avdId
+     *
      * @return
-     * @throws InfException 
+     * @throws InfException
      */
-    public String fetchEmployees() throws InfException{
+    public String fetchEmployees() throws InfException {
         String sqlFråga = "select avdelning from anstalld where aid = " + userAid;
         ArrayList<String> fNamnLista = idb.fetchColumn("Select fornamn from anstalld where avdelning = " + idb.fetchSingle(sqlFråga));
         ArrayList<String> eNamnLista = idb.fetchColumn("Select efternamn from anstalld where avdelning = " + idb.fetchSingle(sqlFråga));
-        
+
         String message = "";
         String contentFName = null;
         String contentEName = null;
-        for(int i = 0; i < fNamnLista.size(); i++){
-                contentFName = fNamnLista.get(i);
-                contentEName = eNamnLista.get(i);
-                message = message +"\n"+ contentFName +" "+contentEName+"\n";
+        for (int i = 0; i < fNamnLista.size(); i++) {
+            contentFName = fNamnLista.get(i);
+            contentEName = eNamnLista.get(i);
+            message = message + "\n" + contentFName + " " + contentEName + "\n";
         }
         return message.trim();
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -607,6 +660,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JButton samarbetspartnerSok;
     private javax.swing.JTextField samarbetspartnerSokruta;
     private javax.swing.JPanel samarbetspartnerTab2;
+    private javax.swing.JButton showDeptProjectButton;
     private javax.swing.JButton showUserProjectsButton;
     private javax.swing.JButton visaKnapp;
     // End of variables declaration//GEN-END:variables
