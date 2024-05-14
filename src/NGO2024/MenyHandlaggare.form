@@ -249,13 +249,14 @@
                               <Component id="projektSok" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLblSökHandläggare4" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                               <Component id="jSeparator1" max="32767" attributes="0"/>
-                              <Component id="showUserProjectsButton" alignment="0" pref="147" max="32767" attributes="0"/>
+                              <Component id="showUserProjectsButton" alignment="0" max="32767" attributes="0"/>
+                              <Component id="showDeptProjectButton" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="minaProjectField" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="473" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="450" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" max="32767" attributes="0"/>
                           </Group>
@@ -281,7 +282,9 @@
                                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="showUserProjectsButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="showDeptProjectButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="155" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" max="32767" attributes="0"/>
                           </Group>
@@ -345,6 +348,14 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator1">
+                </Component>
+                <Component class="javax.swing.JButton" name="showDeptProjectButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Show department project"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showDeptProjectButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
