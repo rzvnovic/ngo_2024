@@ -214,25 +214,25 @@ public class NewAvdelning extends javax.swing.JFrame {
             newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
             String sqlQuerry = ("INSERT INTO ngo_2024.avdelning (Avdid) VALUES (" + newAvdid + ");");
             idb.insert(sqlQuerry);
-            if (fieldValidation(newName, "Name")) {
+            if (Validering.fieldValidation(newName, "Name")) {
                 insertValue("namn", newName, newAvdid);
             }
-            if (fieldValidation(newHOD, "head of department")) {
+            if (Validering.fieldValidation(newHOD, "head of department")) {
                 insertValue("chef", newHOD, newAvdid);
             }
-            if (fieldValidation(newEmail, "Email")&& Validering.giltigEpost(newEmail)) {
+            if (Validering.fieldValidation(newEmail, "Email")&& Validering.giltigEpost(newEmail)) {
                 insertValue("epost", newEmail, newAvdid);
             }
-            if (fieldValidation(newPhonenumber, "Phonenumber")) {
+            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                 insertValue("telefon", newPhonenumber, newAvdid);
             }
-            if (fieldValidation(newAdress, "Adress")) {
+            if (Validering.fieldValidation(newAdress, "Adress")) {
                 insertValue("adress", newAdress, newAvdid);
             }
-            if (fieldValidation(newCity, "City")) {
+            if (Validering.fieldValidation(newCity, "City")) {
                 insertValue("stad", newCity, newAvdid);
             }
-            if (fieldValidation(newDescription, "Description")){
+            if (Validering.fieldValidation(newDescription, "Description")){
                 insertValue("beskrivning" , newDescription, newAvdid);
             }
 
@@ -284,10 +284,12 @@ public class NewAvdelning extends javax.swing.JFrame {
                 return;
             }
         }
+       
         //Todo gör synliga rutor
         //alt gör så användaren får mata in land   
     }
-
+    
+  
     /**
      * @param args the command line arguments
      */
