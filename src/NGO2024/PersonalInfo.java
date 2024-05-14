@@ -25,15 +25,15 @@ public class PersonalInfo extends javax.swing.JFrame {
 
     //tas emot från klassen anställd
     private static String aid;
-    private static int userAid;
+    private static String userAid;
     private static Validering validering;
 
     /**
      * Creates new form PersonalInfo
      */
-    public PersonalInfo(String aid, int userAid) throws InfException {
+    public PersonalInfo(String aid, String userAid) throws InfException {
 
-        this.userAid = 1; //såklart inte någon hårdkodning här
+        this.userAid = "1"; //såklart inte någon hårdkodning här
         this.aid = "3";     //---------------||-----------------
         validering = new Validering();
 
@@ -71,7 +71,7 @@ public class PersonalInfo extends javax.swing.JFrame {
      * @param aid
      * @return svaret
      */
-    public String setDisplayText1(String select, int aid) {
+    public String setDisplayText1(String select, String aid) {
         String sqlQuerry;
         try {
             String sqlFraga = ("select " + select + " from anstalld where aid =" + aid + ";");
@@ -90,7 +90,7 @@ public class PersonalInfo extends javax.swing.JFrame {
      * @param aid
      * @return isAdmin om admin, isNotAdmin om not admin
      */
-    public String isAdmin(int aid) {
+    public String isAdmin(String aid) {
         if (validering.checkAdminAid(aid)) {
             return "IsAdmin";
         } else {

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class MenyAdmin extends javax.swing.JFrame {
 
     private static String ePost;
-    private static int userAid;
+    private static String userAid;
     private InfDB idb;
     private static String aid;
     private static Validering validering;
@@ -25,10 +25,10 @@ public class MenyAdmin extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public MenyAdmin(String ePost, int userAnställningsId) throws InfException {
+    public MenyAdmin(String ePost, String userAid) throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         this.ePost = ePost;
-        this.userAid = userAnställningsId;
+        this.userAid = userAid;
         validering = new Validering();
         initComponents();
     }

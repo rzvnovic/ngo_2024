@@ -15,7 +15,7 @@ import oru.inf.InfException;
 public class Inloggning extends javax.swing.JFrame {
 
     private InfDB idb;
-    private int userAid;
+    private String userAid;
     private Validering validering;
     /**
      * Creates new form Inloggning
@@ -182,8 +182,7 @@ public class Inloggning extends javax.swing.JFrame {
             
         if (anställningsIDS != null)
         {
-           int anställningsIDInt = Integer.parseInt(anställningsIDS);
-           userAid = anställningsIDInt;
+           userAid = anställningsIDS;
             adminHittad = true;
         }
         
@@ -208,8 +207,7 @@ public class Inloggning extends javax.swing.JFrame {
         if (anställningsIDString != null)
         {
             //nedanstående rad kan eventuellt tas bort, testa 
-           int anställningsIDInt = Integer.parseInt(anställningsIDString);
-           userAid = anställningsIDInt;
+           userAid = anställningsIDString;
             projektLedareHittad = true;
         }
         
@@ -233,8 +231,7 @@ public class Inloggning extends javax.swing.JFrame {
         if (anställningsIDString != null)
         {
             //nedanstående rad kan eventuellt tas bort, testa 
-           int anställningsIDInt = Integer.parseInt(anställningsIDString);
-           userAid = anställningsIDInt;
+           userAid = anställningsIDString;
             handläggareHittad = true;
         }
         
