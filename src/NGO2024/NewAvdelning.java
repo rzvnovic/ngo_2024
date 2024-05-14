@@ -64,7 +64,7 @@ public class NewAvdelning extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cityField = new javax.swing.JTextField();
         adressField = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        descriptionField = new javax.swing.JTextField();
         HODfield = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,10 +113,10 @@ public class NewAvdelning extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setText("Description");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        descriptionField.setText("Description");
+        descriptionField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                descriptionFieldActionPerformed(evt);
             }
         });
 
@@ -146,12 +146,11 @@ public class NewAvdelning extends javax.swing.JFrame {
                                     .addComponent(cityField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                                     .addComponent(HODfield))
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(140, 140, 140))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(adressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -173,10 +172,10 @@ public class NewAvdelning extends javax.swing.JFrame {
                         .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(HODfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
+                    .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(createButton)
-                .addGap(54, 54, 54))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,11 +207,11 @@ public class NewAvdelning extends javax.swing.JFrame {
         String newAdress = adressField.getText();
         String newHOD = HODfield.getText();
         String newCity = cityField.getText();
-
-        String newPid;
-        String newAvdid;
+        String newDescription = descriptionField.getText();
+        
+        String newAvdid = null;
         try {
-            newPid = idb.getAutoIncrement("partner", "pid");
+            newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
             String sqlQuerry = ("INSERT INTO ngo_2024.avdelning (Avdid) VALUES (" + newAvdid + ");");
             idb.insert(sqlQuerry);
             if (fieldValidation(newName, "Name")) {
@@ -233,8 +232,11 @@ public class NewAvdelning extends javax.swing.JFrame {
             if (fieldValidation(newCity, "City")) {
                 insertValue("stad", newCity, newAvdid);
             }
+            if (fieldValidation(newDescription, "Description")){
+                insertValue("beskrivning" , newDescription, newAvdid);
+            }
 
-            cityValidation(newCity, newPid);
+            cityValidation(newCity, newAvdid);
         } catch (InfException ex) {
             Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -252,9 +254,9 @@ public class NewAvdelning extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_adressFieldMouseClicked
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void descriptionFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_descriptionFieldActionPerformed
 
     private void HODfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HODfieldActionPerformed
         // TODO add your handling code here:
@@ -268,17 +270,17 @@ public class NewAvdelning extends javax.swing.JFrame {
         return validated;
     }
 
-    private void insertValue(String column, String value, String newPid) throws InfException{
-        String sqlQuerry = ("UPDATE ngo_2024.partner t SET t."+column+" = '" + value + "' WHERE t.pid = " + newPid + ";");
+    private void insertValue(String column, String value, String newAvdid) throws InfException{
+        String sqlQuerry = ("UPDATE ngo_2024.avdelning t SET t."+column+" = '" + value + "' WHERE t.avdid = " + newAvdid + ";");
         idb.update(sqlQuerry);
     }
 
-    private void cityValidation(String newCity, String newPid) throws InfException {
+    private void cityValidation(String newCity, String newAvdid) throws InfException {
         ArrayList<String> cityList = idb.fetchColumn("Select namn from stad;");
         for (String cityName : cityList) {
             if (cityName.equals(newCity)) {
                 String sid = idb.fetchSingle("select sid from stad where namn =" + newCity + ";");
-                idb.update("UPDATE ngo_2024.partner t SET t.stad = " + sid + " WHERE t.pid = " + newPid + ";");
+                idb.update("UPDATE ngo_2024.avdelning t SET t.stad = " + sid + " WHERE t.avdid = " + newAvdid + ";");
                 return;
             }
         }
@@ -333,8 +335,8 @@ public class NewAvdelning extends javax.swing.JFrame {
     private javax.swing.JTextField contactEmailField;
     private javax.swing.JTextField contactPhoneField;
     private javax.swing.JButton createButton;
+    private javax.swing.JTextField descriptionField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField nameField;
     // End of variables declaration//GEN-END:variables
 }
