@@ -45,7 +45,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -58,46 +58,43 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="newPasswordDisplay" min="-2" pref="212" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel1" min="-2" pref="75" max="-2" attributes="0"/>
+                              <Component id="avdelningNField" max="32767" attributes="0"/>
+                              <Component id="desField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="adressField" max="32767" attributes="0"/>
+                              <Component id="phoneField" pref="173" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="cityField" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="chefField" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="commitButton" alignment="1" min="-2" pref="79" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="emailField" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jSeparator1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="generateNewPassword" max="32767" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <Component id="nameField" max="32767" attributes="0"/>
-                                  <Component id="surnameField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="adressField" max="32767" attributes="0"/>
-                                  <Component id="phoneField" max="32767" attributes="0"/>
-                                  <Component id="makeAdminBox" max="32767" attributes="0"/>
-                                  <Component id="emailField" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="commitButton" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                                  <Component id="adminOkButton" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane5" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane7" pref="137" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="deleteButton" min="-2" pref="79" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="jScrollPane5" min="-2" pref="248" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jSeparator1" pref="1" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" alignment="0" pref="255" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="deleteButton" min="-2" pref="79" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jScrollPane6" alignment="0" pref="248" max="32767" attributes="0"/>
+                          <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="125" max="32767" attributes="0"/>
+                  <EmptySpace pref="118" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -108,12 +105,12 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="nameField" min="-2" max="-2" attributes="0"/>
+                      <Component id="avdelningNField" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="surnameField" min="-2" max="-2" attributes="0"/>
+                      <Component id="desField" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -123,58 +120,45 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="phoneField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="commitButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="phoneField" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="emailField" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
-                              <Component id="jScrollPane7" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="adminOkButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="generateNewPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jScrollPane7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="emailField" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="makeAdminBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="cityField" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="chefField" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="commitButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="newPasswordDisplay" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="53" max="32767" attributes="0"/>
+                  <EmptySpace pref="79" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="nameField">
+        <Component class="javax.swing.JTextField" name="avdelningNField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Name"/>
+            <Property name="text" type="java.lang.String" value="Department Name"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="nameFieldMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameFieldActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="avdelningNFieldMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="avdelningNFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -182,12 +166,12 @@
             <Property name="text" type="java.lang.String" value="Information"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="surnameField">
+        <Component class="javax.swing.JTextField" name="desField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Surname"/>
+            <Property name="text" type="java.lang.String" value="Description"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="surnameFieldMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="desFieldMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="adressField">
@@ -214,17 +198,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="emailFieldMouseClicked"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="makeAdminBox">
-          <Properties>
-            <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="validering.checkAdminAid(aid)" type="code"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Admin"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="makeAdminBoxActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="commitButton">
@@ -235,14 +209,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="commitButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="adminOkButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ok"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminOkButtonActionPerformed"/>
-          </Events>
-        </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -250,11 +216,11 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="nameDisplay">
+            <Component class="javax.swing.JTextPane" name="avdelningDisplay">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="setDisplayText1(&quot;fornamn&quot;, aid)" type="code"/>
+                  <Connection code="setDisplayText1(&quot;namn&quot;, avdid)" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -267,11 +233,11 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="surnameDisplay">
+            <Component class="javax.swing.JTextPane" name="desDisplay">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="setDisplayText1(&quot;efternamn&quot;, aid)" type="code"/>
+                  <Connection code="setDisplayText1(&quot;beskrivning&quot;, avdid)" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -288,7 +254,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="setDisplayText1(&quot;adress&quot;, aid)" type="code"/>
+                  <Connection code="setDisplayText1(&quot;adress&quot;, avdid)" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -305,7 +271,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="setDisplayText1(&quot;telefon&quot; , aid)" type="code"/>
+                  <Connection code="setDisplayText1(&quot;telefon&quot; , avdid)" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -322,7 +288,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="setDisplayText1(&quot;epost&quot;, aid)" type="code"/>
+                  <Connection code="setDisplayText1(&quot;epost&quot;, avdid)" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -335,11 +301,11 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="isAdminDisplay">
+            <Component class="javax.swing.JTextPane" name="cityDisplay">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="isAdmin(aid)" type="code"/>
+                  <Connection code="setDisplayText1((&quot;stad&quot;),avdid)" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -352,29 +318,16 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="employeeIdDisplay">
+            <Component class="javax.swing.JTextPane" name="chefDisplay">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="setDisplayText1(&quot;aid&quot;, aid)" type="code"/>
+                  <Connection code="setDisplayText1(&quot;avdid&quot;, avdid)" type="code"/>
                 </Property>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JToggleButton" name="generateNewPassword">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Generate new password"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateNewPasswordActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="newPasswordDisplay">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="New password is: "/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="deleteButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -387,6 +340,22 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="cityField">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="City"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cityFieldMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="chefField">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Boss"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="chefFieldMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

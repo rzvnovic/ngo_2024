@@ -22,17 +22,17 @@ public class visaAvdelning extends javax.swing.JFrame {
     private InfDB idb;
 
     //tas emot från klassen anställd
-    private static int aid;
+    private static int avdid;
     private static int userAid;
     private static Validering validering;
 
     /**
      * Creates new form PersonalInfo
      */
-    public visaAvdelning(int aid, int userAid) throws InfException {
+    public visaAvdelning(int avdid, int userAid) throws InfException {
 
         this.userAid = 1; //såklart inte någon hårdkodning här
-        this.aid = 3;     //---------------||-----------------
+        this.avdid = 3;     //---------------||-----------------
         validering = new Validering();
 
         try {
@@ -41,38 +41,16 @@ public class visaAvdelning extends javax.swing.JFrame {
             Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
-        adminVissebillity();
-        newPasswordDisplay.setVisible(false);
+        
+        
 
     }
 
-    /**
-     * metod som sätter synlighet baserat på användarens aid Admins har mer
-     * synlighet än handläggare
-     */
-    public void adminVissebillity() {
-        if (validering.checkAdminAid(userAid)) {
-            commitButton.setVisible(false);
-        } else {
-            adminOkButton.setVisible(false);
-            emailField.setVisible(false);
-            makeAdminBox.setVisible(false);
-            generateNewPassword.setVisible(false);
-            deleteButton.setVisible(false);
-        }
-    }
-
-    /**
-     * Metod som konstruerar en sqlquerry och lägger den mot databasen
-     *
-     * @param select vad som ska hämtas
-     * @param aid
-     * @return svaret
-     */
-    public String setDisplayText1(String select, int aid) {
+   
+    public String setDisplayText1(String select, int avdid) {
         String sqlQuerry;
         try {
-            String sqlFraga = ("select " + select + " from anstalld where aid =" + aid + ";");
+            String sqlFraga = ("select " + select + " from avdelning where avdid =" + avdid + ";");
             sqlQuerry = idb.fetchSingle(sqlFraga);
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,16 +63,10 @@ public class visaAvdelning extends javax.swing.JFrame {
      * metod som tar emot aid och returnerar en sträng baserat på validering
      * klassens checkAdminAid
      *
-     * @param aid
+     * @param avdid
      * @return isAdmin om admin, isNotAdmin om not admin
      */
-    public String isAdmin(int aid) {
-        if (validering.checkAdminAid(aid)) {
-            return "IsAdmin";
-        } else {
-            return "IsNotAdmin";
-        }
-    }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,20 +78,18 @@ public class visaAvdelning extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        nameField = new javax.swing.JTextField();
+        avdelningNField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        surnameField = new javax.swing.JTextField();
+        desField = new javax.swing.JTextField();
         adressField = new javax.swing.JTextField();
         phoneField = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         emailField = new javax.swing.JTextField();
-        makeAdminBox = new javax.swing.JCheckBox();
         commitButton = new javax.swing.JButton();
-        adminOkButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        nameDisplay = new javax.swing.JTextPane();
+        avdelningDisplay = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        surnameDisplay = new javax.swing.JTextPane();
+        desDisplay = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         adressDisplay = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -127,36 +97,36 @@ public class visaAvdelning extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         emailDisplay = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        isAdminDisplay = new javax.swing.JTextPane();
+        cityDisplay = new javax.swing.JTextPane();
         jScrollPane7 = new javax.swing.JScrollPane();
-        employeeIdDisplay = new javax.swing.JTextPane();
-        generateNewPassword = new javax.swing.JToggleButton();
-        newPasswordDisplay = new javax.swing.JLabel();
+        chefDisplay = new javax.swing.JTextPane();
         deleteButton = new javax.swing.JButton();
+        cityField = new javax.swing.JTextField();
+        chefField = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nameField.setText("Name");
-        nameField.addMouseListener(new java.awt.event.MouseAdapter() {
+        avdelningNField.setText("Department Name");
+        avdelningNField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nameFieldMouseClicked(evt);
+                avdelningNFieldMouseClicked(evt);
             }
         });
-        nameField.addActionListener(new java.awt.event.ActionListener() {
+        avdelningNField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameFieldActionPerformed(evt);
+                avdelningNFieldActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Information");
 
-        surnameField.setText("Surname");
-        surnameField.addMouseListener(new java.awt.event.MouseAdapter() {
+        desField.setText("Description");
+        desField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                surnameFieldMouseClicked(evt);
+                desFieldMouseClicked(evt);
             }
         });
 
@@ -180,12 +150,9 @@ public class visaAvdelning extends javax.swing.JFrame {
                 emailFieldMouseClicked(evt);
             }
         });
-
-        makeAdminBox.setSelected(validering.checkAdminAid(aid));
-        makeAdminBox.setText("Admin");
-        makeAdminBox.addActionListener(new java.awt.event.ActionListener() {
+        emailField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                makeAdminBoxActionPerformed(evt);
+                emailFieldActionPerformed(evt);
             }
         });
 
@@ -196,49 +163,33 @@ public class visaAvdelning extends javax.swing.JFrame {
             }
         });
 
-        adminOkButton.setText("Ok");
-        adminOkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminOkButtonActionPerformed(evt);
-            }
-        });
+        avdelningDisplay.setEditable(false);
+        avdelningDisplay.setText(setDisplayText1("namn", avdid));
+        jScrollPane1.setViewportView(avdelningDisplay);
 
-        nameDisplay.setEditable(false);
-        nameDisplay.setText(setDisplayText1("fornamn", aid));
-        jScrollPane1.setViewportView(nameDisplay);
-
-        surnameDisplay.setEditable(false);
-        surnameDisplay.setText(setDisplayText1("efternamn", aid));
-        jScrollPane2.setViewportView(surnameDisplay);
+        desDisplay.setEditable(false);
+        desDisplay.setText(setDisplayText1("beskrivning", avdid));
+        jScrollPane2.setViewportView(desDisplay);
 
         adressDisplay.setEditable(false);
-        adressDisplay.setText(setDisplayText1("adress", aid));
+        adressDisplay.setText(setDisplayText1("adress", avdid));
         jScrollPane3.setViewportView(adressDisplay);
 
         phonenumberDisplay.setEditable(false);
-        phonenumberDisplay.setText(setDisplayText1("telefon" , aid));
+        phonenumberDisplay.setText(setDisplayText1("telefon" , avdid));
         jScrollPane4.setViewportView(phonenumberDisplay);
 
         emailDisplay.setEditable(false);
-        emailDisplay.setText(setDisplayText1("epost", aid));
+        emailDisplay.setText(setDisplayText1("epost", avdid));
         jScrollPane5.setViewportView(emailDisplay);
 
-        isAdminDisplay.setEditable(false);
-        isAdminDisplay.setText(isAdmin(aid));
-        jScrollPane6.setViewportView(isAdminDisplay);
+        cityDisplay.setEditable(false);
+        cityDisplay.setText(setDisplayText1(("stad"),avdid));
+        jScrollPane6.setViewportView(cityDisplay);
 
-        employeeIdDisplay.setEditable(false);
-        employeeIdDisplay.setText(setDisplayText1("aid", aid));
-        jScrollPane7.setViewportView(employeeIdDisplay);
-
-        generateNewPassword.setText("Generate new password");
-        generateNewPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateNewPasswordActionPerformed(evt);
-            }
-        });
-
-        newPasswordDisplay.setText("New password is: ");
+        chefDisplay.setEditable(false);
+        chefDisplay.setText(setDisplayText1("avdid", avdid));
+        jScrollPane7.setViewportView(chefDisplay);
 
         deleteButton.setBackground(new java.awt.Color(102, 0, 0));
         deleteButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -249,6 +200,20 @@ public class visaAvdelning extends javax.swing.JFrame {
             }
         });
 
+        cityField.setText("City");
+        cityField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cityFieldMouseClicked(evt);
+            }
+        });
+
+        chefField.setText("Boss");
+        chefField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chefFieldMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -256,38 +221,35 @@ public class visaAvdelning extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(newPasswordDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(avdelningNField)
+                            .addComponent(desField)
+                            .addComponent(adressField)
+                            .addComponent(phoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(chefField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(commitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(182, 182, 182)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jSeparator1)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(generateNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nameField)
-                                .addComponent(surnameField)
-                                .addComponent(adressField)
-                                .addComponent(phoneField)
-                                .addComponent(makeAdminBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(emailField))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(adminOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(85, 85, 85)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1)
-                                .addComponent(jScrollPane2)
-                                .addComponent(jScrollPane3)
-                                .addComponent(jScrollPane4)
-                                .addComponent(jScrollPane5)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(69, 69, 69))))))
-                .addContainerGap(125, Short.MAX_VALUE))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2)
+                        .addComponent(jScrollPane3)
+                        .addComponent(jScrollPane4)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(69, 69, 69)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,11 +258,11 @@ public class visaAvdelning extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(avdelningNField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(desField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,36 +270,28 @@ public class visaAvdelning extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(commitButton))
+                    .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(adminOkButton)
-                                    .addComponent(generateNewPassword)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteButton))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(makeAdminBox)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(newPasswordDisplay)
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addComponent(deleteButton))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chefField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(commitButton)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -356,42 +310,15 @@ public class visaAvdelning extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+    private void avdelningNFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdelningNFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameFieldActionPerformed
-
-    private void adminOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminOkButtonActionPerformed
-        // TODO add your handling code here:
-        //MAKE ViSABLE IF USER == ADMIN
-        String newName = nameField.getText();
-        String newSurname = surnameField.getText();
-        String newAdress = adressField.getText();
-        String newPhonenumber = phoneField.getText();
-        String newEmail = emailField.getText(); //OBS
-
-        if (!newName.equals("Name") && !newSurname.equals("Surname")
-                && !newAdress.equals("Adress")
-                && !newPhonenumber.equals("Phonenumber")
-                && !newEmail.equals("Email")) {
-            nameDisplay.setText(newName);
-            surnameDisplay.setText(newSurname);
-            adressDisplay.setText(newAdress);
-            phonenumberDisplay.setText(newPhonenumber);
-            emailDisplay.setText(newEmail);
-
-            updateDatabase("fornamn", newName, aid);
-            updateDatabase("efternamn", newSurname, aid);
-            updateDatabase("adress", newAdress, aid);
-            updateDatabase("telefon", newPhonenumber, aid);
-            updateDatabase("epost", newEmail, aid);
-        }
-    }//GEN-LAST:event_adminOkButtonActionPerformed
+    }//GEN-LAST:event_avdelningNFieldActionPerformed
     /**
      * knappen gör en del saker kan vara värt att splitta i flera metoder.
      *
@@ -399,30 +326,39 @@ public class visaAvdelning extends javax.swing.JFrame {
      */
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
 
-        String newName = nameField.getText();
-        String newSurname = surnameField.getText();
+        String newAvName = avdelningNField.getText();
+        String newDescription = desField.getText();
         String newAdress = adressField.getText();
         String newPhonenumber = phoneField.getText();
-        String newEmail = emailField.getText(); //OBS
+        String newEmail = emailField.getText();
+        String newCity = cityField.getText();
+        String newChef = chefField.getText();
+        //OBS
 
-        if (!newName.equals("Name")
-                && !newSurname.equals("Surname")
+        if (!newAvName.equals("Department Name")
+                && !newDescription.equals("Description")
                 && !newAdress.equals("Adress")
                 && !newPhonenumber.equals("Phonenumber")
-                && !newEmail.equals("Email")) {
+                && !newEmail.equals("Email")
+                && !newCity.equals("City")
+                && !newChef.equals("Boss")) {
 
-            nameDisplay.setText(newName);
-            surnameDisplay.setText(newSurname);
+            avdelningDisplay.setText(newAvName);
+            desDisplay.setText(newDescription);
             adressDisplay.setText(newAdress);
             phonenumberDisplay.setText(newPhonenumber);
             emailDisplay.setText(newEmail);
+            cityDisplay.setText(newCity);
+            chefDisplay.setText(newChef);
         }
 
-        updateDatabase("fornamn", newName, aid);
-        updateDatabase("efternamn", newSurname, aid);
-        updateDatabase("adress", newAdress, aid);
-        updateDatabase("telefon", newPhonenumber, aid);
-        updateDatabase("epost", newEmail, aid);
+        updateDatabase("namn", newAvName, avdid);
+        updateDatabase("beskrivning", newDescription, avdid);
+        updateDatabase("adress", newAdress, avdid);
+        updateDatabase("telefon", newPhonenumber, avdid);
+        updateDatabase("epost", newEmail, avdid);
+        updateDatabase("stad", newCity, avdid);
+        updateDatabase("chef", newChef, avdid);
 
 
     }//GEN-LAST:event_commitButtonActionPerformed
@@ -431,17 +367,21 @@ public class visaAvdelning extends javax.swing.JFrame {
      *
      * @param column vilken kolumn som bör uppdateras
      * @param value vad cellen skall uppdateras med
-     * @param aid vilken aid som ändringen ska ske på
+     * @param avdid vilken aid som ändringen ska ske på
      */
-    private void updateDatabase(String column, String value, int aid) {
+    private void updateDatabase(String column, String value, int avdid) {
         if (!value.equals("Name")
-                && !value.equals("Surname")
+                && !value.equals("Description")
                 && !value.equals("Adress")
-                && !value.equals("Phonenumber") && !value.equals("Email")) {
+                && !value.equals("Phonenumber") 
+                && !value.equals("Email")
+                & !value.equals("City")
+                & !value.equals("Boss")
+                ) {
             try {
-                String sqlQuerry = ("UPDATE ngo_2024.anstalld t SET t."
+                String sqlQuerry = ("UPDATE ngo_2024.avdelning t SET t."
                         + column + " = '"
-                        + value + "' WHERE t.aid = " + aid + ";");
+                        + value + "' WHERE t.avdid = " + avdid + ";");
                 idb.update(sqlQuerry);
             } catch (InfException ex) {
                 Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
@@ -454,23 +394,23 @@ public class visaAvdelning extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
+    private void avdelningNFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avdelningNFieldMouseClicked
         // TODO add your handling code here:
-        if (nameField.getText().equals("Name")) {
-            nameField.setText("");
+        if (avdelningNField.getText().equals("Department Name")) {
+            avdelningNField.setText("");
         }
-    }//GEN-LAST:event_nameFieldMouseClicked
+    }//GEN-LAST:event_avdelningNFieldMouseClicked
     /**
      * metod tar bort text från fältet om det klickas
      *
      * @param evt
      */
-    private void surnameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_surnameFieldMouseClicked
+    private void desFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desFieldMouseClicked
         // TODO add your handling code here:
-        if (surnameField.getText().equals("Surname")) {
-            surnameField.setText("");
+        if (desField.getText().equals("Description")) {
+            desField.setText("");
         }
-    }//GEN-LAST:event_surnameFieldMouseClicked
+    }//GEN-LAST:event_desFieldMouseClicked
     /**
      * metod tar bort text från fältet om det klickas
      *
@@ -504,45 +444,6 @@ public class visaAvdelning extends javax.swing.JFrame {
             emailField.setText("");
         }
     }//GEN-LAST:event_emailFieldMouseClicked
-    /**
-     * Kod som genererar ett lösenord baserat på tecken valda genom random
-     * metod. Lägger även in lösenordet i databasen under aid som skickats in
-     * som parameter från föregående klass.
-     *
-     * @param evt
-     */
-    private void generateNewPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateNewPasswordActionPerformed
-        // TODO add your handling code here:
-        // TODO PROGRAMMERA SÅ ETT RANDOM LÖSEN SKAPAS OCH LÄGG IN I DATABAS UNDER RÄTT AID.
-        String lowercase = "abcdefghijklmnopqrstuvwxyz";
-        String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String numbers = "0123456789";
-
-        String allChars = lowercase + uppercase + numbers;
-
-        Random r = new Random();
-
-        String newPassword = "" + allChars.charAt(r.nextInt(0, allChars.length()));
-        for (int i = 0; i < 12; i++) {
-            int numb = r.nextInt(0, allChars.length());
-            newPassword = newPassword + allChars.charAt(numb);
-        }
-        System.out.print(newPassword);
-
-        String sqlQuerry = "UPDATE ngo_2024.anstalld t SET t.losenord = '" + newPassword + "' WHERE t.aid =" + aid + ";";
-        try {
-            idb.update(sqlQuerry);
-        } catch (InfException ex) {
-            Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        setPasswordField(newPassword);
-    }//GEN-LAST:event_generateNewPasswordActionPerformed
-
-    private void makeAdminBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAdminBoxActionPerformed
-        // TODO add your handling code here:
-        // TODO ta bort / lägg till aid i admin tabell
-
-    }//GEN-LAST:event_makeAdminBoxActionPerformed
 
     /**
      * Metod som tar bort profilen som sökts up.
@@ -552,25 +453,33 @@ public class visaAvdelning extends javax.swing.JFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
         // TODO tar bort profilen ur tabellen genom idb.delete()
-        String sqlQueery = ("DELETE FROM ngo_2024.anstalld WHERE aid =" + aid + ";");
+        String sqlQueery = ("DELETE FROM ngo_2024.avdelning WHERE avdid =" + avdid + ";");
         try {
             idb.delete(sqlQueery);
         } catch (InfException ex) {
             Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
-    /**
-     * metod som gör ett text fält synligt och skriver ut senaste genererade
-     * lösenord.
-     *
-     * @param newPassword
-     */
-    public void setPasswordField(String newPassword) {
-        newPasswordDisplay.setVisible(true);
-        String displayMsg = ("newPasswordIs: " + newPassword);
-        newPasswordDisplay.setText(displayMsg);
-    }
 
+    private void cityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseClicked
+
+        // TODO add your handling code here:
+        if (emailField.getText().equals("City")) {
+            emailField.setText("");
+        }
+    }//GEN-LAST:event_cityFieldMouseClicked
+
+    private void chefFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chefFieldMouseClicked
+        // TODO add your handling code here:
+        if (emailField.getText().equals("Boss")) {
+            emailField.setText("");
+        }
+    }//GEN-LAST:event_chefFieldMouseClicked
+
+    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFieldActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -599,12 +508,18 @@ public class visaAvdelning extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new visaAvdelning(aid, userAid).setVisible(true);
+                    new visaAvdelning(avdid, userAid).setVisible(true);
                     Validering validering = new Validering();
                 } catch (InfException ex) {
                     Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
@@ -614,16 +529,20 @@ public class visaAvdelning extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminOkButton;
     private javax.swing.JTextPane adressDisplay;
     private javax.swing.JTextField adressField;
+    private javax.swing.JTextPane avdelningDisplay;
+    private javax.swing.JTextField avdelningNField;
+    private javax.swing.JTextPane chefDisplay;
+    private javax.swing.JTextField chefField;
+    private javax.swing.JTextPane cityDisplay;
+    private javax.swing.JTextField cityField;
     private javax.swing.JButton commitButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JTextPane desDisplay;
+    private javax.swing.JTextField desField;
     private javax.swing.JTextPane emailDisplay;
     private javax.swing.JTextField emailField;
-    private javax.swing.JTextPane employeeIdDisplay;
-    private javax.swing.JToggleButton generateNewPassword;
-    private javax.swing.JTextPane isAdminDisplay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -637,13 +556,7 @@ public class visaAvdelning extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JCheckBox makeAdminBox;
-    private javax.swing.JTextPane nameDisplay;
-    private javax.swing.JTextField nameField;
-    private javax.swing.JLabel newPasswordDisplay;
     private javax.swing.JTextField phoneField;
     private javax.swing.JTextPane phonenumberDisplay;
-    private javax.swing.JTextPane surnameDisplay;
-    private javax.swing.JTextField surnameField;
     // End of variables declaration//GEN-END:variables
 }
