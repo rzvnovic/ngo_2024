@@ -39,16 +39,14 @@
                                   <Component id="HODfield" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTextField2" min="-2" pref="188" max="-2" attributes="0"/>
+                              <Component id="descriptionField" min="-2" pref="188" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="createButton" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="adressField" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                          <Component id="createButton" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="adressField" min="-2" pref="194" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -75,11 +73,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="HODfield" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jTextField2" min="-2" pref="141" max="-2" attributes="0"/>
+                  <Component id="descriptionField" min="-2" pref="141" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="217" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="createButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace pref="253" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -138,12 +136,12 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adressFieldMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="descriptionField">
       <Properties>
         <Property name="text" type="java.lang.String" value="Description"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descriptionFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="HODfield">
