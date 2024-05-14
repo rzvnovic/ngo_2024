@@ -63,30 +63,28 @@ public class NewLand extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pNameField = new javax.swing.JTextField();
-        budgetField = new javax.swing.JTextField();
+        countryName = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        countryField = new javax.swing.JTextField();
-        startDateField = new javax.swing.JFormattedTextField();
-        endDateFeild = new javax.swing.JFormattedTextField();
-        priorityBox = new javax.swing.JComboBox<>();
+        timezoneField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        pDescriptionField = new javax.swing.JTextArea();
+        politicField = new javax.swing.JTextArea();
+        languageField = new javax.swing.JTextField();
+        currencyField = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        economicField = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pNameField.setText("Project name");
-        pNameField.addMouseListener(new java.awt.event.MouseAdapter() {
+        countryName.setText("Country name");
+        countryName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pNameFieldMouseClicked(evt);
+                countryNameMouseClicked(evt);
             }
         });
-
-        budgetField.setText("Budget");
-        budgetField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                budgetFieldMouseClicked(evt);
+        countryName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countryNameActionPerformed(evt);
             }
         });
 
@@ -97,26 +95,38 @@ public class NewLand extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("New project");
+        jLabel1.setText("New country");
 
-        countryField.setText("Country");
-        countryField.addMouseListener(new java.awt.event.MouseAdapter() {
+        timezoneField.setText("Timezone");
+        timezoneField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                countryFieldMouseClicked(evt);
+                timezoneFieldMouseClicked(evt);
+            }
+        });
+        timezoneField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timezoneFieldActionPerformed(evt);
             }
         });
 
-        startDateField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-dd"))));
+        politicField.setColumns(20);
+        politicField.setRows(5);
+        politicField.setText("Political structure");
+        jScrollPane1.setViewportView(politicField);
 
-        endDateFeild.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-dd"))));
+        languageField.setText("Language");
+        languageField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                languageFieldActionPerformed(evt);
+            }
+        });
 
-        priorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High", "Medium", "Low" }));
-        priorityBox.setToolTipText("Priority\n");
+        currencyField.setText("Currency");
 
-        pDescriptionField.setColumns(20);
-        pDescriptionField.setRows(5);
-        pDescriptionField.setText("Descripton");
-        jScrollPane1.setViewportView(pDescriptionField);
+        economicField.setColumns(20);
+        economicField.setRows(5);
+        economicField.setText("Economical structure");
+        jScrollPane2.setViewportView(economicField);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,19 +134,22 @@ public class NewLand extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(budgetField)
-                    .addComponent(priorityBox, 0, 324, Short.MAX_VALUE)
-                    .addComponent(countryField)
-                    .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(timezoneField)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(endDateFeild))
-                    .addComponent(pNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(187, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(countryName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(languageField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(currencyField))
+                .addGap(187, 187, 187))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,20 +157,18 @@ public class NewLand extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(pNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(countryName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(endDateFeild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(budgetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currencyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(timezoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(languageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addComponent(createButton)
                 .addGap(48, 48, 48))
         );
@@ -165,57 +176,54 @@ public class NewLand extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pNameFieldMouseClicked
-        if (pNameField.getText().equals("Name")) {
-            pNameField.setText("");
+    private void countryNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_countryNameMouseClicked
+        if (countryName.getText().equals("Name")) {
+            countryName.setText("");
         }
-    }//GEN-LAST:event_pNameFieldMouseClicked
-
-    private void budgetFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_budgetFieldMouseClicked
-        if (budgetField.getText().equals("Phonenumber")) {
-            budgetField.setText("");
-        }
-    }//GEN-LAST:event_budgetFieldMouseClicked
+    }//GEN-LAST:event_countryNameMouseClicked
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        String newPName = pNameField.getText();
-        String newDescription = pDescriptionField.getText();
-        String newStartDate = startDateField.getText();
-        String newEndDate = endDateFeild.getText();
-        String newBudget = budgetField.getText();
-        int priority = priorityBox.getSelectedIndex();
+        String newCountryName = countryName.getText();
+        String newPolitical = politicField.getText();
+        String newEconomic = economicField.getText();
+        String newCurrency = currencyField.getText();
+        String newTimeZone = timezoneField.getText();
+        String newLanguage = languageField.getText();
+        
         
         //TODO
-        String newCountry = countryField.getText();
+       
 
-        String newPid;
+        String newLid;
         
         try {
-            newPid = idb.getAutoIncrement("projekt", "pid");
-            String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
+            newLid = idb.getAutoIncrement("land", "lid");
+            String sqlQuerry = ("INSERT INTO ngo_2024.land (lid) VALUES (" + newLid + ");");
             idb.insert(sqlQuerry);
             //använd valideringsklass
-            if (fieldValidation(newPName, "Project name")) {
-                insertValue("projektnamn", newPName, newPid);
+            if (fieldValidation(newCountryName, "Country name")) {
+                insertValue("namn", newCountryName, newLid);
             }
             //använd valideringsklass
-            if (fieldValidation(newDescription, "-1")) {
-                insertValue("beskrivning", newDescription, newPid);
+            if (fieldValidation(newPolitical, "-1")) {
+                insertValue("politisk_struktur", newPolitical, newLid);
             }
-            //använd valideringsklass, validera datum TODO
-            if (fieldValidation(newStartDate, "Email")) {
-                insertValue("startdatum", newStartDate, newPid);
+            if (fieldValidation(newEconomic, "-1")){
+                insertValue ("ekonomi", newEconomic, newLid);
             }
-            //använd valideringsklass, validera datum TODO
-            if (fieldValidation(newEndDate, "Phonenumber")) {
-                insertValue("slutdatum", newEndDate, newPid);
+            if (fieldValidation(newTimeZone, "Timezone")) {
+                insertValue ("tidszon", newTimeZone, newLid);
             }
+            
+            if (fieldValidation(newLanguage, "Language")){
+                insertValue ("sprak", newLanguage, newLid);
+            }
+            
             //använd valideringsklass
-            if (fieldValidation(newBudget, "Budget")) {
-                insertValue("kostnad", newBudget, newPid);
+            if (fieldValidation(newCurrency, "Valuta")) {
+                insertValue("valuta", newCurrency, newLid);
             }
-            String newPriority = priorityPicker(priority);
-            insertValue("prioritet", newPriority, newPid);
+      
             
             /* tänk
             if (fieldValidation(newCountry, "Contact field of operations")) {
@@ -227,23 +235,25 @@ public class NewLand extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_createButtonActionPerformed
 
-    private void countryFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_countryFieldMouseClicked
-        if (countryField.getText().equals("City")) {
-            countryField.setText("");
+    private void timezoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timezoneFieldMouseClicked
+        if (timezoneField.getText().equals("City")) {
+            timezoneField.setText("");
         }
-    }//GEN-LAST:event_countryFieldMouseClicked
+    }//GEN-LAST:event_timezoneFieldMouseClicked
 
-    private String priorityPicker(int priority){
-        if(priority == 3){
-            return "hög";
-        }
-        else if(priority == 2){
-            return "medel";
-        }
-        else{
-            return "låg";
-        }
-    }
+    private void countryNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_countryNameActionPerformed
+
+    private void timezoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timezoneFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timezoneFieldActionPerformed
+
+    private void languageFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_languageFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_languageFieldActionPerformed
+
+   
     
     private boolean fieldValidation(String newText, String validationText) {
         boolean validated = true;
@@ -254,8 +264,8 @@ public class NewLand extends javax.swing.JFrame {
         return validated;
     }
 
-    private void insertValue(String column, String value, String newPid) throws InfException{
-        String sqlQuerry = ("UPDATE ngo_2024.projekt t SET t."+column+" = '" + value + "' WHERE t.pid = " + newPid + ";");
+    private void insertValue(String column, String value, String newLid) throws InfException{
+        String sqlQuerry = ("UPDATE ngo_2024.land t SET t."+column+" = '" + value + "' WHERE t.lid = " + newLid + ";");
         idb.update(sqlQuerry);
     }
 
@@ -265,18 +275,7 @@ public class NewLand extends javax.swing.JFrame {
      * @param newPid
      * @throws InfException 
      */
-    private void countryValidation(String newCity, String newPid) throws InfException {
-        ArrayList<String> cityList = idb.fetchColumn("Select namn from land;");
-        for (String cityName : cityList) {
-            if (cityName.equals(newCity)) {
-                String sid = idb.fetchSingle("select sid from land where namn =" + newCity + ";");
-                idb.update("UPDATE ngo_2024.projekt t SET t.land = " + sid + " WHERE t.pid = " + newPid + ";");
-                return;
-            }
-        }
-        //Todo gör synliga rutor
-        //alt gör så användaren får mata in land   
-    }
+ 
 
     /**
      * @param args the command line arguments
@@ -319,15 +318,15 @@ public class NewLand extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField budgetField;
-    private javax.swing.JTextField countryField;
+    private javax.swing.JTextField countryName;
     private javax.swing.JButton createButton;
-    private javax.swing.JFormattedTextField endDateFeild;
+    private javax.swing.JTextField currencyField;
+    private javax.swing.JTextArea economicField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea pDescriptionField;
-    private javax.swing.JTextField pNameField;
-    private javax.swing.JComboBox<String> priorityBox;
-    private javax.swing.JFormattedTextField startDateField;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField languageField;
+    private javax.swing.JTextArea politicField;
+    private javax.swing.JTextField timezoneField;
     // End of variables declaration//GEN-END:variables
 }
