@@ -457,8 +457,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
      * @throws InfException 
      */
     public String fetchEmployees() throws InfException{
-        ArrayList<String> fNamnLista = idb.fetchColumn("Select fornamn from anstalld;");
-        ArrayList<String> eNamnLista = idb.fetchColumn("Select efternamn from anstalld;");
+        String sqlFråga = "select avdelning from anstalld where aid = " + userAid;
+        ArrayList<String> fNamnLista = idb.fetchColumn("Select fornamn from anstalld where avdelning = " + idb.fetchSingle(sqlFråga));
+        ArrayList<String> eNamnLista = idb.fetchColumn("Select efternamn from anstalld where avdelning = " + idb.fetchSingle(sqlFråga));
         
         String message = "";
         String contentFName = null;

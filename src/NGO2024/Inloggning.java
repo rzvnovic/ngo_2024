@@ -146,17 +146,19 @@ public class Inloggning extends javax.swing.JFrame {
             if (String.valueOf(lösen).equals(dbLösen)){
                 
                 Boolean ärAdmin = checkAdmin(ePost);
-                
+                Boolean ärHandläggare = checkHandläggare(ePost);
                 Boolean ärProjektLedare = checkProjektLedare(ePost);
                 //om de är admin kommer en meny öppnas
                 if (ärAdmin == true){
                     new MenyAdmin(ePost, userAid).setVisible(true);
                 this.setVisible(false);
                 }
-                //om de är projektledare kommer en meny öppnas
-                else if (ärProjektLedare == true){
+                
+                else if (ärHandläggare == true){
                     new MenyHandlaggare(userAid).setVisible(true);
                 }
+                
+                //ELSE IF FÖR PROJEKTLEDARE OCKSÅ!!! 
     
             }
             //skrivs ut om lösenordet är fel 
@@ -218,6 +220,31 @@ public class Inloggning extends javax.swing.JFrame {
             
         }
         return projektLedareHittad; 
+    }
+    
+    private Boolean checkHandläggare (String ePost)
+    {
+        Boolean handläggareHittad = false; 
+        
+        try { 
+            String sqlFrågaProjekt = "select aid from handlaggare where aid in (select aid from anstalld where epost = '" + ePost + "')";
+            String anställningsIDString = idb.fetchSingle(sqlFrågaProjekt);
+            
+        if (anställningsIDString != null)
+        {
+            //nedanstående rad kan eventuellt tas bort, testa 
+           int anställningsIDInt = Integer.parseInt(anställningsIDString);
+           userAid = anställningsIDInt;
+            handläggareHittad = true;
+        }
+        
+        }
+        
+        catch(NumberFormatException | InfException ex){
+            ex.printStackTrace();
+            
+        }
+        return handläggareHittad; 
     }
     
     private void chcShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chcShowPasswordActionPerformed
