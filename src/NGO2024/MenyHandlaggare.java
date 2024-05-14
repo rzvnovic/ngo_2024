@@ -23,7 +23,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
      */
     public MenyHandlaggare(int userAid) throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
-        this.userAid = userAid;
+        this.userAid = 1;
         validering = new Validering();
 
         initComponents();
@@ -55,8 +55,10 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         projektSokruta = new javax.swing.JTextField();
         projektSok = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        projectListField = new javax.swing.JTextArea();
         minaProjectField = new javax.swing.JLabel();
+        showUserProjectsButton = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         samarbetspartnerTab2 = new javax.swing.JPanel();
         jLblSökHandläggare5 = new javax.swing.JLabel();
         samarbetspartnerSokruta = new javax.swing.JTextField();
@@ -181,16 +183,23 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
+        projectListField.setEditable(false);
+        projectListField.setColumns(20);
+        projectListField.setRows(5);
         try{
-            jTextArea1.setText(fetchProject());
+            projectListField.setText(fetchProject());
         }
         catch(Exception e){}
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPane1.setViewportView(projectListField);
 
         minaProjectField.setText("My projects");
+
+        showUserProjectsButton.setText("Show my projects");
+        showUserProjectsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showUserProjectsButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout projektTabLayout = new javax.swing.GroupLayout(projektTab);
         projektTab.setLayout(projektTabLayout);
@@ -198,16 +207,18 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(projektTabLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(projektSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projektSok)
-                    .addComponent(jLblSökHandläggare4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(jLblSökHandläggare4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator1)
+                    .addComponent(showUserProjectsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                     .addGroup(projektTabLayout.createSequentialGroup()
                         .addComponent(minaProjectField)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 473, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         projektTabLayout.setVerticalGroup(
@@ -223,8 +234,12 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addComponent(projektSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(projektSok)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(showUserProjectsButton)
+                        .addGap(0, 188, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
 
@@ -344,7 +359,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(HandläggarMeny, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                .addComponent(HandläggarMeny)
                 .addContainerGap())
         );
 
@@ -404,6 +419,19 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_visaKnappActionPerformed
 
+    /**
+     * Sätter user projects till rutan projectListField
+     * @param evt 
+     */
+    private void showUserProjectsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showUserProjectsButtonActionPerformed
+        try {
+            // TODO
+            projectListField.setText(findUserProjects());
+        } catch (InfException ex) {
+            Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_showUserProjectsButtonActionPerformed
+
     
     /**
      * metod som lägger in varje tabelles rad på en ny rad i en textsträng.
@@ -429,9 +457,38 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         return message.trim();
     }
     
+    /**
+     * Metod som returnar en message med projekt som ANVÄNDAREN har koppling till.
+     * Kallas med knapptryck "Visa mina projekt" / "Show my projects"
+     * @return String message
+     * @throws InfException 
+     */
+    public String findUserProjects() throws InfException{
+      ArrayList<String> userProjectList = idb.fetchColumn("Select pid from ans_proj where aid = "+userAid+";");
+                ArrayList<String> userNamnLista = new ArrayList<String>();
+                ArrayList<String> userBeskrivningsLista = new ArrayList<String>();
+
+      for(int i = 0; i < userProjectList.size(); i++){
+                  userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid ="+ userProjectList.get(i)+";"));
+                  userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid ="+ userProjectList.get(i)+";"));
+      }
+      String message = "";
+      String contentName = null;
+      String contentBesk = null;
+      for(int i = 0; i < userNamnLista.size(); i++){
+          contentName = userNamnLista.get(i);
+          contentBesk = userBeskrivningsLista.get(i);
+          message = message +"\n"+ contentName +"\n"+contentBesk+"\n";
+      }
+      return message.trim();
+    }
     
     /**
      * Ej nöjd.
+     * 
+     * Lägg till param (-1.alla, 0.dina, 1.avdelning)
+     * 
+     * 
      * @return
      * @throws InfException 
      */
@@ -537,18 +594,20 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JLabel minaProjectField;
     private javax.swing.JLabel personalList;
     private javax.swing.JPanel profilTab;
+    private javax.swing.JTextArea projectListField;
     private javax.swing.JButton projektSok;
     private javax.swing.JTextField projektSokruta;
     private javax.swing.JPanel projektTab;
     private javax.swing.JButton samarbetspartnerSok;
     private javax.swing.JTextField samarbetspartnerSokruta;
     private javax.swing.JPanel samarbetspartnerTab2;
+    private javax.swing.JButton showUserProjectsButton;
     private javax.swing.JButton visaKnapp;
     // End of variables declaration//GEN-END:variables
 }

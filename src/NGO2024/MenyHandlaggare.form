@@ -244,18 +244,20 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="projektSokruta" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="projektSok" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLblSökHandläggare4" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                              <Component id="jSeparator1" max="32767" attributes="0"/>
+                              <Component id="showUserProjectsButton" alignment="0" pref="147" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" pref="536" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="minaProjectField" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="473" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -275,9 +277,13 @@
                                   <Component id="projektSokruta" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   <Component id="projektSok" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                  <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="showUserProjectsButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane1" pref="321" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -310,7 +316,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea1">
+                    <Component class="javax.swing.JTextArea" name="projectListField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="columns" type="int" value="20"/>
@@ -329,6 +335,16 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="My projects"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="showUserProjectsButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Show my projects"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showUserProjectsButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JSeparator" name="jSeparator1">
                 </Component>
               </SubComponents>
             </Container>
