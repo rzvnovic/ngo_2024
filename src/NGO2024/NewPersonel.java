@@ -120,8 +120,7 @@ public class NewPersonel extends javax.swing.JFrame {
 
         jLabel1.setText("Personel details");
 
-        dateOfEmploymentField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
-        dateOfEmploymentField.setText("Date of employment");
+        dateOfEmploymentField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         formatText.setText("yyyy-mm-dd");
 

@@ -18,7 +18,7 @@ import oru.inf.InfDB;
 public class Validering {
 
     private InfDB idb;
-    //DENNA METOD KAN GÖRAS BÄTTRE OM ÖNSKAS MED HÅRDARE KONTROLL FYI 
+    
 
     public Validering() throws InfException {
         this.idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -57,7 +57,7 @@ public class Validering {
      * @param aid
      * @return true om admin, false om inte admin
      */
-    public Boolean checkAdminAid(int aid) {
+    public Boolean checkAdminAid(String aid) {
         Boolean adminHittad = false;
 
         try {
@@ -76,7 +76,7 @@ public class Validering {
         return adminHittad;
     }
 
-    public Boolean checkProjektLedareAid(int aid) {
+    public Boolean checkProjektLedareAid(String aid) {
         Boolean projektLedareHittad = false;
 
         try {
@@ -95,5 +95,16 @@ public class Validering {
         }
         return projektLedareHittad;
     }
-
+    
+    public static Boolean checkDateFormat (String datum) {
+       Boolean checkDateFormat = false; 
+        String korrektFormat = "\\d{1,2} [A-za-z] \\d{4}";
+        
+        if (datum.matches(korrektFormat))
+        {
+            checkDateFormat = true; 
+        }
+        
+        return checkDateFormat;
+    }
 }
