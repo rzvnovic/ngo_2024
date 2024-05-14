@@ -24,11 +24,11 @@ public class Validering {
         this.idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
     }
 
-    //contains @ och ends with .com / .se / .net
+    
     public static Boolean giltigEpost(String ePost) {
         Boolean giltigtFormat = false;
 
-        if (ePost.endsWith("@example.com")) {
+        if (ePost.endsWith(".com") || ePost.endsWith(".se") || ePost.endsWith (".net") && ePost.contains("@")) {
             giltigtFormat = true;
         }
         return giltigtFormat;
