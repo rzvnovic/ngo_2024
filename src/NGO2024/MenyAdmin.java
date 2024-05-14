@@ -19,7 +19,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     private static String ePost;
     private static int userAid;
     private InfDB idb;
-    private static int aid;
+    private static String aid;
     private static Validering validering;
 
     /**
@@ -316,7 +316,6 @@ public class MenyAdmin extends javax.swing.JFrame {
         try {
             String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
             String dbSqlFraga = idb.fetchSingle(sqlFraga);
-            int aid = Integer.parseInt(dbSqlFraga);
             new PersonalInfo(aid, userAid).setVisible(true);
         } catch (Exception e) {
 

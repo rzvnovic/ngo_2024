@@ -17,6 +17,7 @@ import java.util.*;
  * @author Cyrus 08/05/2024
  * @version 10/05/2024
  */
+
 public class visaAvdelning extends javax.swing.JFrame {
 
     private InfDB idb;
@@ -334,31 +335,46 @@ public class visaAvdelning extends javax.swing.JFrame {
         String newCity = cityField.getText();
         String newChef = chefField.getText();
         //OBS
+        String newAvdid = null;
+        try {
+            newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
+            String sqlQuerry = ("INSERT INTO ngo_2024.avdelning (Avdid) VALUES (" + newAvdid + ");");
+            idb.insert(sqlQuerry);
+            if (Validering.fieldValidation(newAvName, "Department Name")) {
+                updateDatabase("namn", newAvName, newAvdid);
+            }
+            if (Validering.fieldValidation(newDescription, "Description ")) {
+                updateDatabase("beskrivning", newDescription, newAvdid);
+            }
+            if (Validering.fieldValidation(newEmail, "Email") && Validering.giltigEpost(newEmail)) {
+                updateDatabase("epost", newEmail, newAvdid);
+            }
+            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+                updateDatabase("telefon", newPhonenumber, newAvdid);
+            }
+            if (Validering.fieldValidation(newAdress, "Adress")) {
+                updateDatabase("adress", newAdress, newAvdid);
+            }
+            if (Validering.fieldValidation(newCity, "City")) {
+                updateDatabase("stad", newCity, newAvdid);
+            }
+            if (Validering.fieldValidation(newChef, "Boss")) {
+                updateDatabase("chef", newChef, newAvdid);
+            }
 
-        if (!newAvName.equals("Department Name")
-                && !newDescription.equals("Description")
-                && !newAdress.equals("Adress")
-                && !newPhonenumber.equals("Phonenumber")
-                && !newEmail.equals("Email")
-                && !newCity.equals("City")
-                && !newChef.equals("Boss")) {
-
-            avdelningDisplay.setText(newAvName);
-            desDisplay.setText(newDescription);
-            adressDisplay.setText(newAdress);
-            phonenumberDisplay.setText(newPhonenumber);
-            emailDisplay.setText(newEmail);
-            cityDisplay.setText(newCity);
-            chefDisplay.setText(newChef);
+            //cityValidation(newCity, newAvdid);
+        } catch (InfException ex) {
+            Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        updateDatabase("namn", newAvName, avdid);
-        updateDatabase("beskrivning", newDescription, avdid);
-        updateDatabase("adress", newAdress, avdid);
-        updateDatabase("telefon", newPhonenumber, avdid);
-        updateDatabase("epost", newEmail, avdid);
-        updateDatabase("stad", newCity, avdid);
-        updateDatabase("chef", newChef, avdid);
+        avdelningDisplay.setText(newAvName);
+        desDisplay.setText(newDescription);
+        adressDisplay.setText(newAdress);
+        phonenumberDisplay.setText(newPhonenumber);
+        emailDisplay.setText(newEmail);
+        cityDisplay.setText(newCity);
+        chefDisplay.setText(newChef);
+    
 
 
     }//GEN-LAST:event_commitButtonActionPerformed
@@ -369,25 +385,15 @@ public class visaAvdelning extends javax.swing.JFrame {
      * @param value vad cellen skall uppdateras med
      * @param avdid vilken aid som ändringen ska ske på
      */
-    private void updateDatabase(String column, String value, int avdid) {
-        if (!value.equals("Name")
-                && !value.equals("Description")
-                && !value.equals("Adress")
-                && !value.equals("Phonenumber") 
-                && !value.equals("Email")
-                & !value.equals("City")
-                & !value.equals("Boss")
-                ) {
-            try {
-                String sqlQuerry = ("UPDATE ngo_2024.avdelning t SET t."
-                        + column + " = '"
-                        + value + "' WHERE t.avdid = " + avdid + ";");
-                idb.update(sqlQuerry);
-            } catch (InfException ex) {
-                Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    private void updateDatabase(String column, String value, String avdid) {
+        try {
+            String sqlQuerry = ("UPDATE ngo_2024.avdelning t SET t."+column + " = '"+value + "' WHERE t.avdid = " + avdid + ";");
+            idb.update(sqlQuerry);
+        } catch (InfException ex) {
+            Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
     /**
      * metod tar bort text från fältet om det klickas
@@ -484,49 +490,49 @@ public class visaAvdelning extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        InfDB idb = null;
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    InfDB idb = null;
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new visaAvdelning(avdid, userAid).setVisible(true);
-                    Validering validering = new Validering();
-                } catch (InfException ex) {
-                    Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            try {
+                new visaAvdelning(avdid, userAid).setVisible(true);
+                Validering validering = new Validering();
+            } catch (InfException ex) {
+                Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane adressDisplay;

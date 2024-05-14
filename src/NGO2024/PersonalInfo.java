@@ -4,6 +4,8 @@
  */
 package NGO2024;
 
+import NGO2024.NewAvdelning;
+import NGO2024.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
@@ -22,17 +24,17 @@ public class PersonalInfo extends javax.swing.JFrame {
     private InfDB idb;
 
     //tas emot från klassen anställd
-    private static int aid;
+    private static String aid;
     private static int userAid;
     private static Validering validering;
 
     /**
      * Creates new form PersonalInfo
      */
-    public PersonalInfo(int aid, int userAid) throws InfException {
+    public PersonalInfo(String aid, int userAid) throws InfException {
 
         this.userAid = 1; //såklart inte någon hårdkodning här
-        this.aid = 3;     //---------------||-----------------
+        this.aid = "3";     //---------------||-----------------
         validering = new Validering();
 
         try {
@@ -375,10 +377,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         String newPhonenumber = phoneField.getText();
         String newEmail = emailField.getText(); //OBS
 
-        if (!newName.equals("Name") && !newSurname.equals("Surname")
-                && !newAdress.equals("Adress")
-                && !newPhonenumber.equals("Phonenumber")
-                && !newEmail.equals("Email")) {
+        
             nameDisplay.setText(newName);
             surnameDisplay.setText(newSurname);
             adressDisplay.setText(newAdress);
@@ -390,7 +389,7 @@ public class PersonalInfo extends javax.swing.JFrame {
             updateDatabase("adress", newAdress, aid);
             updateDatabase("telefon", newPhonenumber, aid);
             updateDatabase("epost", newEmail, aid);
-        }
+        
     }//GEN-LAST:event_adminOkButtonActionPerformed
     /**
      * knappen gör en del saker kan vara värt att splitta i flera metoder.
@@ -405,24 +404,41 @@ public class PersonalInfo extends javax.swing.JFrame {
         String newPhonenumber = phoneField.getText();
         String newEmail = emailField.getText(); //OBS
 
-        if (!newName.equals("Name")
-                && !newSurname.equals("Surname")
-                && !newAdress.equals("Adress")
-                && !newPhonenumber.equals("Phonenumber")
-                && !newEmail.equals("Email")) {
+         String newAid = null;
+        try {
+            newAid = idb.getAutoIncrement("anstalld", "aid");
+            String sqlQuerry = ("INSERT INTO ngo_2024.anstalld (aid) VALUES (" + newAid + ");");
+            idb.insert(sqlQuerry);
+            if (Validering.fieldValidation(newName, "Department Name")) {
+                updateDatabase("namn", newName, newAid);
+            }
+            if (Validering.fieldValidation(newSurname, "Description ")) {
+                updateDatabase("beskrivning", newSurname, newAid);
+            }
+            if (Validering.fieldValidation(newEmail, "Email") && Validering.giltigEpost(newEmail)) {
+                updateDatabase("epost", newEmail, newAid);
+            }
+            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+                updateDatabase("telefon", newPhonenumber, newAid);
+            }
+            if (Validering.fieldValidation(newAdress, "Adress")) {
+                updateDatabase("adress", newAdress, newAid);
+            }
+           
+
+            //cityValidation(newCity, newAvdid);
+        } catch (InfException ex) {
+            Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
             nameDisplay.setText(newName);
             surnameDisplay.setText(newSurname);
             adressDisplay.setText(newAdress);
             phonenumberDisplay.setText(newPhonenumber);
             emailDisplay.setText(newEmail);
-        }
+        
 
-        updateDatabase("fornamn", newName, aid);
-        updateDatabase("efternamn", newSurname, aid);
-        updateDatabase("adress", newAdress, aid);
-        updateDatabase("telefon", newPhonenumber, aid);
-        updateDatabase("epost", newEmail, aid);
+       
 
 
     }//GEN-LAST:event_commitButtonActionPerformed
@@ -433,7 +449,7 @@ public class PersonalInfo extends javax.swing.JFrame {
      * @param value vad cellen skall uppdateras med
      * @param aid vilken aid som ändringen ska ske på
      */
-    private void updateDatabase(String column, String value, int aid) {
+    private void updateDatabase(String column, String value, String aid) {
         if (!value.equals("Name")
                 && !value.equals("Surname")
                 && !value.equals("Adress")
