@@ -228,26 +228,26 @@ public class NewPersonel extends javax.swing.JFrame {
             String sqlQuerry = ("INSERT INTO ngo_2024.anstalld (pid) VALUES (" + newAid + ");");
             idb.insert(sqlQuerry);
             //använd valideringsklass
-            if (fieldValidation(newName, "Name")) {
+            if (Validering.fieldValidation(newName, "Name")) {
                 insertValue("fornamn", newName, newAid);
             }
             //använd valideringsklass
-            if (fieldValidation(newSurname, "Surname")) {
+            if (Validering.fieldValidation(newSurname, "Surname")) {
                 insertValue("efternamn", newSurname, newAid);
             }
             //använd valideringsklass, validera datum TODO
-            if (fieldValidation(newAdress, "Adress")) {
+            if (Validering.fieldValidation(newAdress, "Adress")) {
                 insertValue("adress", newAdress, newAid);
             }
             //använd valideringsklass, validera datum TODO
-            if (fieldValidation(newEmail, "Email")) {
+            if (Validering.fieldValidation(newEmail, "Email")) {
                 insertValue("epost", newEmail, newAid);
             }
             //använd valideringsklass
-            if (fieldValidation(newPhonenumber, "Phonenumber")) {
+            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                 insertValue("telefon", newPhonenumber, newAid);
             }
-            if (fieldValidation(newEmploymentDate, "Date of employment")) {
+            if (Validering.fieldValidation(newEmploymentDate, "Date of employment")) {
                 insertValue("anstallningsdatum", newEmploymentDate, newAid);
             }
             insertValue("losenord", generateNewPassword(), newAid);
@@ -295,13 +295,7 @@ public class NewPersonel extends javax.swing.JFrame {
         return newPassword;
     }
 
-    private boolean fieldValidation(String newText, String validationText) {
-        boolean validated = true;
-        if (newText.equals(validationText) || newText.isEmpty() || newText.isBlank()) {
-            return validated = false;
-        }
-        return validated;
-    }
+    
 
     /**
      * @param args the command line arguments
