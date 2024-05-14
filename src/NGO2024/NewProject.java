@@ -195,23 +195,23 @@ public class NewProject extends javax.swing.JFrame {
             String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
             idb.insert(sqlQuerry);
             //använd valideringsklass
-            if (fieldValidation(newPName, "Project name")) {
+            if (Validering.fieldValidation(newPName, "Project name")) {
                 insertValue("projektnamn", newPName, newPid);
             }
             //använd valideringsklass
-            if (fieldValidation(newDescription, "-1")) {
+            if (Validering.fieldValidation(newDescription, "-1")) {
                 insertValue("beskrivning", newDescription, newPid);
             }
             //använd valideringsklass, validera datum TODO
-            if (fieldValidation(newStartDate, "Email")) {
+            if (Validering.fieldValidation(newStartDate, "Email")) {
                 insertValue("startdatum", newStartDate, newPid);
             }
             //använd valideringsklass, validera datum TODO
-            if (fieldValidation(newEndDate, "Phonenumber")) {
+            if (Validering.fieldValidation(newEndDate, "Phonenumber")) {
                 insertValue("slutdatum", newEndDate, newPid);
             }
             //använd valideringsklass
-            if (fieldValidation(newBudget, "Budget")) {
+            if (Validering.fieldValidation(newBudget, "Budget")) {
                 insertValue("kostnad", newBudget, newPid);
             }
             String newPriority = priorityPicker(priority);
@@ -245,14 +245,7 @@ public class NewProject extends javax.swing.JFrame {
         }
     }
     
-    private boolean fieldValidation(String newText, String validationText) {
-        boolean validated = true;
-        if ("-1".equals(validationText)) {return validated;}
-        if (newText.equals(validationText) || newText.isEmpty() || newText.isBlank()) {
-            return validated = false;
-        }
-        return validated;
-    }
+    
 
     private void insertValue(String column, String value, String newPid) throws InfException{
         String sqlQuerry = ("UPDATE ngo_2024.projekt t SET t."+column+" = '" + value + "' WHERE t.pid = " + newPid + ";");

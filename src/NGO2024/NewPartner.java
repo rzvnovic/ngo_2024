@@ -225,22 +225,22 @@ public class NewPartner extends javax.swing.JFrame {
             newPid = idb.getAutoIncrement("partner", "pid");
             String sqlQuerry = ("INSERT INTO ngo_2024.partner (pid) VALUES (" + newPid + ");");
             idb.insert(sqlQuerry);
-            if (fieldValidation(newName, "Name")) {
+            if (Validering.fieldValidation(newName, "Name")) {
                 insertValue("namn", newName, newPid);
             }
-            if (fieldValidation(newContact, "Contact")) {
+            if (Validering.fieldValidation(newContact, "Contact")) {
                 insertValue("kontaktperson", newContact, newPid);
             }
-            if (fieldValidation(newEmail, "Email")&& Validering.giltigEpost(newEmail)) {
+            if (Validering.fieldValidation(newEmail, "Email")&& Validering.giltigEpost(newEmail)) {
                 insertValue("kontaktepost", newEmail, newPid);
             }
-            if (fieldValidation(newPhonenumber, "Phonenumber")) {
+            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                 insertValue("telefon", newPhonenumber, newPid);
             }
-            if (fieldValidation(newBranch, "Adress")) {
+            if (Validering.fieldValidation(newBranch, "Adress")) {
                 insertValue("adress", newAdress, newPid);
             }
-            if (fieldValidation(newBranch, "Contact field of operations")) {
+            if (Validering.fieldValidation(newBranch, "Contact field of operations")) {
                 insertValue("Branch", newBranch, newPid);
             }
 
@@ -262,13 +262,13 @@ public class NewPartner extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_adressFieldMouseClicked
 
-    private boolean fieldValidation(String newText, String validationText) {
+    /*private boolean fieldValidation(String newText, String validationText) {
         boolean validated = true;
         if (newText.equals(validationText) || newText.isEmpty() || newText.isBlank()) {
             return validated = false;
         }
         return validated;
-    }
+    }*/
 
     private void insertValue(String column, String value, String newPid) throws InfException{
         String sqlQuerry = ("UPDATE ngo_2024.partner t SET t."+column+" = '" + value + "' WHERE t.pid = " + newPid + ";");

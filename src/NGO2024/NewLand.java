@@ -201,26 +201,26 @@ public class NewLand extends javax.swing.JFrame {
             String sqlQuerry = ("INSERT INTO ngo_2024.land (lid) VALUES (" + newLid + ");");
             idb.insert(sqlQuerry);
             //använd valideringsklass
-            if (fieldValidation(newCountryName, "Country name")) {
+            if (Validering.fieldValidation(newCountryName, "Country name")) {
                 insertValue("namn", newCountryName, newLid);
             }
             //använd valideringsklass
-            if (fieldValidation(newPolitical, "-1")) {
+            if (Validering.fieldValidation(newPolitical, "-1")) {
                 insertValue("politisk_struktur", newPolitical, newLid);
             }
-            if (fieldValidation(newEconomic, "-1")){
+            if (Validering.fieldValidation(newEconomic, "-1")){
                 insertValue ("ekonomi", newEconomic, newLid);
             }
-            if (fieldValidation(newTimeZone, "Timezone")) {
+            if (Validering.fieldValidation(newTimeZone, "Timezone")) {
                 insertValue ("tidszon", newTimeZone, newLid);
             }
             
-            if (fieldValidation(newLanguage, "Language")){
+            if (Validering.fieldValidation(newLanguage, "Language")){
                 insertValue ("sprak", newLanguage, newLid);
             }
             
             //använd valideringsklass
-            if (fieldValidation(newCurrency, "Valuta")) {
+            if (Validering.fieldValidation(newCurrency, "Valuta")) {
                 insertValue("valuta", newCurrency, newLid);
             }
       
@@ -255,14 +255,7 @@ public class NewLand extends javax.swing.JFrame {
 
    
     
-    private boolean fieldValidation(String newText, String validationText) {
-        boolean validated = true;
-        if ("-1".equals(validationText)) {return validated;}
-        if (newText.equals(validationText) || newText.isEmpty() || newText.isBlank()) {
-            return validated = false;
-        }
-        return validated;
-    }
+    
 
     private void insertValue(String column, String value, String newLid) throws InfException{
         String sqlQuerry = ("UPDATE ngo_2024.land t SET t."+column+" = '" + value + "' WHERE t.lid = " + newLid + ";");
