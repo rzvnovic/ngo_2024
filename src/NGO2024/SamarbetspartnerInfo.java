@@ -4,9 +4,11 @@
  */
 package NGO2024;
 
+import NGO2024.PersonalInfo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
+import java.util.*;
 import oru.inf.InfException;
 
 /**
@@ -26,18 +28,21 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
      */
     public SamarbetspartnerInfo(String userAid,String pid) throws InfException {
         
-        this.userAid = userAid;
-        this.pid = pid;
-        
+       
         validering = new Validering();
         
         
-        
-        idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
+           try {
+            idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
+        } catch (InfException ex) {
+            Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         initComponents();
-        adminVissebillity();
 
     }
+
+    
 
       public void adminVissebillity(){
         if(validering.checkAdminAid(userAid)){
@@ -321,7 +326,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(adminOkButton)
                     .addComponent(deleteButton))
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -339,14 +344,14 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(199, 199, 199))
+                .addGap(241, 241, 241))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(37, 37, 37))
         );
 
         pack();
@@ -365,19 +370,44 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         String newBranch = branchField.getText();
         String newCity = cityField.getText();
         //if(!parameterSomSkaKollas.equals(ParameterSomFannsFrånBörjan/FårInteVaraDär){
-            
         //}
+        if (Validering.fieldValidation(newName, "Name")) {
+            updateDatabase("namn", newName);
+            nameDisplay.setText(newName);
+        }
+        if (Validering.fieldValidation(newContact, "Contact person")) {
+            updateDatabase("kontaktperson", newContact);
+             contactPersonDisplay.setText(newContact);
+        }
+        if (Validering.fieldValidation(newEmail, "Email")&& Validering.giltigEpost(newEmail)) {
+            updateDatabase("epost", newEmail);
+            emailDisplay.setText(newEmail);
+        }
+        if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+            updateDatabase("telefon", newPhonenumber);
+            phonenumberDisplay.setText(newPhonenumber);
+        }
+        if (Validering.fieldValidation(newAdress, "Adress")) {
+            updateDatabase("adress", newAdress);
+            adressDisplay.setText(newAdress);
+        }
+        if (Validering.fieldValidation(newCity, "City")) {
+            updateDatabase("stad", newCity);
+            cityDisplay.setText(newCity);
+        }
+        if (Validering.fieldValidation(newBranch, "Branch")){
+            updateDatabase("Branch" , newBranch);
+            branchDisplay.setText(newBranch);
+        }
+        //cityValidation(newCity, newPid);
+
         
-        updateDatabase("namn", newName, pid);
-        updateDatabase("kontaktperson", newContact, pid);
-        updateDatabase("adress", newAdress, pid);
-        updateDatabase("telefon", newPhonenumber, pid);
-        updateDatabase("kontaktepost", newEmail, pid);
-        updateDatabase("branch", newBranch, pid);
+                    
+        
+      
     }//GEN-LAST:event_adminOkButtonActionPerformed
    // Hantera NullPointerExecption från getText vid tomt TextField. 
-    private void updateDatabase(String column, String value, String pid) {
-        if (!value.equals("Name") && !value.equals("Adress") && !value.equals("Phonenumber") && !value.equals("Email") && !value.isEmpty() && !value.equals(" ")) {
+    private void updateDatabase(String column, String value) {
             try {
                 String sqlQuerry = ("UPDATE ngo_2024.partner t SET t." + column + " = '" + value + "' WHERE t.pid = " + pid + ";");
                 idb.update(sqlQuerry);
@@ -385,7 +415,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
                 Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
+    
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
