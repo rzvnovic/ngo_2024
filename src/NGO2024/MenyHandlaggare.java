@@ -418,7 +418,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         ArrayList<String> namnLista = idb.fetchColumn("Select namn from hallbarhetsmal;");
         ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from hallbarhetsmal;");
         
-        String message = null;
+        String message = "";
         String contentName = null;
         String contentBesk = null;
         for(int i = 0; i < namnLista.size(); i++){
@@ -439,7 +439,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         ArrayList<String> namnLista = idb.fetchColumn("Select projektnamn from projekt;");
         ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from projekt;");
         
-        String message = null;
+        String message = "";
         String contentName = null;
         String contentBesk = null;
         for(int i = 0; i < namnLista.size(); i++){
@@ -457,10 +457,11 @@ public class MenyHandlaggare extends javax.swing.JFrame {
      * @throws InfException 
      */
     public String fetchEmployees() throws InfException{
-        ArrayList<String> fNamnLista = idb.fetchColumn("Select fornamn from anstalld;");
-        ArrayList<String> eNamnLista = idb.fetchColumn("Select efternamn from anstalld;");
+        String sqlFråga = "select avdelning from anstalld where aid = " + userAid;
+        ArrayList<String> fNamnLista = idb.fetchColumn("Select fornamn from anstalld where avdelning = " + idb.fetchSingle(sqlFråga));
+        ArrayList<String> eNamnLista = idb.fetchColumn("Select efternamn from anstalld where avdelning = " + idb.fetchSingle(sqlFråga));
         
-        String message = null;
+        String message = "";
         String contentFName = null;
         String contentEName = null;
         for(int i = 0; i < fNamnLista.size(); i++){

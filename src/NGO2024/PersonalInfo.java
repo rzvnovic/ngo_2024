@@ -31,7 +31,7 @@ public class PersonalInfo extends javax.swing.JFrame {
      */
     public PersonalInfo(int aid, int userAid) throws InfException {
 
-        this.userAid = 6; //såklart inte någon hårdkodning här
+        this.userAid = 1; //såklart inte någon hårdkodning här
         this.aid = 3;     //---------------||-----------------
         validering = new Validering();
 
