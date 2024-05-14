@@ -335,7 +335,7 @@ public class NewPersonel extends javax.swing.JFrame {
         for(int i = 0; i < avdelningsNamn.size(); i++){
                 contentName = avdelningsNamn.get(i);
                 contentNumber = avdelningsNummer.get(i);
-                message = message +"\n"+ contentName +"\n"+contentNumber+"\n";
+                message = message +"\n"+ contentNumber +"\n"+contentName+"\n";
         }
         return message.trim();
     }
