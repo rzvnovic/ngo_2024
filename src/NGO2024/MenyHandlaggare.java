@@ -29,6 +29,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         validering = new Validering();
 
         initComponents();
+        budgetField.setVisible(false);
     }
 
     /**
@@ -62,6 +63,11 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         showUserProjectsButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         showDeptProjectButton = new javax.swing.JButton();
+        priorityBox = new javax.swing.JComboBox<>();
+        totalBudgetButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        budgetField = new javax.swing.JTextPane();
+        jLabel4 = new javax.swing.JLabel();
         samarbetspartnerTab2 = new javax.swing.JPanel();
         jLblSökHandläggare5 = new javax.swing.JLabel();
         samarbetspartnerSokruta = new javax.swing.JTextField();
@@ -211,19 +217,48 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             }
         });
 
+        priorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "High", "Medium", "Low" }));
+
+        totalBudgetButton.setText("Calculate total budget");
+        totalBudgetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalBudgetButtonActionPerformed(evt);
+            }
+        });
+
+        budgetField.setEditable(false);
+        try{
+            budgetField.setText(totalBudget());
+        }
+        catch(Exception e){}
+        jScrollPane4.setViewportView(budgetField);
+
+        jLabel4.setText("Moneys");
+
         javax.swing.GroupLayout projektTabLayout = new javax.swing.GroupLayout(projektTab);
         projektTab.setLayout(projektTabLayout);
         projektTabLayout.setHorizontalGroup(
             projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(projektTabLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(projektSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projektSok)
-                    .addComponent(jLblSökHandläggare4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator1)
-                    .addComponent(showUserProjectsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(showDeptProjectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showUserProjectsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(showDeptProjectButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(projektTabLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(totalBudgetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, projektTabLayout.createSequentialGroup()
+                        .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(projektSokruta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(projektSok, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblSökHandläggare4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, projektTabLayout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(projektTabLayout.createSequentialGroup()
@@ -251,7 +286,15 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addComponent(showUserProjectsButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(showDeptProjectButton)
-                        .addGap(0, 155, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totalBudgetButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4))
+                        .addGap(0, 58, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -439,8 +482,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
      */
     private void showUserProjectsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showUserProjectsButtonActionPerformed
         try {
-            // TODO
-            projectListField.setText(findUserProjects());
+            int priority = priorityBox.getSelectedIndex();
+            projectListField.setText(findUserProjects(priorityPicker(priority)));
         } catch (InfException ex) {
             Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -448,12 +491,28 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
     private void showDeptProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDeptProjectButtonActionPerformed
         try {
-            // TODO
-            projectListField.setText(findDeptProject());
+            int priority = priorityBox.getSelectedIndex();
+            projectListField.setText(findDeptProject(priorityPicker(priority)));
         } catch (InfException ex) {
             Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_showDeptProjectButtonActionPerformed
+
+    private void totalBudgetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalBudgetButtonActionPerformed
+        budgetField.setVisible(true);
+    }//GEN-LAST:event_totalBudgetButtonActionPerformed
+
+    private int priorityPicker(int priority) {
+        if (priority == 0) {
+            return 4;
+        } else if (priority == 1) {
+            return 3;
+        } else if (priority == 2) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
 
     /**
      * metod som lägger in varje tabelles rad på en ny rad i en textsträng.
@@ -465,8 +524,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
      * @throws InfException
      */
     public String fetchHallbarhetsmal() throws InfException {
-        ArrayList<String> namnLista = idb.fetchColumn("Select namn from hallbarhetsmal;");
-        ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from hallbarhetsmal;");
+        ArrayList<String> namnLista = idb.fetchColumn("Select namn from hallbarhetsmal and namn is not null;");
+        ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from hallbarhetsmal and namn is not null;");
 
         String message = "";
         String contentName = null;
@@ -479,7 +538,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         return message.trim();
     }
 
-    public String findDeptProject() throws InfException {
+    public String findDeptProject(int prio) throws InfException {
         String avdId = idb.fetchSingle("Select avdelning from anstalld where aid =" + userAid + ";");
         ArrayList<String> aidList = idb.fetchColumn("Select aid from anstalld where avdelning =" + avdId + ";");
         ArrayList<String> pidList = new ArrayList<String>();
@@ -494,36 +553,96 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         ArrayList<String> namnLista = new ArrayList<>();
         ArrayList<String> beskrivningsLista = new ArrayList<String>();
 
-        for (int i = 0; i < pidList.size(); i++) {
-            namnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid =" + pidList.get(i) + ";"));
-            beskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid =" + pidList.get(i) + ";"));
+        try {
+            for (int i = 0; i < pidList.size(); i++) {
+                if (prio == 4) {
+                    String sqlQuerryForLow = idb.fetchSingle("Select projektnamn from projekt where pid = " + pidList.get(i) + ";");
+                    String sqlQuerryForDLow = idb.fetchSingle("Select beskrivning from projekt where pid = " + pidList.get(i) + ";");
+                    if (sqlQuerryForLow != null) {
+                        namnLista.add(sqlQuerryForLow);
+                    }
+                    if (sqlQuerryForDLow != null) {
+                        beskrivningsLista.add(sqlQuerryForDLow);
+                    }
+                } else if (prio == 3) {
+                    String sqlQuerryForLow = idb.fetchSingle("Select projektnamn from projekt where pid = " + pidList.get(i) + " and prioritet = 'hög';");
+                    String sqlQuerryForDLow = idb.fetchSingle("Select beskrivning from projekt where pid = " + pidList.get(i) + " and prioritet = 'hög';");
+                    if (sqlQuerryForLow != null) {
+                        namnLista.add(sqlQuerryForLow);
+                    }
+                    if (sqlQuerryForDLow != null) {
+                        beskrivningsLista.add(sqlQuerryForDLow);
+                    }
+                } else if (prio == 2) {
+                    String sqlQuerryForLow = idb.fetchSingle("Select projektnamn from projekt where pid = " + pidList.get(i) + " and prioritet = 'medel';");
+                    String sqlQuerryForDLow = idb.fetchSingle("Select beskrivning from projekt where pid = " + pidList.get(i) + " and prioritet = 'medel';");
+                    if (sqlQuerryForLow != null) {
+                        namnLista.add(sqlQuerryForLow);
+                    }
+                    if (sqlQuerryForDLow != null) {
+                        beskrivningsLista.add(sqlQuerryForDLow);
+                    }
+                } else {
+                    String sqlQuerryForLow = idb.fetchSingle("Select projektnamn from projekt where pid = " + pidList.get(i) + " and prioritet = 'låg';");
+                    String sqlQuerryForDLow = idb.fetchSingle("Select beskrivning from projekt where pid = " + pidList.get(i) + " and prioritet = 'låg';");
+                    if (sqlQuerryForLow != null) {
+                        namnLista.add(sqlQuerryForLow);
+                    }
+                    if (sqlQuerryForDLow != null) {
+
+                        beskrivningsLista.add(sqlQuerryForDLow);
+                    }
+
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("querry error");
         }
         String message = "";
         String contentName = null;
         String contentBesk = null;
-        for (int i = 0; i < pidList.size(); i++) {
+        for (int i = 0; i < namnLista.size(); i++) {
             contentName = namnLista.get(i);
             contentBesk = beskrivningsLista.get(i);
             message = message + "\n" + contentName + "\n" + contentBesk + "\n";
         }
+        if(!message.contains("null")){
         return message.trim();
+        }
+        else{
+            return "No current projects.";
+        }
     }
 
     /**
      * Metod som returnar en message med projekt som ANVÄNDAREN har koppling
-     * till. Kallas med knapptryck "Visa mina projekt" / "Show my projects"
+     * till. Kallas med knapptryck "Visa mina projekt" / "Show my projects" Kan
+     * vara värt att göra innehåll till en metod då de repeteras.
      *
      * @return String message
      * @throws InfException
      */
-    public String findUserProjects() throws InfException {
+    public String findUserProjects(int prio) throws InfException {
         ArrayList<String> userProjectList = idb.fetchColumn("Select pid from ans_proj where aid = " + userAid + ";");
         ArrayList<String> userNamnLista = new ArrayList<String>();
         ArrayList<String> userBeskrivningsLista = new ArrayList<String>();
 
         for (int i = 0; i < userProjectList.size(); i++) {
-            userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid =" + userProjectList.get(i) + ";"));
-            userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid =" + userProjectList.get(i) + ";"));
+            if (prio == 4) {
+                userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid = " + userProjectList.get(i) + " and projektnamn is not null;"));
+                userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and beskrivning is not null;"));
+
+            } else if (prio == 3) {
+                userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'hög' and projektnamn is not null;"));
+                userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'hög' and beskrivning is not null;"));
+            } else if (prio == 2) {
+                userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'medel' and projektnamn is not null;"));
+                userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'medel' and beskrivning is not null;"));
+            } else {
+                userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'låg' and projektnamn is not null;"));
+                userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'låg' and beskrivning is not null;"));
+
+            }
         }
         String message = "";
         String contentName = null;
@@ -533,7 +652,12 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             contentBesk = userBeskrivningsLista.get(i);
             message = message + "\n" + contentName + "\n" + contentBesk + "\n";
         }
+        if(!message.contains("null")){
         return message.trim();
+        }
+        else{
+            return "No current projects.";
+        }
     }
 
     /**
@@ -546,8 +670,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
      * @throws InfException
      */
     public String fetchProject() throws InfException {
-        ArrayList<String> namnLista = idb.fetchColumn("Select projektnamn from projekt;");
-        ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from projekt;");
+        ArrayList<String> namnLista = idb.fetchColumn("Select projektnamn from projekt where projektnamn is not null;");
+        ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from projekt where beskrivning is not null;");
 
         String message = "";
         String contentName = null;
@@ -558,6 +682,15 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             message = message + "\n" + contentName + "\n" + contentBesk + "\n";
         }
         return message.trim();
+    }
+  
+    public String totalBudget() throws InfException{
+        ArrayList<String> userProjectList = idb.fetchColumn("Select pid from ans_proj where aid = " + userAid + ";");
+        double totalBudget = 0;
+        for(int i = 0; i < userProjectList.size(); i++){
+            totalBudget += Double.parseDouble(idb.fetchSingle("Select kostnad from projekt where pid = "+ userProjectList.get(i) +" and kostnad is not null;"));
+        }
+        return ""+totalBudget;
     }
 
     /**
@@ -630,12 +763,14 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JButton avdelningSok;
     private javax.swing.JTextField avdelningSokruta;
     private javax.swing.JPanel avdelningTab;
+    private javax.swing.JTextPane budgetField;
     private javax.swing.JButton hallbarhetsmalSok;
     private javax.swing.JTextField hallbarhetsmalSokruta;
     private javax.swing.JPanel hållbarhetsmalTab;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLblSökHallbarhetsmål;
     private javax.swing.JLabel jLblSökHandläggare;
     private javax.swing.JLabel jLblSökHandläggare4;
@@ -647,11 +782,13 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JLabel minaProjectField;
     private javax.swing.JLabel personalList;
+    private javax.swing.JComboBox<String> priorityBox;
     private javax.swing.JPanel profilTab;
     private javax.swing.JTextArea projectListField;
     private javax.swing.JButton projektSok;
@@ -662,6 +799,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JPanel samarbetspartnerTab2;
     private javax.swing.JButton showDeptProjectButton;
     private javax.swing.JButton showUserProjectsButton;
+    private javax.swing.JButton totalBudgetButton;
     private javax.swing.JButton visaKnapp;
     // End of variables declaration//GEN-END:variables
 }

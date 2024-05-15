@@ -113,6 +113,11 @@ public class NewProject extends javax.swing.JFrame {
 
         priorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High", "Medium", "Low" }));
         priorityBox.setToolTipText("Priority\n");
+        priorityBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                priorityBoxActionPerformed(evt);
+            }
+        });
 
         pDescriptionField.setColumns(20);
         pDescriptionField.setRows(5);
@@ -232,6 +237,10 @@ public class NewProject extends javax.swing.JFrame {
             countryField.setText("");
         }
     }//GEN-LAST:event_countryFieldMouseClicked
+
+    private void priorityBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priorityBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_priorityBoxActionPerformed
 
     private String priorityPicker(int priority){
         if(priority == 3){
