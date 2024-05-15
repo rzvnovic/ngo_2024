@@ -98,7 +98,7 @@ public class Validering {
     
     public static Boolean checkDateFormat (String datum) {
        Boolean checkDateFormat = false; 
-        String korrektFormat = "\\d{1,2} [A-Za-z] \\d{4}";
+        String korrektFormat = "\\d{4}-\\d{2}-\\d{2}";
         
         if (datum.matches(korrektFormat))
         {
