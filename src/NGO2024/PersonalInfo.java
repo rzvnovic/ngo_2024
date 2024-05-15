@@ -443,8 +443,12 @@ public class PersonalInfo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_commitButtonActionPerformed
     /**
+     * 
+     * TODO: FIXA VALIDERINGEN
      * metod som uppdaterar databasen med information som är inmatat i ett fält.
      *
+     * 
+     * 
      * @param column vilken kolumn som bör uppdateras
      * @param value vad cellen skall uppdateras med
      * @param aid vilken aid som ändringen ska ske på

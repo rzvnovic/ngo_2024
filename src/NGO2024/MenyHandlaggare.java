@@ -684,6 +684,12 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         return message.trim();
     }
   
+    
+    /**
+     * Metod som räknar ut användrens totala budget över alla rader där AID förkommer.
+     * @return String totalabudget
+     * @throws InfException 
+     */
     public String totalBudget() throws InfException{
         ArrayList<String> userProjectList = idb.fetchColumn("Select pid from ans_proj where aid = " + userAid + ";");
         double totalBudget = 0;
@@ -697,7 +703,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
      * SKA BARA VISA PÅ RÄTT AVDELNING SÅ SQL QUERRY bör ändras till where avdId
      * = userAid's avdId
      *
-     * @return
+     * @return message
      * @throws InfException
      */
     public String fetchEmployees() throws InfException {
