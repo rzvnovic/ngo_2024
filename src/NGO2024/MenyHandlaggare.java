@@ -47,7 +47,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         HandläggarMeny = new javax.swing.JTabbedPane();
         profilTab = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblInfo = new javax.swing.JLabel();
         visaKnapp = new javax.swing.JButton();
         avdelningTab = new javax.swing.JPanel();
         jLblSökHandläggare = new javax.swing.JLabel();
@@ -71,10 +71,10 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         totalBudgetButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         budgetField = new javax.swing.JTextPane();
-        jLabel4 = new javax.swing.JLabel();
+        jLblMoney = new javax.swing.JLabel();
         startDateProjekt = new javax.swing.JTextField();
         endDateProjekt = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnFilterByDate = new javax.swing.JButton();
         filterProjectsDateError = new javax.swing.JLabel();
         dateFormatWrongError = new javax.swing.JLabel();
         samarbetspartnerTab2 = new javax.swing.JPanel();
@@ -85,9 +85,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         jLblSökHallbarhetsmål = new javax.swing.JLabel();
         hallbarhetsmalSokruta = new javax.swing.JTextField();
         hallbarhetsmalSok = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        lblAktivaHallbarhetsmal = new javax.swing.JLabel();
+        scrlPanelHållbarhet = new javax.swing.JScrollPane();
+        hallbarhetsMalTextArea = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -95,7 +95,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Info");
+        lblInfo.setText("Info");
 
         visaKnapp.setText("Visa Profil:");
         visaKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -112,14 +112,14 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(profilTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(visaKnapp)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(606, Short.MAX_VALUE))
         );
         profilTabLayout.setVerticalGroup(
             profilTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profilTabLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(lblInfo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(visaKnapp)
                 .addContainerGap(386, Short.MAX_VALUE))
@@ -252,16 +252,16 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         catch(Exception e){}
         jScrollPane4.setViewportView(budgetField);
 
-        jLabel4.setText("Moneys");
+        jLblMoney.setText("Moneys");
 
         startDateProjekt.setText("Start date");
 
         endDateProjekt.setText("End date");
 
-        jButton1.setText("Filter by date");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFilterByDate.setText("Filter by date");
+        btnFilterByDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFilterByDateActionPerformed(evt);
             }
         });
 
@@ -279,7 +279,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, projektTabLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnFilterByDate, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, projektTabLayout.createSequentialGroup()
                         .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -302,7 +302,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                                     .addGroup(projektTabLayout.createSequentialGroup()
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jLblMoney, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(projektTabLayout.createSequentialGroup()
                                         .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(projektSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,14 +346,14 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addComponent(totalBudgetButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLblMoney, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane4))
                         .addGap(40, 40, 40)
                         .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(startDateProjekt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(endDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnFilterByDate)
                         .addGap(4, 4, 4)
                         .addComponent(filterProjectsDateError)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -418,17 +418,17 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Aktiva hållbarhetsmål");
+        lblAktivaHallbarhetsmal.setText("Aktiva hållbarhetsmål");
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
+        hallbarhetsMalTextArea.setEditable(false);
+        hallbarhetsMalTextArea.setColumns(20);
+        hallbarhetsMalTextArea.setRows(5);
         try{
-            jTextArea2.setText(fetchHallbarhetsmal());
+            hallbarhetsMalTextArea.setText(fetchHallbarhetsmal());
         }
         catch(Exception e){
         }
-        jScrollPane2.setViewportView(jTextArea2);
+        scrlPanelHållbarhet.setViewportView(hallbarhetsMalTextArea);
 
         javax.swing.GroupLayout hållbarhetsmalTabLayout = new javax.swing.GroupLayout(hållbarhetsmalTab);
         hållbarhetsmalTab.setLayout(hållbarhetsmalTabLayout);
@@ -442,9 +442,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                     .addComponent(jLblSökHallbarhetsmål, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                    .addComponent(scrlPanelHållbarhet, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
                     .addGroup(hållbarhetsmalTabLayout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblAktivaHallbarhetsmal, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -454,7 +454,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLblSökHallbarhetsmål)
-                    .addComponent(jLabel3))
+                    .addComponent(lblAktivaHallbarhetsmal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(hållbarhetsmalTabLayout.createSequentialGroup()
@@ -462,7 +462,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(hallbarhetsmalSok)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
+                    .addComponent(scrlPanelHållbarhet, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -591,7 +591,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         budgetField.setVisible(true);
     }//GEN-LAST:event_totalBudgetButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnFilterByDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterByDateActionPerformed
 
         try {
             String startDatumet = startDateProjekt.getText();
@@ -610,7 +610,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         } catch (InfException ex) {
             ex.printStackTrace();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnFilterByDateActionPerformed
 
     private void priorityBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priorityBoxActionPerformed
         // TODO add your handling code here:
@@ -672,6 +672,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         }
         return message.trim();
     }
+    
+    
+    
 
     public String findDeptProject(int prio) throws InfException {
         String avdId = idb.fetchSingle("Select avdelning from anstalld where aid =" + userAid + ";");
@@ -903,19 +906,18 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JButton avdelningSok;
     private javax.swing.JTextField avdelningSokruta;
     private javax.swing.JPanel avdelningTab;
+    private javax.swing.JButton btnFilterByDate;
     private javax.swing.JTextPane budgetField;
     private javax.swing.JLabel dateFormatWrongError;
     private javax.swing.JTextField endDateProjekt;
     private javax.swing.JLabel felmeddelandeL;
     private javax.swing.JLabel filterProjectsDateError;
+    private javax.swing.JTextArea hallbarhetsMalTextArea;
     private javax.swing.JButton hallbarhetsmalSok;
     private javax.swing.JTextField hallbarhetsmalSokruta;
     private javax.swing.JPanel hållbarhetsmalTab;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLblMoney;
     private javax.swing.JLabel jLblSökHallbarhetsmål;
     private javax.swing.JLabel jLblSökHandläggare;
     private javax.swing.JLabel jLblSökHandläggare4;
@@ -925,12 +927,12 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JLabel lblAktivaHallbarhetsmal;
+    private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel minaProjectField;
     private javax.swing.JLabel personalList;
     private javax.swing.JComboBox<String> priorityBox;
@@ -942,6 +944,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JButton samarbetspartnerSok;
     private javax.swing.JTextField samarbetspartnerSokruta;
     private javax.swing.JPanel samarbetspartnerTab2;
+    private javax.swing.JScrollPane scrlPanelHållbarhet;
     private javax.swing.JButton showDeptProjectButton;
     private javax.swing.JButton showUserProjectsButton;
     private javax.swing.JTextField startDateProjekt;

@@ -14,6 +14,8 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+
 public class MenyAdmin extends javax.swing.JFrame {
 
     private static String ePost;
@@ -31,6 +33,8 @@ public class MenyAdmin extends javax.swing.JFrame {
         this.userAid = userAid;
         validering = new Validering();
         initComponents();
+        
+        
     }
 
     /**

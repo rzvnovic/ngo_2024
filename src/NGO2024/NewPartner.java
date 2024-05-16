@@ -62,7 +62,7 @@ public class NewPartner extends javax.swing.JFrame {
         contactPhoneField = new javax.swing.JTextField();
         branchField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLblPersonelDetails = new javax.swing.JLabel();
         cityField = new javax.swing.JTextField();
         adressField = new javax.swing.JTextField();
 
@@ -115,7 +115,7 @@ public class NewPartner extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Personel details");
+        jLblPersonelDetails.setText("Personel details");
 
         cityField.setText("City");
         cityField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -139,7 +139,7 @@ public class NewPartner extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLblPersonelDetails)
                     .addComponent(contactEmailField)
                     .addComponent(contactField)
                     .addComponent(nameField)
@@ -153,7 +153,7 @@ public class NewPartner extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLblPersonelDetails)
                 .addGap(18, 18, 18)
                 .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -335,7 +335,7 @@ public class NewPartner extends javax.swing.JFrame {
     private javax.swing.JTextField contactField;
     private javax.swing.JTextField contactPhoneField;
     private javax.swing.JButton createButton;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLblPersonelDetails;
     private javax.swing.JTextField nameField;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,7 +24,11 @@ public class Validering {
         this.idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
     }
 
-    
+    /**
+     * Metod som kontrollerar om en ePost är giltig genom att se om den slutar på ett valid prefix och innehåller @
+     * @param ePost
+     * @return true vid giltigt format, false vid ogiltigt format. 
+     */
     public static Boolean giltigEpost(String ePost) {
         Boolean giltigtFormat = false;
 
@@ -96,6 +100,12 @@ public class Validering {
         return projektLedareHittad;
     }
     
+    /**
+     * Kontrollerar om datumformatet är korrekt inskrivet
+     *
+     * @param datum
+     * @return true vid korrekt format, false vid inkorrekt format
+     */
     public static Boolean checkDateFormat (String datum) {
        Boolean checkDateFormat = false; 
         String korrektFormat = "\\d{4}-\\d{2}-\\d{2}";
@@ -107,4 +117,6 @@ public class Validering {
         
         return checkDateFormat;
     }
+    
+   
 }

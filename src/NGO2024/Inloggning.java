@@ -8,6 +8,8 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 
+
+
 /**
  *
  * @author meldi
@@ -25,6 +27,7 @@ public class Inloggning extends javax.swing.JFrame {
         this.idb = idb;
         initComponents();
         lblfelMeddelande.setVisible(false);
+        
     }
 
     /**
