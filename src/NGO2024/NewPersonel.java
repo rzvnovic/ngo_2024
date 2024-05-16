@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
 import java.util.*;
+import javax.swing.JFrame;
 import oru.inf.InfDB;
 
 /**
@@ -27,6 +28,7 @@ public class NewPersonel extends javax.swing.JFrame {
     private static int aid;
     private static int userAid;
     private static Validering validering;
+   
 
     /**
      * Creates new form newPersonel
@@ -46,6 +48,7 @@ public class NewPersonel extends javax.swing.JFrame {
         initComponents();
         lblWrongFormatError.setVisible(false);
         jLblAvdelningError.setVisible(false);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -64,7 +67,7 @@ public class NewPersonel extends javax.swing.JFrame {
         phoneNumField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
         makeAdminCheckBox = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
+        lblPersonelDetails = new javax.swing.JLabel();
         jTxtAvdelning = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTxtAvdelningarna = new javax.swing.JTextArea();
@@ -123,7 +126,7 @@ public class NewPersonel extends javax.swing.JFrame {
 
         makeAdminCheckBox.setText("Admin");
 
-        jLabel1.setText("Personel details");
+        lblPersonelDetails.setText("Personel details");
 
         jTxtAvdelning.setText("Avdelningsnummer");
 
@@ -159,7 +162,7 @@ public class NewPersonel extends javax.swing.JFrame {
                                 .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)
+                                    .addComponent(lblPersonelDetails)
                                     .addComponent(makeAdminCheckBox)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,7 +187,7 @@ public class NewPersonel extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblPersonelDetails)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
@@ -264,49 +267,46 @@ public class NewPersonel extends javax.swing.JFrame {
 
         try {
             if (Validering.fieldValidation(newAvdelning, "Avdelning")) {
-                if (checkValidAvdelning(newAvdelning) == true){
-                String newAid = idb.getAutoIncrement("anstalld", "aid");
-                String sqlQuerry = ("INSERT INTO ngo_2024.anstalld (aid, avdelning) VALUES (" + newAid + "," + newAvdelning + ");");
-                idb.insert(sqlQuerry);
-                jLblAvdelningError.setVisible(false);
-                
-                
-//använd valideringsklass
-                if (Validering.fieldValidation(newName, "Name")) {
-                    insertValue("fornamn", newName, newAid);
-                }
-                //använd valideringsklass
-                if (Validering.fieldValidation(newSurname, "Surname")) {
-                    insertValue("efternamn", newSurname, newAid);
-                }
-                //använd valideringsklass, validera datum TODO
-                if (Validering.fieldValidation(newAdress, "Adress")) {
-                    insertValue("adress", newAdress, newAid);
-                }
-                //använd valideringsklass, validera datum TODO
-                if (Validering.fieldValidation(newEmail, "Email")) {
-                    insertValue("epost", newEmail, newAid);
-                }
-                //använd valideringsklass
-                if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
-                    insertValue("telefon", newPhonenumber, newAid);
-                }
-                if (Validering.fieldValidation(newEmploymentDate, "Date of employment")) {
-                    if (Validering.checkDateFormat(newEmploymentDate)) {
-                        insertValue("anstallningsdatum", newEmploymentDate, newAid);
-                        
-                        
-                    } else {
-                        lblWrongFormatError.setVisible(true);
-                    }
-                      
-                }
-                insertValue("losenord", generateNewPassword(), newAid);
+                if (checkValidAvdelning(newAvdelning) == true) {
+                    String newAid = idb.getAutoIncrement("anstalld", "aid");
+                    String sqlQuerry = ("INSERT INTO ngo_2024.anstalld (aid, avdelning) VALUES (" + newAid + "," + newAvdelning + ");");
+                    idb.insert(sqlQuerry);
+                    jLblAvdelningError.setVisible(false);
 
-                makeAdminCheckBox.getAccessibleContext();
-                
-                }
-                else {
+//använd valideringsklass
+                    if (Validering.fieldValidation(newName, "Name")) {
+                        insertValue("fornamn", newName, newAid);
+                    }
+                    //använd valideringsklass
+                    if (Validering.fieldValidation(newSurname, "Surname")) {
+                        insertValue("efternamn", newSurname, newAid);
+                    }
+                    //använd valideringsklass, validera datum TODO
+                    if (Validering.fieldValidation(newAdress, "Adress")) {
+                        insertValue("adress", newAdress, newAid);
+                    }
+                    //använd valideringsklass, validera datum TODO
+                    if (Validering.fieldValidation(newEmail, "Email")) {
+                        insertValue("epost", newEmail, newAid);
+                    }
+                    //använd valideringsklass
+                    if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+                        insertValue("telefon", newPhonenumber, newAid);
+                    }
+                    if (Validering.fieldValidation(newEmploymentDate, "Date of employment")) {
+                        if (Validering.checkDateFormat(newEmploymentDate)) {
+                            insertValue("anstallningsdatum", newEmploymentDate, newAid);
+
+                        } else {
+                            lblWrongFormatError.setVisible(true);
+                        }
+
+                    }
+                    insertValue("losenord", generateNewPassword(), newAid);
+
+                    makeAdminCheckBox.getAccessibleContext();
+
+                } else {
                     jLblAvdelningError.setVisible(true);
                 }
             }
@@ -366,21 +366,20 @@ public class NewPersonel extends javax.swing.JFrame {
         }
         return message.trim();
     }
-    
+
     public Boolean checkValidAvdelning(String avdelning) throws InfException {
-    {
-        Boolean avdelningExist = false; 
-        String avdelningsID = "";
-        ArrayList<String> avdelningsNummer = idb.fetchColumn("Select avdid from avdelning;");
-        for (int i = 0; i < avdelningsNummer.size(); i++)
         {
-            avdelningsID = avdelningsNummer.get(i);
-            if (avdelningsID.equals(avdelning)){
-                avdelningExist = true; 
+            Boolean avdelningExist = false;
+            String avdelningsID = "";
+            ArrayList<String> avdelningsNummer = idb.fetchColumn("Select avdid from avdelning;");
+            for (int i = 0; i < avdelningsNummer.size(); i++) {
+                avdelningsID = avdelningsNummer.get(i);
+                if (avdelningsID.equals(avdelning)) {
+                    avdelningExist = true;
+                }
             }
+            return avdelningExist;
         }
-        return avdelningExist;
-    }
     }
 
     /**
@@ -434,11 +433,11 @@ public class NewPersonel extends javax.swing.JFrame {
     private javax.swing.JButton createButton;
     private javax.swing.JTextField dateOfEmploymentField;
     private javax.swing.JTextField emailField;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLblAvdelningError;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTxtAvdelning;
     private javax.swing.JTextArea jTxtAvdelningarna;
+    private javax.swing.JLabel lblPersonelDetails;
     private javax.swing.JLabel lblWrongFormatError;
     private javax.swing.JCheckBox makeAdminCheckBox;
     private javax.swing.JTextField nameField;

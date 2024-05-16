@@ -61,7 +61,7 @@ public class NewAvdelning extends javax.swing.JFrame {
         contactEmailField = new javax.swing.JTextField();
         contactPhoneField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblDepDetails = new javax.swing.JLabel();
         cityField = new javax.swing.JTextField();
         adressField = new javax.swing.JTextField();
         descriptionField = new javax.swing.JTextField();
@@ -97,7 +97,7 @@ public class NewAvdelning extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Department details");
+        lblDepDetails.setText("Department details");
 
         cityField.setText("City");
         cityField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,7 +137,7 @@ public class NewAvdelning extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(lblDepDetails)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
@@ -157,7 +157,7 @@ public class NewAvdelning extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblDepDetails)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -338,7 +338,7 @@ public class NewAvdelning extends javax.swing.JFrame {
     private javax.swing.JTextField contactPhoneField;
     private javax.swing.JButton createButton;
     private javax.swing.JTextField descriptionField;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblDepDetails;
     private javax.swing.JTextField nameField;
     // End of variables declaration//GEN-END:variables
 }
