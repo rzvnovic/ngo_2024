@@ -24,9 +24,9 @@ import oru.inf.InfDB;
 public class NewAvdelning extends javax.swing.JFrame {
 
     private InfDB idb;
-    private static int pid;
-    private static int Avdid;
-    private static int userAid;
+    private static String pid;
+    private static String Avdid;
+    private static String userAid;
     private static Validering validering;
 
     /**
@@ -37,7 +37,7 @@ public class NewAvdelning extends javax.swing.JFrame {
     public NewAvdelning() throws InfException {
 
         validering = new Validering();
-
+        
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         } catch (InfException ex) {
@@ -45,7 +45,7 @@ public class NewAvdelning extends javax.swing.JFrame {
         }
 
         initComponents();
-
+        countryButton.setVisible(false);
     }
 
     /**
@@ -61,12 +61,12 @@ public class NewAvdelning extends javax.swing.JFrame {
         contactEmailField = new javax.swing.JTextField();
         contactPhoneField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblDepDetails = new javax.swing.JLabel();
         cityField = new javax.swing.JTextField();
         adressField = new javax.swing.JTextField();
         descriptionField = new javax.swing.JTextField();
         countryField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        countryButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         HODfield = new javax.swing.JTextField();
 
@@ -100,7 +100,7 @@ public class NewAvdelning extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Department details");
+        lblDepDetails.setText("Department details");
 
         cityField.setText("City");
         cityField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,9 +130,14 @@ public class NewAvdelning extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Add Country and City");
+        countryButton.setText("Add Country and City");
+        countryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countryButtonActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Country does not exist.");
+        jLabel2.setText("Can't connect City to Country, check spelling or add new Country");
 
         HODfield.setText("Head of department");
         HODfield.addActionListener(new java.awt.event.ActionListener() {
@@ -147,34 +152,36 @@ public class NewAvdelning extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(lblDepDetails)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                                    .addComponent(contactEmailField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                                    .addComponent(contactPhoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                                    .addComponent(cityField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                                    .addComponent(nameField)
+                                    .addComponent(contactEmailField)
+                                    .addComponent(contactPhoneField)
+                                    .addComponent(cityField)
                                     .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HODfield, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                                    .addComponent(countryField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                                    .addComponent(HODfield)
+                                    .addComponent(countryField))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1)
-                                    .addComponent(jLabel2))))
-                        .addGap(140, 140, 140))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(countryButton)))))
+                        .addGap(140, 140, 140))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblDepDetails)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -197,7 +204,7 @@ public class NewAvdelning extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createButton)
-                    .addComponent(jButton1))
+                    .addComponent(countryButton))
                 .addContainerGap(208, Short.MAX_VALUE))
         );
 
@@ -224,49 +231,58 @@ public class NewAvdelning extends javax.swing.JFrame {
     }//GEN-LAST:event_contactPhoneFieldMouseClicked
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        
-        String newName = nameField.getText();
-        String newEmail = contactEmailField.getText();
-        String newPhonenumber = contactPhoneField.getText();
-        String newAdress = adressField.getText();
-        String newHOD = countryField.getText();
-        String newCity = cityField.getText();
-        String newDescription = descriptionField.getText();
-        String newCountry = countryField.getText();
-       ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
-        for(int i = 0 ; i < countryList.size(); i++){
-        if(newCountry.equals){
-         
-        }
-        }
-        String newAvdid = null;
-        try {
-            newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
-            String sqlQuerry = ("INSERT INTO ngo_2024.avdelning (Avdid) VALUES (" + newAvdid + ");");
-            idb.insert(sqlQuerry);
-            if (Validering.fieldValidation(newName, "Name")) {
-                insertValue("namn", newName, newAvdid);
-            }
-            if (Validering.fieldValidation(newHOD, "head of department")) {
-                insertValue("chef", newHOD, newAvdid);
-            }
-            if (Validering.fieldValidation(newEmail, "Email")&& Validering.giltigEpost(newEmail)) {
-                insertValue("epost", newEmail, newAvdid);
-            }
-            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
-                insertValue("telefon", newPhonenumber, newAvdid);
-            }
-            if (Validering.fieldValidation(newAdress, "Adress")) {
-                insertValue("adress", newAdress, newAvdid);
-            }
-            if (Validering.fieldValidation(newCity, "City")) {
-                insertValue("stad", newCity, newAvdid);
-            }
-            if (Validering.fieldValidation(newDescription, "Description")){
-                insertValue("beskrivning" , newDescription, newAvdid);
-            }
 
-            cityValidation(newCity, newAvdid);
+        try {
+            String newName = nameField.getText();
+            String newEmail = contactEmailField.getText();
+            String newPhonenumber = contactPhoneField.getText();
+            String newAdress = adressField.getText();
+            String newHOD = countryField.getText();
+            String newCity = cityField.getText();
+            String newDescription = descriptionField.getText();
+            String newCountry = countryField.getText();
+            ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
+            
+            for (int i = 0; i < countryList.size(); i++) {
+                if (newCountry.equals(countryList.get(i))) {
+                    
+                    String newAvdid = null;
+                    
+                    try {
+                        newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
+                        String sqlQuerry = ("INSERT INTO ngo_2024.avdelning (Avdid) VALUES (" + newAvdid + ");");
+                        idb.insert(sqlQuerry);
+                        if (Validering.fieldValidation(newName, "Name")) {
+                            insertValue("namn", newName, newAvdid);
+                        }
+                        if (Validering.fieldValidation(newHOD, "head of department")) {
+                            insertValue("chef", newHOD, newAvdid);
+                        }
+                        if (Validering.fieldValidation(newEmail, "Email") && Validering.giltigEpost(newEmail)) {
+                            insertValue("epost", newEmail, newAvdid);
+                        }
+                        if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+                            insertValue("telefon", newPhonenumber, newAvdid);
+                        }
+                        if (Validering.fieldValidation(newAdress, "Adress")) {
+                            insertValue("adress", newAdress, newAvdid);
+                        }
+                        if (Validering.fieldValidation(newCity, "City")) {
+                            insertValue("stad", newCity, newAvdid);
+                        }
+                        if (Validering.fieldValidation(newDescription, "Description")) {
+                            
+                            insertValue("beskrivning", newDescription, newAvdid);
+                        }
+                        
+                    } catch (InfException ex) {
+                        Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else{
+                countryButton.setVisible(true);
+                }
+            }
         } catch (InfException ex) {
             Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -296,6 +312,15 @@ public class NewAvdelning extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_HODfieldActionPerformed
 
+    private void countryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryButtonActionPerformed
+        try {
+            new NewLand(userAid).setVisible(true);
+            // TODO add your handling code here:
+        } catch (InfException ex) {
+            Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_countryButtonActionPerformed
+
     private boolean fieldValidation(String newText, String validationText) {
         boolean validated = true;
         if (newText.equals(validationText) || newText.isEmpty() || newText.isBlank()) {
@@ -304,8 +329,8 @@ public class NewAvdelning extends javax.swing.JFrame {
         return validated;
     }
 
-    private void insertValue(String column, String value, String newAvdid) throws InfException{
-        String sqlQuerry = ("UPDATE ngo_2024.avdelning t SET t."+column+" = '" + value + "' WHERE t.avdid = " + newAvdid + ";");
+    private void insertValue(String column, String value, String newAvdid) throws InfException {
+        String sqlQuerry = ("UPDATE ngo_2024.avdelning t SET t." + column + " = '" + value + "' WHERE t.avdid = " + newAvdid + ";");
         idb.update(sqlQuerry);
     }
 
@@ -318,12 +343,11 @@ public class NewAvdelning extends javax.swing.JFrame {
                 return;
             }
         }
-       
+
         //Todo gör synliga rutor
         //alt gör så användaren får mata in land   
     }
-    
-  
+
     /**
      * @param args the command line arguments
      */
@@ -370,12 +394,12 @@ public class NewAvdelning extends javax.swing.JFrame {
     private javax.swing.JTextField cityField;
     private javax.swing.JTextField contactEmailField;
     private javax.swing.JTextField contactPhoneField;
+    private javax.swing.JButton countryButton;
     private javax.swing.JTextField countryField;
     private javax.swing.JButton createButton;
     private javax.swing.JTextField descriptionField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblDepDetails;
     private javax.swing.JTextField nameField;
     // End of variables declaration//GEN-END:variables
 }

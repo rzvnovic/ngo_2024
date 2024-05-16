@@ -4,8 +4,6 @@ package NGO2024;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-
 import NGO2024.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +24,7 @@ import oru.inf.InfDB;
 public class NewLand extends javax.swing.JFrame {
 
     private InfDB idb;
-    private static int userAid;
+    private static String userAid;
     private static Validering validering;
 
     /**
@@ -34,26 +32,25 @@ public class NewLand extends javax.swing.JFrame {
      *
      * @throws oru.inf.InfException
      */
-    public NewLand( ) throws InfException {
+    public NewLand(String userAid) throws InfException {
 
         this.userAid = userAid;
         validering = new Validering();
-        
+
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
-            
+
         } catch (InfException ex) {
             Logger.getLogger(NewLand.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+        wrongFormat.setVisible(false);
     }
-    
-   /* public String setUserName() throws InfException{
+
+    /* public String setUserName() throws InfException{
     String userName = idb.fetchSingle("select concat(fornamn, efternamn) from anstalld where aid ="+userAid+";");
     return userName;
-    */
-    
-
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +70,7 @@ public class NewLand extends javax.swing.JFrame {
         currencyField = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         economicField = new javax.swing.JTextArea();
+        wrongFormat = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,6 +126,8 @@ public class NewLand extends javax.swing.JFrame {
         economicField.setText("Economical structure");
         jScrollPane2.setViewportView(economicField);
 
+        wrongFormat.setText("Currency wrong format. ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,7 +141,7 @@ public class NewLand extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(countryName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +149,9 @@ public class NewLand extends javax.swing.JFrame {
                             .addComponent(languageField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(currencyField))
-                .addGap(187, 187, 187))
+                .addGap(18, 18, 18)
+                .addComponent(wrongFormat)
+                .addGap(127, 127, 127))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +165,9 @@ public class NewLand extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(currencyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currencyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(wrongFormat))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(timezoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -189,13 +193,10 @@ public class NewLand extends javax.swing.JFrame {
         String newCurrency = currencyField.getText();
         String newTimeZone = timezoneField.getText();
         String newLanguage = languageField.getText();
-        
-        
-        //TODO
-       
 
+        //TODO
         String newLid;
-        
+
         try {
             newLid = idb.getAutoIncrement("land", "lid");
             String sqlQuerry = ("INSERT INTO ngo_2024.land (lid) VALUES (" + newLid + ");");
@@ -208,28 +209,30 @@ public class NewLand extends javax.swing.JFrame {
             if (Validering.fieldValidation(newPolitical, "-1")) {
                 insertValue("politisk_struktur", newPolitical, newLid);
             }
-            if (Validering.fieldValidation(newEconomic, "-1")){
-                insertValue ("ekonomi", newEconomic, newLid);
+            if (Validering.fieldValidation(newEconomic, "-1")) {
+                insertValue("ekonomi", newEconomic, newLid);
             }
             if (Validering.fieldValidation(newTimeZone, "Timezone")) {
-                insertValue ("tidszon", newTimeZone, newLid);
+                insertValue("tidszon", newTimeZone, newLid);
             }
-            
-            if (Validering.fieldValidation(newLanguage, "Language")){
-                insertValue ("sprak", newLanguage, newLid);
+
+            if (Validering.fieldValidation(newLanguage, "Language")) {
+                insertValue("sprak", newLanguage, newLid);
             }
-            
+
             //använd valideringsklass
             if (Validering.fieldValidation(newCurrency, "Valuta")) {
-                insertValue("valuta", newCurrency, newLid);
+                if (newCurrency.contains(".")) {
+                    insertValue("valuta", newCurrency, newLid);
+                } else {
+                        wrongFormat.setVisible(true);
+                }
             }
-      
-            
+
             /* tänk
             if (fieldValidation(newCountry, "Contact field of operations")) {
                 insertValue("Branch", newCountry, newPid);
             }*/
-
         } catch (InfException ex) {
             Logger.getLogger(NewLand.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -253,23 +256,18 @@ public class NewLand extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_languageFieldActionPerformed
 
-   
-    
-    
-
-    private void insertValue(String column, String value, String newLid) throws InfException{
-        String sqlQuerry = ("UPDATE ngo_2024.land t SET t."+column+" = '" + value + "' WHERE t.lid = " + newLid + ";");
+    private void insertValue(String column, String value, String newLid) throws InfException {
+        String sqlQuerry = ("UPDATE ngo_2024.land t SET t." + column + " = '" + value + "' WHERE t.lid = " + newLid + ";");
         idb.update(sqlQuerry);
     }
 
     /**
      * TODO ändra till land
+     *
      * @param newCity
      * @param newPid
-     * @throws InfException 
+     * @throws InfException
      */
- 
-
     /**
      * @param args the command line arguments
      */
@@ -301,7 +299,7 @@ public class NewLand extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new NewLand().setVisible(true);
+                    new NewLand(userAid).setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(NewLand.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -321,5 +319,6 @@ public class NewLand extends javax.swing.JFrame {
     private javax.swing.JTextField languageField;
     private javax.swing.JTextArea politicField;
     private javax.swing.JTextField timezoneField;
+    private javax.swing.JLabel wrongFormat;
     // End of variables declaration//GEN-END:variables
 }
