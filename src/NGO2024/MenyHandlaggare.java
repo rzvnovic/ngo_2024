@@ -20,6 +20,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private static String userAid;
     private Validering validering;
     private String aid;
+
     /**
      * Creates new form MenyHandläggare
      */
@@ -508,29 +509,28 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void avdelningSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdelningSokjButton2ActionPerformed
-     try {
-        String personalNamn = avdelningSokruta.getText();
-        int index = personalNamn.indexOf(" ");
-        String fornamn = personalNamn.substring(0, index);
-        String efternamn = personalNamn.substring(index + 1);
-        System.out.print(fornamn + efternamn);
-     
-           
+        try {
+            String personalNamn = avdelningSokruta.getText();
+            int index = personalNamn.indexOf(" ");
+            String fornamn = personalNamn.substring(0, index);
+            String efternamn = personalNamn.substring(index + 1);
+            System.out.print(fornamn + efternamn);
+
             String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
             String dbSqlFraga = idb.fetchSingle(sqlFraga);
-            String userAvd = idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = "+ userAid + ";");
-            if(validering.checkProjektLedareAid(userAid) || userAvd.equals(idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = "+ dbSqlFraga + ";"))){
-            new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
-           
-            }else{
+            String userAvd = idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + userAid + ";");
+            if (validering.checkProjektLedareAid(userAid) || userAvd.equals(idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + dbSqlFraga + ";"))) {
+                new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+
+            } else {
                 felmeddelandeL.setText("Behörighet saknas");
                 felmeddelandeL.setVisible(true);
             }
-            
+
         } catch (Exception e) {
-                
-             felmeddelandeL.setText("Anställd finns ej");
-                felmeddelandeL.setVisible(true);   
+
+            felmeddelandeL.setText("Anställd finns ej");
+            felmeddelandeL.setVisible(true);
 
         }
         // TODO add your handling code here:
@@ -672,9 +672,6 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         }
         return message.trim();
     }
-    
-    
-    
 
     public String findDeptProject(int prio) throws InfException {
         String avdId = idb.fetchSingle("Select avdelning from anstalld where aid =" + userAid + ";");
@@ -806,17 +803,48 @@ public class MenyHandlaggare extends javax.swing.JFrame {
      * @throws InfException
      */
     public String fetchProject() throws InfException {
-        ArrayList<String> namnLista = idb.fetchColumn("Select projektnamn from projekt where projektnamn is not null;");
-        ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from projekt where beskrivning is not null;");
+        ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt;");
+        ArrayList<String> projektBeskrivningLista = idb.fetchColumn("Select beskrivning from projekt;");
+        ArrayList<String> projektStartdatum = idb.fetchColumn("Select startdatum from projekt;");
+        ArrayList<String> projektSlutdatum = idb.fetchColumn("Select slutdatum from projekt;");
+        ArrayList<String> projektKostnad = idb.fetchColumn("Select kostnad from projekt;");
+        ArrayList<String> projektStatus = idb.fetchColumn("Select status from projekt;");
+        ArrayList<String> projektPrioritet = idb.fetchColumn("Select prioritet from projekt;");
+        ArrayList<String> projektLedareFornamn = idb.fetchColumn("select fornamn from anstalld where aid in (select projektchef from projekt);");
+        ArrayList<String> projektLedareEfternamn = idb.fetchColumn("select efternamn from anstalld where aid in (select projektchef from projekt);");
 
         String message = "";
+        String nameMessage = "Projektnamn: ";
+        String descriptionMessage = "Beskrivning: ";
+        String startMessage = "Startdatum: ";
+        String endMessage = "Slutdatum: ";
+        String costMessage = "Kostnad: ";
+        String statusMessage = "Status: ";
+        String priorityMessage = "Prioritet: ";
+        String leaderMessage = "Projektchef: ";
         String contentName = null;
         String contentBesk = null;
-        for (int i = 0; i < namnLista.size(); i++) {
-            contentName = namnLista.get(i);
-            contentBesk = beskrivningLista.get(i);
-            message = message + "\n" + contentName + "\n" + contentBesk + "\n";
+        String contentStart = null;
+        String contentEnd = null;
+        String contentCost = null;
+        String contentStatus = null;
+        String contentPriority = null;
+        String contentLeaderFirst = null;
+        String contentLeaderLast = null;
+
+        for (int i = 0; i < projektNamnLista.size(); i++) {
+            contentName = projektNamnLista.get(i);
+            contentBesk = projektBeskrivningLista.get(i);
+            contentStart = projektStartdatum.get(i);
+            contentEnd = projektSlutdatum.get(i);
+            contentCost = projektKostnad.get(i);
+            contentStatus = projektStatus.get(i);
+            contentPriority = projektPrioritet.get(i);
+            contentLeaderFirst = projektLedareFornamn.get(i);
+            contentLeaderLast = projektLedareEfternamn.get(i);
+            message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n";
         }
+
         return message.trim();
     }
 
