@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
 import java.util.*;
+import javax.swing.JFrame;
 import oru.inf.InfException;
 
 /**
@@ -39,7 +40,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         }
 
         initComponents();
-
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     

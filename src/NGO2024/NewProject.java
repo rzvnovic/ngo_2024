@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
 import java.util.*;
+import javax.swing.JFrame;
 import oru.inf.InfDB;
 
 /**
@@ -46,6 +47,7 @@ public class NewProject extends javax.swing.JFrame {
             Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
     

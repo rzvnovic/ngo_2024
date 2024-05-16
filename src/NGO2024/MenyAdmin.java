@@ -14,8 +14,6 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
 public class MenyAdmin extends javax.swing.JFrame {
 
     private static String ePost;
@@ -33,8 +31,8 @@ public class MenyAdmin extends javax.swing.JFrame {
         this.userAid = userAid;
         validering = new Validering();
         initComponents();
-        
-        
+        fetchProjects();
+
     }
 
     /**
@@ -64,12 +62,8 @@ public class MenyAdmin extends javax.swing.JFrame {
         tabPartner = new javax.swing.JPanel();
         tabBranch = new javax.swing.JPanel();
         tabProject = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaprojectInformation = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -229,23 +223,13 @@ public class MenyAdmin extends javax.swing.JFrame {
 
         tabWindow.addTab("Branch", tabBranch);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
-
-        jLabel1.setText("Current projects");
-
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane4.setViewportView(jList3);
-
-        jLabel2.setText("Leader");
+        txtAreaprojectInformation.setColumns(20);
+        txtAreaprojectInformation.setRows(5);
+        try {
+            txtAreaprojectInformation.setText(fetchProjects());
+        }
+        catch (InfException e) {}
+        jScrollPane1.setViewportView(txtAreaprojectInformation);
 
         javax.swing.GroupLayout tabProjectLayout = new javax.swing.GroupLayout(tabProject);
         tabProject.setLayout(tabProjectLayout);
@@ -253,30 +237,15 @@ public class MenyAdmin extends javax.swing.JFrame {
             tabProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabProjectLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tabProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabProjectLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(tabProjectLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(655, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(674, Short.MAX_VALUE))
         );
         tabProjectLayout.setVerticalGroup(
             tabProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabProjectLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tabProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(tabProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         tabWindow.addTab("Project", tabProject);
@@ -381,6 +350,53 @@ public class MenyAdmin extends javax.swing.JFrame {
         });
     }
 
+    public String fetchProjects() throws InfException {
+        ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt;");
+        ArrayList<String> projektBeskrivningLista = idb.fetchColumn("Select beskrivning from projekt;");
+        ArrayList<String> projektStartdatum = idb.fetchColumn("Select startdatum from projekt;");
+        ArrayList<String> projektSlutdatum = idb.fetchColumn("Select slutdatum from projekt;");
+        ArrayList<String> projektKostnad = idb.fetchColumn("Select kostnad from projekt;");
+        ArrayList<String> projektStatus = idb.fetchColumn("Select status from projekt;");
+        ArrayList<String> projektPrioritet = idb.fetchColumn("Select prioritet from projekt;");
+        ArrayList<String> projektLedareFornamn = idb.fetchColumn("select fornamn from anstalld where aid in (select projektchef from projekt);");
+        ArrayList<String> projektLedareEfternamn = idb.fetchColumn("select efternamn from anstalld where aid in (select projektchef from projekt);");
+
+        String message = "";
+        String nameMessage = "Projektnamn: ";
+        String descriptionMessage = "Beskrivning: ";
+        String startMessage = "Startdatum: ";
+        String endMessage = "Slutdatum: ";
+        String costMessage = "Kostnad: ";
+        String statusMessage = "Status: ";
+        String priorityMessage = "Prioritet: ";
+        String leaderMessage = "Projektchef: ";
+        String contentName = null;
+        String contentBesk = null;
+        String contentStart = null;
+        String contentEnd = null;
+        String contentCost = null;
+        String contentStatus = null;
+        String contentPriority = null;
+        String contentLeaderFirst = null;
+        String contentLeaderLast = null; 
+
+        for (int i = 0; i < projektNamnLista.size(); i++) {
+            contentName = projektNamnLista.get(i);
+            contentBesk = projektBeskrivningLista.get(i);
+            contentStart = projektStartdatum.get(i);
+            contentEnd = projektSlutdatum.get(i);
+            contentCost = projektKostnad.get(i);
+            contentStatus = projektStatus.get(i);
+            contentPriority = projektPrioritet.get(i);
+            contentLeaderFirst = projektLedareFornamn.get(i);
+            contentLeaderLast = projektLedareEfternamn.get(i);
+            message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n"; 
+        }
+        
+        return message.trim();
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SearchButton;
     private javax.swing.JButton jButton1;
@@ -388,17 +404,12 @@ public class MenyAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
@@ -410,5 +421,6 @@ public class MenyAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel tabProject;
     private javax.swing.JPanel tabTest;
     private javax.swing.JTabbedPane tabWindow;
+    private javax.swing.JTextArea txtAreaprojectInformation;
     // End of variables declaration//GEN-END:variables
 }
