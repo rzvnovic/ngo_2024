@@ -19,19 +19,20 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private InfDB idb;
     private static String userAid;
     private Validering validering;
-
+    private String aid;
     /**
      * Creates new form MenyHandläggare
      */
     public MenyHandlaggare(String userAid) throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
-        this.userAid = "1";
+        this.userAid = "6";
         validering = new Validering();
 
         initComponents();
         budgetField.setVisible(false);
         filterProjectsDateError.setVisible(false);
         dateFormatWrongError.setVisible(false);
+        felmeddelandeL.setVisible(false);
     }
 
     /**
@@ -55,6 +56,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         personalList = new javax.swing.JLabel();
+        felmeddelandeL = new javax.swing.JLabel();
         projektTab = new javax.swing.JPanel();
         jLblSökHandläggare4 = new javax.swing.JLabel();
         projektSokruta = new javax.swing.JTextField();
@@ -148,6 +150,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         personalList.setText("Department's employees");
 
+        felmeddelandeL.setText("CyrusAshole");
+
         javax.swing.GroupLayout avdelningTabLayout = new javax.swing.GroupLayout(avdelningTab);
         avdelningTab.setLayout(avdelningTabLayout);
         avdelningTabLayout.setHorizontalGroup(
@@ -163,7 +167,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                     .addGroup(avdelningTabLayout.createSequentialGroup()
                         .addGroup(avdelningTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(avdelningSok)
-                            .addComponent(avdelningSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(avdelningSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(felmeddelandeL))
                         .addGap(45, 45, 45)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -181,7 +186,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addComponent(avdelningSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(avdelningSok)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(felmeddelandeL)
+                        .addGap(0, 317, Short.MAX_VALUE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -224,7 +231,12 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             }
         });
 
-        priorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "High", "Medium", "Low" }));
+        priorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Ongoing", "Planned", "Finished" }));
+        priorityBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                priorityBoxActionPerformed(evt);
+            }
+        });
 
         totalBudgetButton.setText("Calculate total budget");
         totalBudgetButton.addActionListener(new java.awt.event.ActionListener() {
@@ -337,8 +349,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane4))
                         .addGap(40, 40, 40)
-                        .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(startDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(startDateProjekt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(endDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
@@ -496,6 +508,31 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void avdelningSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdelningSokjButton2ActionPerformed
+     try {
+        String personalNamn = avdelningSokruta.getText();
+        int index = personalNamn.indexOf(" ");
+        String fornamn = personalNamn.substring(0, index);
+        String efternamn = personalNamn.substring(index + 1);
+        System.out.print(fornamn + efternamn);
+     
+           
+            String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
+            String dbSqlFraga = idb.fetchSingle(sqlFraga);
+            String userAvd = idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = "+ userAid + ";");
+            if(validering.checkProjektLedareAid(userAid) || userAvd.equals(idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = "+ dbSqlFraga + ";"))){
+            new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+           
+            }else{
+                felmeddelandeL.setText("Behörighet saknas");
+                felmeddelandeL.setVisible(true);
+            }
+            
+        } catch (Exception e) {
+                
+             felmeddelandeL.setText("Anställd finns ej");
+                felmeddelandeL.setVisible(true);   
+
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_avdelningSokjButton2ActionPerformed
 
@@ -559,23 +596,25 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         try {
             String startDatumet = startDateProjekt.getText();
             String slutDatumet = endDateProjekt.getText();
-            
-            if (!Validering.checkDateFormat(startDatumet) || !Validering.checkDateFormat(slutDatumet)){
-                dateFormatWrongError.setVisible(true);  
-}
-                String resultatet = fetchProjectDates(startDatumet, slutDatumet);
-                if (resultatet != null) {
-                    projectListField.setText(resultatet);
-                } else {
-                    filterProjectsDateError.setVisible(true);
-                }
 
-            
+            if (!Validering.checkDateFormat(startDatumet) || !Validering.checkDateFormat(slutDatumet)) {
+                dateFormatWrongError.setVisible(true);
+            }
+            String resultatet = fetchProjectDates(startDatumet, slutDatumet);
+            if (resultatet != null) {
+                projectListField.setText(resultatet);
+            } else {
+                filterProjectsDateError.setVisible(true);
+            }
 
         } catch (InfException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void priorityBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priorityBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_priorityBoxActionPerformed
 
     private String fetchProjectDates(String startDate, String endDate) throws InfException {
         {
@@ -583,7 +622,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             ArrayList<String> projektBeskrivning = idb.fetchColumn("Select beskrivning from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and (status = 'Pågående' or status = 'Planerat')");
 
             if (projektNamn.isEmpty() || projektBeskrivning.isEmpty()) {
-                return null; 
+                return null;
             }
             String message = "";
             String projectName = null;
@@ -661,8 +700,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         beskrivningsLista.add(sqlQuerryForDLow);
                     }
                 } else if (prio == 3) {
-                    String sqlQuerryForLow = idb.fetchSingle("Select projektnamn from projekt where pid = " + pidList.get(i) + " and prioritet = 'hög';");
-                    String sqlQuerryForDLow = idb.fetchSingle("Select beskrivning from projekt where pid = " + pidList.get(i) + " and prioritet = 'hög';");
+                    String sqlQuerryForLow = idb.fetchSingle("Select projektnamn from projekt where pid = " + pidList.get(i) + " and status = 'Pågågende';");
+                    String sqlQuerryForDLow = idb.fetchSingle("Select beskrivning from projekt where pid = " + pidList.get(i) + " and status = 'Pågående';");
                     if (sqlQuerryForLow != null) {
                         namnLista.add(sqlQuerryForLow);
                     }
@@ -670,8 +709,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         beskrivningsLista.add(sqlQuerryForDLow);
                     }
                 } else if (prio == 2) {
-                    String sqlQuerryForLow = idb.fetchSingle("Select projektnamn from projekt where pid = " + pidList.get(i) + " and prioritet = 'medel';");
-                    String sqlQuerryForDLow = idb.fetchSingle("Select beskrivning from projekt where pid = " + pidList.get(i) + " and prioritet = 'medel';");
+                    String sqlQuerryForLow = idb.fetchSingle("Select projektnamn from projekt where pid = " + pidList.get(i) + " and status = 'Planerat';");
+                    String sqlQuerryForDLow = idb.fetchSingle("Select beskrivning from projekt where pid = " + pidList.get(i) + " and status = 'Planerat';");
                     if (sqlQuerryForLow != null) {
                         namnLista.add(sqlQuerryForLow);
                     }
@@ -679,8 +718,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         beskrivningsLista.add(sqlQuerryForDLow);
                     }
                 } else {
-                    String sqlQuerryForLow = idb.fetchSingle("Select projektnamn from projekt where pid = " + pidList.get(i) + " and prioritet = 'låg';");
-                    String sqlQuerryForDLow = idb.fetchSingle("Select beskrivning from projekt where pid = " + pidList.get(i) + " and prioritet = 'låg';");
+                    String sqlQuerryForLow = idb.fetchSingle("Select projektnamn from projekt where pid = " + pidList.get(i) + " and status = 'Avslutat';");
+                    String sqlQuerryForDLow = idb.fetchSingle("Select beskrivning from projekt where pid = " + pidList.get(i) + " and status = 'Avslutat';");
                     if (sqlQuerryForLow != null) {
                         namnLista.add(sqlQuerryForLow);
                     }
@@ -728,14 +767,14 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and beskrivning is not null;"));
 
             } else if (prio == 3) {
-                userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'hög' and projektnamn is not null;"));
-                userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'hög' and beskrivning is not null;"));
+                userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid = " + userProjectList.get(i) + " and status = 'Pågående' and projektnamn is not null;"));
+                userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and status = 'Pågående' and beskrivning is not null;"));
             } else if (prio == 2) {
-                userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'medel' and projektnamn is not null;"));
-                userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'medel' and beskrivning is not null;"));
+                userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid = " + userProjectList.get(i) + " and status = 'Planerat' and projektnamn is not null;"));
+                userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and status = 'Planerat' and beskrivning is not null;"));
             } else {
-                userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'låg' and projektnamn is not null;"));
-                userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and prioritet = 'låg' and beskrivning is not null;"));
+                userNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where pid = " + userProjectList.get(i) + " and status = 'Avslutat' and projektnamn is not null;"));
+                userBeskrivningsLista.add(idb.fetchSingle("Select beskrivning from projekt where pid = " + userProjectList.get(i) + " and status = 'Avslutat' and beskrivning is not null;"));
 
             }
         }
@@ -867,6 +906,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JTextPane budgetField;
     private javax.swing.JLabel dateFormatWrongError;
     private javax.swing.JTextField endDateProjekt;
+    private javax.swing.JLabel felmeddelandeL;
     private javax.swing.JLabel filterProjectsDateError;
     private javax.swing.JButton hallbarhetsmalSok;
     private javax.swing.JTextField hallbarhetsmalSokruta;

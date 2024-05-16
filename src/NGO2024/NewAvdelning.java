@@ -65,6 +65,9 @@ public class NewAvdelning extends javax.swing.JFrame {
         cityField = new javax.swing.JTextField();
         adressField = new javax.swing.JTextField();
         descriptionField = new javax.swing.JTextField();
+        countryField = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         HODfield = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,6 +123,17 @@ public class NewAvdelning extends javax.swing.JFrame {
             }
         });
 
+        countryField.setText("Country");
+        countryField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countryFieldActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Add Country and City");
+
+        jLabel2.setText("Country does not exist.");
+
         HODfield.setText("Head of department");
         HODfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,19 +149,22 @@ public class NewAvdelning extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                                     .addComponent(contactEmailField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                                     .addComponent(contactPhoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                                     .addComponent(cityField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                                    .addComponent(HODfield))
+                                    .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HODfield, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                                    .addComponent(countryField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1)
+                                    .addComponent(jLabel2))))
                         .addGap(140, 140, 140))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,11 +188,17 @@ public class NewAvdelning extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(HODfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
                     .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(createButton)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addGap(7, 7, 7)
+                .addComponent(HODfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createButton)
+                    .addComponent(jButton1))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,20 +218,27 @@ public class NewAvdelning extends javax.swing.JFrame {
     }//GEN-LAST:event_contactEmailFieldMouseClicked
 
     private void contactPhoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactPhoneFieldMouseClicked
-        if (HODfield.getText().equals("Head of department")) {
-            HODfield.setText("");
+        if (countryField.getText().equals("Head of department")) {
+            countryField.setText("");
         }
     }//GEN-LAST:event_contactPhoneFieldMouseClicked
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        
         String newName = nameField.getText();
         String newEmail = contactEmailField.getText();
         String newPhonenumber = contactPhoneField.getText();
         String newAdress = adressField.getText();
-        String newHOD = HODfield.getText();
+        String newHOD = countryField.getText();
         String newCity = cityField.getText();
         String newDescription = descriptionField.getText();
-        
+        String newCountry = countryField.getText();
+       ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
+        for(int i = 0 ; i < countryList.size(); i++){
+        if(newCountry.equals){
+         
+        }
+        }
         String newAvdid = null;
         try {
             newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
@@ -257,6 +287,10 @@ public class NewAvdelning extends javax.swing.JFrame {
     private void descriptionFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_descriptionFieldActionPerformed
+
+    private void countryFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_countryFieldActionPerformed
 
     private void HODfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HODfieldActionPerformed
         // TODO add your handling code here:
@@ -336,9 +370,12 @@ public class NewAvdelning extends javax.swing.JFrame {
     private javax.swing.JTextField cityField;
     private javax.swing.JTextField contactEmailField;
     private javax.swing.JTextField contactPhoneField;
+    private javax.swing.JTextField countryField;
     private javax.swing.JButton createButton;
     private javax.swing.JTextField descriptionField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField nameField;
     // End of variables declaration//GEN-END:variables
 }

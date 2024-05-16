@@ -27,21 +27,25 @@
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="nameField" pref="194" max="32767" attributes="0"/>
                                   <Component id="contactEmailField" alignment="0" pref="194" max="32767" attributes="0"/>
                                   <Component id="contactPhoneField" alignment="0" pref="194" max="32767" attributes="0"/>
                                   <Component id="cityField" alignment="0" pref="194" max="32767" attributes="0"/>
-                                  <Component id="HODfield" max="32767" attributes="0"/>
+                                  <Component id="createButton" min="-2" pref="79" max="-2" attributes="0"/>
+                                  <Component id="HODfield" alignment="0" pref="194" max="32767" attributes="0"/>
+                                  <Component id="countryField" alignment="0" pref="194" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="descriptionField" min="-2" pref="188" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="descriptionField" min="-2" pref="188" max="-2" attributes="0"/>
+                                  <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="createButton" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                   </Group>
@@ -71,13 +75,21 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cityField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="HODfield" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="countryField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Component id="descriptionField" min="-2" pref="141" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="createButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="253" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Component id="HODfield" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="createButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="208" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -143,6 +155,24 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descriptionFieldActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="countryField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Country"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countryFieldActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add Country and City"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Country does not exist."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="HODfield">
       <Properties>
