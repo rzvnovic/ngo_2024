@@ -30,6 +30,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         initComponents();
         budgetField.setVisible(false);
+        filterProjectsDateError.setVisible(false);
+        dateFormatWrongError.setVisible(false);
     }
 
     /**
@@ -68,6 +70,11 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         budgetField = new javax.swing.JTextPane();
         jLabel4 = new javax.swing.JLabel();
+        startDateProjekt = new javax.swing.JTextField();
+        endDateProjekt = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        filterProjectsDateError = new javax.swing.JLabel();
+        dateFormatWrongError = new javax.swing.JLabel();
         samarbetspartnerTab2 = new javax.swing.JPanel();
         jLblSökHandläggare5 = new javax.swing.JLabel();
         samarbetspartnerSokruta = new javax.swing.JTextField();
@@ -113,7 +120,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(visaKnapp)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
 
         HandläggarMeny.addTab("Profil", profilTab);
@@ -175,7 +182,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(avdelningSok)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -235,36 +242,71 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         jLabel4.setText("Moneys");
 
+        startDateProjekt.setText("Start date");
+
+        endDateProjekt.setText("End date");
+
+        jButton1.setText("Filter by date");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        filterProjectsDateError.setForeground(new java.awt.Color(255, 0, 0));
+        filterProjectsDateError.setText("Inga projekt inom angivna datum!");
+
+        dateFormatWrongError.setForeground(new java.awt.Color(255, 0, 0));
+        dateFormatWrongError.setText("Vänligen skriv datum i formatet yyyy-mm-dd");
+
         javax.swing.GroupLayout projektTabLayout = new javax.swing.GroupLayout(projektTab);
         projektTab.setLayout(projektTabLayout);
         projektTabLayout.setHorizontalGroup(
             projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(projektTabLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(showUserProjectsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(showDeptProjectButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(projektTabLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(totalBudgetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, projektTabLayout.createSequentialGroup()
+                .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, projektTabLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, projektTabLayout.createSequentialGroup()
                         .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(projektSokruta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(projektSok, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblSökHandläggare4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, projektTabLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, projektTabLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(dateFormatWrongError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, projektTabLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(filterProjectsDateError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(projektTabLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator1)
+                                    .addComponent(showUserProjectsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(showDeptProjectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, projektTabLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(totalBudgetButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(projektTabLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(projektTabLayout.createSequentialGroup()
+                                        .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(projektSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(projektSok)
+                                            .addComponent(jLblSökHandläggare4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(projektTabLayout.createSequentialGroup()
+                                                .addComponent(startDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(endDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(projektTabLayout.createSequentialGroup()
                         .addComponent(minaProjectField)
-                        .addGap(0, 450, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addGap(0, 401, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
                 .addContainerGap())
         );
         projektTabLayout.setVerticalGroup(
@@ -294,7 +336,17 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane4))
-                        .addGap(0, 58, Short.MAX_VALUE))
+                        .addGap(40, 40, 40)
+                        .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(startDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(endDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(4, 4, 4)
+                        .addComponent(filterProjectsDateError)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateFormatWrongError)
+                        .addGap(0, 30, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -333,7 +385,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 .addComponent(samarbetspartnerSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(samarbetspartnerSok)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addContainerGap(353, Short.MAX_VALUE))
         );
 
         HandläggarMeny.addTab("Samarbetspartner", samarbetspartnerTab2);
@@ -398,7 +450,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(hallbarhetsmalSok)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -501,6 +553,50 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private void totalBudgetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalBudgetButtonActionPerformed
         budgetField.setVisible(true);
     }//GEN-LAST:event_totalBudgetButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        try {
+            String startDatumet = startDateProjekt.getText();
+            String slutDatumet = endDateProjekt.getText();
+            
+            if (!Validering.checkDateFormat(startDatumet) || !Validering.checkDateFormat(slutDatumet)){
+                dateFormatWrongError.setVisible(true);  
+}
+                String resultatet = fetchProjectDates(startDatumet, slutDatumet);
+                if (resultatet != null) {
+                    projectListField.setText(resultatet);
+                } else {
+                    filterProjectsDateError.setVisible(true);
+                }
+
+            
+
+        } catch (InfException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private String fetchProjectDates(String startDate, String endDate) throws InfException {
+        {
+            ArrayList<String> projektNamn = idb.fetchColumn("Select projektnamn from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and (status = 'Pågående' or status = 'Planerat')");
+            ArrayList<String> projektBeskrivning = idb.fetchColumn("Select beskrivning from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and (status = 'Pågående' or status = 'Planerat')");
+
+            if (projektNamn.isEmpty() || projektBeskrivning.isEmpty()) {
+                return null; 
+            }
+            String message = "";
+            String projectName = null;
+            String projectInfo = null;
+
+            for (int i = 0; i < projektNamn.size(); i++) {
+                projectName = projektNamn.get(i);
+                projectInfo = projektBeskrivning.get(i);
+                message = message + "\n" + projectName + "\n" + projectInfo + "\n";
+            }
+            return message.trim();
+        }
+    }
 
     private int priorityPicker(int priority) {
         if (priority == 0) {
@@ -606,10 +702,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             contentBesk = beskrivningsLista.get(i);
             message = message + "\n" + contentName + "\n" + contentBesk + "\n";
         }
-        if(!message.contains("null")){
-        return message.trim();
-        }
-        else{
+        if (!message.contains("null")) {
+            return message.trim();
+        } else {
             return "No current projects.";
         }
     }
@@ -652,10 +747,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             contentBesk = userBeskrivningsLista.get(i);
             message = message + "\n" + contentName + "\n" + contentBesk + "\n";
         }
-        if(!message.contains("null")){
-        return message.trim();
-        }
-        else{
+        if (!message.contains("null")) {
+            return message.trim();
+        } else {
             return "No current projects.";
         }
     }
@@ -683,20 +777,21 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         }
         return message.trim();
     }
-  
-    
+
     /**
-     * Metod som räknar ut användrens totala budget över alla rader där AID förkommer.
+     * Metod som räknar ut användrens totala budget över alla rader där AID
+     * förkommer.
+     *
      * @return String totalabudget
-     * @throws InfException 
+     * @throws InfException
      */
-    public String totalBudget() throws InfException{
+    public String totalBudget() throws InfException {
         ArrayList<String> userProjectList = idb.fetchColumn("Select pid from ans_proj where aid = " + userAid + ";");
         double totalBudget = 0;
-        for(int i = 0; i < userProjectList.size(); i++){
-            totalBudget += Double.parseDouble(idb.fetchSingle("Select kostnad from projekt where pid = "+ userProjectList.get(i) +" and kostnad is not null;"));
+        for (int i = 0; i < userProjectList.size(); i++) {
+            totalBudget += Double.parseDouble(idb.fetchSingle("Select kostnad from projekt where pid = " + userProjectList.get(i) + " and kostnad is not null;"));
         }
-        return ""+totalBudget;
+        return "" + totalBudget;
     }
 
     /**
@@ -770,9 +865,13 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JTextField avdelningSokruta;
     private javax.swing.JPanel avdelningTab;
     private javax.swing.JTextPane budgetField;
+    private javax.swing.JLabel dateFormatWrongError;
+    private javax.swing.JTextField endDateProjekt;
+    private javax.swing.JLabel filterProjectsDateError;
     private javax.swing.JButton hallbarhetsmalSok;
     private javax.swing.JTextField hallbarhetsmalSokruta;
     private javax.swing.JPanel hållbarhetsmalTab;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -805,6 +904,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JPanel samarbetspartnerTab2;
     private javax.swing.JButton showDeptProjectButton;
     private javax.swing.JButton showUserProjectsButton;
+    private javax.swing.JTextField startDateProjekt;
     private javax.swing.JButton totalBudgetButton;
     private javax.swing.JButton visaKnapp;
     // End of variables declaration//GEN-END:variables

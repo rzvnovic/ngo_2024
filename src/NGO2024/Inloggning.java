@@ -199,7 +199,7 @@ public class Inloggning extends javax.swing.JFrame {
     private Boolean checkProjektLedare (String ePost)
     {
         Boolean projektLedareHittad = false; 
-        int projektLedarNummer = 0; 
+        
         
         try { 
             String sqlFrågaProjekt = "select projektchef from projekt where projektchef in (select aid from anstalld where epost = '" + ePost + "')";
@@ -207,7 +207,7 @@ public class Inloggning extends javax.swing.JFrame {
             
         if (anställningsIDString != null)
         {
-            
+           
            userAid = anställningsIDString;
             projektLedareHittad = true;
             
@@ -220,6 +220,7 @@ public class Inloggning extends javax.swing.JFrame {
             
         }
         return projektLedareHittad; 
+        
         
     }
     

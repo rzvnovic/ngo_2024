@@ -141,7 +141,7 @@ public class NewPersonel extends javax.swing.JFrame {
         lblWrongFormatError.setText("Felaktigt format på datum, vänligen uppdatera uppgiften i uppdateringsfunktionen.");
 
         jLblAvdelningError.setForeground(new java.awt.Color(255, 0, 0));
-        jLblAvdelningError.setText("Angivet avdelningsnummer existerar inte. ");
+        jLblAvdelningError.setText("Angivet avdelningsnummer existerar inte. Vänligen försök igen. ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

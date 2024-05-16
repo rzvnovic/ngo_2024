@@ -214,7 +214,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Angivet avdelningsnummer existerar inte. "/>
+        <Property name="text" type="java.lang.String" value="Angivet avdelningsnummer existerar inte. V&#xe4;nligen f&#xf6;rs&#xf6;k igen. "/>
       </Properties>
     </Component>
   </SubComponents>
