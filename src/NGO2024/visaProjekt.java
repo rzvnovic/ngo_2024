@@ -96,8 +96,9 @@ public class visaProjekt extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         chefDisplay = new javax.swing.JTextPane();
         deleteButton = new javax.swing.JButton();
-        statusField = new javax.swing.JTextField();
         priorityBox = new javax.swing.JComboBox<>();
+        statusButton = new javax.swing.JComboBox<>();
+        changePButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -205,18 +206,26 @@ public class visaProjekt extends javax.swing.JFrame {
             }
         });
 
-        statusField.setText("Status");
-        statusField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                statusFieldMouseClicked(evt);
-            }
-        });
-
         priorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High", "Medium", "Low" }));
         priorityBox.setToolTipText("Priority\n");
         priorityBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 priorityBoxActionPerformed(evt);
+            }
+        });
+
+        statusButton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Finished", "Ongoing", "Planned" }));
+        statusButton.setToolTipText("Priority\n");
+        statusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusButtonActionPerformed(evt);
+            }
+        });
+
+        changePButton.setText("Change Partner");
+        changePButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePButtonActionPerformed(evt);
             }
         });
 
@@ -227,35 +236,38 @@ public class visaProjekt extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(projNameField)
-                            .addComponent(desField)
-                            .addComponent(startDateField)
-                            .addComponent(endDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
-                        .addComponent(statusField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(commitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(costField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(costField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(projNameField)
+                                    .addComponent(desField)
+                                    .addComponent(startDateField)
+                                    .addComponent(endDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                                .addComponent(commitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(changePButton, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addGap(233, 233, 233)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2)
+                                .addComponent(jScrollPane3)
+                                .addComponent(jScrollPane4)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(69, 69, 69)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(182, 182, 182)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2)
-                        .addComponent(jScrollPane3)
-                        .addComponent(jScrollPane4)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(69, 69, 69)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(18, 67, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,12 +304,14 @@ public class visaProjekt extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(deleteButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(statusField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(statusButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(commitButton)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(changePButton)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -337,9 +351,10 @@ public class visaProjekt extends javax.swing.JFrame {
         String newStartDate = startDateField.getText();
         String newEndDate = endDateField.getText();
         String newCost = costField.getText();
-        String newStatus = statusField.getText();
+        int status = statusButton.getSelectedIndex();
         int priority = priorityBox.getSelectedIndex();
         String newPriority = null;
+        String newStatus = null;
         //OBS
         String newPid = null;
         try {
@@ -361,9 +376,9 @@ public class visaProjekt extends javax.swing.JFrame {
             if (Validering.fieldValidation(newStartDate, "Cost")) {
                 updateDatabase("kostnad", newStartDate, newPid);
             }
-            if (Validering.fieldValidation(newStatus, "Status")) {
-                updateDatabase("status", newStatus, newPid);
-            }
+            
+            newStatus = statusPicker(status);
+            updateDatabase("status", newStatus, newPid);
 
              newPriority = priorityPicker(priority);
             updateDatabase("prioritet", newPriority, newPid);
@@ -409,7 +424,15 @@ public class visaProjekt extends javax.swing.JFrame {
         }
     }
 
-    /**
+   private String statusPicker(int status) {
+        if (status == 3) {
+            return "plannerad";
+        } else if (status == 2) {
+            return "pågående";
+        } else {
+            return "avslutad";
+        }
+    } /**
      * metod tar bort text från fältet om det klickas
      *
      * @param evt
@@ -438,7 +461,7 @@ public class visaProjekt extends javax.swing.JFrame {
      */
     private void startDateFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startDateFieldMouseClicked
         // TODO add your handling code here:
-        if (startDateField.getText().equals("Adress")) {
+        if (startDateField.getText().equals("Start Date")) {
             startDateField.setText("");
         }
     }//GEN-LAST:event_startDateFieldMouseClicked
@@ -449,7 +472,7 @@ public class visaProjekt extends javax.swing.JFrame {
      */
     private void endDateFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_endDateFieldMouseClicked
         // TODO add your handling code here:
-        if (endDateField.getText().equals("Phonenumber")) {
+        if (endDateField.getText().equals("End Date")) {
             endDateField.setText("");
         }
     }//GEN-LAST:event_endDateFieldMouseClicked
@@ -460,7 +483,7 @@ public class visaProjekt extends javax.swing.JFrame {
      */
     private void costFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_costFieldMouseClicked
         // TODO add your handling code here:
-        if (costField.getText().equals("Email")) {
+        if (costField.getText().equals("Cost")) {
             costField.setText("");
         }
     }//GEN-LAST:event_costFieldMouseClicked
@@ -481,14 +504,6 @@ public class visaProjekt extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void statusFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statusFieldMouseClicked
-
-        // TODO add your handling code here:
-        if (costField.getText().equals("City")) {
-            costField.setText("");
-        }
-    }//GEN-LAST:event_statusFieldMouseClicked
-
     private void costFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_costFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_costFieldActionPerformed
@@ -504,6 +519,14 @@ public class visaProjekt extends javax.swing.JFrame {
     private void priorityBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priorityBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priorityBoxActionPerformed
+
+    private void statusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusButtonActionPerformed
+
+    private void changePButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changePButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -564,6 +587,7 @@ public class visaProjekt extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane adressDisplay;
     private javax.swing.JTextPane avdelningDisplay;
+    private javax.swing.JButton changePButton;
     private javax.swing.JTextPane chefDisplay;
     private javax.swing.JTextPane cityDisplay;
     private javax.swing.JButton commitButton;
@@ -590,6 +614,6 @@ public class visaProjekt extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> priorityBox;
     private javax.swing.JTextField projNameField;
     private javax.swing.JTextField startDateField;
-    private javax.swing.JTextField statusField;
+    private javax.swing.JComboBox<String> statusButton;
     // End of variables declaration//GEN-END:variables
 }
