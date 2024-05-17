@@ -4,7 +4,6 @@
  */
 package NGO2024;
 
-import NGO2024.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
@@ -268,7 +267,7 @@ public class NewAvdelning extends javax.swing.JFrame {
                             insertValue("adress", newAdress, newAvdid);
                         }
                         if (Validering.fieldValidation(newCity, "City")) {
-                            insertValue("stad", newCity, newAvdid);
+                            insertValue("stad", idb.fetchSingle("select sid from stad where namn = "+ newCity+";"), newAvdid);
                         }
                         if (Validering.fieldValidation(newDescription, "Description")) {
                             

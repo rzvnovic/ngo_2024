@@ -263,6 +263,7 @@ public class NewProject extends javax.swing.JFrame {
                 insertValue("startdatum", newStartDate, newPid);
             }
             
+            
             //använd valideringsklass, validera datum TODO
             if (Validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
                 insertValue("slutdatum", newEndDate, newPid);
@@ -280,6 +281,7 @@ public class NewProject extends javax.swing.JFrame {
                 felmeddelandeProject.setText("Kunde int hitta!");
                 felmeddelandeProject.setVisible(true);
             }
+            insertValue("land",idb.fetchSingle("select lid from land where namn = "+ newCountry + ";"),newPid);
             //else felmeddelande.
             String newPriority = priorityPicker(priority);
             insertValue("prioritet", newPriority, newPid);
