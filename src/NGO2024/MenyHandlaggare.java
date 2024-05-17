@@ -597,7 +597,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             String startDatumet = startDateProjekt.getText();
             String slutDatumet = endDateProjekt.getText();
 
-            if (!Validering.checkDateFormat(startDatumet) || !Validering.checkDateFormat(slutDatumet)) {
+            if (!validering.checkDateFormat(startDatumet) || !validering.checkDateFormat(slutDatumet)) {
                 dateFormatWrongError.setVisible(true);
             }
             String resultatet = fetchProjectDates(startDatumet, slutDatumet);

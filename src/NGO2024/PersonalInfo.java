@@ -4,8 +4,7 @@
  */
 package NGO2024;
 
-import NGO2024.NewAvdelning;
-import NGO2024.Validering;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
@@ -257,7 +256,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         startDateField.setText("Start Date");
 
         startDateDisplay.setEditable(false);
-        startDateDisplay.setText(setDisplayText1("epost", aid));
+        startDateDisplay.setText(setDisplayText1("anstallningsdatum", aid));
         jScrollPane8.setViewportView(startDateDisplay);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -336,9 +335,7 @@ public class PersonalInfo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(commitButton))
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,19 +345,19 @@ public class PersonalInfo extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(adminOkButton)
-                                    .addComponent(generateNewPassword)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteButton))))
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(makeAdminBox)))
+                        .addComponent(makeAdminBox))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(commitButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(adminOkButton)
+                            .addComponent(generateNewPassword))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(newPasswordDisplay)
                 .addContainerGap(52, Short.MAX_VALUE))
@@ -409,12 +406,28 @@ public class PersonalInfo extends javax.swing.JFrame {
             emailDisplay.setText(newEmail);
             startDateDisplay.setText(newStartDate);
             
-            updateDatabase("fornamn", newName, aid);
-            updateDatabase("efternamn", newSurname, aid);
-            updateDatabase("adress", newAdress, aid);
-            updateDatabase("telefon", newPhonenumber, aid);
-            updateDatabase("epost", newEmail, aid);
-            updateDatabase("startdatum",newStartDate, aid);
+            
+            if (Validering.fieldValidation(newName, "Department Name")) {
+                updateDatabase("namn", newName, aid);
+            }
+            if (Validering.fieldValidation(newSurname, "Description ")) {
+                updateDatabase("beskrivning", newSurname, aid);
+            }
+            if (Validering.fieldValidation(newEmail, "Email") && Validering.giltigEpost(newEmail)) {
+                updateDatabase("epost", newEmail, aid);
+            }
+            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+                updateDatabase("telefon", newPhonenumber, aid);
+            }
+            if (Validering.fieldValidation(newAdress, "Adress")) {
+                updateDatabase("adress", newAdress, aid);
+            }
+            if (Validering.fieldValidation(newAdress, "Start Date")) {
+                updateDatabase("anstallningsdatum", newStartDate, aid);
+            }
+
+          
+
     }//GEN-LAST:event_adminOkButtonActionPerformed
     /**
      * knappen gör en del saker kan vara värt att splitta i flera metoder.
@@ -428,33 +441,28 @@ public class PersonalInfo extends javax.swing.JFrame {
         String newAdress = adressField.getText();
         String newPhonenumber = phoneField.getText();
         String newEmail = emailField.getText(); //OBS
+        String newStartDate = startDateField.getText();
 
-         String newAid = null;
-        try {
-            newAid = idb.getAutoIncrement("anstalld", "aid");
-            String sqlQuerry = ("INSERT INTO ngo_2024.anstalld (aid) VALUES (" + newAid + ");");
-            idb.insert(sqlQuerry);
-            if (Validering.fieldValidation(newName, "Department Name")) {
-                updateDatabase("namn", newName, newAid);
-            }
-            if (Validering.fieldValidation(newSurname, "Description ")) {
-                updateDatabase("beskrivning", newSurname, newAid);
-            }
-            if (Validering.fieldValidation(newEmail, "Email") && Validering.giltigEpost(newEmail)) {
-                updateDatabase("epost", newEmail, newAid);
-            }
-            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
-                updateDatabase("telefon", newPhonenumber, newAid);
-            }
-            if (Validering.fieldValidation(newAdress, "Adress")) {
-                updateDatabase("adress", newAdress, newAid);
-            }
-           
-
-            //cityValidation(newCity, newAvdid);
-        } catch (InfException ex) {
-            Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+        if (Validering.fieldValidation(newName, "Department Name")) {
+            updateDatabase("namn", newName, aid);
         }
+        if (Validering.fieldValidation(newSurname, "Description ")) {
+            updateDatabase("beskrivning", newSurname, aid);
+        }
+        if (Validering.fieldValidation(newEmail, "Email") && Validering.giltigEpost(newEmail)) {
+            updateDatabase("epost", newEmail, aid);
+        }
+        if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+            updateDatabase("telefon", newPhonenumber, aid);
+        }
+        if (Validering.fieldValidation(newAdress, "Adress")) {
+            updateDatabase("adress", newAdress, aid);
+        }
+        if (Validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)){
+            updateDatabase("anstallningsdatum", newStartDate, aid);
+        }
+        
+        //cityValidation(newCity, newAvdid);
 
             nameDisplay.setText(newName);
             surnameDisplay.setText(newSurname);

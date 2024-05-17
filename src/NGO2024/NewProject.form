@@ -25,21 +25,28 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="createButton" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="budgetField" alignment="0" max="32767" attributes="0"/>
-                  <Component id="priorityBox" alignment="0" pref="324" max="32767" attributes="0"/>
-                  <Component id="countryField" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="startDateField" min="-2" pref="158" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="startDateField" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="endDateFeild" max="32767" attributes="0"/>
+                      <Component id="endDateFeild" min="-2" pref="115" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="pNameField" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="budgetField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="priorityBox" alignment="0" pref="324" max="32767" attributes="0"/>
+                          <Component id="countryField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="pNameField" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="createButton" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="projectLField" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="felmeddelandeProject" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="187" max="32767" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,9 +70,14 @@
               <Component id="priorityBox" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="countryField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="projectLField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="felmeddelandeProject" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="createButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,20 +120,6 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="countryFieldMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="startDateField">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="YYYY-MM-dd" subtype="-1" type="1"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="endDateFeild">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="YYYY-MM-dd" subtype="-1" type="2"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JComboBox" name="priorityBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -156,5 +154,28 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JTextField" name="projectLField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Assign Project Leader"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="felmeddelandeProject">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Handl&#xe4;ggare finns ej!"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="startDateField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Start Date"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="endDateFeild">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="End Date"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endDateFeildActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

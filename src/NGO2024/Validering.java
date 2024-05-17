@@ -107,7 +107,7 @@ public class Validering {
      * @param datum
      * @return true vid korrekt format, false vid inkorrekt format
      */
-    public static Boolean checkDateFormat (String datum) {
+    public  Boolean checkDateFormat (String datum) {
        Boolean checkDateFormat = false; 
         String korrektFormat = "\\d{4}-\\d{2}-\\d{2}";
         

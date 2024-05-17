@@ -29,7 +29,7 @@ public class NewProject extends javax.swing.JFrame {
     private InfDB idb;
     private static int userAid;
     private static Validering validering;
-
+    
     /**
      * Creates new form newPersonel
      *
@@ -48,7 +48,7 @@ public class NewProject extends javax.swing.JFrame {
         }
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+        felmeddelandeProject.setVisible(false);
     }
     
    /* public String setUserName() throws InfException{
@@ -71,11 +71,13 @@ public class NewProject extends javax.swing.JFrame {
         createButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         countryField = new javax.swing.JTextField();
-        startDateField = new javax.swing.JFormattedTextField();
-        endDateFeild = new javax.swing.JFormattedTextField();
         priorityBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         pDescriptionField = new javax.swing.JTextArea();
+        projectLField = new javax.swing.JTextField();
+        felmeddelandeProject = new javax.swing.JLabel();
+        startDateField = new javax.swing.JTextField();
+        endDateFeild = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,10 +111,6 @@ public class NewProject extends javax.swing.JFrame {
             }
         });
 
-        startDateField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-dd"))));
-
-        endDateFeild.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-dd"))));
-
         priorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High", "Medium", "Low" }));
         priorityBox.setToolTipText("Priority\n");
         priorityBox.addActionListener(new java.awt.event.ActionListener() {
@@ -126,25 +124,43 @@ public class NewProject extends javax.swing.JFrame {
         pDescriptionField.setText("Descripton");
         jScrollPane1.setViewportView(pDescriptionField);
 
+        projectLField.setText("Assign Project Leader");
+
+        felmeddelandeProject.setText("Handläggare finns ej!");
+
+        startDateField.setText("Start Date");
+
+        endDateFeild.setText("End Date");
+        endDateFeild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endDateFeildActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(budgetField)
-                    .addComponent(priorityBox, 0, 324, Short.MAX_VALUE)
-                    .addComponent(countryField)
-                    .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(endDateFeild))
-                    .addComponent(pNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(187, Short.MAX_VALUE))
+                        .addComponent(endDateFeild, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(budgetField)
+                            .addComponent(priorityBox, 0, 324, Short.MAX_VALUE)
+                            .addComponent(countryField)
+                            .addComponent(jScrollPane1)
+                            .addComponent(pNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(projectLField))
+                        .addGap(18, 18, 18)
+                        .addComponent(felmeddelandeProject)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +181,13 @@ public class NewProject extends javax.swing.JFrame {
                 .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(projectLField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(felmeddelandeProject))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(createButton)
-                .addGap(48, 48, 48))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -194,10 +214,22 @@ public class NewProject extends javax.swing.JFrame {
         String newBudget = budgetField.getText();
         int priority = priorityBox.getSelectedIndex();
         String newCountry = countryField.getText();
-
+        String newProjectL = projectLField.getText();
+        
+        String fornamn = null;
+        String efternamn = null;
+        
+        
+         try{
+        int index = newProjectL.indexOf(" ");
+        fornamn = newProjectL.substring(0, index);
+        efternamn = newProjectL.substring(index + 1);
+        System.out.print(fornamn + efternamn);
+         
         String newPid;
         
-        try {
+       
+       
             newPid = idb.getAutoIncrement("projekt", "pid");
             String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
             idb.insert(sqlQuerry);
@@ -210,17 +242,28 @@ public class NewProject extends javax.swing.JFrame {
                 insertValue("beskrivning", newDescription, newPid);
             }
             //använd valideringsklass, validera datum TODO
-            if (Validering.fieldValidation(newStartDate, "Email")) {
+            if (Validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
                 insertValue("startdatum", newStartDate, newPid);
             }
+            
             //använd valideringsklass, validera datum TODO
-            if (Validering.fieldValidation(newEndDate, "Phonenumber")) {
+            if (Validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
                 insertValue("slutdatum", newEndDate, newPid);
             }
             //använd valideringsklass
             if (Validering.fieldValidation(newBudget, "Budget")) {
                 insertValue("kostnad", newBudget, newPid);
             }
+            if (Validering.fieldValidation(newProjectL, "Assign project leader") && !validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn +"' and efternamn = '" + efternamn +"';"))) {
+                insertValue("projektchef", idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn +"' and efternamn = '" + efternamn +"';"), newPid);
+            }else if(validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn +"' and efternamn = '" + efternamn +"';"))){
+                felmeddelandeProject.setText("Användaren är en Admin välj en handläggare!");
+                felmeddelandeProject.setVisible(true);
+            }else{
+                felmeddelandeProject.setText("Kunde int hitta!");
+                felmeddelandeProject.setVisible(true);
+            }
+            //else felmeddelande.
             String newPriority = priorityPicker(priority);
             insertValue("prioritet", newPriority, newPid);
             
@@ -231,6 +274,9 @@ public class NewProject extends javax.swing.JFrame {
 
         } catch (InfException ex) {
             Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
+            
+            felmeddelandeProject.setVisible(true);
+            felmeddelandeProject.setText("Kontrollera Stavning");
         }
     }//GEN-LAST:event_createButtonActionPerformed
 
@@ -244,15 +290,19 @@ public class NewProject extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_priorityBoxActionPerformed
 
+    private void endDateFeildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endDateFeildActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_endDateFeildActionPerformed
+
     private String priorityPicker(int priority){
         if(priority == 3){
-            return "hög";
+            return "låg";
         }
         else if(priority == 2){
             return "medel";
         }
         else{
-            return "låg";
+            return "hög";
         }
     }
     
@@ -333,12 +383,14 @@ public class NewProject extends javax.swing.JFrame {
     private javax.swing.JTextField budgetField;
     private javax.swing.JTextField countryField;
     private javax.swing.JButton createButton;
-    private javax.swing.JFormattedTextField endDateFeild;
+    private javax.swing.JTextField endDateFeild;
+    private javax.swing.JLabel felmeddelandeProject;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea pDescriptionField;
     private javax.swing.JTextField pNameField;
     private javax.swing.JComboBox<String> priorityBox;
-    private javax.swing.JFormattedTextField startDateField;
+    private javax.swing.JTextField projectLField;
+    private javax.swing.JTextField startDateField;
     // End of variables declaration//GEN-END:variables
 }
