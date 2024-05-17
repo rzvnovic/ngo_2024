@@ -23,17 +23,17 @@ public class visaAvdelning extends javax.swing.JFrame {
     private InfDB idb;
 
     //tas emot från klassen anställd
-    private static int avdid;
-    private static int userAid;
+    private static String avdid;
+    private static String userAid;
     private static Validering validering;
 
     /**
      * Creates new form PersonalInfo
      */
-    public visaAvdelning(int avdid, int userAid) throws InfException {
+    public visaAvdelning(String avdid, String userAid) throws InfException {
 
-        this.userAid = 1; //såklart inte någon hårdkodning här
-        this.avdid = 3;     //---------------||-----------------
+        this.userAid = "1"; //såklart inte någon hårdkodning här
+        this.avdid = "3";     //---------------||-----------------
         validering = new Validering();
 
         try {
@@ -48,7 +48,7 @@ public class visaAvdelning extends javax.swing.JFrame {
     }
 
    
-    public String setDisplayText1(String select, int avdid) {
+    public String setDisplayText1(String select, String avdid) {
         String sqlQuerry;
         try {
             String sqlFraga = ("select " + select + " from avdelning where avdid =" + avdid + ";");
