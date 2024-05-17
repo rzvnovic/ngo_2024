@@ -102,7 +102,8 @@ public class Validering {
     
     /**
      * Kontrollerar om datumformatet är korrekt inskrivet
-     *
+     * TODO kolla så att datum är innom rimligt intervall.
+     * 
      * @param datum
      * @return true vid korrekt format, false vid inkorrekt format
      */
