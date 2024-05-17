@@ -27,7 +27,7 @@ import oru.inf.InfDB;
 public class NewProject extends javax.swing.JFrame {
 
     private InfDB idb;
-    private static int userAid;
+    private static String userAid;
     private static Validering validering;
     
     /**
@@ -35,7 +35,7 @@ public class NewProject extends javax.swing.JFrame {
      *
      * @throws oru.inf.InfException
      */
-    public NewProject( ) throws InfException {
+    public NewProject(String userAid ) throws InfException {
 
         this.userAid = userAid;
         validering = new Validering();
@@ -49,6 +49,7 @@ public class NewProject extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         felmeddelandeProject.setVisible(false);
+        countryButton.setVisible(false);
     }
     
    /* public String setUserName() throws InfException{
@@ -78,6 +79,7 @@ public class NewProject extends javax.swing.JFrame {
         felmeddelandeProject = new javax.swing.JLabel();
         startDateField = new javax.swing.JTextField();
         endDateFeild = new javax.swing.JTextField();
+        countryButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,6 +139,13 @@ public class NewProject extends javax.swing.JFrame {
             }
         });
 
+        countryButton.setText("Add Country");
+        countryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countryButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,7 +165,10 @@ public class NewProject extends javax.swing.JFrame {
                             .addComponent(countryField)
                             .addComponent(jScrollPane1)
                             .addComponent(pNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(countryButton))
                             .addComponent(projectLField))
                         .addGap(18, 18, 18)
                         .addComponent(felmeddelandeProject)))
@@ -186,7 +198,9 @@ public class NewProject extends javax.swing.JFrame {
                     .addComponent(projectLField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(felmeddelandeProject))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(createButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createButton)
+                    .addComponent(countryButton))
                 .addGap(19, 19, 19))
         );
 
@@ -228,7 +242,10 @@ public class NewProject extends javax.swing.JFrame {
          
         String newPid;
         
-       
+        ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
+            
+            for (int i = 0; i < countryList.size(); i++) {
+                if (newCountry.equals(countryList.get(i))) {
        
             newPid = idb.getAutoIncrement("projekt", "pid");
             String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
@@ -266,7 +283,10 @@ public class NewProject extends javax.swing.JFrame {
             //else felmeddelande.
             String newPriority = priorityPicker(priority);
             insertValue("prioritet", newPriority, newPid);
-            
+                }else{
+                    countryButton.setVisible(true);
+                }
+            }
             /* tänk
             if (fieldValidation(newCountry, "Contact field of operations")) {
                 insertValue("Branch", newCountry, newPid);
@@ -293,6 +313,15 @@ public class NewProject extends javax.swing.JFrame {
     private void endDateFeildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endDateFeildActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_endDateFeildActionPerformed
+
+    private void countryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryButtonActionPerformed
+        try {
+            new NewLand(userAid).setVisible(true);
+            // TODO add your handling code here:
+        } catch (InfException ex) {
+            Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_countryButtonActionPerformed
 
     private String priorityPicker(int priority){
         if(priority == 3){
@@ -370,7 +399,7 @@ public class NewProject extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new NewProject().setVisible(true);
+                    new NewProject(userAid).setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -381,6 +410,7 @@ public class NewProject extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField budgetField;
+    private javax.swing.JButton countryButton;
     private javax.swing.JTextField countryField;
     private javax.swing.JButton createButton;
     private javax.swing.JTextField endDateFeild;
