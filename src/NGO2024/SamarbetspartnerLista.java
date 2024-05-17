@@ -16,11 +16,17 @@ import oru.inf.InfException;
  */
 public class SamarbetspartnerLista extends javax.swing.JFrame {
     private InfDB idb;
+    private static String pid;
+    private static String userAid;
     
-    public SamarbetspartnerLista() throws InfException {
+    public SamarbetspartnerLista(String pid, String userAid) throws InfException {
+        
+        this.pid = "4";
+        this.userAid = userAid;
+        
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         initComponents();
-        
+        felmeddelande.setVisible(false);
     }
 
     /**
@@ -32,38 +38,154 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        partnerList = new javax.swing.JTextArea();
+        addButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        namnField = new javax.swing.JTextField();
+        deleteButton = new javax.swing.JButton();
+        createNewButton = new javax.swing.JButton();
+        felmeddelande = new javax.swing.JLabel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
+        partnerList.setColumns(20);
+        partnerList.setRows(5);
         try {
-            jTextArea1.setText(fetchUserProjects());
+            partnerList.setText(fetchUserProjects());
         }
         catch (InfException e) {}
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPane1.setViewportView(partnerList);
+
+        addButton.setText("Add Partner");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Partners");
+
+        namnField.setText("Name");
+
+        deleteButton.setText("Delete Partner");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        createNewButton.setText("Create New partner");
+        createNewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewButtonActionPerformed(evt);
+            }
+        });
+
+        felmeddelande.setText("A");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(createNewButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(namnField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(felmeddelande))
+                            .addComponent(deleteButton))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(namnField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(felmeddelande)
+                        .addGap(24, 24, 24)
+                        .addComponent(createNewButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        String namn = namnField.getText();
+        
+        try {
+            String sqlFraga = idb.fetchSingle("SELECT pid FROM partner WHERE namn = '" + namn +"';");
+            idb.insert("INSERT INTO ngo_2024.projekt_partner (pid, partner_pid) VALUES ( "+ pid + " , " + sqlFraga +" );" );
+                        partnerList.setText(fetchUserProjects());
+
+            System.out.println(sqlFraga);
+        } catch (InfException ex) {
+            Logger.getLogger(SamarbetspartnerLista.class.getName()).log(Level.SEVERE, null, ex);
+            felmeddelande.setVisible(true);
+            felmeddelande.setText("Partner finns redan på projekt");
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+        String namn = namnField.getText();
+        
+        try {
+            String sqlFraga = idb.fetchSingle("SELECT pid FROM partner WHERE namn = '" + namn +"';");
+            idb.delete("DELETE FROM ngo_2024.projekt_partner WHERE pid = '" + pid + "' AND partner_pid = '" + sqlFraga+ "';" );
+                        partnerList.setText(fetchUserProjects());
+
+            System.out.println(sqlFraga);
+            
+            
+        } catch (InfException ex) {
+            Logger.getLogger(SamarbetspartnerLista.class.getName()).log(Level.SEVERE, null, ex);
+            felmeddelande.setVisible(true);
+            felmeddelande.setText("Partner finns inte på projekt");
+        }
+        
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void createNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            new NewPartner().setVisible(true);
+        } catch (InfException ex) {
+            Logger.getLogger(SamarbetspartnerLista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_createNewButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -96,7 +218,7 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new SamarbetspartnerLista().setVisible(true);
+                    new SamarbetspartnerLista(pid, userAid).setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(SamarbetspartnerLista.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -125,7 +247,14 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton createNewButton;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel felmeddelande;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField namnField;
+    private javax.swing.JTextArea partnerList;
     // End of variables declaration//GEN-END:variables
 }
