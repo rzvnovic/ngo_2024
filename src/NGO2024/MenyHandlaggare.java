@@ -427,8 +427,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         try{
             hallbarhetsMalTextArea.setText(fetchHallbarhetsmal());
         }
-        catch(Exception e){
-        }
+        catch(Exception e){}
         scrlPanelHållbarhet.setViewportView(hallbarhetsMalTextArea);
 
         javax.swing.GroupLayout hållbarhetsmalTabLayout = new javax.swing.GroupLayout(hållbarhetsmalTab);
@@ -659,18 +658,15 @@ public class MenyHandlaggare extends javax.swing.JFrame {
      * @throws InfException
      */
     public String fetchHallbarhetsmal() throws InfException {
-        ArrayList<String> namnLista = idb.fetchColumn("Select namn from hallbarhetsmal and namn is not null;");
-        ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from hallbarhetsmal and namn is not null;");
+        ArrayList<String> namnLista = idb.fetchColumn("Select namn from hallbarhetsmal where namn is not null;");
+        ArrayList<String> beskrivningLista = idb.fetchColumn("Select beskrivning from hallbarhetsmal where namn is not null;");
 
-        String message = "";
-        String contentName = null;
-        String contentBesk = null;
+        
+        StringBuilder message = new StringBuilder(); 
         for (int i = 0; i < namnLista.size(); i++) {
-            contentName = namnLista.get(i);
-            contentBesk = beskrivningLista.get(i);
-            message = message + "\n" + contentName + "\n" + contentBesk + "\n";
+            message.append("\n").append(namnLista.get(i)).append("\n").append(beskrivningLista.get(i)).append("\n");
         }
-        return message.trim();
+        return message.toString().trim();
     }
 
     public String findDeptProject(int prio) throws InfException {
