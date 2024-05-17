@@ -669,7 +669,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="}&#xa;catch(Exception e){&#xa;}"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="}&#xa;catch(Exception e){}"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>

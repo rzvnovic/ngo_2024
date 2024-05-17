@@ -350,7 +350,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         });
     }
 
-    public String fetchProjects() throws InfException {
+   public String fetchProjects() throws InfException {
         ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt;");
         ArrayList<String> projektBeskrivningLista = idb.fetchColumn("Select beskrivning from projekt;");
         ArrayList<String> projektStartdatum = idb.fetchColumn("Select startdatum from projekt;");

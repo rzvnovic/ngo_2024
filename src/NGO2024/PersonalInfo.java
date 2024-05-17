@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.*;
+import javax.swing.JFrame;
 
 /**
  * Klass som öppnar fönster för personalinfo med vissa gömda åtkomster för
@@ -44,6 +45,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         initComponents();
         adminVissebillity();
         newPasswordDisplay.setVisible(false);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
 
