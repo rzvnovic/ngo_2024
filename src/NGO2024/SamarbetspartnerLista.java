@@ -17,9 +17,11 @@ import oru.inf.InfException;
 public class SamarbetspartnerLista extends javax.swing.JFrame {
     private InfDB idb;
     
+    
     public SamarbetspartnerLista() throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         initComponents();
+       
         
     }
 
