@@ -26,7 +26,7 @@ public class PersonalInfo extends javax.swing.JFrame {
     //tas emot från klassen anställd
     private static String aid;
     private static String userAid;
-    private static Validering validering;
+    private static validering validering;
 
     /**
      * Creates new form PersonalInfo
@@ -35,7 +35,7 @@ public class PersonalInfo extends javax.swing.JFrame {
 
         this.userAid = "1"; //såklart inte någon hårdkodning här
         this.aid = "3";     //---------------||-----------------
-        validering = new Validering();
+        validering = new validering();
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -409,22 +409,22 @@ public class PersonalInfo extends javax.swing.JFrame {
             startDateDisplay.setText(newStartDate);
             
             
-            if (Validering.fieldValidation(newName, "Department Name")) {
+            if (validering.fieldValidation(newName, "Department Name")) {
                 updateDatabase("namn", newName, aid);
             }
-            if (Validering.fieldValidation(newSurname, "Description ")) {
+            if (validering.fieldValidation(newSurname, "Description ")) {
                 updateDatabase("beskrivning", newSurname, aid);
             }
-            if (Validering.fieldValidation(newEmail, "Email") && Validering.giltigEpost(newEmail)) {
+            if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
                 updateDatabase("epost", newEmail, aid);
             }
-            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+            if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                 updateDatabase("telefon", newPhonenumber, aid);
             }
-            if (Validering.fieldValidation(newAdress, "Adress")) {
+            if (validering.fieldValidation(newAdress, "Adress")) {
                 updateDatabase("adress", newAdress, aid);
             }
-            if (Validering.fieldValidation(newAdress, "Start Date")) {
+            if (validering.fieldValidation(newAdress, "Start Date")) {
                 updateDatabase("anstallningsdatum", newStartDate, aid);
             }
 
@@ -445,22 +445,22 @@ public class PersonalInfo extends javax.swing.JFrame {
         String newEmail = emailField.getText(); //OBS
         String newStartDate = startDateField.getText();
 
-        if (Validering.fieldValidation(newName, "Department Name")) {
+        if (validering.fieldValidation(newName, "Department Name")) {
             updateDatabase("namn", newName, aid);
         }
-        if (Validering.fieldValidation(newSurname, "Description ")) {
+        if (validering.fieldValidation(newSurname, "Description ")) {
             updateDatabase("beskrivning", newSurname, aid);
         }
-        if (Validering.fieldValidation(newEmail, "Email") && Validering.giltigEpost(newEmail)) {
+        if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
             updateDatabase("epost", newEmail, aid);
         }
-        if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+        if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
             updateDatabase("telefon", newPhonenumber, aid);
         }
-        if (Validering.fieldValidation(newAdress, "Adress")) {
+        if (validering.fieldValidation(newAdress, "Adress")) {
             updateDatabase("adress", newAdress, aid);
         }
-        if (Validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)){
+        if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)){
             updateDatabase("anstallningsdatum", newStartDate, aid);
         }
         
@@ -659,7 +659,7 @@ public class PersonalInfo extends javax.swing.JFrame {
             public void run() {
                 try {
                     new PersonalInfo(aid, userAid).setVisible(true);
-                    Validering validering = new Validering();
+                    validering validering = new validering();
                 } catch (InfException ex) {
                     Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
                 }

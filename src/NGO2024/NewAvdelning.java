@@ -26,7 +26,7 @@ public class NewAvdelning extends javax.swing.JFrame {
     private static String pid;
     private static String Avdid;
     private static String userAid;
-    private static Validering validering;
+    private static validering validering;
 
     /**
      * Creates new form newPersonel
@@ -35,7 +35,7 @@ public class NewAvdelning extends javax.swing.JFrame {
      */
     public NewAvdelning() throws InfException {
 
-        validering = new Validering();
+        validering = new validering();
         
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -251,25 +251,25 @@ public class NewAvdelning extends javax.swing.JFrame {
                         newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
                         String sqlQuerry = ("INSERT INTO ngo_2024.avdelning (Avdid) VALUES (" + newAvdid + ");");
                         idb.insert(sqlQuerry);
-                        if (Validering.fieldValidation(newName, "Name")) {
+                        if (validering.fieldValidation(newName, "Name")) {
                             insertValue("namn", newName, newAvdid);
                         }
-                        if (Validering.fieldValidation(newHOD, "head of department")) {
+                        if (validering.fieldValidation(newHOD, "head of department")) {
                             insertValue("chef", newHOD, newAvdid);
                         }
-                        if (Validering.fieldValidation(newEmail, "Email") && Validering.giltigEpost(newEmail)) {
+                        if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
                             insertValue("epost", newEmail, newAvdid);
                         }
-                        if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+                        if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                             insertValue("telefon", newPhonenumber, newAvdid);
                         }
-                        if (Validering.fieldValidation(newAdress, "Adress")) {
+                        if (validering.fieldValidation(newAdress, "Adress")) {
                             insertValue("adress", newAdress, newAvdid);
                         }
-                        if (Validering.fieldValidation(newCity, "City")) {
+                        if (validering.fieldValidation(newCity, "City")) {
                             insertValue("stad", idb.fetchSingle("select sid from stad where namn = "+ newCity+";"), newAvdid);
                         }
-                        if (Validering.fieldValidation(newDescription, "Description")) {
+                        if (validering.fieldValidation(newDescription, "Description")) {
                             
                             insertValue("beskrivning", newDescription, newAvdid);
                         }

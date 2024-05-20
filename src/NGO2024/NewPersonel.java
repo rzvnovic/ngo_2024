@@ -4,7 +4,7 @@
  */
 package NGO2024;
 
-import NGO2024.Validering;
+import NGO2024.validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
@@ -27,7 +27,7 @@ public class NewPersonel extends javax.swing.JFrame {
     private InfDB idb;
     private static int aid;
     private static int userAid;
-    private static Validering validering;
+    private static validering validering;
    
 
     /**
@@ -37,7 +37,7 @@ public class NewPersonel extends javax.swing.JFrame {
      */
     public NewPersonel() throws InfException {
 
-        validering = new Validering();
+        validering = new validering();
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -266,7 +266,7 @@ public class NewPersonel extends javax.swing.JFrame {
         String newAvdelning = jTxtAvdelning.getText();
 
         try {
-            if (Validering.fieldValidation(newAvdelning, "Avdelning")) {
+            if (validering.fieldValidation(newAvdelning, "Avdelning")) {
                 if (checkValidAvdelning(newAvdelning) == true) {
                     String newAid = idb.getAutoIncrement("anstalld", "aid");
                     String sqlQuerry = ("INSERT INTO ngo_2024.anstalld (aid, avdelning) VALUES (" + newAid + "," + newAvdelning + ");");
@@ -274,26 +274,26 @@ public class NewPersonel extends javax.swing.JFrame {
                     jLblAvdelningError.setVisible(false);
 
 //använd valideringsklass
-                    if (Validering.fieldValidation(newName, "Name")) {
+                    if (validering.fieldValidation(newName, "Name")) {
                         insertValue("fornamn", newName, newAid);
                     }
                     //använd valideringsklass
-                    if (Validering.fieldValidation(newSurname, "Surname")) {
+                    if (validering.fieldValidation(newSurname, "Surname")) {
                         insertValue("efternamn", newSurname, newAid);
                     }
                     //använd valideringsklass, validera datum TODO
-                    if (Validering.fieldValidation(newAdress, "Adress")) {
+                    if (validering.fieldValidation(newAdress, "Adress")) {
                         insertValue("adress", newAdress, newAid);
                     }
                     //använd valideringsklass, validera datum TODO
-                    if (Validering.fieldValidation(newEmail, "Email")) {
+                    if (validering.fieldValidation(newEmail, "Email")) {
                         insertValue("epost", newEmail, newAid);
                     }
                     //använd valideringsklass
-                    if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+                    if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                         insertValue("telefon", newPhonenumber, newAid);
                     }
-                    if (Validering.fieldValidation(newEmploymentDate, "Date of employment")) {
+                    if (validering.fieldValidation(newEmploymentDate, "Date of employment")) {
                         if (validering.checkDateFormat(newEmploymentDate)) {
                             insertValue("anstallningsdatum", newEmploymentDate, newAid);
 

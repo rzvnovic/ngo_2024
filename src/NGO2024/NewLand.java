@@ -4,7 +4,7 @@ package NGO2024;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-import NGO2024.Validering;
+import NGO2024.validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
@@ -25,7 +25,7 @@ public class NewLand extends javax.swing.JFrame {
 
     private InfDB idb;
     private static String userAid;
-    private static Validering validering;
+    private static validering validering;
 
     /**
      * Creates new form newPersonel
@@ -35,7 +35,7 @@ public class NewLand extends javax.swing.JFrame {
     public NewLand(String userAid) throws InfException {
 
         this.userAid = userAid;
-        validering = new Validering();
+        validering = new validering();
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -202,26 +202,26 @@ public class NewLand extends javax.swing.JFrame {
             String sqlQuerry = ("INSERT INTO ngo_2024.land (lid) VALUES (" + newLid + ");");
             idb.insert(sqlQuerry);
             //använd valideringsklass
-            if (Validering.fieldValidation(newCountryName, "Country name")) {
+            if (validering.fieldValidation(newCountryName, "Country name")) {
                 insertValue("namn", newCountryName, newLid);
             }
             //använd valideringsklass
-            if (Validering.fieldValidation(newPolitical, "-1")) {
+            if (validering.fieldValidation(newPolitical, "-1")) {
                 insertValue("politisk_struktur", newPolitical, newLid);
             }
-            if (Validering.fieldValidation(newEconomic, "-1")) {
+            if (validering.fieldValidation(newEconomic, "-1")) {
                 insertValue("ekonomi", newEconomic, newLid);
             }
-            if (Validering.fieldValidation(newTimeZone, "Timezone")) {
+            if (validering.fieldValidation(newTimeZone, "Timezone")) {
                 insertValue("tidszon", newTimeZone, newLid);
             }
 
-            if (Validering.fieldValidation(newLanguage, "Language")) {
+            if (validering.fieldValidation(newLanguage, "Language")) {
                 insertValue("sprak", newLanguage, newLid);
             }
 
             //använd valideringsklass
-            if (Validering.fieldValidation(newCurrency, "Valuta")) {
+            if (validering.fieldValidation(newCurrency, "Valuta")) {
                 if (newCurrency.contains(".")) {
                     insertValue("valuta", newCurrency, newLid);
                 } else {

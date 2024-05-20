@@ -24,7 +24,7 @@ public class visaProjekt extends javax.swing.JFrame {
     //tas emot från klassen anställd
     private static String pid;
     private static String userAid;
-    private static Validering validering;
+    private static validering validering;
 
     /**
      * Creates new form PersonalInfo
@@ -33,7 +33,7 @@ public class visaProjekt extends javax.swing.JFrame {
 
         this.userAid = "1"; //såklart inte någon hårdkodning här
         this.pid = "3";     //---------------||-----------------
-        validering = new Validering();
+        validering = new validering();
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -361,19 +361,19 @@ public class visaProjekt extends javax.swing.JFrame {
             newPid = idb.getAutoIncrement("avdelning", "pid");
             String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
             idb.insert(sqlQuerry);
-            if (Validering.fieldValidation(newProjN, "Department Name")) {
+            if (validering.fieldValidation(newProjN, "Department Name")) {
                 updateDatabase("projektnamn", newProjN, newPid);
             }
-            if (Validering.fieldValidation(newDescription, "Description ")) {
+            if (validering.fieldValidation(newDescription, "Description ")) {
                 updateDatabase("beskrivning", newDescription, newPid);
             }
-            if (Validering.fieldValidation(newCost, "Start Date") && validering.checkDateFormat(newStartDate)) {
+            if (validering.fieldValidation(newCost, "Start Date") && validering.checkDateFormat(newStartDate)) {
                 updateDatabase("startdatum", newCost, newPid);
             }
-            if (Validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
+            if (validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
                 updateDatabase("slutdatum", newEndDate, newPid);
             }
-            if (Validering.fieldValidation(newStartDate, "Cost")) {
+            if (validering.fieldValidation(newStartDate, "Cost")) {
                 updateDatabase("kostnad", newStartDate, newPid);
             }
             
@@ -576,7 +576,7 @@ public class visaProjekt extends javax.swing.JFrame {
             public void run() {
                 try {
                     new visaProjekt(pid, userAid).setVisible(true);
-                    Validering validering = new Validering();
+                    validering validering = new validering();
                 } catch (InfException ex) {
                     Logger.getLogger(visaProjekt.class.getName()).log(Level.SEVERE, null, ex);
                 }

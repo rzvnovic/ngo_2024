@@ -6,7 +6,7 @@ package NGO2024;
  */
 
 
-import NGO2024.Validering;
+import NGO2024.validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
@@ -28,7 +28,7 @@ public class NewProject extends javax.swing.JFrame {
 
     private InfDB idb;
     private static String userAid;
-    private static Validering validering;
+    private static validering validering;
     
     /**
      * Creates new form newPersonel
@@ -38,7 +38,7 @@ public class NewProject extends javax.swing.JFrame {
     public NewProject(String userAid ) throws InfException {
 
         this.userAid = userAid;
-        validering = new Validering();
+        validering = new validering();
         
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -251,28 +251,28 @@ public class NewProject extends javax.swing.JFrame {
             String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
             idb.insert(sqlQuerry);
             //använd valideringsklass
-            if (Validering.fieldValidation(newPName, "Project name")) {
+            if (validering.fieldValidation(newPName, "Project name")) {
                 insertValue("projektnamn", newPName, newPid);
             }
             //använd valideringsklass
-            if (Validering.fieldValidation(newDescription, "-1")) {
+            if (validering.fieldValidation(newDescription, "-1")) {
                 insertValue("beskrivning", newDescription, newPid);
             }
             //använd valideringsklass, validera datum TODO
-            if (Validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
+            if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
                 insertValue("startdatum", newStartDate, newPid);
             }
             
             
             //använd valideringsklass, validera datum TODO
-            if (Validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
+            if (validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
                 insertValue("slutdatum", newEndDate, newPid);
             }
             //använd valideringsklass
-            if (Validering.fieldValidation(newBudget, "Budget")) {
+            if (validering.fieldValidation(newBudget, "Budget")) {
                 insertValue("kostnad", newBudget, newPid);
             }
-            if (Validering.fieldValidation(newProjectL, "Assign project leader") && !validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn +"' and efternamn = '" + efternamn +"';"))) {
+            if (validering.fieldValidation(newProjectL, "Assign project leader") && !validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn +"' and efternamn = '" + efternamn +"';"))) {
                 insertValue("projektchef", idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn +"' and efternamn = '" + efternamn +"';"), newPid);
             }else if(validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn +"' and efternamn = '" + efternamn +"';"))){
                 felmeddelandeProject.setText("Användaren är en Admin välj en handläggare!");

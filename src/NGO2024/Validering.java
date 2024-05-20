@@ -15,12 +15,12 @@ import oru.inf.InfDB;
  *
  * @author meldi
  */
-public class Validering {
+public class validering {
 
     private InfDB idb;
     
 
-    public Validering() throws InfException {
+    public validering() throws InfException {
         this.idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
     }
 
@@ -29,8 +29,8 @@ public class Validering {
      * @param ePost
      * @return true vid giltigt format, false vid ogiltigt format. 
      */
-    public static Boolean giltigEpost(String ePost) {
-        Boolean giltigtFormat = false;
+    public boolean giltigEpost(String ePost) {
+        boolean giltigtFormat = false;
 
         if (ePost.endsWith(".com") || ePost.endsWith(".se") || ePost.endsWith (".net") && ePost.contains("@")) {
             giltigtFormat = true;

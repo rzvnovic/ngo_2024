@@ -18,7 +18,7 @@ public class Inloggning extends javax.swing.JFrame {
 
     private InfDB idb;
     private String userAid;
-    private Validering validering;
+    private validering validering;
     /**
      * Creates new form Inloggning
      */

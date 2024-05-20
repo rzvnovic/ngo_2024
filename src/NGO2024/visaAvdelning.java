@@ -25,7 +25,7 @@ public class visaAvdelning extends javax.swing.JFrame {
     //tas emot från klassen anställd
     private static String avdid;
     private static String userAid;
-    private static Validering validering;
+    private static validering validering;
 
     /**
      * Creates new form PersonalInfo
@@ -34,7 +34,7 @@ public class visaAvdelning extends javax.swing.JFrame {
 
         this.userAid = "1"; //såklart inte någon hårdkodning här
         this.avdid = "3";     //---------------||-----------------
-        validering = new Validering();
+        validering = new validering();
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -340,25 +340,25 @@ public class visaAvdelning extends javax.swing.JFrame {
             newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
             String sqlQuerry = ("INSERT INTO ngo_2024.avdelning (Avdid) VALUES (" + newAvdid + ");");
             idb.insert(sqlQuerry);
-            if (Validering.fieldValidation(newAvName, "Department Name")) {
+            if (validering.fieldValidation(newAvName, "Department Name")) {
                 updateDatabase("namn", newAvName, newAvdid);
             }
-            if (Validering.fieldValidation(newDescription, "Description ")) {
+            if (validering.fieldValidation(newDescription, "Description ")) {
                 updateDatabase("beskrivning", newDescription, newAvdid);
             }
-            if (Validering.fieldValidation(newEmail, "Email") && Validering.giltigEpost(newEmail)) {
+            if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
                 updateDatabase("epost", newEmail, newAvdid);
             }
-            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+            if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                 updateDatabase("telefon", newPhonenumber, newAvdid);
             }
-            if (Validering.fieldValidation(newAdress, "Adress")) {
+            if (validering.fieldValidation(newAdress, "Adress")) {
                 updateDatabase("adress", newAdress, newAvdid);
             }
-            if (Validering.fieldValidation(newCity, "City")) {
+            if (validering.fieldValidation(newCity, "City")) {
                 updateDatabase("stad", newCity, newAvdid);
             }
-            if (Validering.fieldValidation(newChef, "Boss")) {
+            if (validering.fieldValidation(newChef, "Boss")) {
                 updateDatabase("chef", newChef, newAvdid);
             }
 
@@ -526,7 +526,7 @@ public class visaAvdelning extends javax.swing.JFrame {
         public void run() {
             try {
                 new visaAvdelning(avdid, userAid).setVisible(true);
-                Validering validering = new Validering();
+                validering validering = new validering();
             } catch (InfException ex) {
                 Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
             }

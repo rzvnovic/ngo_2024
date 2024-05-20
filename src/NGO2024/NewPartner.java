@@ -4,7 +4,7 @@
  */
 package NGO2024;
 
-import NGO2024.Validering;
+import NGO2024.validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
@@ -27,7 +27,7 @@ public class NewPartner extends javax.swing.JFrame {
     private InfDB idb;
     private static int pid;
     private static int userAid;
-    private static Validering validering;
+    private static validering validering;
 
     /**
      * Creates new form newPersonel
@@ -36,7 +36,7 @@ public class NewPartner extends javax.swing.JFrame {
      */
     public NewPartner() throws InfException {
 
-        validering = new Validering();
+        validering = new validering();
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -227,22 +227,22 @@ public class NewPartner extends javax.swing.JFrame {
             newPid = idb.getAutoIncrement("partner", "pid");
             String sqlQuerry = ("INSERT INTO ngo_2024.partner (pid) VALUES (" + newPid + ");");
             idb.insert(sqlQuerry);
-            if (Validering.fieldValidation(newName, "Name")) {
+            if (validering.fieldValidation(newName, "Name")) {
                 insertValue("namn", newName, newPid);
             }
-            if (Validering.fieldValidation(newContact, "Contact")) {
+            if (validering.fieldValidation(newContact, "Contact")) {
                 insertValue("kontaktperson", newContact, newPid);
             }
-            if (Validering.fieldValidation(newEmail, "Email")&& Validering.giltigEpost(newEmail)) {
+            if (validering.fieldValidation(newEmail, "Email")&& validering.giltigEpost(newEmail)) {
                 insertValue("kontaktepost", newEmail, newPid);
             }
-            if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+            if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                 insertValue("telefon", newPhonenumber, newPid);
             }
-            if (Validering.fieldValidation(newBranch, "Adress")) {
+            if (validering.fieldValidation(newBranch, "Adress")) {
                 insertValue("adress", newAdress, newPid);
             }
-            if (Validering.fieldValidation(newBranch, "Contact field of operations")) {
+            if (validering.fieldValidation(newBranch, "Contact field of operations")) {
                 insertValue("Branch", newBranch, newPid);
             }
 

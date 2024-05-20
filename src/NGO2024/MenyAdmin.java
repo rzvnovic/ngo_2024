@@ -20,7 +20,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     private static String userAid;
     private InfDB idb;
     private static String aid;
-    private static Validering validering;
+    private static validering validering;
 
     /**
      * Creates new form NewJFrame
@@ -29,7 +29,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         this.ePost = ePost;
         this.userAid = userAid;
-        validering = new Validering();
+        validering = new validering();
         initComponents();
         fetchProjects();
 
@@ -58,16 +58,15 @@ public class MenyAdmin extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         searchField = new javax.swing.JTextField();
         SearchButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        SearchButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         tabCountry = new javax.swing.JPanel();
         tabPartner = new javax.swing.JPanel();
         tabBranch = new javax.swing.JPanel();
         tabProject = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaprojectInformation = new javax.swing.JTextArea();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,7 +123,7 @@ public class MenyAdmin extends javax.swing.JFrame {
                 .addGroup(tabTestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
                     .addComponent(jButton4))
-                .addContainerGap(347, Short.MAX_VALUE))
+                .addContainerGap(408, Short.MAX_VALUE))
         );
 
         tabWindow.addTab("test", tabTest);
@@ -150,6 +149,17 @@ public class MenyAdmin extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Namn:");
+
+        SearchButton1.setText("Search");
+        SearchButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Epost:");
+
         javax.swing.GroupLayout tabPersonelLayout = new javax.swing.GroupLayout(tabPersonel);
         tabPersonel.setLayout(tabPersonelLayout);
         tabPersonelLayout.setHorizontalGroup(
@@ -159,27 +169,41 @@ public class MenyAdmin extends javax.swing.JFrame {
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(searchField)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabPersonelLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabPersonelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabPersonelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SearchButton)))
-                .addContainerGap(585, Short.MAX_VALUE))
+                        .addComponent(SearchButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(SearchButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(tabPersonelLayout.createSequentialGroup()
+                .addGap(205, 205, 205)
+                .addComponent(jLabel1)
+                .addGap(56, 56, 56)
+                .addComponent(jLabel2)
+                .addContainerGap(645, Short.MAX_VALUE))
         );
         tabPersonelLayout.setVerticalGroup(
             tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPersonelLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
+                .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchButton))
-                .addGap(18, 18, 18)
+                    .addComponent(SearchButton)
+                    .addComponent(SearchButton1))
+                .addGap(47, 47, 47)
                 .addComponent(jButton8)
                 .addGap(317, 317, 317)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         tabWindow.addTab("Personel", tabPersonel);
@@ -192,7 +216,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         );
         tabCountryLayout.setVerticalGroup(
             tabCountryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 559, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
 
         tabWindow.addTab("Country", tabCountry);
@@ -205,7 +229,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         );
         tabPartnerLayout.setVerticalGroup(
             tabPartnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 559, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
 
         tabWindow.addTab("Partners", tabPartner);
@@ -218,7 +242,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         );
         tabBranchLayout.setVerticalGroup(
             tabBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 559, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
 
         tabWindow.addTab("Branch", tabBranch);
@@ -245,21 +269,10 @@ public class MenyAdmin extends javax.swing.JFrame {
             .addGroup(tabProjectLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         tabWindow.addTab("Project", tabProject);
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("jMenu3");
-        jMenuBar1.add(jMenu3);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -272,9 +285,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tabWindow)
-                .addContainerGap())
+            .addComponent(tabWindow, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -289,7 +300,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         try {
             String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
             String dbSqlFraga = idb.fetchSingle(sqlFraga);
-            new PersonalInfo(aid, userAid).setVisible(true);
+            new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
         } catch (Exception e) {
 
         }
@@ -307,6 +318,20 @@ public class MenyAdmin extends javax.swing.JFrame {
             Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void SearchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButton1ActionPerformed
+        // TODO add your handling code here:
+        String personalEpost = searchField.getText();
+       if(validering.giltigEpost(personalEpost)){
+        try {
+            String sqlFraga = ("Select aid from anstalld where epost ='" + personalEpost + "';");
+            String dbSqlFraga = idb.fetchSingle(sqlFraga);
+            new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+        } catch (Exception e) {
+
+        }
+       }
+    }//GEN-LAST:event_SearchButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,15 +424,14 @@ public class MenyAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SearchButton;
+    private javax.swing.JButton SearchButton1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;

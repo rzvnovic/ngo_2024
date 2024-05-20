@@ -23,14 +23,14 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     //tas emot från klassen anställd
     private static String pid = "1";
     private static String userAid = "6";
-    private static Validering validering;
+    private static validering validering;
     /**
      * Creates new form PersonalInfo
      */
     public SamarbetspartnerInfo(String userAid,String pid) throws InfException {
         
        
-        validering = new Validering();
+        validering = new validering();
         
         
            try {
@@ -372,31 +372,31 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         String newCity = cityField.getText();
         //if(!parameterSomSkaKollas.equals(ParameterSomFannsFrånBörjan/FårInteVaraDär){
         //}
-        if (Validering.fieldValidation(newName, "Name")) {
+        if (validering.fieldValidation(newName, "Name")) {
             updateDatabase("namn", newName);
             nameDisplay.setText(newName);
         }
-        if (Validering.fieldValidation(newContact, "Contact person")) {
+        if (validering.fieldValidation(newContact, "Contact person")) {
             updateDatabase("kontaktperson", newContact);
              contactPersonDisplay.setText(newContact);
         }
-        if (Validering.fieldValidation(newEmail, "Email")&& Validering.giltigEpost(newEmail)) {
+        if (validering.fieldValidation(newEmail, "Email")&& validering.giltigEpost(newEmail)) {
             updateDatabase("epost", newEmail);
             emailDisplay.setText(newEmail);
         }
-        if (Validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+        if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
             updateDatabase("telefon", newPhonenumber);
             phonenumberDisplay.setText(newPhonenumber);
         }
-        if (Validering.fieldValidation(newAdress, "Adress")) {
+        if (validering.fieldValidation(newAdress, "Adress")) {
             updateDatabase("adress", newAdress);
             adressDisplay.setText(newAdress);
         }
-        if (Validering.fieldValidation(newCity, "City")) {
+        if (validering.fieldValidation(newCity, "City")) {
             updateDatabase("stad", newCity);
             cityDisplay.setText(newCity);
         }
-        if (Validering.fieldValidation(newBranch, "Branch")){
+        if (validering.fieldValidation(newBranch, "Branch")){
             updateDatabase("Branch" , newBranch);
             branchDisplay.setText(newBranch);
         }
