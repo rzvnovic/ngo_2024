@@ -350,8 +350,8 @@ public class MenyAdmin extends javax.swing.JFrame {
         if (personalNamn.contains("@")) {
             personelLblError.setText("Vänligen använd sökknappen för ePost");
             personelLblError.setVisible(true);
-        } else {
-
+        } 
+        else {
             try {
                 if (personalNamn.trim().contains(" ")) {
                     int index = personalNamn.indexOf(" ");
@@ -370,12 +370,10 @@ public class MenyAdmin extends javax.swing.JFrame {
                     personelLblError.setText("Vänligen skriv in både för- och efternamn");
                     personelLblError.setVisible(true);
                 }
-            } catch (Exception e) {
-
+            } 
+            catch (Exception e) {
             }
         }
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_searchPersonnalNamnBActionPerformed
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed

@@ -43,11 +43,14 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         if (validering.checkProjektLedareAid(userAid)){
             startNewProjectButton.setVisible(true);
             totalBudgetButton.setVisible(true);
+            budgetField.setVisible(true);
+            jLblMoney.setVisible(true);
         }
         else{
             startNewProjectButton.setVisible(false);
             totalBudgetButton.setVisible(false);
-            
+            budgetField.setVisible(false);
+            jLblMoney.setVisible(false);
         }
     }
     /**

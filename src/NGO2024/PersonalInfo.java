@@ -471,11 +471,6 @@ public class PersonalInfo extends javax.swing.JFrame {
             adressDisplay.setText(newAdress);
             phonenumberDisplay.setText(newPhonenumber);
             emailDisplay.setText(newEmail);
-        
-
-       
-
-
     }//GEN-LAST:event_commitButtonActionPerformed
     /**
      * 
@@ -596,7 +591,6 @@ public class PersonalInfo extends javax.swing.JFrame {
     private void makeAdminBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAdminBoxActionPerformed
         // TODO add your handling code here:
         // TODO ta bort / lägg till aid i admin tabell
-
     }//GEN-LAST:event_makeAdminBoxActionPerformed
 
     /**

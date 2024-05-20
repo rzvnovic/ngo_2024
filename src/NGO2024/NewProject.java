@@ -274,7 +274,7 @@ public class NewProject extends javax.swing.JFrame {
                             felmeddelandeProject.setText("Användaren är en Admin välj en handläggare!");
                             felmeddelandeProject.setVisible(true);
                         } else {
-                            felmeddelandeProject.setText("Kunde int hitta!");
+                            felmeddelandeProject.setText("Kunde inte hitta!");
                             felmeddelandeProject.setVisible(true);
                         }
                     } else {
@@ -291,10 +291,6 @@ public class NewProject extends javax.swing.JFrame {
                     countryButton.setVisible(true);
                 }
             }
-            /* tänk
-            if (fieldValidation(newCountry, "Contact field of operations")) {
-                insertValue("Branch", newCountry, newPid);
-            }*/
 
         } catch (InfException ex) {
             Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
