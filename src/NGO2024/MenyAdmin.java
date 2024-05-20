@@ -57,10 +57,11 @@ public class MenyAdmin extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         searchField = new javax.swing.JTextField();
-        SearchButton = new javax.swing.JButton();
+        searchPersonnalNamnB = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        SearchButton1 = new javax.swing.JButton();
+        searchPersonalEpostB = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        personelLblError = new javax.swing.JLabel();
         tabCountry = new javax.swing.JPanel();
         tabPartner = new javax.swing.JPanel();
         samarbetspartnerSokruta = new javax.swing.JTextField();
@@ -147,50 +148,57 @@ public class MenyAdmin extends javax.swing.JFrame {
             }
         });
 
-        SearchButton.setText("Search");
-        SearchButton.addActionListener(new java.awt.event.ActionListener() {
+        searchPersonnalNamnB.setText("Search");
+        searchPersonnalNamnB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchButtonActionPerformed(evt);
+                searchPersonnalNamnBActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Namn:");
 
-        SearchButton1.setText("Search");
-        SearchButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchPersonalEpostB.setText("Search");
+        searchPersonalEpostB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchButton1ActionPerformed(evt);
+                searchPersonalEpostBActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Epost:");
+
+        personelLblError.setText("felmeddelande");
 
         javax.swing.GroupLayout tabPersonelLayout = new javax.swing.GroupLayout(tabPersonel);
         tabPersonel.setLayout(tabPersonelLayout);
         tabPersonelLayout.setHorizontalGroup(
             tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPersonelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(searchField)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabPersonelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(tabPersonelLayout.createSequentialGroup()
-                        .addComponent(SearchButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(SearchButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(tabPersonelLayout.createSequentialGroup()
                 .addGap(205, 205, 205)
                 .addComponent(jLabel1)
                 .addGap(56, 56, 56)
                 .addComponent(jLabel2)
-                .addContainerGap(645, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(tabPersonelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabPersonelLayout.createSequentialGroup()
+                        .addComponent(personelLblError, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(624, Short.MAX_VALUE))
+                    .addGroup(tabPersonelLayout.createSequentialGroup()
+                        .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(searchField)
+                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabPersonelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(tabPersonelLayout.createSequentialGroup()
+                                .addComponent(searchPersonnalNamnB)
+                                .addGap(18, 18, 18)
+                                .addComponent(searchPersonalEpostB)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         tabPersonelLayout.setVerticalGroup(
             tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,9 +210,11 @@ public class MenyAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchButton)
-                    .addComponent(SearchButton1))
-                .addGap(47, 47, 47)
+                    .addComponent(searchPersonnalNamnB)
+                    .addComponent(searchPersonalEpostB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(personelLblError)
+                .addGap(18, 18, 18)
                 .addComponent(jButton8)
                 .addGap(317, 317, 317)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,22 +345,38 @@ public class MenyAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+    private void searchPersonnalNamnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPersonnalNamnBActionPerformed
         String personalNamn = searchField.getText();
-        int index = personalNamn.indexOf(" ");
-        String fornamn = personalNamn.substring(0, index);
-        String efternamn = personalNamn.substring(index + 1);
-        System.out.print(fornamn + efternamn);
-        try {
-            String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
-            String dbSqlFraga = idb.fetchSingle(sqlFraga);
-            new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
-        } catch (Exception e) {
+        if (personalNamn.contains("@")) {
+            personelLblError.setText("Vänligen använd sökknappen för ePost");
+            personelLblError.setVisible(true);
+        } else {
 
+            try {
+                if (personalNamn.trim().contains(" ")) {
+                    int index = personalNamn.indexOf(" ");
+                    String fornamn = personalNamn.substring(0, index);
+                    String efternamn = personalNamn.substring(index + 1);
+                    System.out.print(fornamn + efternamn);
+                    String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
+                    String dbSqlFraga = idb.fetchSingle(sqlFraga);
+                    if (dbSqlFraga != null) {
+                        new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+                    } else {
+                        personelLblError.setText("Användare med angivet namn existerar inte");
+                        personelLblError.setVisible(true);
+                    }
+                } else {
+                    personelLblError.setText("Vänligen skriv in både för- och efternamn");
+                    personelLblError.setVisible(true);
+                }
+            } catch (Exception e) {
+
+            }
         }
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_SearchButtonActionPerformed
+    }//GEN-LAST:event_searchPersonnalNamnBActionPerformed
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
     }//GEN-LAST:event_searchFieldActionPerformed
@@ -363,26 +389,26 @@ public class MenyAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void SearchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButton1ActionPerformed
+    private void searchPersonalEpostBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPersonalEpostBActionPerformed
         // TODO add your handling code here:
         String personalEpost = searchField.getText();
-       if(validering.giltigEpost(personalEpost)){
-        try {
-            String sqlFraga = ("Select aid from anstalld where epost ='" + personalEpost + "';");
-            String dbSqlFraga = idb.fetchSingle(sqlFraga);
-            new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
-        } catch (Exception e) {
+        if (validering.giltigEpost(personalEpost)) {
+            try {
+                String sqlFraga = ("Select aid from anstalld where epost ='" + personalEpost + "';");
+                String dbSqlFraga = idb.fetchSingle(sqlFraga);
+                new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+            } catch (Exception e) {
 
+            }
         }
-       }
-    }//GEN-LAST:event_SearchButton1ActionPerformed
+    }//GEN-LAST:event_searchPersonalEpostBActionPerformed
 
     private void samarbetspartnerSokrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_samarbetspartnerSokrutaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_samarbetspartnerSokrutaActionPerformed
 
     public String fetchPartnersInProjects() throws InfException {
-  ArrayList<String> samarbetsPartnerNamn = idb.fetchColumn("select namn from partner");
+        ArrayList<String> samarbetsPartnerNamn = idb.fetchColumn("select namn from partner");
         ArrayList<String> samarbetsPartnerKontaktPerson = idb.fetchColumn("select kontaktperson from partner");
         ArrayList<String> samarbetsPartnerKontaktEpost = idb.fetchColumn("select kontaktepost from partner");
         ArrayList<String> samarbetsPartnerTelefon = idb.fetchColumn("select telefon from partner");
@@ -398,8 +424,7 @@ public class MenyAdmin extends javax.swing.JFrame {
 
         return message.toString().trim();
 
-    
-}
+    }
 
     /**
      * @param args the command line arguments
@@ -443,10 +468,8 @@ public class MenyAdmin extends javax.swing.JFrame {
         });
     }
 
-    
-
-   public String fetchProjects() throws InfException {
-       ArrayList<String> projektPidLista = idb.fetchColumn("Select pid from projekt;");
+    public String fetchProjects() throws InfException {
+        ArrayList<String> projektPidLista = idb.fetchColumn("Select pid from projekt;");
         ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt;");
         ArrayList<String> projektBeskrivningLista = idb.fetchColumn("Select beskrivning from projekt;");
         ArrayList<String> projektStartdatum = idb.fetchColumn("Select startdatum from projekt;");
@@ -474,11 +497,11 @@ public class MenyAdmin extends javax.swing.JFrame {
         String contentStatus = null;
         String contentPriority = null;
         String contentLeaderFirst = null;
-        String contentLeaderLast = null; 
+        String contentLeaderLast = null;
 
         for (int i = 0; i < projektNamnLista.size(); i++) {
-           String pid = projektPidLista.get(i);
-             
+            String pid = projektPidLista.get(i);
+
             contentName = projektNamnLista.get(i);
             contentBesk = projektBeskrivningLista.get(i);
             contentStart = projektStartdatum.get(i);
@@ -486,23 +509,21 @@ public class MenyAdmin extends javax.swing.JFrame {
             contentCost = projektKostnad.get(i);
             contentStatus = projektStatus.get(i);
             contentPriority = projektPrioritet.get(i);
-            String aid = idb.fetchSingle("SELECT projektchef FROM projekt WHERE pid = '"+projektPidLista.get(i)+"';");
-            
-            contentLeaderFirst = idb.fetchSingle("Select fornamn From anstalld where aid = "+ aid+";");
-            contentLeaderLast = idb.fetchSingle("Select efternamn From anstalld where aid = "+ aid+";");
+            String aid = idb.fetchSingle("SELECT projektchef FROM projekt WHERE pid = '" + projektPidLista.get(i) + "';");
+
+            contentLeaderFirst = idb.fetchSingle("Select fornamn From anstalld where aid = " + aid + ";");
+            contentLeaderLast = idb.fetchSingle("Select efternamn From anstalld where aid = " + aid + ";");
 
 //contentLeaderFirst = projektLedareFornamn; // SELECT projektchef FROM projekt WHERE  projektnamn = projektNamnLista.get(i);
             //contentLeaderLast = projektLedareEfternamn.get(i);
-            message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n"; 
+            message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n";
         }
-        
+
         return message.trim();
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton SearchButton;
-    private javax.swing.JButton SearchButton1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -517,10 +538,13 @@ public class MenyAdmin extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel personelLblError;
     private javax.swing.JTextArea samarbetsPartnerInfo;
     private javax.swing.JButton samarbetspartnerSok;
     private javax.swing.JTextField samarbetspartnerSokruta;
     private javax.swing.JTextField searchField;
+    private javax.swing.JButton searchPersonalEpostB;
+    private javax.swing.JButton searchPersonnalNamnB;
     private javax.swing.JPanel tabBranch;
     private javax.swing.JPanel tabCountry;
     private javax.swing.JPanel tabPartner;
