@@ -632,7 +632,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private void showUserProjectsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showUserProjectsButtonActionPerformed
         try {
             int priority = priorityBox.getSelectedIndex();
-            projectListField.setText(findUserProjects(priorityPicker(priority)));
+            projectListField.setText(fetchProject1(priorityPicker(priority)));
         } catch (InfException ex) {
             Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -641,7 +641,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private void showDeptProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDeptProjectButtonActionPerformed
         try {
             int priority = priorityBox.getSelectedIndex();
-            projectListField.setText(findDeptProject(priorityPicker(priority)));
+            projectListField.setText(fetchAvdelningProjekt(priorityPicker(priority)));
         } catch (InfException ex) {
             Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -774,6 +774,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             }
         }
 
+        // Projekt ID  
+        
         ArrayList<String> namnLista = new ArrayList<>();
         ArrayList<String> beskrivningsLista = new ArrayList<String>();
 
@@ -899,7 +901,183 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         return message.toString().trim();
 
     }
+    /**
+     * 
+     * NYA TEST METOD FÖR UTSKRIFT
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * @return
+     * @throws InfException 
+     */
+    public String fetchProject1(int prio) throws InfException {
+        ArrayList<String> projektPidLista = idb.fetchColumn("Select pid from ans_proj where aid = " + userAid + ";");
+        //where statusMessage = "where status = 'Pågående' and is not null;"
+        String status = null;
+        if(prio == 4){
+            status = " where status is not null ";
+        }
+        else if (prio == 3){
+            status = " where status = 'Pågående' ";
+        }
+        else if (prio == 2){
+            status = " where status = 'Planerat' ";  
+        }
+        else{
+            status = " where status = 'Avslutat' ";
+        }
+        
+        String message = "";
+        String nameMessage = "Projektnamn: ";
+        String descriptionMessage = "Beskrivning: ";
+        String startMessage = "Startdatum: ";
+        String endMessage = "Slutdatum: ";
+        String costMessage = "Kostnad: ";
+        String statusMessage = "Status: ";
+        String priorityMessage = "Prioritet: ";
+        String leaderMessage = "Projektchef: ";
+        String contentName = null;
+        String contentBesk = null;
+        String contentStart = null;
+        String contentEnd = null;
+        String contentCost = null;
+        String contentStatus = null;
+        String contentPriority = null;
+        String contentLeaderFirst = null;
+        String contentLeaderLast = null;
+        
+        
+        for (int i = 0; i < projektPidLista.size(); i++) {
 
+        ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt" +status + "and pid = "+projektPidLista.get(i)+" and projektnamn is not null;");
+        ArrayList<String> projektBeskrivningLista = idb.fetchColumn("Select beskrivning from projekt" +status + "and pid = "+projektPidLista.get(i)+" and beskrivning is not null;");
+        ArrayList<String> projektStartdatum = idb.fetchColumn("Select startdatum from projekt" +status + "and pid = "+projektPidLista.get(i)+" and startdatum is not null;");
+        ArrayList<String> projektSlutdatum = idb.fetchColumn("Select slutdatum from projekt" +status + "and pid = "+projektPidLista.get(i)+" and slutdatum is not null;");
+        ArrayList<String> projektKostnad = idb.fetchColumn("Select kostnad from projekt" +status + "and pid = "+projektPidLista.get(i)+" and kostnad is not null;");
+        ArrayList<String> projektStatus = idb.fetchColumn("Select status from projekt" +status + "and pid = "+projektPidLista.get(i)+" and status is not null;");
+        ArrayList<String> projektPrioritet = idb.fetchColumn("Select prioritet from projekt" +status + "and pid = "+projektPidLista.get(i)+" and prioritet is not null;");
+        
+
+        
+
+            String pid = projektPidLista.get(i);
+            if(!projektNamnLista.isEmpty()){
+            contentName = projektNamnLista.get(i);
+            contentBesk = projektBeskrivningLista.get(i);
+            contentStart = projektStartdatum.get(i);
+            contentEnd = projektSlutdatum.get(i);
+            contentCost = projektKostnad.get(i);
+            contentStatus = projektStatus.get(i);
+            contentPriority = projektPrioritet.get(i);
+            String aid = idb.fetchSingle("SELECT projektchef FROM projekt WHERE pid = '" + projektPidLista.get(i) + "';");
+
+            contentLeaderFirst = idb.fetchSingle("Select fornamn From anstalld where aid = " + aid + ";");
+            contentLeaderLast = idb.fetchSingle("Select efternamn From anstalld where aid = " + aid + ";");
+            message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n";
+            }
+            else{
+                return "";
+            }
+        }
+
+        return message.trim();
+    }
+    
+    
+    
+    
+    
+    public String fetchAvdelningProjekt(int prio) throws InfException {
+        String avdId = idb.fetchSingle("Select avdelning from anstalld where aid =" + userAid + ";");
+        ArrayList<String> aidList = idb.fetchColumn("Select aid from anstalld where avdelning =" + avdId + ";");
+        ArrayList<String> projektPidLista = new ArrayList<String>();
+
+        for (int i = 0; i < aidList.size(); i++) {
+            String sqlQuerry = idb.fetchSingle("Select pid from ans_proj where aid =" + aidList.get(i) + ";");
+            if (sqlQuerry != null && !projektPidLista.contains(sqlQuerry)) {
+                projektPidLista.add(sqlQuerry);
+            }
+        }
+        //where statusMessage = "where status = 'Pågående' and is not null;"
+        String status = null;
+        if(prio == 4){
+            status = " where status is not null ";
+        }
+        else if (prio == 3){
+            status = " where status = 'Pågående' ";
+        }
+        else if (prio == 2){
+            status = " where status = 'Planerat' ";  
+        }
+        else{
+            status = " where status = 'Avslutat' ";
+        }
+        
+        String message = "";
+        String nameMessage = "Projektnamn: ";
+        String descriptionMessage = "Beskrivning: ";
+        String startMessage = "Startdatum: ";
+        String endMessage = "Slutdatum: ";
+        String costMessage = "Kostnad: ";
+        String statusMessage = "Status: ";
+        String priorityMessage = "Prioritet: ";
+        String leaderMessage = "Projektchef: ";
+        String contentName = null;
+        String contentBesk = null;
+        String contentStart = null;
+        String contentEnd = null;
+        String contentCost = null;
+        String contentStatus = null;
+        String contentPriority = null;
+        String contentLeaderFirst = null;
+        String contentLeaderLast = null;
+        
+        
+        for (int i = 0; i < projektPidLista.size(); i++) {
+
+        ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt" +status + "and pid = "+projektPidLista.get(i)+" and projektnamn is not null;");
+        ArrayList<String> projektBeskrivningLista = idb.fetchColumn("Select beskrivning from projekt" +status + "and pid = "+projektPidLista.get(i)+" and beskrivning is not null;");
+        ArrayList<String> projektStartdatum = idb.fetchColumn("Select startdatum from projekt" +status + "and pid = "+projektPidLista.get(i)+" and startdatum is not null;");
+        ArrayList<String> projektSlutdatum = idb.fetchColumn("Select slutdatum from projekt" +status + "and pid = "+projektPidLista.get(i)+" and slutdatum is not null;");
+        ArrayList<String> projektKostnad = idb.fetchColumn("Select kostnad from projekt" +status + "and pid = "+projektPidLista.get(i)+" and kostnad is not null;");
+        ArrayList<String> projektStatus = idb.fetchColumn("Select status from projekt" +status + "and pid = "+projektPidLista.get(i)+" and status is not null;");
+        ArrayList<String> projektPrioritet = idb.fetchColumn("Select prioritet from projekt" +status + "and pid = "+projektPidLista.get(i)+" and prioritet is not null;");
+        
+
+        
+
+            String pid = projektPidLista.get(i);
+            if(!projektNamnLista.isEmpty()){
+            contentName = projektNamnLista.get(i);
+            contentBesk = projektBeskrivningLista.get(i);
+            contentStart = projektStartdatum.get(i);
+            contentEnd = projektSlutdatum.get(i);
+            contentCost = projektKostnad.get(i);
+            contentStatus = projektStatus.get(i);
+            contentPriority = projektPrioritet.get(i);
+            String aid = idb.fetchSingle("SELECT projektchef FROM projekt WHERE pid = '" + projektPidLista.get(i) + "';");
+
+            contentLeaderFirst = idb.fetchSingle("Select fornamn From anstalld where aid = " + aid + ";");
+            contentLeaderLast = idb.fetchSingle("Select efternamn From anstalld where aid = " + aid + ";");
+            message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n";
+            }
+            else{
+            System.out.print("error");
+            }
+        }
+
+        return message.trim();
+    }
+    
+    
+    
+    
+    
     /**
      * Ej nöjd.
      *
