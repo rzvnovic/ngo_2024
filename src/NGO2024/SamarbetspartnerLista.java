@@ -181,7 +181,7 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
     private void createNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewButtonActionPerformed
         try {
             // TODO add your handling code here:
-            new NewPartner().setVisible(true);
+            new NewPartner(pid, userAid).setVisible(true);
         } catch (InfException ex) {
             Logger.getLogger(SamarbetspartnerLista.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -24,16 +24,13 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     private static String pid = "1";
     private static String userAid = "6";
     private static Validering validering;
+
     /**
      * Creates new form PersonalInfo
      */
-    public SamarbetspartnerInfo(String userAid,String pid) throws InfException {
-        
-       
+    public SamarbetspartnerInfo(String pid, String userAid) throws InfException {
         validering = new Validering();
-        
-        
-           try {
+        try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         } catch (InfException ex) {
             Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,15 +40,12 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    
+    public void adminVissebillity() {
+        if (validering.checkAdminAid(userAid)) {
 
-      public void adminVissebillity(){
-        if(validering.checkAdminAid(userAid)){
-          
-        }
-        else{   
+        } else {
             nameDisplay.setLocation(nameField.getLocation());
-            
+
             adminOkButton.setVisible(false);
             deleteButton.setVisible(false);
             nameField.setVisible(false);
@@ -61,7 +55,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             emailField.setVisible(false);
             branchField.setVisible(false);
             cityField.setVisible(false);
-           
+
         }
     }
 
@@ -378,9 +372,9 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         }
         if (validering.fieldValidation(newContact, "Contact person")) {
             updateDatabase("kontaktperson", newContact);
-             contactPersonDisplay.setText(newContact);
+            contactPersonDisplay.setText(newContact);
         }
-        if (validering.fieldValidation(newEmail, "Email")&& validering.giltigEpost(newEmail)) {
+        if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
             updateDatabase("epost", newEmail);
             emailDisplay.setText(newEmail);
         }
@@ -396,27 +390,25 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             updateDatabase("stad", newCity);
             cityDisplay.setText(newCity);
         }
-        if (validering.fieldValidation(newBranch, "Branch")){
-            updateDatabase("Branch" , newBranch);
+        if (validering.fieldValidation(newBranch, "Branch")) {
+            updateDatabase("Branch", newBranch);
             branchDisplay.setText(newBranch);
         }
         //cityValidation(newCity, newPid);
 
-        
-                    
-        
-      
+
     }//GEN-LAST:event_adminOkButtonActionPerformed
-   // Hantera NullPointerExecption från getText vid tomt TextField. 
+    // Hantera NullPointerExecption från getText vid tomt TextField. 
+
     private void updateDatabase(String column, String value) {
-            try {
-                String sqlQuerry = ("UPDATE ngo_2024.partner t SET t." + column + " = '" + value + "' WHERE t.pid = " + pid + ";");
-                idb.update(sqlQuerry);
-            } catch (InfException ex) {
-                Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            String sqlQuerry = ("UPDATE ngo_2024.partner t SET t." + column + " = '" + value + "' WHERE t.pid = " + pid + ";");
+            idb.update(sqlQuerry);
+        } catch (InfException ex) {
+            Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+    }
+
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
@@ -466,19 +458,19 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_adressFieldActionPerformed
 
     private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
-if (emailField.getText().equals("Email")) {
+        if (emailField.getText().equals("Email")) {
             emailField.setText("");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldMouseClicked
 
     private void branchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchFieldMouseClicked
-if (branchField.getText().equals("Branch")) {
+        if (branchField.getText().equals("Branch")) {
             branchField.setText("");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_branchFieldMouseClicked
 
     private void cityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseClicked
-if (cityField.getText().equals("City")) {
+        if (cityField.getText().equals("City")) {
             cityField.setText("");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_cityFieldMouseClicked

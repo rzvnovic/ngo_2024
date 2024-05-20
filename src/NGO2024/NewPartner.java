@@ -25,8 +25,8 @@ import oru.inf.InfDB;
 public class NewPartner extends javax.swing.JFrame {
 
     private InfDB idb;
-    private static int pid;
-    private static int userAid;
+    private static String pid;
+    private static String userAid;
     private static Validering validering;
 
     /**
@@ -34,7 +34,7 @@ public class NewPartner extends javax.swing.JFrame {
      *
      * @throws oru.inf.InfException
      */
-    public NewPartner() throws InfException {
+    public NewPartner(String pid, String userAid) throws InfException {
 
         validering = new Validering();
 
@@ -321,7 +321,7 @@ public class NewPartner extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new NewPartner().setVisible(true);
+                    new NewPartner(pid, userAid).setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(NewPartner.class.getName()).log(Level.SEVERE, null, ex);
                 }

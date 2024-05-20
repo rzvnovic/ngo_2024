@@ -268,7 +268,10 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                                                  <Component id="jSeparator1" max="32767" attributes="0"/>
+                                              </Group>
                                               <Component id="showUserProjectsButton" alignment="0" max="32767" attributes="0"/>
                                               <Component id="showDeptProjectButton" alignment="0" max="32767" attributes="0"/>
                                               <Group type="102" alignment="1" attributes="0">
@@ -284,8 +287,7 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="projektSokruta" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="projektSok" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLblSökHandläggare4" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                                                      <Component id="sökLabelProj" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="startDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
                                                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -294,6 +296,11 @@
                                                       <Component id="btnFilterByDate" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="projektSok" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="errorMsgProjekt" min="-2" pref="134" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -322,7 +329,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLblSökHandläggare4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="sökLabelProj" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="minaProjectField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -330,7 +337,10 @@
                               <Group type="102" attributes="0">
                                   <Component id="projektSokruta" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="projektSok" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="projektSok" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="errorMsgProjekt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -369,7 +379,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLblS&#xf6;kHandl&#xe4;ggare4">
+                <Component class="javax.swing.JLabel" name="s&#xf6;kLabelProj">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="S&#xf6;k Projekt"/>
                   </Properties>
@@ -525,6 +535,11 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startNewProjectButtonActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JLabel" name="errorMsgProjekt">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Placeholder"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="samarbetspartnerTab2">
@@ -539,15 +554,10 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="samarbetspartnerSokruta" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLblSökHandläggare5" min="-2" pref="134" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="162" max="32767" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="350" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="18" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="702" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -555,30 +565,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" min="-2" pref="411" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLblSökHandläggare5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="samarbetspartnerSokruta" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace pref="84" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="478" max="-2" attributes="0"/>
+                          <EmptySpace pref="17" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLblS&#xf6;kHandl&#xe4;ggare5">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#xf6;k Samarbetspartner"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="samarbetspartnerSokruta">
-                  <Properties>
-                    <Property name="columns" type="int" value="8"/>
-                  </Properties>
-                </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>

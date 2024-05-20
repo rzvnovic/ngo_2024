@@ -199,7 +199,7 @@ public class VisaProjekt extends javax.swing.JFrame {
 
         deleteButton.setBackground(new java.awt.Color(102, 0, 0));
         deleteButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButton.setText("Delete");
+        deleteButton.setText("Ta bort projekt");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
@@ -222,7 +222,7 @@ public class VisaProjekt extends javax.swing.JFrame {
             }
         });
 
-        changePButton.setText("Change Partner");
+        changePButton.setText("Ändra partners i projekt");
         changePButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changePButtonActionPerformed(evt);
@@ -236,38 +236,40 @@ public class VisaProjekt extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(changePButton)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(costField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(statusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(projNameField)
-                                    .addComponent(desField)
-                                    .addComponent(startDateField)
-                                    .addComponent(endDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
-                                .addComponent(commitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(changePButton, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addGap(233, 233, 233)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2)
-                                .addComponent(jScrollPane3)
-                                .addComponent(jScrollPane4)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(69, 69, 69)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(projNameField)
+                                .addComponent(desField)
+                                .addComponent(startDateField)
+                                .addComponent(endDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                            .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(233, 233, 233)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane2)
+                                        .addComponent(jScrollPane3)
+                                        .addComponent(jScrollPane4))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton)
+                                .addGap(35, 35, 35))))
                     .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 67, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,7 +527,12 @@ public class VisaProjekt extends javax.swing.JFrame {
     }//GEN-LAST:event_statusButtonActionPerformed
 
     private void changePButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            new SamarbetspartnerLista(pid, userAid).setVisible(true);
+        } catch (InfException ex) {
+            Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_changePButtonActionPerformed
 
     /**
@@ -555,37 +562,7 @@ public class VisaProjekt extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+       
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
