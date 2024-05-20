@@ -15,12 +15,12 @@ import oru.inf.InfDB;
  *
  * @author meldi
  */
-public class validering {
+public class Validering {
 
     private InfDB idb;
     
 
-    public validering() throws InfException {
+    public Validering() throws InfException {
         this.idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
     }
 
@@ -45,7 +45,7 @@ public class validering {
      * @param validationText
      * @return true om överens, false om inte.
      */
-    public static boolean fieldValidation(String newText, String validationText) {
+    public boolean fieldValidation(String newText, String validationText) {
         boolean validated = true;
         if (newText.equals(validationText) || newText.isEmpty() || newText.isBlank()) {
             validated = false;

@@ -19,7 +19,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
     private InfDB idb;
     private static String userAid;
-    private validering validering;
+    private Validering validering;
     private String aid;
 
     /**
@@ -28,7 +28,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     public MenyHandlaggare(String userAid) throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         this.userAid = userAid;
-        validering = new validering();
+        validering = new Validering();
 
         initComponents();
         budgetField.setVisible(false);

@@ -20,7 +20,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     private static String userAid;
     private InfDB idb;
     private static String aid;
-    private static validering validering;
+    private static Validering validering;
 
     /**
      * Creates new form NewJFrame
@@ -29,7 +29,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         this.ePost = ePost;
         this.userAid = userAid;
-        validering = new validering();
+        validering = new Validering();
         initComponents();
         fetchProjects();
 

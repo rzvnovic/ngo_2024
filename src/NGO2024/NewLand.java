@@ -4,7 +4,7 @@ package NGO2024;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-import NGO2024.validering;
+import NGO2024.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
@@ -25,7 +25,7 @@ public class NewLand extends javax.swing.JFrame {
 
     private InfDB idb;
     private static String userAid;
-    private static validering validering;
+    private static Validering validering;
 
     /**
      * Creates new form newPersonel
@@ -35,7 +35,7 @@ public class NewLand extends javax.swing.JFrame {
     public NewLand(String userAid) throws InfException {
 
         this.userAid = userAid;
-        validering = new validering();
+        validering = new Validering();
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");

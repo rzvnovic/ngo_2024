@@ -26,7 +26,7 @@ public class PersonalInfo extends javax.swing.JFrame {
     //tas emot från klassen anställd
     private static String aid;
     private static String userAid;
-    private static validering validering;
+    private static Validering validering;
 
     /**
      * Creates new form PersonalInfo
@@ -35,7 +35,7 @@ public class PersonalInfo extends javax.swing.JFrame {
 
         this.userAid = "1"; //såklart inte någon hårdkodning här
         this.aid = "3";     //---------------||-----------------
-        validering = new validering();
+        validering = new Validering();
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -659,7 +659,7 @@ public class PersonalInfo extends javax.swing.JFrame {
             public void run() {
                 try {
                     new PersonalInfo(aid, userAid).setVisible(true);
-                    validering validering = new validering();
+                    Validering validering = new Validering();
                 } catch (InfException ex) {
                     Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -4,7 +4,7 @@
  */
 package NGO2024;
 
-import NGO2024.validering;
+import NGO2024.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
@@ -27,7 +27,7 @@ public class NewPersonel extends javax.swing.JFrame {
     private InfDB idb;
     private static int aid;
     private static int userAid;
-    private static validering validering;
+    private static Validering validering;
    
 
     /**
@@ -37,7 +37,7 @@ public class NewPersonel extends javax.swing.JFrame {
      */
     public NewPersonel() throws InfException {
 
-        validering = new validering();
+        validering = new Validering();
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");

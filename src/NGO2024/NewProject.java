@@ -6,7 +6,7 @@ package NGO2024;
  */
 
 
-import NGO2024.validering;
+import NGO2024.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
@@ -28,7 +28,7 @@ public class NewProject extends javax.swing.JFrame {
 
     private InfDB idb;
     private static String userAid;
-    private static validering validering;
+    private static Validering validering;
     
     /**
      * Creates new form newPersonel
@@ -38,7 +38,7 @@ public class NewProject extends javax.swing.JFrame {
     public NewProject(String userAid ) throws InfException {
 
         this.userAid = userAid;
-        validering = new validering();
+        validering = new Validering();
         
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");

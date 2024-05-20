@@ -26,7 +26,7 @@ public class NewAvdelning extends javax.swing.JFrame {
     private static String pid;
     private static String Avdid;
     private static String userAid;
-    private static validering validering;
+    private static Validering validering;
 
     /**
      * Creates new form newPersonel
@@ -35,7 +35,7 @@ public class NewAvdelning extends javax.swing.JFrame {
      */
     public NewAvdelning() throws InfException {
 
-        validering = new validering();
+        validering = new Validering();
         
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");

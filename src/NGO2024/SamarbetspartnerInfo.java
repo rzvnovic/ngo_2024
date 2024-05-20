@@ -23,14 +23,14 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     //tas emot från klassen anställd
     private static String pid = "1";
     private static String userAid = "6";
-    private static validering validering;
+    private static Validering validering;
     /**
      * Creates new form PersonalInfo
      */
     public SamarbetspartnerInfo(String userAid,String pid) throws InfException {
         
        
-        validering = new validering();
+        validering = new Validering();
         
         
            try {
