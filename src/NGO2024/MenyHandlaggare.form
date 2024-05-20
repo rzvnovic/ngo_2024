@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
-      <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
-        </Menu>
-      </SubComponents>
-    </Menu>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -93,7 +76,7 @@
                               <Component id="visaKnapp" min="-2" max="-2" attributes="0"/>
                               <Component id="lblInfo" min="-2" pref="68" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="606" max="32767" attributes="0"/>
+                          <EmptySpace pref="617" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -104,7 +87,7 @@
                           <Component id="lblInfo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="visaKnapp" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="390" max="32767" attributes="0"/>
+                          <EmptySpace pref="445" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -187,7 +170,7 @@
                                   <Component id="felmeddelandeL" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane3" pref="408" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" pref="467" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -272,16 +255,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnFilterByDate" min="-2" pref="109" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="dateFormatWrongError" max="32767" attributes="0"/>
+                                          <Component id="dateFormatWrongError" pref="245" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
@@ -313,6 +291,7 @@
                                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                                           <Component id="endDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
                                                       </Group>
+                                                      <Component id="btnFilterByDate" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
@@ -321,13 +300,18 @@
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="startNewProjectButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="minaProjectField" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="401" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane1" pref="463" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="468" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -373,7 +357,9 @@
                                   <Component id="filterProjectsDateError" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="dateFormatWrongError" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="startNewProjectButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" max="32767" attributes="0"/>
                           </Group>
@@ -531,6 +517,14 @@
                     <Property name="text" type="java.lang.String" value="V&#xe4;nligen skriv datum i formatet yyyy-mm-dd"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JButton" name="startNewProjectButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Start new project"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startNewProjectButtonActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="samarbetspartnerTab2">
@@ -548,11 +542,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="samarbetspartnerSok" min="-2" max="-2" attributes="0"/>
                               <Component id="samarbetspartnerSokruta" min="-2" max="-2" attributes="0"/>
                               <Component id="jLblSökHandläggare5" min="-2" pref="134" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="151" max="32767" attributes="0"/>
+                          <EmptySpace pref="162" max="32767" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="350" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       </Group>
@@ -568,11 +561,9 @@
                                   <Component id="jLblSökHandläggare5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="samarbetspartnerSokruta" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="samarbetspartnerSok" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="25" max="32767" attributes="0"/>
+                          <EmptySpace pref="84" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -587,14 +578,6 @@
                   <Properties>
                     <Property name="columns" type="int" value="8"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="samarbetspartnerSok">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#xf6;k"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="samarbetspartnerSokActionPerformed"/>
-                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                   <AuxValues>
@@ -666,7 +649,7 @@
                                   <Component id="hallbarhetsmalSok" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="scrlPanelHållbarhet" pref="408" max="32767" attributes="0"/>
+                              <Component id="scrlPanelHållbarhet" pref="467" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>

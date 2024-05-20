@@ -4,8 +4,6 @@ package NGO2024;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-
 import NGO2024.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,20 +27,20 @@ public class NewProject extends javax.swing.JFrame {
     private InfDB idb;
     private static String userAid;
     private static Validering validering;
-    
+
     /**
      * Creates new form newPersonel
      *
      * @throws oru.inf.InfException
      */
-    public NewProject(String userAid ) throws InfException {
+    public NewProject(String userAid) throws InfException {
 
         this.userAid = userAid;
         validering = new Validering();
-        
+
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
-            
+
         } catch (InfException ex) {
             Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,13 +49,11 @@ public class NewProject extends javax.swing.JFrame {
         felmeddelandeProject.setVisible(false);
         countryButton.setVisible(false);
     }
-    
-   /* public String setUserName() throws InfException{
+
+    /* public String setUserName() throws InfException{
     String userName = idb.fetchSingle("select concat(fornamn, efternamn) from anstalld where aid ="+userAid+";");
     return userName;
-    */
-    
-
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -229,63 +225,69 @@ public class NewProject extends javax.swing.JFrame {
         int priority = priorityBox.getSelectedIndex();
         String newCountry = countryField.getText();
         String newProjectL = projectLField.getText();
-        
+
         String fornamn = null;
         String efternamn = null;
-        
-        
-         try{
-        int index = newProjectL.indexOf(" ");
-        fornamn = newProjectL.substring(0, index);
-        efternamn = newProjectL.substring(index + 1);
-        System.out.print(fornamn + efternamn);
-         
-        String newPid;
-        
-        ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
-            
+
+        try {
+            int index = newProjectL.indexOf(" ");
+            fornamn = newProjectL.substring(0, index);
+            efternamn = newProjectL.substring(index + 1);
+            System.out.print(fornamn + efternamn);
+
+            String newPid;
+
+            ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
+
             for (int i = 0; i < countryList.size(); i++) {
                 if (newCountry.equals(countryList.get(i))) {
-       
-            newPid = idb.getAutoIncrement("projekt", "pid");
-            String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
-            idb.insert(sqlQuerry);
-            //använd valideringsklass
-            if (validering.fieldValidation(newPName, "Project name")) {
-                insertValue("projektnamn", newPName, newPid);
-            }
-            //använd valideringsklass
-            if (validering.fieldValidation(newDescription, "-1")) {
-                insertValue("beskrivning", newDescription, newPid);
-            }
-            //använd valideringsklass, validera datum TODO
-            if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
-                insertValue("startdatum", newStartDate, newPid);
-            }
-            
-            
-            //använd valideringsklass, validera datum TODO
-            if (validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
-                insertValue("slutdatum", newEndDate, newPid);
-            }
-            //använd valideringsklass
-            if (validering.fieldValidation(newBudget, "Budget")) {
-                insertValue("kostnad", newBudget, newPid);
-            }
-            if (validering.fieldValidation(newProjectL, "Assign project leader") && !validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn +"' and efternamn = '" + efternamn +"';"))) {
-                insertValue("projektchef", idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn +"' and efternamn = '" + efternamn +"';"), newPid);
-            }else if(validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn +"' and efternamn = '" + efternamn +"';"))){
-                felmeddelandeProject.setText("Användaren är en Admin välj en handläggare!");
-                felmeddelandeProject.setVisible(true);
-            }else{
-                felmeddelandeProject.setText("Kunde int hitta!");
-                felmeddelandeProject.setVisible(true);
-            }
-            insertValue("land",idb.fetchSingle("select lid from land where namn = "+ newCountry + ";"),newPid);
-            //else felmeddelande.
-            String newPriority = priorityPicker(priority);
-            insertValue("prioritet", newPriority, newPid);
-                }else{
+
+                    newPid = idb.getAutoIncrement("projekt", "pid");
+                    String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
+                    idb.insert(sqlQuerry);
+                    //använd valideringsklass
+                    if (validering.fieldValidation(newPName, "Project name")) {
+                        insertValue("projektnamn", newPName, newPid);
+                    }
+                    //använd valideringsklass
+                    if (validering.fieldValidation(newDescription, "-1")) {
+                        insertValue("beskrivning", newDescription, newPid);
+                    }
+                    //använd valideringsklass, validera datum TODO
+                    if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
+                        insertValue("startdatum", newStartDate, newPid);
+                    }
+
+                    //använd valideringsklass, validera datum TODO
+                    if (validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
+                        insertValue("slutdatum", newEndDate, newPid);
+                    }
+                    //använd valideringsklass
+                    if (validering.fieldValidation(newBudget, "Budget")) {
+                        insertValue("kostnad", newBudget, newPid);
+                    }
+
+                    if (!validering.checkProjektLedareAid(userAid)) {
+                        if (validering.fieldValidation(newProjectL, "Assign project leader") && !validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"))) {
+                            insertValue("projektchef", idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"), newPid);
+                        } else if (validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"))) {
+                            felmeddelandeProject.setText("Användaren är en Admin välj en handläggare!");
+                            felmeddelandeProject.setVisible(true);
+                        } else {
+                            felmeddelandeProject.setText("Kunde int hitta!");
+                            felmeddelandeProject.setVisible(true);
+                        }
+                    } else {
+                        fornamn = idb.fetchSingle("select fornamn from anstalld where aid = "+userAid+";");
+                        efternamn = idb.fetchSingle("select efternamn from anstalld where aid = "+ userAid+";");
+                        projectLField.setText(fornamn + " " + efternamn);
+                        projectLField.setEditable(false);
+                    }
+                    insertValue("land", idb.fetchSingle("select lid from land where namn = " + newCountry + ";"), newPid);
+                    //else felmeddelande.
+                    String newPriority = priorityPicker(priority);
+                    insertValue("prioritet", newPriority, newPid);
+                } else {
                     countryButton.setVisible(true);
                 }
             }
@@ -296,7 +298,7 @@ public class NewProject extends javax.swing.JFrame {
 
         } catch (InfException ex) {
             Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
-            
+
             felmeddelandeProject.setVisible(true);
             felmeddelandeProject.setText("Kontrollera Stavning");
         }
@@ -325,30 +327,27 @@ public class NewProject extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_countryButtonActionPerformed
 
-    private String priorityPicker(int priority){
-        if(priority == 3){
+    private String priorityPicker(int priority) {
+        if (priority == 3) {
             return "låg";
-        }
-        else if(priority == 2){
+        } else if (priority == 2) {
             return "medel";
-        }
-        else{
+        } else {
             return "hög";
         }
     }
-    
-    
 
-    private void insertValue(String column, String value, String newPid) throws InfException{
-        String sqlQuerry = ("UPDATE ngo_2024.projekt t SET t."+column+" = '" + value + "' WHERE t.pid = " + newPid + ";");
+    private void insertValue(String column, String value, String newPid) throws InfException {
+        String sqlQuerry = ("UPDATE ngo_2024.projekt t SET t." + column + " = '" + value + "' WHERE t.pid = " + newPid + ";");
         idb.update(sqlQuerry);
     }
 
     /**
      * todo ändra till land
+     *
      * @param newCity
      * @param newPid
-     * @throws InfException 
+     * @throws InfException
      */
     private void countryValidation(String newCity, String newPid) throws InfException {
         ArrayList<String> cityList = idb.fetchColumn("Select namn from land;");

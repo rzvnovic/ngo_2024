@@ -17,7 +17,7 @@ import java.util.*;
  * @author Cyrus 08/05/2024
  * @version 10/05/2024
  */
-public class visaProjekt extends javax.swing.JFrame {
+public class VisaProjekt extends javax.swing.JFrame {
 
     private InfDB idb;
 
@@ -29,7 +29,7 @@ public class visaProjekt extends javax.swing.JFrame {
     /**
      * Creates new form PersonalInfo
      */
-    public visaProjekt(String pid, String userAid) throws InfException {
+    public VisaProjekt(String pid, String userAid) throws InfException {
 
         this.userAid = "1"; //såklart inte någon hårdkodning här
         this.pid = "3";     //---------------||-----------------
@@ -38,7 +38,7 @@ public class visaProjekt extends javax.swing.JFrame {
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         } catch (InfException ex) {
-            Logger.getLogger(visaProjekt.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
 
@@ -410,7 +410,7 @@ public class visaProjekt extends javax.swing.JFrame {
             String sqlQuerry = ("UPDATE ngo_2024.projekt t SET t." + column + " = '" + value + "' WHERE t.pid = " + pid + ";");
             idb.update(sqlQuerry);
         } catch (InfException ex) {
-            Logger.getLogger(visaProjekt.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -500,7 +500,7 @@ public class visaProjekt extends javax.swing.JFrame {
         try {
             idb.delete(sqlQueery);
         } catch (InfException ex) {
-            Logger.getLogger(visaProjekt.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -546,14 +546,30 @@ public class visaProjekt extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(visaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(visaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(visaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(visaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -575,10 +591,10 @@ public class visaProjekt extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new visaProjekt(pid, userAid).setVisible(true);
+                    new VisaProjekt(pid, userAid).setVisible(true);
                     Validering validering = new Validering();
                 } catch (InfException ex) {
-                    Logger.getLogger(visaProjekt.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

@@ -18,7 +18,7 @@ import java.util.*;
  * @version 10/05/2024
  */
 
-public class visaAvdelning extends javax.swing.JFrame {
+public class VisaAvdelning extends javax.swing.JFrame {
 
     private InfDB idb;
 
@@ -30,7 +30,7 @@ public class visaAvdelning extends javax.swing.JFrame {
     /**
      * Creates new form PersonalInfo
      */
-    public visaAvdelning(String avdid, String userAid) throws InfException {
+    public VisaAvdelning(String avdid, String userAid) throws InfException {
 
         this.userAid = "1"; //såklart inte någon hårdkodning här
         this.avdid = "3";     //---------------||-----------------
@@ -39,7 +39,7 @@ public class visaAvdelning extends javax.swing.JFrame {
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         } catch (InfException ex) {
-            Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VisaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
         
@@ -390,7 +390,7 @@ public class visaAvdelning extends javax.swing.JFrame {
             String sqlQuerry = ("UPDATE ngo_2024.avdelning t SET t."+column + " = '"+value + "' WHERE t.avdid = " + avdid + ";");
             idb.update(sqlQuerry);
         } catch (InfException ex) {
-            Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VisaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -463,7 +463,7 @@ public class visaAvdelning extends javax.swing.JFrame {
         try {
             idb.delete(sqlQueery);
         } catch (InfException ex) {
-            Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VisaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -504,14 +504,22 @@ public class visaAvdelning extends javax.swing.JFrame {
             }
         }
     } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        java.util.logging.Logger.getLogger(VisaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        java.util.logging.Logger.getLogger(VisaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        java.util.logging.Logger.getLogger(VisaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(visaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        java.util.logging.Logger.getLogger(VisaAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
     //</editor-fold>
     //</editor-fold>
     //</editor-fold>
@@ -525,10 +533,10 @@ public class visaAvdelning extends javax.swing.JFrame {
     java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
             try {
-                new visaAvdelning(avdid, userAid).setVisible(true);
+                new VisaAvdelning(avdid, userAid).setVisible(true);
                 Validering validering = new Validering();
             } catch (InfException ex) {
-                Logger.getLogger(visaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(VisaAvdelning.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     });
