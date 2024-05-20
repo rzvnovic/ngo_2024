@@ -376,6 +376,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     }
 
    public String fetchProjects() throws InfException {
+       ArrayList<String> projektPidLista = idb.fetchColumn("Select pid from projekt;");
         ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt;");
         ArrayList<String> projektBeskrivningLista = idb.fetchColumn("Select beskrivning from projekt;");
         ArrayList<String> projektStartdatum = idb.fetchColumn("Select startdatum from projekt;");
@@ -383,8 +384,8 @@ public class MenyAdmin extends javax.swing.JFrame {
         ArrayList<String> projektKostnad = idb.fetchColumn("Select kostnad from projekt;");
         ArrayList<String> projektStatus = idb.fetchColumn("Select status from projekt;");
         ArrayList<String> projektPrioritet = idb.fetchColumn("Select prioritet from projekt;");
-        ArrayList<String> projektLedareFornamn = idb.fetchColumn("select fornamn from anstalld where aid in (select projektchef from projekt);");
-        ArrayList<String> projektLedareEfternamn = idb.fetchColumn("select efternamn from anstalld where aid in (select projektchef from projekt);");
+        //ArrayList<String> projektLedareFornamn = idb.fetchColumn("select fornamn from anstalld where aid in (select projektchef from projekt);");
+        //ArrayList<String> projektLedareEfternamn = idb.fetchColumn("select efternamn from anstalld where aid in (select projektchef from projekt);");
 
         String message = "";
         String nameMessage = "Projektnamn: ";
@@ -406,6 +407,8 @@ public class MenyAdmin extends javax.swing.JFrame {
         String contentLeaderLast = null; 
 
         for (int i = 0; i < projektNamnLista.size(); i++) {
+           String pid = projektPidLista.get(i);
+             
             contentName = projektNamnLista.get(i);
             contentBesk = projektBeskrivningLista.get(i);
             contentStart = projektStartdatum.get(i);
@@ -413,8 +416,13 @@ public class MenyAdmin extends javax.swing.JFrame {
             contentCost = projektKostnad.get(i);
             contentStatus = projektStatus.get(i);
             contentPriority = projektPrioritet.get(i);
-            contentLeaderFirst = projektLedareFornamn.get(i);
-            contentLeaderLast = projektLedareEfternamn.get(i);
+            String aid = idb.fetchSingle("SELECT projektchef FROM projekt WHERE pid = '"+projektPidLista.get(i)+"';");
+            
+            contentLeaderFirst = idb.fetchSingle("Select fornamn From anstalld where aid = "+ aid+";");
+            contentLeaderLast = idb.fetchSingle("Select efternamn From anstalld where aid = "+ aid+";");
+
+//contentLeaderFirst = projektLedareFornamn; // SELECT projektchef FROM projekt WHERE  projektnamn = projektNamnLista.get(i);
+            //contentLeaderLast = projektLedareEfternamn.get(i);
             message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n"; 
         }
         

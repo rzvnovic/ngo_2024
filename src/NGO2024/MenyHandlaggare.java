@@ -59,6 +59,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         jTextArea3 = new javax.swing.JTextArea();
         personalList = new javax.swing.JLabel();
         felmeddelandeL = new javax.swing.JLabel();
+        searchEpostjBtn = new javax.swing.JButton();
         projektTab = new javax.swing.JPanel();
         jLblSökHandläggare4 = new javax.swing.JLabel();
         projektSokruta = new javax.swing.JTextField();
@@ -126,7 +127,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 .addComponent(lblInfo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(visaKnapp)
-                .addContainerGap(386, Short.MAX_VALUE))
+                .addContainerGap(390, Short.MAX_VALUE))
         );
 
         HandläggarMeny.addTab("Profil", profilTab);
@@ -135,7 +136,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         avdelningSokruta.setColumns(8);
 
-        avdelningSok.setText("Sök");
+        avdelningSok.setText("Sök namn");
         avdelningSok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avdelningSokjButton2ActionPerformed(evt);
@@ -154,27 +155,39 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         personalList.setText("Department's employees");
 
+        felmeddelandeL.setForeground(new java.awt.Color(255, 0, 0));
         felmeddelandeL.setText("Felmeddelande");
+
+        searchEpostjBtn.setText("Sök ePost");
+        searchEpostjBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchEpostjBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout avdelningTabLayout = new javax.swing.GroupLayout(avdelningTab);
         avdelningTab.setLayout(avdelningTabLayout);
         avdelningTabLayout.setHorizontalGroup(
             avdelningTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(avdelningTabLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addGroup(avdelningTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(avdelningTabLayout.createSequentialGroup()
-                        .addComponent(jLblSökHandläggare, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(personalList, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, avdelningTabLayout.createSequentialGroup()
+                        .addComponent(avdelningSok)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchEpostjBtn)
+                        .addGap(10, 10, 10))
                     .addGroup(avdelningTabLayout.createSequentialGroup()
                         .addGroup(avdelningTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(avdelningSok)
                             .addComponent(avdelningSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblSökHandläggare, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(felmeddelandeL))
-                        .addGap(45, 45, 45)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(avdelningTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(avdelningTabLayout.createSequentialGroup()
+                        .addComponent(personalList, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
                 .addContainerGap())
         );
         avdelningTabLayout.setVerticalGroup(
@@ -188,12 +201,14 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 .addGroup(avdelningTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(avdelningTabLayout.createSequentialGroup()
                         .addComponent(avdelningSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(avdelningSok)
                         .addGap(18, 18, 18)
+                        .addGroup(avdelningTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(searchEpostjBtn)
+                            .addComponent(avdelningSok, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(felmeddelandeL)
-                        .addGap(0, 317, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -362,7 +377,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addComponent(filterProjectsDateError)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateFormatWrongError)
-                        .addGap(0, 30, Short.MAX_VALUE))
+                        .addGap(0, 34, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -473,7 +488,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(hallbarhetsmalSok)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scrlPanelHållbarhet, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
+                    .addComponent(scrlPanelHållbarhet, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -519,6 +534,11 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void avdelningSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdelningSokjButton2ActionPerformed
+        if (avdelningSokruta.getText().contains("@")) {
+            felmeddelandeL.setText("Vänligen använd sök ePost knappen vid ePost sökning");
+            felmeddelandeL.setVisible(true);
+        }
+        else {
         try {
             String personalNamn = avdelningSokruta.getText();
             int index = personalNamn.indexOf(" ");
@@ -526,11 +546,12 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             String efternamn = personalNamn.substring(index + 1);
             System.out.print(fornamn + efternamn);
 
-            String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
+            String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "' and fornamn, efternamn is not null;");
             String dbSqlFraga = idb.fetchSingle(sqlFraga);
             String userAvd = idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + userAid + ";");
             if (validering.checkProjektLedareAid(userAid) || userAvd.equals(idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + dbSqlFraga + ";"))) {
                 new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+                
 
             } else {
                 felmeddelandeL.setText("Behörighet saknas");
@@ -542,6 +563,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             felmeddelandeL.setText("Anställd finns ej");
             felmeddelandeL.setVisible(true);
 
+        }
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_avdelningSokjButton2ActionPerformed
@@ -621,6 +643,32 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private void priorityBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priorityBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priorityBoxActionPerformed
+
+    private void searchEpostjBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEpostjBtnActionPerformed
+       String personalEpost = avdelningSokruta.getText();
+       
+       if (!personalEpost.contains("@")){
+           felmeddelandeL.setText("Vänligen använd sök namn knappen vid sök på namn");
+           felmeddelandeL.setVisible(true);
+       }
+       else {
+       if(validering.giltigEpost(personalEpost)){
+        try {
+            String sqlFraga = ("Select aid from anstalld where epost ='" + personalEpost + "';");
+            String dbSqlFraga = idb.fetchSingle(sqlFraga);
+            if (dbSqlFraga != null) {
+            new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+            }
+            else {
+            felmeddelandeL.setText("Ingen existerande anställd med angiven ePost");
+            felmeddelandeL.setVisible(true);
+            }
+        } catch (Exception e) {
+
+        }
+       }
+       }      
+    }//GEN-LAST:event_searchEpostjBtnActionPerformed
 
     private String fetchProjectDates(String startDate, String endDate) throws InfException {
 
@@ -995,6 +1043,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JTextField samarbetspartnerSokruta;
     private javax.swing.JPanel samarbetspartnerTab2;
     private javax.swing.JScrollPane scrlPanelHållbarhet;
+    private javax.swing.JButton searchEpostjBtn;
     private javax.swing.JButton showDeptProjectButton;
     private javax.swing.JButton showUserProjectsButton;
     private javax.swing.JTextField startDateProjekt;

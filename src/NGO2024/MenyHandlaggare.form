@@ -104,7 +104,7 @@
                           <Component id="lblInfo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="visaKnapp" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="386" max="32767" attributes="0"/>
+                          <EmptySpace pref="390" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -138,23 +138,29 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLblSökHandläggare" min="-2" pref="134" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="personalList" min="-2" pref="209" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="avdelningSok" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="searchEpostjBtn" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="avdelningSok" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="avdelningSokruta" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="felmeddelandeL" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLblSökHandläggare" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                                      <Component id="felmeddelandeL" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane3" pref="544" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="personalList" min="-2" pref="209" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane3" pref="529" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -172,13 +178,16 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="avdelningSokruta" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="avdelningSok" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="searchEpostjBtn" min="-2" max="-2" attributes="0"/>
+                                      <Component id="avdelningSok" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="felmeddelandeL" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="317" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane3" pref="404" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" pref="408" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -198,7 +207,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="avdelningSok">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#xf6;k"/>
+                    <Property name="text" type="java.lang.String" value="S&#xf6;k namn"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="avdelningSokjButton2ActionPerformed"/>
@@ -233,8 +242,19 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="felmeddelandeL">
                   <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Felmeddelande"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="searchEpostjBtn">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="S&#xf6;k ePost"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchEpostjBtnActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -353,7 +373,7 @@
                                   <Component id="filterProjectsDateError" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="dateFormatWrongError" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" max="32767" attributes="0"/>
                           </Group>
@@ -643,7 +663,7 @@
                                   <Component id="hallbarhetsmalSok" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="scrlPanelHållbarhet" pref="404" max="32767" attributes="0"/>
+                              <Component id="scrlPanelHållbarhet" pref="408" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
