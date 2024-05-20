@@ -63,6 +63,11 @@ public class MenyAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tabCountry = new javax.swing.JPanel();
         tabPartner = new javax.swing.JPanel();
+        samarbetspartnerSokruta = new javax.swing.JTextField();
+        jLblSökHandläggare5 = new javax.swing.JLabel();
+        samarbetspartnerSok = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        samarbetsPartnerInfo = new javax.swing.JTextArea();
         tabBranch = new javax.swing.JPanel();
         tabProject = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -221,15 +226,54 @@ public class MenyAdmin extends javax.swing.JFrame {
 
         tabWindow.addTab("Country", tabCountry);
 
+        samarbetspartnerSokruta.setColumns(8);
+        samarbetspartnerSokruta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                samarbetspartnerSokrutaActionPerformed(evt);
+            }
+        });
+
+        jLblSökHandläggare5.setText("Sök Samarbetspartner");
+
+        samarbetspartnerSok.setText("Sök");
+
+        samarbetsPartnerInfo.setColumns(20);
+        samarbetsPartnerInfo.setRows(5);
+        try{
+            samarbetsPartnerInfo.setText(fetchPartnersInProjects());
+        }
+        catch(Exception e){}
+        jScrollPane2.setViewportView(samarbetsPartnerInfo);
+
         javax.swing.GroupLayout tabPartnerLayout = new javax.swing.GroupLayout(tabPartner);
         tabPartner.setLayout(tabPartnerLayout);
         tabPartnerLayout.setHorizontalGroup(
             tabPartnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 982, Short.MAX_VALUE)
+            .addGroup(tabPartnerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tabPartnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblSökHandläggare5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(tabPartnerLayout.createSequentialGroup()
+                        .addGroup(tabPartnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(samarbetspartnerSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(samarbetspartnerSok))
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(492, Short.MAX_VALUE))
         );
         tabPartnerLayout.setVerticalGroup(
             tabPartnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 608, Short.MAX_VALUE)
+            .addGroup(tabPartnerLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLblSökHandläggare5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(tabPartnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabPartnerLayout.createSequentialGroup()
+                        .addComponent(samarbetspartnerSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(samarbetspartnerSok))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         tabWindow.addTab("Partners", tabPartner);
@@ -333,6 +377,30 @@ public class MenyAdmin extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_SearchButton1ActionPerformed
 
+    private void samarbetspartnerSokrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_samarbetspartnerSokrutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_samarbetspartnerSokrutaActionPerformed
+
+    public String fetchPartnersInProjects() throws InfException {
+  ArrayList<String> samarbetsPartnerNamn = idb.fetchColumn("select namn from partner");
+        ArrayList<String> samarbetsPartnerKontaktPerson = idb.fetchColumn("select kontaktperson from partner");
+        ArrayList<String> samarbetsPartnerKontaktEpost = idb.fetchColumn("select kontaktepost from partner");
+        ArrayList<String> samarbetsPartnerTelefon = idb.fetchColumn("select telefon from partner");
+        ArrayList<String> samarbetsPartnerAdress = idb.fetchColumn("select adress from partner");
+        ArrayList<String> samarbetsPartnerBranch = idb.fetchColumn("select branch from partner");
+        StringBuilder message = new StringBuilder();
+        for (int i = 0; i < samarbetsPartnerNamn.size(); i++) {
+            message.append("\nNamn: ").append(samarbetsPartnerNamn.get(i))
+                    .append("\nKontaktperson: ").append(samarbetsPartnerKontaktPerson.get(i))
+                    .append("\nEpost: ").append(samarbetsPartnerKontaktEpost.get(i))
+                    .append("\nTelefon: ").append(samarbetsPartnerTelefon.get(i)).append("\nAdress: ").append(samarbetsPartnerAdress.get(i)).append("\nBranch: ").append(samarbetsPartnerBranch.get(i)).append("\n");
+        }
+
+        return message.toString().trim();
+
+    
+}
+
     /**
      * @param args the command line arguments
      */
@@ -374,6 +442,8 @@ public class MenyAdmin extends javax.swing.JFrame {
             }
         });
     }
+
+    
 
    public String fetchProjects() throws InfException {
        ArrayList<String> projektPidLista = idb.fetchColumn("Select pid from projekt;");
@@ -440,11 +510,16 @@ public class MenyAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLblSökHandläggare5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextArea samarbetsPartnerInfo;
+    private javax.swing.JButton samarbetspartnerSok;
+    private javax.swing.JTextField samarbetspartnerSokruta;
     private javax.swing.JTextField searchField;
     private javax.swing.JPanel tabBranch;
     private javax.swing.JPanel tabCountry;
