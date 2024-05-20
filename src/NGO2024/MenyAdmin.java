@@ -331,7 +331,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     private void searchPersonnalNamnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPersonnalNamnBActionPerformed
         String personalNamn = searchField.getText();
         if (personalNamn.contains("@")) {
-            personelLblError.setText("Vänligen använd sökknappen för ePost");
+            personelLblError.setText("Vänligen använd sökknappen för Epost");
             personelLblError.setVisible(true);
         } 
         else {
@@ -386,7 +386,7 @@ public class MenyAdmin extends javax.swing.JFrame {
             new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
             }
             else {
-            personelLblError.setText("Ingen existerande anställd med angiven ePost");
+            personelLblError.setText("Ingen existerande anställd med angiven Epost");
             personelLblError.setVisible(true);
             }
            
