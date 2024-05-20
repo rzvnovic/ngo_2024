@@ -233,7 +233,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="felmeddelandeL">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="CyrusAshole"/>
+                    <Property name="text" type="java.lang.String" value="Felmeddelande"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -572,9 +572,6 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="S&#xf6;k"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="samarbetspartnerSokjButton2ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                   <AuxValues>
@@ -583,7 +580,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea1">
+                    <Component class="javax.swing.JTextArea" name="samarbetsPartnersInfojTextArea">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5" postCode="try{"/>

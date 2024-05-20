@@ -84,7 +84,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         samarbetspartnerSokruta = new javax.swing.JTextField();
         samarbetspartnerSok = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        samarbetsPartnersInfojTextArea = new javax.swing.JTextArea();
         hållbarhetsmalTab = new javax.swing.JPanel();
         jLblSökHallbarhetsmål = new javax.swing.JLabel();
         hallbarhetsmalSokruta = new javax.swing.JTextField();
@@ -154,7 +154,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         personalList.setText("Department's employees");
 
-        felmeddelandeL.setText("CyrusAshole");
+        felmeddelandeL.setText("Felmeddelande");
 
         javax.swing.GroupLayout avdelningTabLayout = new javax.swing.GroupLayout(avdelningTab);
         avdelningTab.setLayout(avdelningTabLayout);
@@ -374,19 +374,14 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         samarbetspartnerSokruta.setColumns(8);
 
         samarbetspartnerSok.setText("Sök");
-        samarbetspartnerSok.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                samarbetspartnerSokjButton2ActionPerformed(evt);
-            }
-        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
+        samarbetsPartnersInfojTextArea.setColumns(20);
+        samarbetsPartnersInfojTextArea.setRows(5);
         try{
-            jTextArea1.setText(fetchPartnersInProjects());
+            samarbetsPartnersInfojTextArea.setText(fetchPartnersInProjects());
         }
         catch(Exception e){}
-        jScrollPane2.setViewportView(jTextArea1);
+        jScrollPane2.setViewportView(samarbetsPartnersInfojTextArea);
 
         javax.swing.GroupLayout samarbetspartnerTab2Layout = new javax.swing.GroupLayout(samarbetspartnerTab2);
         samarbetspartnerTab2.setLayout(samarbetspartnerTab2Layout);
@@ -554,10 +549,6 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private void projektSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektSokjButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_projektSokjButton2ActionPerformed
-
-    private void samarbetspartnerSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_samarbetspartnerSokjButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_samarbetspartnerSokjButton2ActionPerformed
 
     private void hallbarhetsmalSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalSokjButton2ActionPerformed
         // TODO add your handling code here:
@@ -988,7 +979,6 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JLabel lblAktivaHallbarhetsmal;
     private javax.swing.JLabel lblInfo;
@@ -1000,6 +990,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JButton projektSok;
     private javax.swing.JTextField projektSokruta;
     private javax.swing.JPanel projektTab;
+    private javax.swing.JTextArea samarbetsPartnersInfojTextArea;
     private javax.swing.JButton samarbetspartnerSok;
     private javax.swing.JTextField samarbetspartnerSokruta;
     private javax.swing.JPanel samarbetspartnerTab2;
