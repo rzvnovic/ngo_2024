@@ -161,7 +161,9 @@ public class Inloggning extends javax.swing.JFrame {
                     new MenyHandlaggare(userAid).setVisible(true);
                 }
                 
-                //ELSE IF FÖR PROJEKTLEDARE OCKSÅ!!! 
+                else if (ärProjektLedare == true){
+                    new MenyHandlaggare(userAid).setVisible(true);
+                } 
     
             }
             //skrivs ut om lösenordet är fel 
