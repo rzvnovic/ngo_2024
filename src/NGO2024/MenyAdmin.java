@@ -54,7 +54,6 @@ public class MenyAdmin extends javax.swing.JFrame {
         tabWindow = new javax.swing.JTabbedPane();
         tabPersonel = new javax.swing.JPanel();
         addNewEmployeeButton = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         searchField = new javax.swing.JTextField();
         searchPersonnalNamnB = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -160,16 +159,10 @@ public class MenyAdmin extends javax.swing.JFrame {
                             .addComponent(searchField)
                             .addComponent(addNewEmployeeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabPersonelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(tabPersonelLayout.createSequentialGroup()
-                                .addComponent(searchPersonnalNamnB)
-                                .addGap(18, 18, 18)
-                                .addComponent(searchPersonalEpostB)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(searchPersonnalNamnB)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchPersonalEpostB)
+                        .addContainerGap(624, Short.MAX_VALUE))))
         );
         tabPersonelLayout.setVerticalGroup(
             tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,9 +180,7 @@ public class MenyAdmin extends javax.swing.JFrame {
                 .addComponent(personelLblError)
                 .addGap(18, 18, 18)
                 .addComponent(addNewEmployeeButton)
-                .addGap(317, 317, 317)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(475, Short.MAX_VALUE))
         );
 
         tabWindow.addTab("Personal", tabPersonel);
@@ -680,8 +671,6 @@ public class MenyAdmin extends javax.swing.JFrame {
         ArrayList<String> projektKostnad = idb.fetchColumn("Select kostnad from projekt;");
         ArrayList<String> projektStatus = idb.fetchColumn("Select status from projekt;");
         ArrayList<String> projektPrioritet = idb.fetchColumn("Select prioritet from projekt;");
-        //ArrayList<String> projektLedareFornamn = idb.fetchColumn("select fornamn from anstalld where aid in (select projektchef from projekt);");
-        //ArrayList<String> projektLedareEfternamn = idb.fetchColumn("select efternamn from anstalld where aid in (select projektchef from projekt);");
 
         String message = "";
         String nameMessage = "Projektnamn: ";
@@ -717,8 +706,6 @@ public class MenyAdmin extends javax.swing.JFrame {
             contentLeaderFirst = idb.fetchSingle("Select fornamn From anstalld where aid = " + aid + ";");
             contentLeaderLast = idb.fetchSingle("Select efternamn From anstalld where aid = " + aid + ";");
 
-            //contentLeaderFirst = projektLedareFornamn; // SELECT projektchef FROM projekt WHERE  projektnamn = projektNamnLista.get(i);
-            //contentLeaderLast = projektLedareEfternamn.get(i);
             message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n";
         }
 
@@ -743,7 +730,6 @@ public class MenyAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel personelLblError;
     private javax.swing.JLabel projectTabErrorLabel;
