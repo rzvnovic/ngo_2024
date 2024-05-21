@@ -105,7 +105,7 @@ public class VisaProjekt extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        projNameField.setText("Project Name ");
+        projNameField.setText("Projektnamn");
         projNameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 projNameFieldMouseClicked(evt);
@@ -119,14 +119,14 @@ public class VisaProjekt extends javax.swing.JFrame {
 
         jLabel1.setText("Information");
 
-        desField.setText("Description");
+        desField.setText("Beskrivning");
         desField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 desFieldMouseClicked(evt);
             }
         });
 
-        startDateField.setText("Start Date");
+        startDateField.setText("Startdatum");
         startDateField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 startDateFieldMouseClicked(evt);
@@ -138,7 +138,7 @@ public class VisaProjekt extends javax.swing.JFrame {
             }
         });
 
-        endDateField.setText("End Date");
+        endDateField.setText("Slutdatum");
         endDateField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 endDateFieldMouseClicked(evt);
@@ -150,7 +150,7 @@ public class VisaProjekt extends javax.swing.JFrame {
             }
         });
 
-        costField.setText("Cost");
+        costField.setText("Kostnad");
         costField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 costFieldMouseClicked(evt);
