@@ -79,7 +79,7 @@ public class NewProject extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pNameField.setText("Project name");
+        pNameField.setText("Projektnamn");
         pNameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pNameFieldMouseClicked(evt);
@@ -93,16 +93,16 @@ public class NewProject extends javax.swing.JFrame {
             }
         });
 
-        createButton.setText("Create");
+        createButton.setText("Skapa");
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("New project");
+        jLabel1.setText("Nytt projekt");
 
-        countryField.setText("Country");
+        countryField.setText("Stad");
         countryField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 countryFieldMouseClicked(evt);
@@ -119,23 +119,23 @@ public class NewProject extends javax.swing.JFrame {
 
         pDescriptionField.setColumns(20);
         pDescriptionField.setRows(5);
-        pDescriptionField.setText("Descripton");
+        pDescriptionField.setText("Beskrivning");
         jScrollPane1.setViewportView(pDescriptionField);
 
-        projectLField.setText("Assign Project Leader");
+        projectLField.setText("Projektledare");
 
         felmeddelandeProject.setText("Handläggare finns ej!");
 
-        startDateField.setText("Start Date");
+        startDateField.setText("Startdatum");
 
-        endDateFeild.setText("End Date");
+        endDateFeild.setText("Slutdatum");
         endDateFeild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endDateFeildActionPerformed(evt);
             }
         });
 
-        countryButton.setText("Add Country");
+        countryButton.setText("Lägg till land");
         countryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 countryButtonActionPerformed(evt);
