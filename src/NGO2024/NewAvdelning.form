@@ -37,24 +37,28 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="nameField" max="32767" attributes="0"/>
                                   <Component id="contactEmailField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="contactPhoneField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="contactPhoneField" alignment="0" pref="174" max="32767" attributes="0"/>
                                   <Component id="cityField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="createButton" min="-2" pref="79" max="-2" attributes="0"/>
                                   <Component id="HODfield" alignment="0" max="32767" attributes="0"/>
                                   <Component id="countryField" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="descriptionField" min="-2" pref="188" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                       <Component id="countryButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="descriptionField" min="-2" pref="188" max="-2" attributes="0"/>
+                                          <Component id="jLabel2" min="-2" pref="355" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -87,12 +91,12 @@
               </Group>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="HODfield" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace pref="146" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="createButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="countryButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="208" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -100,7 +104,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="nameField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Name"/>
+        <Property name="text" type="java.lang.String" value="Namn"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="nameFieldMouseClicked"/>
@@ -116,7 +120,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="contactPhoneField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Phonenumber"/>
+        <Property name="text" type="java.lang.String" value="Telefonnummer"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="contactPhoneFieldMouseClicked"/>
@@ -124,7 +128,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="createButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Create"/>
+        <Property name="text" type="java.lang.String" value="S&#xf6;k"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createButtonActionPerformed"/>
@@ -132,12 +136,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblDepDetails">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Department details"/>
+        <Property name="text" type="java.lang.String" value="Avdelning"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="cityField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="City"/>
+        <Property name="text" type="java.lang.String" value="Stad"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cityFieldMouseClicked"/>
@@ -153,7 +157,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="descriptionField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Description"/>
+        <Property name="text" type="java.lang.String" value="Beskrivning"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descriptionFieldActionPerformed"/>
@@ -161,7 +165,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="countryField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Country"/>
+        <Property name="text" type="java.lang.String" value="Land"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countryFieldActionPerformed"/>
@@ -169,7 +173,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="countryButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Country and City"/>
+        <Property name="text" type="java.lang.String" value="L&#xe4;gg till stad och land"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countryButtonActionPerformed"/>
@@ -177,12 +181,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Can&apos;t connect City to Country, check spelling or add new Country"/>
+        <Property name="text" type="java.lang.String" value="Kan inte ansluta stad till land, var v&#xe4;nligen och f&#xf6;rs&#xf6;k igen !"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="HODfield">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Head of department"/>
+        <Property name="text" type="java.lang.String" value="Avdelningschef"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HODfieldActionPerformed"/>

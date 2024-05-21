@@ -82,7 +82,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="countryName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Country name"/>
+        <Property name="text" type="java.lang.String" value="Land namn"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="countryNameMouseClicked"/>
@@ -91,7 +91,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="createButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Create"/>
+        <Property name="text" type="java.lang.String" value="Skapa"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createButtonActionPerformed"/>
@@ -99,12 +99,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="New country"/>
+        <Property name="text" type="java.lang.String" value="Nytt land"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="timezoneField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Timezone"/>
+        <Property name="text" type="java.lang.String" value="Tidszon"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="timezoneFieldMouseClicked"/>
@@ -122,14 +122,14 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Political structure"/>
+            <Property name="text" type="java.lang.String" value="Politisk struktur"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="languageField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Language"/>
+        <Property name="text" type="java.lang.String" value="Spr&#xe5;k"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="languageFieldActionPerformed"/>
@@ -137,7 +137,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="currencyField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Currency"/>
+        <Property name="text" type="java.lang.String" value="Valuta"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -151,7 +151,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Economical structure"/>
+            <Property name="text" type="java.lang.String" value="Ekonomisk struktur"/>
           </Properties>
         </Component>
       </SubComponents>
