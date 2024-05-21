@@ -107,6 +107,11 @@ public class NewAvdelning extends javax.swing.JFrame {
                 cityFieldMouseClicked(evt);
             }
         });
+        cityField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityFieldActionPerformed(evt);
+            }
+        });
 
         adressField.setText("Adress");
         adressField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,6 +128,11 @@ public class NewAvdelning extends javax.swing.JFrame {
         });
 
         countryField.setText("Land");
+        countryField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                countryFieldMouseClicked(evt);
+            }
+        });
         countryField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 countryFieldActionPerformed(evt);
@@ -139,6 +149,11 @@ public class NewAvdelning extends javax.swing.JFrame {
         jLabel2.setText("Kan inte ansluta stad till land, var vänligen och försök igen !");
 
         HODfield.setText("Avdelningschef");
+        HODfield.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HODfieldMouseClicked(evt);
+            }
+        });
         HODfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HODfieldActionPerformed(evt);
@@ -213,21 +228,21 @@ public class NewAvdelning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
-        if (nameField.getText().equals("Name")) {
+        if (nameField.getText().equals("Namn")) {
             nameField.setText("");
         }
 
     }//GEN-LAST:event_nameFieldMouseClicked
 
     private void contactEmailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactEmailFieldMouseClicked
-        if (contactEmailField.getText().equals("email")) {
+        if (contactEmailField.getText().equals("Email")) {
             contactEmailField.setText("");
         }
     }//GEN-LAST:event_contactEmailFieldMouseClicked
 
     private void contactPhoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactPhoneFieldMouseClicked
-        if (countryField.getText().equals("Head of department")) {
-            countryField.setText("");
+        if (contactPhoneField.getText().equals("Telefonnummer")) {
+            contactPhoneField.setText("");
         }
     }//GEN-LAST:event_contactPhoneFieldMouseClicked
 
@@ -290,7 +305,7 @@ public class NewAvdelning extends javax.swing.JFrame {
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void cityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseClicked
-        if (cityField.getText().equals("City")) {
+        if (cityField.getText().equals("Stad")) {
             cityField.setText("");
         }
     }//GEN-LAST:event_cityFieldMouseClicked
@@ -303,14 +318,21 @@ public class NewAvdelning extends javax.swing.JFrame {
 
     private void descriptionFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionFieldActionPerformed
         // TODO add your handling code here:
+        if (adressField.getText().equals("Beskrivning")) {
+            adressField.setText("");
+        }
     }//GEN-LAST:event_descriptionFieldActionPerformed
 
     private void countryFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryFieldActionPerformed
         // TODO add your handling code here:
+        if (adressField.getText().equals("Land")) {
+            adressField.setText("");
+        }
     }//GEN-LAST:event_countryFieldActionPerformed
 
     private void HODfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HODfieldActionPerformed
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_HODfieldActionPerformed
 
     private void countryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryButtonActionPerformed
@@ -321,6 +343,27 @@ public class NewAvdelning extends javax.swing.JFrame {
             Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_countryButtonActionPerformed
+
+    private void cityFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityFieldActionPerformed
+        // TODO add your handling code here:
+        if (cityField.getText().equals("Stad")) {
+            cityField.setText("");
+        }
+    }//GEN-LAST:event_cityFieldActionPerformed
+
+    private void countryFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_countryFieldMouseClicked
+        // TODO add your handling code here:
+        if (countryField.getText().equals("Land")) {
+            countryField.setText("");
+        }
+    }//GEN-LAST:event_countryFieldMouseClicked
+
+    private void HODfieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HODfieldMouseClicked
+        // TODO add your handling code here:
+        if (HODfield.getText().equals("Avdelningschef")) {
+            HODfield.setText("");
+        }
+    }//GEN-LAST:event_HODfieldMouseClicked
 
     private boolean fieldValidation(String newText, String validationText) {
         boolean validated = true;

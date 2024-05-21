@@ -124,6 +124,9 @@ public class NewPartner extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cityFieldMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cityFieldMouseEntered(evt);
+            }
         });
 
         adressField.setText("Adress");
@@ -183,32 +186,32 @@ public class NewPartner extends javax.swing.JFrame {
     }//GEN-LAST:event_contactFieldActionPerformed
 
     private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
-        if (nameField.getText().equals("Name")) {
+        if (nameField.getText().equals("Namn")) {
             nameField.setText("");
         }
 
     }//GEN-LAST:event_nameFieldMouseClicked
 
     private void contactFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactFieldMouseClicked
-        if (contactField.getText().equals("Contact")) {
+        if (contactField.getText().equals("Kontaktperson")) {
             contactField.setText("");
         }
     }//GEN-LAST:event_contactFieldMouseClicked
 
     private void contactEmailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactEmailFieldMouseClicked
-        if (contactEmailField.getText().equals("email")) {
+        if (contactEmailField.getText().equals("Epost")) {
             contactEmailField.setText("");
         }
     }//GEN-LAST:event_contactEmailFieldMouseClicked
 
     private void contactPhoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactPhoneFieldMouseClicked
-        if (contactPhoneField.getText().equals("Contact field of operations")) {
+        if (contactPhoneField.getText().equals("Telfon")) {
             contactPhoneField.setText("");
         }
     }//GEN-LAST:event_contactPhoneFieldMouseClicked
 
     private void branchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchFieldMouseClicked
-        if (branchField.getText().equals("Phonenumber")) {
+        if (branchField.getText().equals("Bransch")) {
             branchField.setText("");
         }
     }//GEN-LAST:event_branchFieldMouseClicked
@@ -253,7 +256,7 @@ public class NewPartner extends javax.swing.JFrame {
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void cityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseClicked
-        if (cityField.getText().equals("City")) {
+        if (cityField.getText().equals("Stad")) {
             cityField.setText("");
         }
     }//GEN-LAST:event_cityFieldMouseClicked
@@ -263,6 +266,10 @@ public class NewPartner extends javax.swing.JFrame {
             adressField.setText("");
         }
     }//GEN-LAST:event_adressFieldMouseClicked
+
+    private void cityFieldMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityFieldMouseEntered
 
     /*private boolean fieldValidation(String newText, String validationText) {
         boolean validated = true;
