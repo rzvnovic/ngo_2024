@@ -74,7 +74,7 @@ public class NewLand extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        countryName.setText("Country name");
+        countryName.setText("Land namn");
         countryName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 countryNameMouseClicked(evt);
@@ -86,16 +86,16 @@ public class NewLand extends javax.swing.JFrame {
             }
         });
 
-        createButton.setText("Create");
+        createButton.setText("Skapa");
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("New country");
+        jLabel1.setText("Nytt land");
 
-        timezoneField.setText("Timezone");
+        timezoneField.setText("Tidszon");
         timezoneField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 timezoneFieldMouseClicked(evt);
@@ -109,21 +109,21 @@ public class NewLand extends javax.swing.JFrame {
 
         politicField.setColumns(20);
         politicField.setRows(5);
-        politicField.setText("Political structure");
+        politicField.setText("Politisk struktur");
         jScrollPane1.setViewportView(politicField);
 
-        languageField.setText("Language");
+        languageField.setText("Språk");
         languageField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 languageFieldActionPerformed(evt);
             }
         });
 
-        currencyField.setText("Currency");
+        currencyField.setText("Valuta");
 
         economicField.setColumns(20);
         economicField.setRows(5);
-        economicField.setText("Economical structure");
+        economicField.setText("Ekonomisk struktur");
         jScrollPane2.setViewportView(economicField);
 
         wrongFormat.setText("Currency wrong format. ");
