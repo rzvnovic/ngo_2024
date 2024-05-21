@@ -27,7 +27,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     public MenyHandlaggare(String userAid) throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         //this.userAid = userAid;
-        this.userAid = "46";
+        this.userAid = userAid;
         validering = new Validering();
 
         initComponents();
