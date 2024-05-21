@@ -129,6 +129,11 @@ public class NewPersonel extends javax.swing.JFrame {
         lblPersonelDetails.setText("Skapa ny anställd");
 
         jTxtAvdelning.setText("Avdelningsnummer");
+        jTxtAvdelning.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTxtAvdelningMouseClicked(evt);
+            }
+        });
 
         jTxtAvdelningarna.setColumns(20);
         jTxtAvdelningarna.setRows(5);
@@ -226,14 +231,14 @@ public class NewPersonel extends javax.swing.JFrame {
     }//GEN-LAST:event_surnameFieldActionPerformed
 
     private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
-        if (nameField.getText().equals("Name")) {
+        if (nameField.getText().equals("Förnamn")) {
             nameField.setText("");
         }
 
     }//GEN-LAST:event_nameFieldMouseClicked
 
     private void surnameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_surnameFieldMouseClicked
-        if (surnameField.getText().equals("Surname")) {
+        if (surnameField.getText().equals("Efternamn")) {
             surnameField.setText("");
         }
     }//GEN-LAST:event_surnameFieldMouseClicked
@@ -245,13 +250,13 @@ public class NewPersonel extends javax.swing.JFrame {
     }//GEN-LAST:event_adressFieldMouseClicked
 
     private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
-        if (emailField.getText().equals("Email")) {
+        if (emailField.getText().equals("Epost")) {
             emailField.setText("");
         }
     }//GEN-LAST:event_emailFieldMouseClicked
 
     private void phoneNumFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneNumFieldMouseClicked
-        if (phoneNumField.getText().equals("Phonenumber")) {
+        if (phoneNumField.getText().equals("Telefon")) {
             phoneNumField.setText("");
         }
     }//GEN-LAST:event_phoneNumFieldMouseClicked
@@ -314,6 +319,13 @@ public class NewPersonel extends javax.swing.JFrame {
             Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_createButtonActionPerformed
+
+    private void jTxtAvdelningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTxtAvdelningMouseClicked
+        // TODO add your handling code here:
+        if (jTxtAvdelning.getText().equals("Avdelningsnummer")) {
+            jTxtAvdelning.setText("");
+        }
+    }//GEN-LAST:event_jTxtAvdelningMouseClicked
 
     /**
      * Metod som sätter in värden i databasen på senast skapde rad.
