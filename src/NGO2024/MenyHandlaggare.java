@@ -173,7 +173,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         }
         jScrollPane3.setViewportView(jTextArea3);
 
-        personalList.setText("Department's employees");
+        personalList.setText("Anställda på din avdelning");
 
         felmeddelandeL.setForeground(new java.awt.Color(255, 0, 0));
         felmeddelandeL.setText("Felmeddelande");
@@ -254,16 +254,16 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         catch(Exception e){}
         jScrollPane1.setViewportView(projectListField);
 
-        minaProjectField.setText("My projects");
+        minaProjectField.setText("Mina projekt");
 
-        showUserProjectsButton.setText("Show my projects");
+        showUserProjectsButton.setText("Visa mina projekt");
         showUserProjectsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showUserProjectsButtonActionPerformed(evt);
             }
         });
 
-        showDeptProjectButton.setText("Show department project");
+        showDeptProjectButton.setText("Visa avdelningens projekt");
         showDeptProjectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showDeptProjectButtonActionPerformed(evt);
@@ -277,7 +277,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             }
         });
 
-        totalBudgetButton.setText("Calculate total budget");
+        totalBudgetButton.setText("Kalkulera total budget");
         totalBudgetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 totalBudgetButtonActionPerformed(evt);
@@ -291,13 +291,13 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         catch(Exception e){}
         jScrollPane4.setViewportView(budgetField);
 
-        jLblMoney.setText("Moneys");
+        jLblMoney.setText("SKR");
 
-        startDateProjekt.setText("Start date");
+        startDateProjekt.setText("Startdatum");
 
-        endDateProjekt.setText("End date");
+        endDateProjekt.setText("Slutdatum");
 
-        btnFilterByDate.setText("Filter by date");
+        btnFilterByDate.setText("Filtrera utefter datum");
         btnFilterByDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterByDateActionPerformed(evt);
@@ -341,14 +341,14 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLblMoney, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(projektTabLayout.createSequentialGroup()
-                                .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(projektSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sökLabelProj, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(projektTabLayout.createSequentialGroup()
                                         .addComponent(startDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(endDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnFilterByDate, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnFilterByDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(projektTabLayout.createSequentialGroup()
                                 .addComponent(projektSok)

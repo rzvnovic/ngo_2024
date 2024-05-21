@@ -220,7 +220,7 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="personalList">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Department&apos;s employees"/>
+                    <Property name="text" type="java.lang.String" value="Anst&#xe4;llda p&#xe5; din avdelning"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="felmeddelandeL">
@@ -283,7 +283,7 @@
                                           <Component id="jLblMoney" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="projektSokruta" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="sökLabelProj" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
@@ -291,7 +291,7 @@
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="endDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="btnFilterByDate" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                                              <Component id="btnFilterByDate" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -410,12 +410,12 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="minaProjectField">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="My projects"/>
+                    <Property name="text" type="java.lang.String" value="Mina projekt"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="showUserProjectsButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Show my projects"/>
+                    <Property name="text" type="java.lang.String" value="Visa mina projekt"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showUserProjectsButtonActionPerformed"/>
@@ -425,7 +425,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="showDeptProjectButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Show department project"/>
+                    <Property name="text" type="java.lang.String" value="Visa avdelningens projekt"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showDeptProjectButtonActionPerformed"/>
@@ -451,7 +451,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="totalBudgetButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Calculate total budget"/>
+                    <Property name="text" type="java.lang.String" value="Kalkulera total budget"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="totalBudgetButtonActionPerformed"/>
@@ -479,22 +479,22 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLblMoney">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Moneys"/>
+                    <Property name="text" type="java.lang.String" value="SKR"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="startDateProjekt">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Start date"/>
+                    <Property name="text" type="java.lang.String" value="Startdatum"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="endDateProjekt">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="End date"/>
+                    <Property name="text" type="java.lang.String" value="Slutdatum"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnFilterByDate">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Filter by date"/>
+                    <Property name="text" type="java.lang.String" value="Filtrera utefter datum"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFilterByDateActionPerformed"/>

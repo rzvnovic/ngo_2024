@@ -44,7 +44,6 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="chcSaveLogin" max="32767" attributes="0"/>
                                   <Component id="chcShowPassword" pref="139" max="32767" attributes="0"/>
                                   <Component id="txtEpost" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jpswrdPassword" alignment="0" max="32767" attributes="0"/>
@@ -72,9 +71,7 @@
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="chcShowPassword" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="chcSaveLogin" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="lblfelMeddelande" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
@@ -123,14 +120,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chcShowPasswordActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="chcSaveLogin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Save Login"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chcSaveLoginActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

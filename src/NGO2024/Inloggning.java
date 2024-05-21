@@ -46,7 +46,6 @@ public class Inloggning extends javax.swing.JFrame {
         btnLoggaIn = new javax.swing.JButton();
         jpswrdPassword = new javax.swing.JPasswordField();
         chcShowPassword = new javax.swing.JCheckBox();
-        chcSaveLogin = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,13 +76,6 @@ public class Inloggning extends javax.swing.JFrame {
             }
         });
 
-        chcSaveLogin.setText("Save Login");
-        chcSaveLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chcSaveLoginActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +98,6 @@ public class Inloggning extends javax.swing.JFrame {
                                 .addGap(110, 110, 110))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(chcSaveLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(chcShowPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                                     .addComponent(txtEpost, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jpswrdPassword, javax.swing.GroupLayout.Alignment.LEADING))
@@ -125,9 +116,7 @@ public class Inloggning extends javax.swing.JFrame {
                     .addComponent(jpswrdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(chcShowPassword)
-                .addGap(1, 1, 1)
-                .addComponent(chcSaveLogin)
-                .addGap(21, 21, 21)
+                .addGap(42, 42, 42)
                 .addComponent(lblfelMeddelande)
                 .addGap(18, 18, 18)
                 .addComponent(btnLoggaIn)
@@ -263,14 +252,6 @@ public class Inloggning extends javax.swing.JFrame {
        
     }//GEN-LAST:event_chcShowPasswordActionPerformed
 
-    private void chcSaveLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chcSaveLoginActionPerformed
-        //String ePost = txtEpost.getText();
-        //char[] lösen = jpswrdPassword.getPassword();
-        
-       
-       
-    }//GEN-LAST:event_chcSaveLoginActionPerformed
-
     private void jpswrdPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpswrdPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jpswrdPasswordActionPerformed
@@ -312,7 +293,6 @@ public class Inloggning extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaIn;
-    private javax.swing.JCheckBox chcSaveLogin;
     private javax.swing.JCheckBox chcShowPassword;
     private javax.swing.JPasswordField jpswrdPassword;
     private javax.swing.JLabel lblEpost;
