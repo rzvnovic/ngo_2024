@@ -554,12 +554,13 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         } else {
             try {
                 String personalNamn = avdelningSokruta.getText();
+                if (personalNamn.trim().contains(" ")) {
                 int index = personalNamn.indexOf(" ");
                 String fornamn = personalNamn.substring(0, index);
                 String efternamn = personalNamn.substring(index + 1);
                 System.out.print(fornamn + efternamn);
 
-                String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "' and fornamn, efternamn is not null;");
+                String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "' and fornamn is not null and efternamn is not null;");
                 String dbSqlFraga = idb.fetchSingle(sqlFraga);
                 String userAvd = idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + userAid + ";");
                 if (validering.checkProjektLedareAid(userAid) || userAvd.equals(idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + dbSqlFraga + ";"))) {
@@ -568,6 +569,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 } else {
                     felmeddelandeL.setText("Behörighet saknas");
                     felmeddelandeL.setVisible(true);
+                }
                 }
 
             } catch (Exception e) {
