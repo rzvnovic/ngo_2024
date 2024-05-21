@@ -419,7 +419,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
     private void phoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneFieldMouseClicked
         // TODO add your handling code here:
-        if (phoneField.getText().equals("Phonenumber")) {
+        if (phoneField.getText().equals("Telefon")) {
             phoneField.setText("");
         }
     }//GEN-LAST:event_phoneFieldMouseClicked
@@ -437,7 +437,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
     private void kontaktPersonFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kontaktPersonFieldMouseClicked
         // TODO add your handling code here:
-        if (kontaktPersonField.getText().equals("Contact person")) {
+        if (kontaktPersonField.getText().equals("Kontaktperson")) {
             kontaktPersonField.setText("");
         }
     }//GEN-LAST:event_kontaktPersonFieldMouseClicked
@@ -448,7 +448,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
     private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
         // TODO add your handling code here:
-        if (nameField.getText().equals("Name")) {
+        if (nameField.getText().equals("Namn")) {
             nameField.setText("");
         }
     }//GEN-LAST:event_nameFieldMouseClicked
@@ -458,19 +458,19 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_adressFieldActionPerformed
 
     private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
-        if (emailField.getText().equals("Email")) {
+        if (emailField.getText().equals("Epost")) {
             emailField.setText("");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldMouseClicked
 
     private void branchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchFieldMouseClicked
-        if (branchField.getText().equals("Branch")) {
+        if (branchField.getText().equals("Bransch")) {
             branchField.setText("");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_branchFieldMouseClicked
 
     private void cityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseClicked
-        if (cityField.getText().equals("City")) {
+        if (cityField.getText().equals("Stad")) {
             cityField.setText("");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_cityFieldMouseClicked
