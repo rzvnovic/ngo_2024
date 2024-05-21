@@ -151,7 +151,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="nameField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Name"/>
+            <Property name="text" type="java.lang.String" value="Namn"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="nameFieldMouseClicked"/>
@@ -165,7 +165,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="languageField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Language"/>
+            <Property name="text" type="java.lang.String" value="Spr&#xe5;k"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="languageFieldMouseClicked"/>
@@ -174,7 +174,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="currencyField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Currency"/>
+            <Property name="text" type="java.lang.String" value="Valuta"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="currencyFieldMouseClicked"/>
@@ -182,7 +182,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="timezoneField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Timezone"/>
+            <Property name="text" type="java.lang.String" value="Tidszon"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="timezoneFieldMouseClicked"/>
@@ -192,7 +192,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="politicalField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Political structure"/>
+            <Property name="text" type="java.lang.String" value="Politisk struktur"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="politicalFieldMouseClicked"/>
@@ -317,7 +317,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Delete"/>
+            <Property name="text" type="java.lang.String" value="Radera"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
@@ -325,7 +325,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="economicalField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Economical structure"/>
+            <Property name="text" type="java.lang.String" value="Ekonomisk struktur"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="economicalFieldMouseClicked"/>
