@@ -1036,23 +1036,29 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         String contentPriority = null;
         String contentLeaderFirst = null;
         String contentLeaderLast = null;
-        
+        ArrayList<String> projektNamnLista = new ArrayList<>();
+        ArrayList<String> projektBeskrivningLista = new ArrayList<>();
+        ArrayList<String> projektStartdatum = new ArrayList<>();
+        ArrayList<String> projektSlutdatum = new ArrayList<>();
+        ArrayList<String> projektKostnad = new ArrayList<>();
+        ArrayList<String> projektStatus = new ArrayList<>();
+        ArrayList<String> projektPrioritet = new ArrayList<>();
         
         for (int i = 0; i < projektPidLista.size(); i++) {
 
-        ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt" +status + "and pid = "+projektPidLista.get(i)+" and projektnamn is not null;");
-        ArrayList<String> projektBeskrivningLista = idb.fetchColumn("Select beskrivning from projekt" +status + "and pid = "+projektPidLista.get(i)+" and beskrivning is not null;");
-        ArrayList<String> projektStartdatum = idb.fetchColumn("Select startdatum from projekt" +status + "and pid = "+projektPidLista.get(i)+" and startdatum is not null;");
-        ArrayList<String> projektSlutdatum = idb.fetchColumn("Select slutdatum from projekt" +status + "and pid = "+projektPidLista.get(i)+" and slutdatum is not null;");
-        ArrayList<String> projektKostnad = idb.fetchColumn("Select kostnad from projekt" +status + "and pid = "+projektPidLista.get(i)+" and kostnad is not null;");
-        ArrayList<String> projektStatus = idb.fetchColumn("Select status from projekt" +status + "and pid = "+projektPidLista.get(i)+" and status is not null;");
-        ArrayList<String> projektPrioritet = idb.fetchColumn("Select prioritet from projekt" +status + "and pid = "+projektPidLista.get(i)+" and prioritet is not null;");
+        projektNamnLista.add(idb.fetchSingle("Select projektnamn from projekt" +status + "and pid = "+projektPidLista.get(i)+" and projektnamn is not null;"));
+        projektBeskrivningLista.add(idb.fetchSingle("Select beskrivning from projekt" +status + "and pid = "+projektPidLista.get(i)+" and beskrivning is not null;"));
+        projektStartdatum.add(idb.fetchSingle("Select startdatum from projekt" +status + "and pid = "+projektPidLista.get(i)+" and startdatum is not null;"));
+        projektSlutdatum.add(idb.fetchSingle("Select slutdatum from projekt" +status + "and pid = "+projektPidLista.get(i)+" and slutdatum is not null;"));
+        projektKostnad.add(idb.fetchSingle("Select kostnad from projekt" +status + "and pid = "+projektPidLista.get(i)+" and kostnad is not null;"));
+        projektStatus.add(idb.fetchSingle("Select status from projekt" +status + "and pid = "+projektPidLista.get(i)+" and status is not null;"));
+        projektPrioritet.add(idb.fetchSingle("Select prioritet from projekt" +status + "and pid = "+projektPidLista.get(i)+" and prioritet is not null;"));
         
 
         
 
             String pid = projektPidLista.get(i);
-            if(!projektNamnLista.isEmpty()){
+            if(!projektNamnLista.isEmpty() && projektNamnLista.get(i) != null){
             contentName = projektNamnLista.get(i);
             contentBesk = projektBeskrivningLista.get(i);
             contentStart = projektStartdatum.get(i);
