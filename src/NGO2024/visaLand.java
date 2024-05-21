@@ -107,7 +107,7 @@ public class VisaLand extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nameField.setText("Name");
+        nameField.setText("Namn");
         nameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nameFieldMouseClicked(evt);
@@ -121,7 +121,7 @@ public class VisaLand extends javax.swing.JFrame {
 
         jLabel1.setText("Information");
 
-        languageField.setText("Language");
+        languageField.setText("Språk");
         languageField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 languageFieldMouseClicked(evt);
@@ -133,21 +133,21 @@ public class VisaLand extends javax.swing.JFrame {
             }
         });
 
-        currencyField.setText("Currency");
+        currencyField.setText("Valuta");
         currencyField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 currencyFieldMouseClicked(evt);
             }
         });
 
-        timezoneField.setText("Timezone");
+        timezoneField.setText("Tidszon");
         timezoneField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 timezoneFieldMouseClicked(evt);
             }
         });
 
-        politicalField.setText("Political structure");
+        politicalField.setText("Politisk struktur");
         politicalField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 politicalFieldMouseClicked(evt);
@@ -192,14 +192,14 @@ public class VisaLand extends javax.swing.JFrame {
 
         deleteButton.setBackground(new java.awt.Color(102, 0, 0));
         deleteButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButton.setText("Delete");
+        deleteButton.setText("Radera");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
 
-        economicalField.setText("Economical structure");
+        economicalField.setText("Ekonomisk struktur");
         economicalField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 economicalFieldMouseClicked(evt);
