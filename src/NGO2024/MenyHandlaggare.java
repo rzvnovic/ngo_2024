@@ -43,7 +43,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
     private void projectLedareVisibillity() {
         if (validering.checkProjektLedareAid(userAid)) {
-            startNewProjectButton.setVisible(true);
+            
             totalBudgetButton.setVisible(true);
             budgetField.setVisible(true);
             jLblMoney.setVisible(true);
@@ -51,7 +51,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             projektSok.setVisible(true);
             sökLabelProj.setVisible(true);
         } else {
-            startNewProjectButton.setVisible(false);
+            
             totalBudgetButton.setVisible(false);
             budgetField.setVisible(false);
             jLblMoney.setVisible(false);
@@ -249,7 +249,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         projectListField.setColumns(20);
         projectListField.setRows(5);
         try{
-            projectListField.setText(fetchProject1());
+            projectListField.setText(fetchProject());
         }
         catch(Exception e){}
         jScrollPane1.setViewportView(projectListField);
