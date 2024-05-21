@@ -254,65 +254,56 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="dateFormatWrongError" pref="245" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="filterProjectsDateError" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
-                                                  <Component id="jSeparator1" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Component id="showUserProjectsButton" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="showDeptProjectButton" alignment="0" max="32767" attributes="0"/>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  <Component id="priorityBox" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="totalBudgetButton" alignment="1" max="32767" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jScrollPane4" min="-2" pref="112" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jLblMoney" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="projektSokruta" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="sökLabelProj" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="startDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                          <Component id="endDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Component id="btnFilterByDate" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="projektSok" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="errorMsgProjekt" min="-2" pref="134" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="dateFormatWrongError" pref="245" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                  <Component id="startNewProjectButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="filterProjectsDateError" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                                          <Component id="jSeparator1" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="showUserProjectsButton" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="showDeptProjectButton" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="priorityBox" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="totalBudgetButton" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jScrollPane4" min="-2" pref="112" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLblMoney" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="projektSokruta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="sökLabelProj" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="startDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="endDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="btnFilterByDate" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="projektSok" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="errorMsgProjekt" min="-2" pref="134" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="minaProjectField" min="-2" max="-2" attributes="0"/>
@@ -367,9 +358,7 @@
                                   <Component id="filterProjectsDateError" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="dateFormatWrongError" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="startNewProjectButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="93" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" max="32767" attributes="0"/>
                           </Group>
@@ -526,14 +515,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="V&#xe4;nligen skriv datum i formatet yyyy-mm-dd"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="startNewProjectButton">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Start new project"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startNewProjectButtonActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="errorMsgProjekt">
                   <Properties>
