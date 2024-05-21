@@ -92,7 +92,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="pNameField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Project name"/>
+        <Property name="text" type="java.lang.String" value="Projektnamn"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pNameFieldMouseClicked"/>
@@ -108,7 +108,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="createButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Create"/>
+        <Property name="text" type="java.lang.String" value="Skapa"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createButtonActionPerformed"/>
@@ -116,12 +116,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="New project"/>
+        <Property name="text" type="java.lang.String" value="Nytt projekt"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="countryField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Country"/>
+        <Property name="text" type="java.lang.String" value="Stad"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="countryFieldMouseClicked"/>
@@ -156,14 +156,14 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Descripton"/>
+            <Property name="text" type="java.lang.String" value="Beskrivning"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="projectLField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Assign Project Leader"/>
+        <Property name="text" type="java.lang.String" value="Projektledare"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="felmeddelandeProject">
@@ -173,12 +173,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="startDateField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Start Date"/>
+        <Property name="text" type="java.lang.String" value="Startdatum"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="endDateFeild">
       <Properties>
-        <Property name="text" type="java.lang.String" value="End Date"/>
+        <Property name="text" type="java.lang.String" value="Slutdatum"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endDateFeildActionPerformed"/>
@@ -186,7 +186,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="countryButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Country"/>
+        <Property name="text" type="java.lang.String" value="L&#xe4;gg till land"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countryButtonActionPerformed"/>
