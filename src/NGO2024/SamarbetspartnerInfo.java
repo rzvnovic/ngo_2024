@@ -116,7 +116,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nameField.setText("Name");
+        nameField.setText("Namn");
         nameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nameFieldMouseClicked(evt);
@@ -130,7 +130,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
         jLabel1.setText("Information");
 
-        kontaktPersonField.setText("Contact person");
+        kontaktPersonField.setText("Kontaktperson");
         kontaktPersonField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kontaktPersonFieldMouseClicked(evt);
@@ -154,7 +154,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             }
         });
 
-        phoneField.setText("Phonenumber");
+        phoneField.setText("Telefon");
         phoneField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 phoneFieldMouseClicked(evt);
@@ -166,7 +166,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             }
         });
 
-        emailField.setText("Email");
+        emailField.setText("Epost");
         emailField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 emailFieldMouseClicked(evt);
@@ -205,7 +205,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         emailDisplay.setText(setDisplayText1("kontaktepost",pid));
         jScrollPane7.setViewportView(emailDisplay);
 
-        branchField.setText("Branch");
+        branchField.setText("Bransch");
         branchField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 branchFieldMouseClicked(evt);
@@ -216,7 +216,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         branchDisplay.setText(setDisplayText1("Branch",pid));
         jScrollPane8.setViewportView(branchDisplay);
 
-        cityField.setText("City");
+        cityField.setText("Stad");
         cityField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cityFieldMouseClicked(evt);
@@ -229,7 +229,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
         deleteButton.setBackground(new java.awt.Color(102, 0, 0));
         deleteButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButton.setText("Delete");
+        deleteButton.setText("Radera");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);

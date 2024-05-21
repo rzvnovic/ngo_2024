@@ -70,14 +70,14 @@ public class NewPartner extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nameField.setText("Name");
+        nameField.setText("Namn");
         nameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nameFieldMouseClicked(evt);
             }
         });
 
-        contactField.setText("Contact");
+        contactField.setText("Kontaktperson");
         contactField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contactFieldMouseClicked(evt);
@@ -89,37 +89,37 @@ public class NewPartner extends javax.swing.JFrame {
             }
         });
 
-        contactEmailField.setText("Email");
+        contactEmailField.setText("Epost");
         contactEmailField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contactEmailFieldMouseClicked(evt);
             }
         });
 
-        contactPhoneField.setText("Phonenumber");
+        contactPhoneField.setText("Telefon");
         contactPhoneField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contactPhoneFieldMouseClicked(evt);
             }
         });
 
-        branchField.setText("Contact field of operations");
+        branchField.setText("Bransch");
         branchField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 branchFieldMouseClicked(evt);
             }
         });
 
-        createButton.setText("Create");
+        createButton.setText("Skapa");
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
             }
         });
 
-        jLblPersonelDetails.setText("Personel details");
+        jLblPersonelDetails.setText("Ny samarbetspartner");
 
-        cityField.setText("City");
+        cityField.setText("Stad");
         cityField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cityFieldMouseClicked(evt);

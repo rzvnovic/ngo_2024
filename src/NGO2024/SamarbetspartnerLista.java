@@ -60,25 +60,25 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
         catch (InfException e) {}
         jScrollPane1.setViewportView(partnerList);
 
-        addButton.setText("Add Partner");
+        addButton.setText("Lägg till partner");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Partners");
+        jLabel1.setText("Partner");
 
-        namnField.setText("Name");
+        namnField.setText("Namn");
 
-        deleteButton.setText("Delete Partner");
+        deleteButton.setText("Ta bort partner");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
 
-        createNewButton.setText("Create New partner");
+        createNewButton.setText("Skapa ny partner");
         createNewButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createNewButtonActionPerformed(evt);
@@ -111,7 +111,7 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)
                                 .addComponent(felmeddelande))
                             .addComponent(deleteButton))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
