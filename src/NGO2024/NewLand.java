@@ -126,7 +126,7 @@ public class NewLand extends javax.swing.JFrame {
         economicField.setText("Ekonomisk struktur");
         jScrollPane2.setViewportView(economicField);
 
-        wrongFormat.setText("Currency wrong format. ");
+        wrongFormat.setText("Valuta fel format.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

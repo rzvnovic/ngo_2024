@@ -158,7 +158,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="wrongFormat">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Currency wrong format. "/>
+        <Property name="text" type="java.lang.String" value="Valuta fel format."/>
       </Properties>
     </Component>
   </SubComponents>
