@@ -71,7 +71,7 @@ public class NewAvdelning extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nameField.setText("Name");
+        nameField.setText("Namn");
         nameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nameFieldMouseClicked(evt);
@@ -85,23 +85,23 @@ public class NewAvdelning extends javax.swing.JFrame {
             }
         });
 
-        contactPhoneField.setText("Phonenumber");
+        contactPhoneField.setText("Telefonnummer");
         contactPhoneField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contactPhoneFieldMouseClicked(evt);
             }
         });
 
-        createButton.setText("Create");
+        createButton.setText("Sök");
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
             }
         });
 
-        lblDepDetails.setText("Department details");
+        lblDepDetails.setText("Avdelning");
 
-        cityField.setText("City");
+        cityField.setText("Stad");
         cityField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cityFieldMouseClicked(evt);
@@ -115,30 +115,30 @@ public class NewAvdelning extends javax.swing.JFrame {
             }
         });
 
-        descriptionField.setText("Description");
+        descriptionField.setText("Beskrivning");
         descriptionField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descriptionFieldActionPerformed(evt);
             }
         });
 
-        countryField.setText("Country");
+        countryField.setText("Land");
         countryField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 countryFieldActionPerformed(evt);
             }
         });
 
-        countryButton.setText("Add Country and City");
+        countryButton.setText("Lägg till stad och land");
         countryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 countryButtonActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Can't connect City to Country, check spelling or add new Country");
+        jLabel2.setText("Kan inte ansluta stad till land, var vänligen och försök igen !");
 
-        HODfield.setText("Head of department");
+        HODfield.setText("Avdelningschef");
         HODfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HODfieldActionPerformed(evt);
@@ -162,19 +162,21 @@ public class NewAvdelning extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nameField)
                                     .addComponent(contactEmailField)
-                                    .addComponent(contactPhoneField)
+                                    .addComponent(contactPhoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                                     .addComponent(cityField)
                                     .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(HODfield)
                                     .addComponent(countryField))
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(countryButton)))))
-                        .addGap(140, 140, 140))))
+                                        .addGap(31, 31, 31)
+                                        .addComponent(countryButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(126, 126, 126))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,11 +202,11 @@ public class NewAvdelning extends javax.swing.JFrame {
                     .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addComponent(HODfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createButton)
                     .addComponent(countryButton))
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addGap(95, 95, 95))
         );
 
         pack();

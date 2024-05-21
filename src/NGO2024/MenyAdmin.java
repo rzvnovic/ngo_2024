@@ -60,6 +60,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         searchPersonalEpostB = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         personelLblError = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         tabCountry = new javax.swing.JPanel();
         sökLandLabel = new javax.swing.JLabel();
         sökaLandButton = new javax.swing.JButton();
@@ -103,21 +104,14 @@ public class MenyAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        addNewEmployeeButton.setText("Add new personel");
+        addNewEmployeeButton.setText("Lägg till personal");
         addNewEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addNewEmployeeButtonActionPerformed(evt);
             }
         });
 
-        searchField.setText("Search...");
-        searchField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchFieldActionPerformed(evt);
-            }
-        });
-
-        searchPersonnalNamnB.setText("Search");
+        searchPersonnalNamnB.setText("Sök");
         searchPersonnalNamnB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchPersonnalNamnBActionPerformed(evt);
@@ -126,7 +120,7 @@ public class MenyAdmin extends javax.swing.JFrame {
 
         jLabel1.setText("Namn:");
 
-        searchPersonalEpostB.setText("Search");
+        searchPersonalEpostB.setText("Sök");
         searchPersonalEpostB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchPersonalEpostBActionPerformed(evt);
@@ -138,22 +132,22 @@ public class MenyAdmin extends javax.swing.JFrame {
         personelLblError.setForeground(new java.awt.Color(255, 0, 0));
         personelLblError.setText("felmeddelande");
 
+        jLabel4.setText("Namn eller Epost");
+
         javax.swing.GroupLayout tabPersonelLayout = new javax.swing.GroupLayout(tabPersonel);
         tabPersonel.setLayout(tabPersonelLayout);
         tabPersonelLayout.setHorizontalGroup(
             tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPersonelLayout.createSequentialGroup()
-                .addGap(205, 205, 205)
-                .addComponent(jLabel1)
-                .addGap(56, 56, 56)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(tabPersonelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabPersonelLayout.createSequentialGroup()
-                        .addComponent(personelLblError, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(624, Short.MAX_VALUE))
+                        .addComponent(jLabel4)
+                        .addGap(143, 143, 143)
+                        .addComponent(jLabel1)
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel2))
+                    .addComponent(personelLblError, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tabPersonelLayout.createSequentialGroup()
                         .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(searchField)
@@ -161,8 +155,8 @@ public class MenyAdmin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchPersonnalNamnB)
                         .addGap(18, 18, 18)
-                        .addComponent(searchPersonalEpostB)
-                        .addContainerGap(624, Short.MAX_VALUE))))
+                        .addComponent(searchPersonalEpostB)))
+                .addContainerGap(587, Short.MAX_VALUE))
         );
         tabPersonelLayout.setVerticalGroup(
             tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +164,8 @@ public class MenyAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -457,9 +452,6 @@ public class MenyAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchPersonnalNamnBActionPerformed
 
-    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
-    }//GEN-LAST:event_searchFieldActionPerformed
-
     private void addNewEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewEmployeeButtonActionPerformed
         try {
             new NewPersonel().setVisible(true);
@@ -725,6 +717,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLblSökHandläggare5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
