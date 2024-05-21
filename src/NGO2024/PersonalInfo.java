@@ -27,6 +27,7 @@ public class PersonalInfo extends javax.swing.JFrame {
     private static String aid;
     private static String userAid;
     private static Validering validering;
+    private boolean setAdmin;
 
     /**
      * Creates new form PersonalInfo
@@ -403,6 +404,11 @@ public class PersonalInfo extends javax.swing.JFrame {
             if (validering.fieldValidation(newAdress, "Start Date")) {
                 updateDatabase("anstallningsdatum", newStartDate, aid);
             }
+            /*if(validering.checkAdminAid(aid) && setAdmin == false){
+                //stäng ner och öppna inlogg på nytt ifall någon ändrar sigsjälv.
+                idb.
+                
+            }*/
 
           
 
@@ -564,9 +570,18 @@ public class PersonalInfo extends javax.swing.JFrame {
         setPasswordField(newPassword);
     }//GEN-LAST:event_generateNewPasswordActionPerformed
 
+    /**
+     * Action som ändrar setAdmin från true till false
+     * Kan kommas  tas bort
+     * @param evt 
+     */
     private void makeAdminBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAdminBoxActionPerformed
-        // TODO add your handling code here:
-        // TODO ta bort / lägg till aid i admin tabell
+        if(setAdmin == false){
+        setAdmin = true;
+        }
+        else{
+            setAdmin = false;
+        }
     }//GEN-LAST:event_makeAdminBoxActionPerformed
 
     /**
