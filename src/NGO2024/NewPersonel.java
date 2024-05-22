@@ -344,7 +344,7 @@ public class NewPersonel extends javax.swing.JFrame {
                         errorList.add("Telefon");
                         errorFound = true;
                     }
-                    if (validering.fieldValidation(newEmploymentDate, "Date of employment") && validering.checkDateFormat(newEmploymentDate)){
+                    if (validering.fieldValidation(newEmploymentDate, "yyyy-mm-dd") && validering.checkDateFormat(newEmploymentDate)){
                         
                             insertValue("anstallningsdatum", newEmploymentDate, newAid);
                         } 
