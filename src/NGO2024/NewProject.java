@@ -307,7 +307,7 @@ public class NewProject extends javax.swing.JFrame {
                                 errorFound = true;
                             }
                             //använd valideringsklass
-                            if (validering.fieldValidation(newDescription, "-1")) {
+                            if (validering.fieldValidation(newDescription, "Beskrivning")) {
                                 insertValue("beskrivning", newDescription, newPid);
                             } else {
                                 insertValue("beskrivning", "ej angivet", newPid);
