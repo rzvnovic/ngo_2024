@@ -58,9 +58,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         if (validering.checkAdminAid(userAid)) {
             commitButton.setVisible(false);
         } else {
-            adminOkButton.setVisible(false);
             emailField.setVisible(false);
-            makeAdminBox.setVisible(false);
             generateNewPassword.setVisible(false);
             deleteButton.setVisible(false);
         }
