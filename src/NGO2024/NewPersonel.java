@@ -76,6 +76,7 @@ public class NewPersonel extends javax.swing.JFrame {
         roleBox = new javax.swing.JComboBox<>();
         lblErrorMessageAvd1 = new javax.swing.JLabel();
         jLblErrorMessageDate2 = new javax.swing.JLabel();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -161,17 +162,19 @@ public class NewPersonel extends javax.swing.JFrame {
         jLblErrorMessageDate2.setForeground(new java.awt.Color(255, 0, 0));
         jLblErrorMessageDate2.setText("vänligen uppdatera uppgiften i uppdateringsfunktionen.");
 
+        errorLabel.setForeground(new java.awt.Color(244, 22, 22));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPersonelDetails)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPersonelDetails)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,20 +187,23 @@ public class NewPersonel extends javax.swing.JFrame {
                                     .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(phoneNumField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(dateOfEmploymentField))
-                            .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLblErrorMessageDate2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLblErrorMessageDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                            .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblErrorMessageAvd1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblErrorMessageAvd1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLblErrorMessageDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLblErrorMessageDate2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,11 +235,13 @@ public class NewPersonel extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(jLblErrorMessageDate2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(lblErrorMessageAvd1)
-                .addContainerGap())
+                        .addGap(1, 1, 1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblErrorMessageAvd1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
@@ -292,7 +300,8 @@ public class NewPersonel extends javax.swing.JFrame {
         String newEmploymentDate = dateOfEmploymentField.getText();
         String newAvdelning = jTxtAvdelning.getText();
         
-
+         ArrayList<String> errorList = new ArrayList<>();
+         boolean errorFound = false;
         try {
             if (validering.fieldValidation(newAvdelning, "Avdelning")) {
                 if (checkValidAvdelning(newAvdelning) == true) {
@@ -302,18 +311,22 @@ public class NewPersonel extends javax.swing.JFrame {
                     
                     
 //använd valideringsklass
-                    if (validering.fieldValidation(newName, "Name")) {
+                    if (validering.fieldValidation(newName, "Förnamn")) {
                         insertValue("fornamn", newName, newAid);
                     }
                     else {
                         insertValue("fornamn", "ej angivet", newAid);
+                        errorList.add("Förnamn");
+                        errorFound = true;
                     }
                     //använd valideringsklass
-                    if (validering.fieldValidation(newSurname, "Surname")) {
+                    if (validering.fieldValidation(newSurname, "Efternamn")) {
                         insertValue("efternamn", newSurname, newAid);
                     }
                     else {
                         insertValue("efternamn", "ej angivet", newAid);
+                        errorList.add("Efternamn");
+                        errorFound = true;
                     }
                     //använd valideringsklass, validera datum TODO
                     if (validering.fieldValidation(newAdress, "Adress")) {
@@ -321,31 +334,38 @@ public class NewPersonel extends javax.swing.JFrame {
                     }
                     else {
                         insertValue("adress", "ej angivet", newAid);
+                        errorList.add("Adress");
+                        errorFound = true;
                     }
                     //använd valideringsklass, validera datum TODO
-                    if (validering.fieldValidation(newEmail, "Email")) {
+                    if (validering.fieldValidation(newEmail, "Epost")) {
                         insertValue("epost", newEmail, newAid);
                     }
                     else {
                         insertValue("epost", "ej angivet", newAid);
+                        errorList.add("Epost");
+                        errorFound = true;
                     }
                     //använd valideringsklass
-                    if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+                    if (validering.fieldValidation(newPhonenumber, "Telefon")) {
                         insertValue("telefon", newPhonenumber, newAid);
                     }
                     else {
                         insertValue("telefon", "ej angivet", newAid);
+                        errorList.add("Telefon");
+                        errorFound = true;
                     }
                     if (validering.fieldValidation(newEmploymentDate, "Date of employment") && validering.checkDateFormat(newEmploymentDate)){
                         
                             insertValue("anstallningsdatum", newEmploymentDate, newAid);
                         } 
-
-                    
-                    else {
+                        else 
+                        {
                             jLblErrorMessageDate1.setVisible(true);
                             jLblErrorMessageDate2.setVisible(true);
                             insertValue("anstallningsdatum", "1111-11-11", newAid);
+                            errorList.add("Startdatum");
+                        errorFound = true;
                         }
                     insertValue("losenord", generateNewPassword(), newAid);
 
@@ -356,11 +376,28 @@ public class NewPersonel extends javax.swing.JFrame {
                 } else {
                     lblErrorMessageAvd1.setVisible(true);
                 }
+                if(errorFound) {
+                errorLabel.setText(insertError(errorList)); }
+                
             }
         } catch (InfException ex) {
             Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_createButtonActionPerformed
+private String insertError(ArrayList<String> errorList) {
+    if (errorList == null || errorList.isEmpty()) {
+        return "Inga felaktiga värden hittades."; 
+    }
+    
+    StringBuilder message = new StringBuilder();
+    for (int i = 0; i < errorList.size(); i++) {
+        if (i > 0) {
+            message.append(", ");
+        }
+        message.append(errorList.get(i));
+    }
+    return "Följande rutor hade felaktiga värden: " + message.toString(); 
+}
 
     private void jTxtAvdelningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTxtAvdelningMouseClicked
         // TODO add your handling code here:
@@ -491,6 +528,7 @@ public class NewPersonel extends javax.swing.JFrame {
     private javax.swing.JButton createButton;
     private javax.swing.JTextField dateOfEmploymentField;
     private javax.swing.JTextField emailField;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLblErrorMessageDate1;
     private javax.swing.JLabel jLblErrorMessageDate2;
     private javax.swing.JScrollPane jScrollPane1;

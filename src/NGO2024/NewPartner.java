@@ -37,7 +37,7 @@ public class NewPartner extends javax.swing.JFrame {
     public NewPartner(String pid, String userAid) throws InfException {
 
         validering = new Validering();
-
+        
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         } catch (InfException ex) {
