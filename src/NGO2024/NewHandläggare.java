@@ -36,7 +36,7 @@ public class NewHandläggare extends javax.swing.JFrame {
      * @throws oru.inf.InfException
      */
     public NewHandläggare() throws InfException {
-
+        
         validering = new Validering();
 
         try {
