@@ -581,15 +581,9 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="hallbarhetsmalSokruta" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="hallbarhetsmalSok" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLblSökHallbarhetsmål" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="scrlPanelHållbarhet" pref="555" max="32767" attributes="0"/>
+                              <Component id="scrlPanelHållbarhet" pref="566" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="lblAktivaHallbarhetsmal" min="-2" pref="189" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -603,47 +597,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLblSökHallbarhetsmål" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblAktivaHallbarhetsmal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblAktivaHallbarhetsmal" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="hallbarhetsmalSokruta" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="hallbarhetsmalSok" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="scrlPanelHållbarhet" pref="467" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="scrlPanelHållbarhet" pref="467" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLblS&#xf6;kHallbarhetsm&#xe5;l">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#xf6;k H&#xe5;llbarhetsm&#xe5;l"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="hallbarhetsmalSokruta">
-                  <Properties>
-                    <Property name="columns" type="int" value="8"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hallbarhetsmalSokrutaActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="hallbarhetsmalSok">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#xf6;k"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hallbarhetsmalSokjButton2ActionPerformed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JLabel" name="lblAktivaHallbarhetsmal">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Aktiva h&#xe5;llbarhetsm&#xe5;l"/>
