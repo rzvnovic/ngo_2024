@@ -564,20 +564,20 @@ public class MenyAdmin extends javax.swing.JFrame {
             try {
                 String landSearchText = sökaLandButton.getText();
 
-                if (landSearchText.isEmpty() || landSearchText.isBlank()) {
-                    sökLandFelMedellande.setText("Sökfällt blankt.");
-                    sökLandFelMedellande.setVisible(true);
-                } else {
+                
                     String landLid = idb.fetchSingle("Select lid from land where namn = '" + landSearchText + "';");
                     new VisaLand(landLid, userAid).setVisible(true);
-                }
-                sökLandFelMedellande.setText("Land kunde ej hittas.");
+                
+                
 
             } catch (InfException ex) {
                 Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
                 sökLandFelMedellande.setText("Land kunde ej hittas.");
                 sökLandFelMedellande.setVisible(true);
             }
+        }else{
+            sökLandFelMedellande.setText("Sökfält tomt.");
+            sökLandFelMedellande.setVisible(true);
         }
     }//GEN-LAST:event_sökaLandButtonActionPerformed
 
