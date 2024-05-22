@@ -25,18 +25,24 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="createButton" min="-2" pref="79" max="-2" attributes="0"/>
-                  <Component id="jLblPersonelDetails" min="-2" max="-2" attributes="0"/>
-                  <Component id="contactEmailField" alignment="0" max="32767" attributes="0"/>
-                  <Component id="contactField" alignment="0" max="32767" attributes="0"/>
-                  <Component id="nameField" alignment="0" max="32767" attributes="0"/>
-                  <Component id="contactPhoneField" alignment="0" max="32767" attributes="0"/>
-                  <Component id="branchField" alignment="0" pref="194" max="32767" attributes="0"/>
-                  <Component id="cityField" max="32767" attributes="0"/>
-                  <Component id="adressField" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="createButton" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="jLblPersonelDetails" min="-2" max="-2" attributes="0"/>
+                          <Component id="contactEmailField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="contactField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="nameField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="contactPhoneField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="branchField" alignment="0" pref="194" max="32767" attributes="0"/>
+                          <Component id="cityField" max="32767" attributes="0"/>
+                          <Component id="adressField" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="311" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="errorLabel" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="317" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -59,7 +65,9 @@
               <Component id="branchField" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="cityField" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="64" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="errorLabel" min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="createButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
@@ -137,6 +145,16 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adressFieldMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="errorLabel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="16" green="16" red="f4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="16" green="16" red="f4" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

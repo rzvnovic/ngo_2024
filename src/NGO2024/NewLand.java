@@ -276,7 +276,7 @@ public class NewLand extends javax.swing.JFrame {
     
    private String insertError(ArrayList<String> errorList) {
     if (errorList == null || errorList.isEmpty()) {
-        return "Inga felaktiga värden hittades."; // Return a message if the list is empty or null
+        return "Inga felaktiga värden hittades."; 
     }
     
     StringBuilder message = new StringBuilder();
