@@ -248,25 +248,35 @@ public class NewProject extends javax.swing.JFrame {
                     //använd valideringsklass
                     if (validering.fieldValidation(newPName, "Project name")) {
                         insertValue("projektnamn", newPName, newPid);
+                    } else {
+                        insertValue("projektnamn", "ej angivet", newPid);
                     }
                     //använd valideringsklass
                     if (validering.fieldValidation(newDescription, "-1")) {
                         insertValue("beskrivning", newDescription, newPid);
+                    } else {
+                        insertValue("beskrivning", "ej angivet", newPid);
                     }
                     //använd valideringsklass, validera datum TODO
                     if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
                         insertValue("startdatum", newStartDate, newPid);
+                    } else {
+                        insertValue("stardatum", "ej angivet", newPid);
                     }
 
                     //använd valideringsklass, validera datum TODO
                     if (validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
                         insertValue("slutdatum", newEndDate, newPid);
+                    } else {
+                        insertValue("slutdatum", "ej angivet", newPid);
                     }
                     //använd valideringsklass
                     if (validering.fieldValidation(newBudget, "Budget")) {
                         insertValue("kostnad", newBudget, newPid);
+                    } else {
+                        insertValue("kostnad", "ej angivet", newPid);
                     }
-
+                    //foreign key 
                     if (!validering.checkProjektLedareAid(userAid)) {
                         if (validering.fieldValidation(newProjectL, "Assign project leader") && !validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"))) {
                             insertValue("projektchef", idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"), newPid);
@@ -277,9 +287,10 @@ public class NewProject extends javax.swing.JFrame {
                             felmeddelandeProject.setText("Kunde inte hitta!");
                             felmeddelandeProject.setVisible(true);
                         }
+                        //foreign key här 
                     } else {
-                        fornamn = idb.fetchSingle("select fornamn from anstalld where aid = "+userAid+";");
-                        efternamn = idb.fetchSingle("select efternamn from anstalld where aid = "+ userAid+";");
+                        fornamn = idb.fetchSingle("select fornamn from anstalld where aid = " + userAid + ";");
+                        efternamn = idb.fetchSingle("select efternamn from anstalld where aid = " + userAid + ";");
                         projectLField.setText(fornamn + " " + efternamn);
                         projectLField.setEditable(false);
                     }
