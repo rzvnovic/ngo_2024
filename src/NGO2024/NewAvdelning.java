@@ -36,7 +36,7 @@ public class NewAvdelning extends javax.swing.JFrame {
     public NewAvdelning() throws InfException {
 
         validering = new Validering();
-        
+
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         } catch (InfException ex) {
@@ -258,46 +258,67 @@ public class NewAvdelning extends javax.swing.JFrame {
             String newDescription = descriptionField.getText();
             String newCountry = countryField.getText();
             ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
-            
+
             for (int i = 0; i < countryList.size(); i++) {
                 if (newCountry.equals(countryList.get(i))) {
-                    
+
                     String newAvdid = null;
-                    
+
                     try {
                         newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
                         String sqlQuerry = ("INSERT INTO ngo_2024.avdelning (Avdid) VALUES (" + newAvdid + ");");
                         idb.insert(sqlQuerry);
                         if (validering.fieldValidation(newName, "Name")) {
                             insertValue("namn", newName, newAvdid);
+                        } else {
+                            insertValue("namn", "ej angivet", newAvdid);
                         }
-                        
+
+                        //chef blir lite annorlunda foreignKey.
                         if (validering.fieldValidation(newHOD, "head of department")) {
-                            insertValue("chef", newHOD, newAvdid);
+
+                            if (newHOD.trim().contains(" ")) {
+                                int index = newHOD.indexOf(" ");
+                                String fornamn = newHOD.substring(0, index);
+                                String efternamn = newHOD.substring(index + 1);
+                                String chefAid = idb.fetchSingle("select aid from anstalld where fornamn = " + fornamn + " and efternamn = " + efternamn + ";");
+                                if (chefAid != null) {
+                                    insertValue("chef", newHOD, newAvdid);
+                                }      
+                            }
+
                         }
                         if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
                             insertValue("epost", newEmail, newAvdid);
+                        } else {
+                            insertValue("epost", "ej angivet", newAvdid);
                         }
                         if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                             insertValue("telefon", newPhonenumber, newAvdid);
+                        } else {
+                            insertValue("telefon", "ej angivet", newAvdid);
                         }
                         if (validering.fieldValidation(newAdress, "Adress")) {
                             insertValue("adress", newAdress, newAvdid);
+                        } else {
+                            insertValue("adress", "ej angivet", newAvdid);
                         }
+                        // foreign key blir annorlunda
                         if (validering.fieldValidation(newCity, "City")) {
-                            insertValue("stad", idb.fetchSingle("select sid from stad where namn = "+ newCity+";"), newAvdid);
+                            insertValue("stad", idb.fetchSingle("select sid from stad where namn = " + newCity + ";"), newAvdid);
                         }
                         if (validering.fieldValidation(newDescription, "Description")) {
-                            
+
                             insertValue("beskrivning", newDescription, newAvdid);
+                        } else {
+                            insertValue("beksrivning", "ej angivet", newAvdid);
                         }
-                        
+
                     } catch (InfException ex) {
                         Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
-                else{
-                countryButton.setVisible(true);
+                } else {
+                    countryButton.setVisible(true);
                 }
             }
         } catch (InfException ex) {
@@ -333,7 +354,7 @@ public class NewAvdelning extends javax.swing.JFrame {
 
     private void HODfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HODfieldActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_HODfieldActionPerformed
 
     private void countryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryButtonActionPerformed
