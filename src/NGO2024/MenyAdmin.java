@@ -289,8 +289,6 @@ public class MenyAdmin extends javax.swing.JFrame {
 
         avdelningErrorLabel.setText("placeholder");
 
-        avdelningSokField.setText("Söktemp");
-
         avdelningListaArea.setColumns(20);
         avdelningListaArea.setRows(5);
         try{

@@ -410,9 +410,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="avdelningSokField">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S&#xf6;ktemp"/>
-              </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane4">
               <AuxValues>
