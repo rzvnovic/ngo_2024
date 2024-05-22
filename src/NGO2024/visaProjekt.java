@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.*;
+import javax.swing.JFrame;
 
 /**
  * Klass som öppnar fönster för personalinfo med vissa gömda åtkomster för
@@ -41,6 +42,7 @@ public class VisaProjekt extends javax.swing.JFrame {
             Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
 
