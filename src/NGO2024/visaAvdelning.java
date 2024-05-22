@@ -104,10 +104,13 @@ public class VisaAvdelning extends javax.swing.JFrame {
         deleteButton = new javax.swing.JButton();
         cityField = new javax.swing.JTextField();
         chefField = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        avdelningNField.setText("Avdelningsnamn");
+        avdelningNField.setText("Department Name");
         avdelningNField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 avdelningNFieldMouseClicked(evt);
@@ -121,7 +124,7 @@ public class VisaAvdelning extends javax.swing.JFrame {
 
         jLabel1.setText("Information");
 
-        desField.setText("Beskrivning");
+        desField.setText("Description");
         desField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 desFieldMouseClicked(evt);
@@ -135,14 +138,14 @@ public class VisaAvdelning extends javax.swing.JFrame {
             }
         });
 
-        phoneField.setText("Telefonnummer");
+        phoneField.setText("Phonenumber");
         phoneField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 phoneFieldMouseClicked(evt);
             }
         });
 
-        emailField.setText("Epost");
+        emailField.setText("Email");
         emailField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 emailFieldMouseClicked(evt);
@@ -191,21 +194,21 @@ public class VisaAvdelning extends javax.swing.JFrame {
 
         deleteButton.setBackground(new java.awt.Color(102, 0, 0));
         deleteButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButton.setText("Ta bort");
+        deleteButton.setText("Delete");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
 
-        cityField.setText("Stad");
+        cityField.setText("City");
         cityField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cityFieldMouseClicked(evt);
             }
         });
 
-        chefField.setText("Avdelningschef");
+        chefField.setText("Boss");
         chefField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 chefFieldMouseClicked(evt);
@@ -289,8 +292,16 @@ public class VisaAvdelning extends javax.swing.JFrame {
                         .addComponent(chefField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(commitButton)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -533,6 +544,38 @@ public class VisaAvdelning extends javax.swing.JFrame {
     //</editor-fold>
     //</editor-fold>
     //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
 
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
@@ -563,6 +606,9 @@ public class VisaAvdelning extends javax.swing.JFrame {
     private javax.swing.JTextPane emailDisplay;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
