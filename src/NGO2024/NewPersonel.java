@@ -86,14 +86,12 @@ public class NewPersonel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nameField.setText("Förnamn");
         nameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nameFieldMouseClicked(evt);
             }
         });
 
-        surnameField.setText("Efternamn");
         surnameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 surnameFieldMouseClicked(evt);
@@ -105,21 +103,18 @@ public class NewPersonel extends javax.swing.JFrame {
             }
         });
 
-        adressField.setText("Adress");
         adressField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 adressFieldMouseClicked(evt);
             }
         });
 
-        emailField.setText("Epost");
         emailField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 emailFieldMouseClicked(evt);
             }
         });
 
-        phoneNumField.setText("Telefon");
         phoneNumField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 phoneNumFieldMouseClicked(evt);
@@ -135,7 +130,6 @@ public class NewPersonel extends javax.swing.JFrame {
 
         lblPersonelDetails.setText("Skapa ny anställd");
 
-        jTxtAvdelning.setText("Avdelningsnummer");
         jTxtAvdelning.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTxtAvdelningMouseClicked(evt);
@@ -187,8 +181,7 @@ public class NewPersonel extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblErrorMessageAvd1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(448, 448, 448)
                                 .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,7 +214,8 @@ public class NewPersonel extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLblErrorMessageDate2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLblErrorMessageDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPersonelDetails)))
+                                    .addComponent(lblPersonelDetails)
+                                    .addComponent(lblErrorMessageAvd1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel7))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
