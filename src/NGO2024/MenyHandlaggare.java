@@ -108,9 +108,6 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         samarbetsPartnersInfojTextArea = new javax.swing.JTextArea();
         hållbarhetsmalTab = new javax.swing.JPanel();
-        jLblSökHallbarhetsmål = new javax.swing.JLabel();
-        hallbarhetsmalSokruta = new javax.swing.JTextField();
-        hallbarhetsmalSok = new javax.swing.JButton();
         lblAktivaHallbarhetsmal = new javax.swing.JLabel();
         scrlPanelHållbarhet = new javax.swing.JScrollPane();
         hallbarhetsMalTextArea = new javax.swing.JTextArea();
@@ -313,7 +310,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, projektTabLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(dateFormatWrongError, javax.swing.GroupLayout.PREFERRED_SIZE, 245, Short.MAX_VALUE))
+                        .addComponent(dateFormatWrongError, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, projektTabLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(filterProjectsDateError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -428,22 +425,6 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         HandläggarMeny.addTab("Samarbetspartner", samarbetspartnerTab2);
 
-        jLblSökHallbarhetsmål.setText("Sök Hållbarhetsmål");
-
-        hallbarhetsmalSokruta.setColumns(8);
-        hallbarhetsmalSokruta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hallbarhetsmalSokrutaActionPerformed(evt);
-            }
-        });
-
-        hallbarhetsmalSok.setText("Sök");
-        hallbarhetsmalSok.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hallbarhetsmalSokjButton2ActionPerformed(evt);
-            }
-        });
-
         lblAktivaHallbarhetsmal.setText("Aktiva hållbarhetsmål");
 
         hallbarhetsMalTextArea.setEditable(false);
@@ -460,14 +441,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         hållbarhetsmalTabLayout.setHorizontalGroup(
             hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hållbarhetsmalTabLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(165, 165, 165)
                 .addGroup(hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hallbarhetsmalSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hallbarhetsmalSok)
-                    .addComponent(jLblSökHallbarhetsmål, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrlPanelHållbarhet, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                    .addComponent(scrlPanelHållbarhet, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
                     .addGroup(hållbarhetsmalTabLayout.createSequentialGroup()
                         .addComponent(lblAktivaHallbarhetsmal, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -477,17 +453,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hållbarhetsmalTabLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblSökHallbarhetsmål)
-                    .addComponent(lblAktivaHallbarhetsmal))
+                .addComponent(lblAktivaHallbarhetsmal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(hållbarhetsmalTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(hållbarhetsmalTabLayout.createSequentialGroup()
-                        .addComponent(hallbarhetsmalSokruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(hallbarhetsmalSok)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scrlPanelHållbarhet, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
+                .addComponent(scrlPanelHållbarhet, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -564,15 +532,6 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_avdelningSokjButton2ActionPerformed
 
-    private void hallbarhetsmalSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalSokjButton2ActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hallbarhetsmalSokjButton2ActionPerformed
-
-    private void hallbarhetsmalSokrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalSokrutaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hallbarhetsmalSokrutaActionPerformed
-
     private void visaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaKnappActionPerformed
         // TODO add your handling code here:
         //SKA ÖPPNA UPP PERSONALINFO
@@ -617,11 +576,13 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             if (!validering.checkDateFormat(startDatumet) || !validering.checkDateFormat(slutDatumet)) {
                 dateFormatWrongError.setVisible(true);
             }
+            if (validering.fieldValidation(startDatumet, "Startdatum") && validering.fieldValidation(slutDatumet, "Slutdatum")){
             String resultatet = fetchProjectDates(startDatumet, slutDatumet);
             if (resultatet != null) {
                 projectListField.setText(resultatet);
             } else {
                 filterProjectsDateError.setVisible(true);
+            }
             }
 
         } catch (InfException ex) {
@@ -1187,12 +1148,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JLabel felmeddelandeL;
     private javax.swing.JLabel filterProjectsDateError;
     private javax.swing.JTextArea hallbarhetsMalTextArea;
-    private javax.swing.JButton hallbarhetsmalSok;
-    private javax.swing.JTextField hallbarhetsmalSokruta;
     private javax.swing.JPanel hållbarhetsmalTab;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLblMoney;
-    private javax.swing.JLabel jLblSökHallbarhetsmål;
     private javax.swing.JLabel jLblSökHandläggare;
     private javax.swing.JLabel jLblTotalCostProject;
     private javax.swing.JPanel jPanel1;

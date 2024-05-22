@@ -116,9 +116,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         adressField = new javax.swing.JTextField();
         phoneField = new javax.swing.JTextField();
         emailField = new javax.swing.JTextField();
-        makeAdminBox = new javax.swing.JCheckBox();
         commitButton = new javax.swing.JButton();
-        adminOkButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         nameDisplay = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -184,25 +182,10 @@ public class PersonalInfo extends javax.swing.JFrame {
             }
         });
 
-        makeAdminBox.setSelected(validering.checkAdminAid(aid));
-        makeAdminBox.setText("Admin");
-        makeAdminBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                makeAdminBoxActionPerformed(evt);
-            }
-        });
-
         commitButton.setText("Ok");
         commitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 commitButtonActionPerformed(evt);
-            }
-        });
-
-        adminOkButton.setText("Ok");
-        adminOkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminOkButtonActionPerformed(evt);
             }
         });
 
@@ -273,13 +256,10 @@ public class PersonalInfo extends javax.swing.JFrame {
                             .addComponent(surnameField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(adressField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(phoneField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(makeAdminBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(startDateField)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(adminOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(newPasswordDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,11 +308,7 @@ public class PersonalInfo extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(commitButton))
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(makeAdminBox)
-                            .addComponent(adminOkButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(49, 49, 49)
                         .addComponent(generateNewPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(newPasswordDisplay))
@@ -367,52 +343,6 @@ public class PersonalInfo extends javax.swing.JFrame {
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
-
-    private void adminOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminOkButtonActionPerformed
-        // TODO add your handling code here:
-        //MAKE ViSABLE IF USER == ADMIN
-        String newName = nameField.getText();
-        String newSurname = surnameField.getText();
-        String newAdress = adressField.getText();
-        String newPhonenumber = phoneField.getText();
-        String newEmail = emailField.getText(); //OBS
-        String newStartDate = startDateField.getText();
-        
-            nameDisplay.setText(newName);
-            surnameDisplay.setText(newSurname);
-            adressDisplay.setText(newAdress);
-            phonenumberDisplay.setText(newPhonenumber);
-            emailDisplay.setText(newEmail);
-            startDateDisplay.setText(newStartDate);
-            
-            
-            if (validering.fieldValidation(newName, "Department Name")) {
-                updateDatabase("namn", newName, aid);
-            }
-            if (validering.fieldValidation(newSurname, "Description ")) {
-                updateDatabase("beskrivning", newSurname, aid);
-            }
-            if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
-                updateDatabase("epost", newEmail, aid);
-            }
-            if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
-                updateDatabase("telefon", newPhonenumber, aid);
-            }
-            if (validering.fieldValidation(newAdress, "Adress")) {
-                updateDatabase("adress", newAdress, aid);
-            }
-            if (validering.fieldValidation(newAdress, "Start Date")) {
-                updateDatabase("anstallningsdatum", newStartDate, aid);
-            }
-            /*if(validering.checkAdminAid(aid) && setAdmin == false){
-                //stäng ner och öppna inlogg på nytt ifall någon ändrar sigsjälv.
-                idb.
-                
-            }*/
-
-          
-
-    }//GEN-LAST:event_adminOkButtonActionPerformed
     /**
      * knappen gör en del saker kan vara värt att splitta i flera metoder.
      *
@@ -571,20 +501,6 @@ public class PersonalInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_generateNewPasswordActionPerformed
 
     /**
-     * Action som ändrar setAdmin från true till false
-     * Kan kommas  tas bort
-     * @param evt 
-     */
-    private void makeAdminBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAdminBoxActionPerformed
-        if(setAdmin == false){
-        setAdmin = true;
-        }
-        else{
-            setAdmin = false;
-        }
-    }//GEN-LAST:event_makeAdminBoxActionPerformed
-
-    /**
      * Metod som tar bort profilen som sökts up.
      *
      * @param evt
@@ -653,7 +569,6 @@ public class PersonalInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminOkButton;
     private javax.swing.JTextPane adressDisplay;
     private javax.swing.JTextField adressField;
     private javax.swing.JButton commitButton;
@@ -673,7 +588,6 @@ public class PersonalInfo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JCheckBox makeAdminBox;
     private javax.swing.JTextPane nameDisplay;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel newPasswordDisplay;
