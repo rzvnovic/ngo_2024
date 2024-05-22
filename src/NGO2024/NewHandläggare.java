@@ -22,7 +22,7 @@ import oru.inf.InfDB;
  * @author Cyrus
  * @version 10/05/2024
  */
-public class NewPersonel extends javax.swing.JFrame {
+public class NewHandläggare extends javax.swing.JFrame {
 
     private InfDB idb;
     private static int aid;
@@ -35,7 +35,7 @@ public class NewPersonel extends javax.swing.JFrame {
      *
      * @throws oru.inf.InfException
      */
-    public NewPersonel() throws InfException {
+    public NewHandläggare() throws InfException {
 
         validering = new Validering();
 
@@ -75,7 +75,8 @@ public class NewPersonel extends javax.swing.JFrame {
         jLblErrorMessageDate1 = new javax.swing.JLabel();
         lblErrorMessageAvd1 = new javax.swing.JLabel();
         jLblErrorMessageDate2 = new javax.swing.JLabel();
-        errorLabel = new javax.swing.JLabel();
+        txtAnsvarsomrade = new javax.swing.JTextField();
+        txtMentor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,19 +155,21 @@ public class NewPersonel extends javax.swing.JFrame {
         jLblErrorMessageDate2.setForeground(new java.awt.Color(255, 0, 0));
         jLblErrorMessageDate2.setText("vänligen uppdatera uppgiften i uppdateringsfunktionen.");
 
-        errorLabel.setForeground(new java.awt.Color(244, 22, 22));
+        txtAnsvarsomrade.setText("Ansvarsområde");
+
+        txtMentor.setText("Mentor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPersonelDetails)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPersonelDetails)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,30 +181,29 @@ public class NewPersonel extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(phoneNumField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dateOfEmploymentField)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(dateOfEmploymentField))
+                            .addComponent(txtAnsvarsomrade)
+                            .addComponent(txtMentor, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblErrorMessageAvd1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLblErrorMessageDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLblErrorMessageDate2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(jLblErrorMessageDate2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLblErrorMessageDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblErrorMessageAvd1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblPersonelDetails)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -217,20 +219,22 @@ public class NewPersonel extends javax.swing.JFrame {
                         .addComponent(dateOfEmploymentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTxtAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAnsvarsomrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMentor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(createButton)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLblErrorMessageDate1)
-                        .addGap(5, 5, 5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLblErrorMessageDate2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblErrorMessageAvd1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                        .addGap(5, 5, 5)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(lblErrorMessageAvd1)
+                .addContainerGap())
         );
 
         pack();
@@ -271,14 +275,7 @@ public class NewPersonel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_phoneNumFieldMouseClicked
        
-    private int chooseRole (int role){
-        if (role == 0){
-            return 1;
-        }
-        else {
-            return 2; 
-        }
-    }
+   
     
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         String newName = nameField.getText();
@@ -288,9 +285,10 @@ public class NewPersonel extends javax.swing.JFrame {
         String newPhonenumber = phoneNumField.getText();
         String newEmploymentDate = dateOfEmploymentField.getText();
         String newAvdelning = jTxtAvdelning.getText();
+        String newMentor = txtMentor.getText();
+        String newAnsvarsomrade = txtAnsvarsomrade.getText();
         
-         ArrayList<String> errorList = new ArrayList<>();
-         boolean errorFound = false;
+
         try {
             if (validering.fieldValidation(newAvdelning, "Avdelning")) {
                 if (checkValidAvdelning(newAvdelning) == true) {
@@ -305,8 +303,6 @@ public class NewPersonel extends javax.swing.JFrame {
                     }
                     else {
                         insertValue("fornamn", "ej angivet", newAid);
-                        errorList.add("Förnamn");
-                        errorFound = true;
                     }
                     //använd valideringsklass
                     if (validering.fieldValidation(newSurname, "Efternamn")) {
@@ -314,8 +310,6 @@ public class NewPersonel extends javax.swing.JFrame {
                     }
                     else {
                         insertValue("efternamn", "ej angivet", newAid);
-                        errorList.add("Efternamn");
-                        errorFound = true;
                     }
                     //använd valideringsklass, validera datum TODO
                     if (validering.fieldValidation(newAdress, "Adress")) {
@@ -323,8 +317,6 @@ public class NewPersonel extends javax.swing.JFrame {
                     }
                     else {
                         insertValue("adress", "ej angivet", newAid);
-                        errorList.add("Adress");
-                        errorFound = true;
                     }
                     //använd valideringsklass, validera datum TODO
                     if (validering.fieldValidation(newEmail, "Epost")) {
@@ -332,8 +324,6 @@ public class NewPersonel extends javax.swing.JFrame {
                     }
                     else {
                         insertValue("epost", "ej angivet", newAid);
-                        errorList.add("Epost");
-                        errorFound = true;
                     }
                     //använd valideringsklass
                     if (validering.fieldValidation(newPhonenumber, "Telefon")) {
@@ -341,52 +331,42 @@ public class NewPersonel extends javax.swing.JFrame {
                     }
                     else {
                         insertValue("telefon", "ej angivet", newAid);
-                        errorList.add("Telefon");
-                        errorFound = true;
                     }
                     if (validering.fieldValidation(newEmploymentDate, "yyyy-mm-dd") && validering.checkDateFormat(newEmploymentDate)){
                         
                             insertValue("anstallningsdatum", newEmploymentDate, newAid);
                         } 
-                        else 
-                        {
+
+                    
+                    else {
                             jLblErrorMessageDate1.setVisible(true);
                             jLblErrorMessageDate2.setVisible(true);
                             insertValue("anstallningsdatum", "1111-11-11", newAid);
-                            errorList.add("Startdatum");
-                        errorFound = true;
                         }
                     insertValue("losenord", generateNewPassword(), newAid);
 
                     //makeAdminCheckBox.getAccessibleContext();
-                    String insertIntoAdmin = ("INSERT INTO ngo_2024.admin (aid, behorighetsniva) VALUES (" + newAid + "," + 1 + ")");
-                    idb.insert(insertIntoAdmin);
+                    if (checkValidMentor(newMentor) && validering.fieldValidation(newAnsvarsomrade, "Ansvarsområde")) {
+                    String insertIntoHandlaggare = ("INSERT INTO ngo_2024.handlaggare (aid, ansvarighetsomrade, mentor) VALUES (" + newAid + "," + newAnsvarsomrade + "," + newMentor + ")");
+                    idb.insert(insertIntoHandlaggare);
+                    }
+                    else if (checkValidMentor(newMentor) && !validering.fieldValidation(newAnsvarsomrade, "Ansvarsområde")) {
+                    String insertIntoHandlaggare = ("INSERT INTO ngo_2024.handlaggare (aid, ansvarighetsomrade, mentor) VALUES (" + newAid + "," + null + "," + newMentor + ")");
+                    idb.insert(insertIntoHandlaggare);
+                    }
+                    else {
+                        String insertIntoHandlaggare = ("INSERT INTO ngo_2024.handlaggare (aid, ansvarighetsomrade, mentor) VALUES (" + newAid + "," + null + "," + null + ")");
+                        idb.insert(insertIntoHandlaggare);
+                    }
                     
                 } else {
                     lblErrorMessageAvd1.setVisible(true);
                 }
-                if(errorFound) {
-                errorLabel.setText(insertError(errorList)); }
-                
             }
         } catch (InfException ex) {
             Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_createButtonActionPerformed
-private String insertError(ArrayList<String> errorList) {
-    if (errorList == null || errorList.isEmpty()) {
-        return "Inga felaktiga värden hittades."; 
-    }
-    
-    StringBuilder message = new StringBuilder();
-    for (int i = 0; i < errorList.size(); i++) {
-        if (i > 0) {
-            message.append(", ");
-        }
-        message.append(errorList.get(i));
-    }
-    return "Följande rutor hade felaktiga värden: " + message.toString(); 
-}
 
     private void jTxtAvdelningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTxtAvdelningMouseClicked
         // TODO add your handling code here:
@@ -461,6 +441,21 @@ private String insertError(ArrayList<String> errorList) {
             return avdelningExist;
         }
     }
+    
+     public Boolean checkValidMentor(String mentor) throws InfException {
+        {
+            Boolean mentorFound = false;
+            String anstalldID = "";
+            ArrayList<String> anstalldasID = idb.fetchColumn("Select aid from anstalld;");
+            for (int i = 0; i < anstalldasID.size(); i++) {
+                anstalldID = anstalldasID.get(i);
+                if (anstalldID.equals(mentor)) {
+                    mentorFound = true;
+                }
+            }
+            return mentorFound;
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -479,14 +474,22 @@ private String insertError(ArrayList<String> errorList) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewPersonel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewHandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewPersonel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewHandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewPersonel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewHandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewPersonel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewHandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -500,9 +503,9 @@ private String insertError(ArrayList<String> errorList) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new NewPersonel().setVisible(true);
+                    new NewHandläggare().setVisible(true);
                 } catch (InfException ex) {
-                    Logger.getLogger(NewPersonel.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NewHandläggare.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -513,7 +516,6 @@ private String insertError(ArrayList<String> errorList) {
     private javax.swing.JButton createButton;
     private javax.swing.JTextField dateOfEmploymentField;
     private javax.swing.JTextField emailField;
-    private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLblErrorMessageDate1;
     private javax.swing.JLabel jLblErrorMessageDate2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -524,5 +526,7 @@ private String insertError(ArrayList<String> errorList) {
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField phoneNumField;
     private javax.swing.JTextField surnameField;
+    private javax.swing.JTextField txtAnsvarsomrade;
+    private javax.swing.JTextField txtMentor;
     // End of variables declaration//GEN-END:variables
 }

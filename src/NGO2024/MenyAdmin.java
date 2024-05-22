@@ -136,6 +136,11 @@ public class MenyAdmin extends javax.swing.JFrame {
         jLabel4.setText("Namn eller Epost");
 
         addNewHandlaggareButton.setText("Lägg till handläggare");
+        addNewHandlaggareButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewHandlaggareButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabPersonelLayout = new javax.swing.GroupLayout(tabPersonel);
         tabPersonel.setLayout(tabPersonelLayout);
@@ -595,6 +600,15 @@ public class MenyAdmin extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_SkapaNyttLandButtonActionPerformed
+
+    private void addNewHandlaggareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewHandlaggareButtonActionPerformed
+    try {
+            new NewHandläggare().setVisible(true);
+        } catch (InfException ex) {
+            Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_addNewHandlaggareButtonActionPerformed
 
     public String fetchPartnersInProjects() throws InfException {
         ArrayList<String> samarbetsPartnerNamn = idb.fetchColumn("select namn from partner where namn is not null");
