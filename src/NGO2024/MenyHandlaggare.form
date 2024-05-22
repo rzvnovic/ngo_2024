@@ -39,7 +39,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="HandläggarMeny" max="32767" attributes="0"/>
+                  <Component id="HandläggarMeny" pref="750" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -76,7 +76,7 @@
                               <Component id="visaKnapp" min="-2" max="-2" attributes="0"/>
                               <Component id="lblInfo" min="-2" pref="68" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="617" max="32767" attributes="0"/>
+                          <EmptySpace pref="634" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -143,7 +143,7 @@
                                   <Component id="personalList" min="-2" pref="209" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane3" pref="529" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" pref="553" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -257,7 +257,7 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="dateFormatWrongError" pref="245" max="32767" attributes="0"/>
+                                  <Component id="dateFormatWrongError" pref="262" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
@@ -268,7 +268,8 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLblTotalCostProject" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                                          <Component id="errorMsgProjekt" min="-2" pref="236" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jSeparator1" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="showUserProjectsButton" alignment="0" max="32767" attributes="0"/>
@@ -283,20 +284,18 @@
                                           <Component id="jLblMoney" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Component id="projektSok" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="errorMsgProjekt" min="-2" pref="134" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="projektSokruta" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="sökLabelProj" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="startDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="endDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="projektSok" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="projektSokruta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="sökLabelProj" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="startDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="endDateProjekt" min="-2" pref="71" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="btnFilterByDate" alignment="0" max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="btnFilterByDate" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -307,9 +306,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="minaProjectField" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="431" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="427" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane1" pref="468" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="464" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -328,12 +327,17 @@
                               <Group type="102" attributes="0">
                                   <Component id="projektSokruta" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="projektSok" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="errorMsgProjekt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="projektSok" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                          <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="errorMsgProjekt" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                  <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="showUserProjectsButton" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -525,7 +529,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="18" max="32767" attributes="0"/>
+                          <EmptySpace pref="31" max="32767" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="702" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       </Group>
@@ -580,7 +584,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="scrlPanelHållbarhet" pref="566" max="32767" attributes="0"/>
+                              <Component id="scrlPanelHållbarhet" pref="579" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="lblAktivaHallbarhetsmal" min="-2" pref="189" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
