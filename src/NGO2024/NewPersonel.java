@@ -36,7 +36,7 @@ public class NewPersonel extends javax.swing.JFrame {
      * @throws oru.inf.InfException
      */
     public NewPersonel() throws InfException {
-
+        this.userAid = userAid;
         validering = new Validering();
 
         try {

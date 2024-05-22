@@ -21,14 +21,18 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     private InfDB idb;
 
     //tas emot från klassen anställd
-    private static String pid = "1";
-    private static String userAid = "6";
+    private static String pid;
+    private static String userAid;
     private static Validering validering;
 
     /**
      * Creates new form PersonalInfo
      */
     public SamarbetspartnerInfo(String pid, String userAid) throws InfException {
+        
+        this.userAid = userAid;
+        this.pid = pid;
+        
         validering = new Validering();
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");

@@ -32,8 +32,8 @@ public class VisaAvdelning extends javax.swing.JFrame {
      */
     public VisaAvdelning(String avdid, String userAid) throws InfException {
 
-        this.userAid = "1"; //såklart inte någon hårdkodning här
-        this.avdid = "3";     //---------------||-----------------
+        this.userAid = userAid; //såklart inte någon hårdkodning här
+        this.avdid = avdid;     //---------------||-----------------
         validering = new Validering();
 
         try {
