@@ -620,11 +620,12 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     }//GEN-LAST:event_searchEpostjBtnActionPerformed
 
     private void projektSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektSokActionPerformed
-
-        if (validering.isEmpty(projektSok.getText())) {
+        String projektNamn = projektSokruta.getText();
+        if (validering.isEmpty(projektNamn)) {
             try {
 
-                String projektNamn = projektSokruta.getText();
+                if (checkProjectName(projektNamn)){
+        
                 String pid = idb.fetchSingle("Select pid from projekt where projektnamn = '" + projektNamn + "';");
                 String projektChefAid = idb.fetchSingle("Select projektchef from projekt where pid = " + pid + ";");
                 if (userAid.equals(projektChefAid)) {
@@ -633,6 +634,12 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                     errorMsgProjekt.setText("Du har ej access till detta projekt");
                     errorMsgProjekt.setVisible(true);
                 }
+                }
+                else {
+                    errorMsgProjekt.setText("Inget projekt med angivet namn existerar.");
+                    errorMsgProjekt.setVisible(true);
+                }
+
             } catch (InfException ex) {
                 Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -642,7 +649,19 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                     }
         // TODO add your handling code here:
     }//GEN-LAST:event_projektSokActionPerformed
-
+    
+    private Boolean checkProjectName(String ettProjekt) throws InfException {
+       ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt");
+       Boolean projectNameFound = false; 
+       for (String projektet : projektNamnLista){
+        if (projektet.equals(ettProjekt)){
+           projectNameFound = true; 
+           break;
+       }
+       }
+       return projectNameFound; 
+    }
+    
     private String fetchProjectDates(String startDate, String endDate) throws InfException {
 
         ArrayList<String> projektNamn = idb.fetchColumn("Select projektnamn from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and (status = 'Pågående' or status = 'Planerat')");
