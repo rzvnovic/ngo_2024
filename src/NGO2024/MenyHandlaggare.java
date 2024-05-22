@@ -576,11 +576,13 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             if (!validering.checkDateFormat(startDatumet) || !validering.checkDateFormat(slutDatumet)) {
                 dateFormatWrongError.setVisible(true);
             }
+            if (validering.fieldValidation(startDatumet, "Startdatum") && validering.fieldValidation(slutDatumet, "Slutdatum")){
             String resultatet = fetchProjectDates(startDatumet, slutDatumet);
             if (resultatet != null) {
                 projectListField.setText(resultatet);
             } else {
                 filterProjectsDateError.setVisible(true);
+            }
             }
 
         } catch (InfException ex) {
