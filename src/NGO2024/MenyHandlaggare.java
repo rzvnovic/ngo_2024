@@ -270,7 +270,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             }
         });
 
-        priorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Ongoing", "Planned", "Finished" }));
+        priorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Pågående", "Planerat", "Avslutat" }));
         priorityBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 priorityBoxActionPerformed(evt);
