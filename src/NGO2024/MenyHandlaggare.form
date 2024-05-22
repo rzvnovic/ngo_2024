@@ -263,9 +263,10 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="filterProjectsDateError" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLblTotalCostProject" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                                           <Component id="jSeparator1" max="32767" attributes="0"/>
@@ -276,13 +277,17 @@
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           <Component id="priorityBox" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="totalBudgetButton" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jScrollPane4" min="-2" pref="112" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLblMoney" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="projektSok" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="errorMsgProjekt" min="-2" pref="134" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="projektSokruta" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="sökLabelProj" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
@@ -294,11 +299,6 @@
                                               <Component id="btnFilterByDate" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="projektSok" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="errorMsgProjekt" min="-2" pref="134" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -340,8 +340,8 @@
                                   <Component id="showDeptProjectButton" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="priorityBox" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="totalBudgetButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                  <Component id="jLblTotalCostProject" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLblMoney" max="32767" attributes="0"/>
@@ -444,14 +444,6 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="totalBudgetButton">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Kalkulera total budget"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="totalBudgetButtonActionPerformed"/>
-                  </Events>
-                </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane4">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -474,7 +466,7 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLblMoney">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="SKR"/>
+                    <Property name="text" type="java.lang.String" value="Svenska kronor"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="startDateProjekt">
@@ -514,6 +506,11 @@
                 <Component class="javax.swing.JLabel" name="errorMsgProjekt">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Placeholder"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLblTotalCostProject">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Total kostnad av projekt"/>
                   </Properties>
                 </Component>
               </SubComponents>
