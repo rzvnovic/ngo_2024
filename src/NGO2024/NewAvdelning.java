@@ -45,6 +45,7 @@ public class NewAvdelning extends javax.swing.JFrame {
 
         initComponents();
         countryButton.setVisible(false);
+        stadErrorLabel.setVisible(false);
         
     }
 
@@ -69,6 +70,7 @@ public class NewAvdelning extends javax.swing.JFrame {
         countryButton = new javax.swing.JButton();
         stadErrorLabel = new javax.swing.JLabel();
         HODfield = new javax.swing.JTextField();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,7 +95,7 @@ public class NewAvdelning extends javax.swing.JFrame {
             }
         });
 
-        createButton.setText("Sök");
+        createButton.setText("Lägg till");
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
@@ -161,6 +163,8 @@ public class NewAvdelning extends javax.swing.JFrame {
             }
         });
 
+        errorLabel.setForeground(new java.awt.Color(224, 22, 22));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,29 +173,31 @@ public class NewAvdelning extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDepDetails)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nameField)
                                     .addComponent(contactEmailField)
                                     .addComponent(contactPhoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                                     .addComponent(cityField)
-                                    .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(HODfield)
                                     .addComponent(countryField))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(31, 31, 31)
-                                        .addComponent(countryButton))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(stadErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(stadErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(countryButton)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDepDetails)
+                                    .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(126, 126, 126))))
         );
         layout.setVerticalGroup(
@@ -217,12 +223,14 @@ public class NewAvdelning extends javax.swing.JFrame {
                             .addComponent(stadErrorLabel)))
                     .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
-                .addComponent(HODfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createButton)
+                    .addComponent(HODfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(countryButton))
-                .addGap(95, 95, 95))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(createButton)
+                .addContainerGap(228, Short.MAX_VALUE))
         );
 
         pack();
@@ -264,6 +272,8 @@ public class NewAvdelning extends javax.swing.JFrame {
                 if (newCountry.equals(countryList.get(i))) {
 
                     String newAvdid = null;
+                    ArrayList<String> errorList = new ArrayList<>();
+                    boolean errorFound = false;
 
                     try {
                         newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
@@ -273,6 +283,8 @@ public class NewAvdelning extends javax.swing.JFrame {
                             insertValue("namn", newName, newAvdid);
                         } else {
                             insertValue("namn", "ej angivet", newAvdid);
+                            errorList.add("Namn");
+                            errorFound = true;
                         }
 
                         //chef blir lite annorlunda foreignKey.
@@ -282,7 +294,7 @@ public class NewAvdelning extends javax.swing.JFrame {
                                 int index = newHOD.indexOf(" ");
                                 String fornamn = newHOD.substring(0, index);
                                 String efternamn = newHOD.substring(index + 1);
-                                String chefAid = idb.fetchSingle("select aid from anstalld where fornamn = " + fornamn + " and efternamn = " + efternamn + ";");
+                                String chefAid = idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';");
                                 if (chefAid != null) {
                                     insertValue("chef", newHOD, newAvdid);
                                 }      
@@ -293,27 +305,40 @@ public class NewAvdelning extends javax.swing.JFrame {
                             insertValue("epost", newEmail, newAvdid);
                         } else {
                             insertValue("epost", "ej angivet", newAvdid);
+                            errorList.add("Epost");
+                            errorFound = true;
                         }
                         if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                             insertValue("telefon", newPhonenumber, newAvdid);
                         } else {
                             insertValue("telefon", "ej angivet", newAvdid);
+                            errorList.add("Telefon");
+                            errorFound = true;
                         }
                         if (validering.fieldValidation(newAdress, "Adress")) {
                             insertValue("adress", newAdress, newAvdid);
                         } else {
                             insertValue("adress", "ej angivet", newAvdid);
+                            errorList.add("Adress");
+                            errorFound = true;
                         }
                         // foreign key blir annorlunda
                         if (validering.fieldValidation(newCity, "City")) {
-                            insertValue("stad", idb.fetchSingle("select sid from stad where namn = " + newCity + ";"), newAvdid);
+                            insertValue("stad", idb.fetchSingle("select sid from stad where namn = '" + newCity + "';"), newAvdid);
                         }
                         if (validering.fieldValidation(newDescription, "Description")) {
 
                             insertValue("beskrivning", newDescription, newAvdid);
                         } else {
                             insertValue("beksrivning", "ej angivet", newAvdid);
+                            errorList.add("Beskrivning");
+                            errorFound = true;
                         }
+                        if(errorFound) {
+                        errorLabel.setText(insertError(errorList)); 
+                        }
+                
+            
 
                     } catch (InfException ex) {
                         Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
@@ -328,6 +353,21 @@ public class NewAvdelning extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_createButtonActionPerformed
 
+    private String insertError(ArrayList<String> errorList) {
+    if (errorList == null || errorList.isEmpty()) {
+        return "Inga felaktiga värden hittades."; 
+    }
+    
+    StringBuilder message = new StringBuilder();
+    for (int i = 0; i < errorList.size(); i++) {
+        if (i > 0) {
+            message.append(", ");
+        }
+        message.append(errorList.get(i));
+    }
+    return "Följande rutor hade felaktiga värden: " + message.toString(); 
+}
+    
     private void cityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseClicked
         if (cityField.getText().equals("Stad")) {
             cityField.setText("");
@@ -466,6 +506,7 @@ public class NewAvdelning extends javax.swing.JFrame {
     private javax.swing.JTextField countryField;
     private javax.swing.JButton createButton;
     private javax.swing.JTextField descriptionField;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel lblDepDetails;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel stadErrorLabel;
