@@ -76,6 +76,7 @@ public class NewProject extends javax.swing.JFrame {
         startDateField = new javax.swing.JTextField();
         endDateFeild = new javax.swing.JTextField();
         countryButton = new javax.swing.JButton();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,7 +103,7 @@ public class NewProject extends javax.swing.JFrame {
 
         jLabel1.setText("Nytt projekt");
 
-        countryField.setText("Stad");
+        countryField.setText("Land");
         countryField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 countryFieldMouseClicked(evt);
@@ -142,6 +143,9 @@ public class NewProject extends javax.swing.JFrame {
             }
         });
 
+        errorLabel.setForeground(new java.awt.Color(244, 22, 23));
+        errorLabel.setText("A");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,6 +173,7 @@ public class NewProject extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(felmeddelandeProject)))
                 .addContainerGap(47, Short.MAX_VALUE))
+            .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +183,7 @@ public class NewProject extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(pNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,7 +202,9 @@ public class NewProject extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createButton)
                     .addComponent(countryButton))
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -236,6 +243,8 @@ public class NewProject extends javax.swing.JFrame {
             System.out.print(fornamn + efternamn);
 
             String newPid;
+            ArrayList<String> errorList = new ArrayList<>();
+         boolean errorFound = false;
 
             ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
 
@@ -246,36 +255,50 @@ public class NewProject extends javax.swing.JFrame {
                     String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
                     idb.insert(sqlQuerry);
                     //använd valideringsklass
-                    if (validering.fieldValidation(newPName, "Project name")) {
+                    if (validering.fieldValidation(newPName, "Projektnamn")) {
                         insertValue("projektnamn", newPName, newPid);
                     } else {
                         insertValue("projektnamn", "ej angivet", newPid);
+                        errorList.add("Projektnamn");
+                        errorFound = true;
                     }
                     //använd valideringsklass
                     if (validering.fieldValidation(newDescription, "-1")) {
                         insertValue("beskrivning", newDescription, newPid);
                     } else {
                         insertValue("beskrivning", "ej angivet", newPid);
+                        errorList.add("Beskrivning");
+                        errorFound = true;
                     }
                     //använd valideringsklass, validera datum TODO
-                    if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
+                    if (validering.fieldValidation(newStartDate, "Startdatum") && validering.checkDateFormat(newStartDate)) {
                         insertValue("startdatum", newStartDate, newPid);
                     } else {
                         insertValue("stardatum", "ej angivet", newPid);
+                        errorList.add("Startdatum");
+                        errorFound = true;
                     }
 
                     //använd valideringsklass, validera datum TODO
-                    if (validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
+                    if (validering.fieldValidation(newEndDate, "Slutdatum") && validering.checkDateFormat(newEndDate)) {
                         insertValue("slutdatum", newEndDate, newPid);
                     } else {
                         insertValue("slutdatum", "ej angivet", newPid);
+                        errorList.add("Slutdatum");
+                        errorFound = true;
                     }
                     //använd valideringsklass
                     if (validering.fieldValidation(newBudget, "Budget")) {
                         insertValue("kostnad", newBudget, newPid);
                     } else {
                         insertValue("kostnad", "ej angivet", newPid);
+                        errorList.add("Budget");
+                        errorFound = true;
                     }
+                     if(errorFound) {
+                errorLabel.setText(insertError(errorList));
+                     }
+                      
                     //foreign key 
                     if (!validering.checkProjektLedareAid(userAid)) {
                         if (validering.fieldValidation(newProjectL, "Assign project leader") && !validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"))) {
@@ -301,18 +324,37 @@ public class NewProject extends javax.swing.JFrame {
                 } else {
                     countryButton.setVisible(true);
                 }
+              
+            if(errorFound) {
+                errorLabel.setText(insertError(errorList));
+                      }
             }
-
-        } catch (InfException ex) {
+            
+        }
+        catch (InfException ex) {
             Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
 
             felmeddelandeProject.setVisible(true);
             felmeddelandeProject.setText("Kontrollera Stavning");
         }
     }//GEN-LAST:event_createButtonActionPerformed
-
+private String insertError(ArrayList<String> errorList) {
+    if (errorList == null || errorList.isEmpty()) {
+        return "Inga felaktiga värden hittades."; 
+    }
+    
+    StringBuilder message = new StringBuilder();
+    for (int i = 0; i < errorList.size(); i++) {
+        if (i > 0) {
+            message.append(", ");
+        }
+        message.append(errorList.get(i));
+    }
+    
+    return "Följande rutor hade felaktiga värden: " + message.toString();
+   }
     private void countryFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_countryFieldMouseClicked
-        if (countryField.getText().equals("City")) {
+        if (countryField.getText().equals("Land")) {
             countryField.setText("");
         }
     }//GEN-LAST:event_countryFieldMouseClicked
@@ -422,6 +464,7 @@ public class NewProject extends javax.swing.JFrame {
     private javax.swing.JTextField countryField;
     private javax.swing.JButton createButton;
     private javax.swing.JTextField endDateFeild;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel felmeddelandeProject;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
