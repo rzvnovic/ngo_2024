@@ -36,6 +36,7 @@ public class NewLand extends javax.swing.JFrame {
 
         this.userAid = userAid;
         validering = new Validering();
+      
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -71,6 +72,7 @@ public class NewLand extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         economicField = new javax.swing.JTextArea();
         wrongFormat = new javax.swing.JLabel();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,6 +130,8 @@ public class NewLand extends javax.swing.JFrame {
 
         wrongFormat.setText("Valuta fel format.");
 
+        errorLabel.setForeground(new java.awt.Color(244, 22, 22));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,8 +139,16 @@ public class NewLand extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(timezoneField)
-                    .addComponent(currencyField)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(timezoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                            .addComponent(currencyField))
+                        .addGap(18, 18, 18)
+                        .addComponent(wrongFormat)
+                        .addGap(127, 127, 127))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,10 +160,7 @@ public class NewLand extends javax.swing.JFrame {
                                     .addComponent(countryName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(wrongFormat)
-                .addGap(127, 127, 127))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +181,9 @@ public class NewLand extends javax.swing.JFrame {
                 .addComponent(timezoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(languageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(12, 12, 12)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(createButton)
                 .addGap(48, 48, 48))
         );
@@ -196,48 +207,88 @@ public class NewLand extends javax.swing.JFrame {
 
         //TODO
         String newLid;
+         ArrayList<String> errorList = new ArrayList<>();
+         boolean errorFound = false;
 
         try {
             newLid = idb.getAutoIncrement("land", "lid");
             String sqlQuerry = ("INSERT INTO ngo_2024.land (lid) VALUES (" + newLid + ");");
             idb.insert(sqlQuerry);
-            //använd valideringsklass
-            if (validering.fieldValidation(newCountryName, "Country name")) {
+           
+            if (validering.fieldValidation(newCountryName, "Land namn")) {
                 insertValue("namn", newCountryName, newLid);
+            } else{
+                insertValue("namn", "ej angivet", newLid);
+                errorList.add("namn");
+                errorFound = true;
             }
-            //använd valideringsklass
-            if (validering.fieldValidation(newPolitical, "-1")) {
+           
+            if (validering.fieldValidation(newPolitical, "Politisk struktur")) {
                 insertValue("politisk_struktur", newPolitical, newLid);
+            } else{
+            insertValue("politisk_struktur", "ej angivet", newLid);
+            errorList.add("politisk struktur");
+             errorFound = true;
             }
-            if (validering.fieldValidation(newEconomic, "-1")) {
+            if (validering.fieldValidation(newEconomic, "Ekonomisk struktur")) {
                 insertValue("ekonomi", newEconomic, newLid);
+            } else{
+                insertValue("ekonomi", "ej angivet", newLid);
+                errorList.add("ekonomisk struktur");
+                 errorFound = true;
             }
-            if (validering.fieldValidation(newTimeZone, "Timezone")) {
+            if (validering.fieldValidation(newTimeZone, "Tidszon")) {
                 insertValue("tidszon", newTimeZone, newLid);
+            } else{
+                insertValue("tidszon", "ej angivet", newLid);
+                errorList.add("tidszon");
+                 errorFound = true;
             }
 
-            if (validering.fieldValidation(newLanguage, "Language")) {
+            if (validering.fieldValidation(newLanguage, "Språk")) {
                 insertValue("sprak", newLanguage, newLid);
+            } else {
+                insertValue("sprak", "ej angivet", newLid);
+                errorList.add("språk");
+                 errorFound = true;
             }
 
-            //använd valideringsklass
+           
             if (validering.fieldValidation(newCurrency, "Valuta")) {
                 if (newCurrency.contains(".")) {
                     insertValue("valuta", newCurrency, newLid);
                 } else {
                         wrongFormat.setVisible(true);
                 }
+            } else {
+                  insertValue("valuta", "0.0", newLid);
+                  errorList.add("valuta");
+                   errorFound = true;
             }
 
-            /* tänk
-            if (fieldValidation(newCountry, "Contact field of operations")) {
-                insertValue("Branch", newCountry, newPid);
-            }*/
+            if(errorFound) {
+                errorLabel.setText(insertError(errorList));
+            }
         } catch (InfException ex) {
             Logger.getLogger(NewLand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_createButtonActionPerformed
-
+    
+   private String insertError(ArrayList<String> errorList) {
+    if (errorList == null || errorList.isEmpty()) {
+        return "Inga felaktiga värden hittades."; // Return a message if the list is empty or null
+    }
+    
+    StringBuilder message = new StringBuilder();
+    for (int i = 0; i < errorList.size(); i++) {
+        if (i > 0) {
+            message.append(", ");
+        }
+        message.append(errorList.get(i));
+    }
+    
+    return "Följande rutor hade felaktiga värden: " + message.toString();
+   }
     private void timezoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timezoneFieldMouseClicked
         if (timezoneField.getText().equals("City")) {
             timezoneField.setText("");
@@ -313,6 +364,7 @@ public class NewLand extends javax.swing.JFrame {
     private javax.swing.JButton createButton;
     private javax.swing.JTextField currencyField;
     private javax.swing.JTextArea economicField;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

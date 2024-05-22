@@ -52,7 +52,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="descriptionField" min="-2" pref="188" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" min="-2" pref="355" max="-2" attributes="0"/>
+                                          <Component id="stadErrorLabel" min="-2" pref="355" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -84,7 +84,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="countryField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stadErrorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="descriptionField" min="-2" pref="141" max="-2" attributes="0"/>
@@ -181,7 +181,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countryButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="stadErrorLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Kan inte ansluta stad till land, var v&#xe4;nligen och f&#xf6;rs&#xf6;k igen !"/>
       </Properties>
