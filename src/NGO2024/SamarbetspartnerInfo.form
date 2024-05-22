@@ -357,7 +357,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="setDisplayText1(&quot;City&quot;,pid)" type="code"/>
+                  <Connection code="setDisplayText2()" type="code"/>
                 </Property>
               </Properties>
               <AuxValues>

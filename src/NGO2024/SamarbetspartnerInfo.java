@@ -31,7 +31,8 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     public SamarbetspartnerInfo(String pid, String userAid) throws InfException {
         
         this.userAid = userAid;
-        this.pid = pid;
+        this.pid = "1";
+        
         
         validering = new Validering();
         try {
@@ -39,8 +40,10 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         } catch (InfException ex) {
             Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
         initComponents();
+       
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -75,6 +78,21 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         }
         return sqlQuerry;
     }
+    
+    public String setDisplayText2() {
+        String sqlQuerry;
+        try {
+            String sid = idb.fetchSingle("select stad from partner where pid = "+pid+";");
+            String sqlFraga = ("select namn from stad where sid = "+ sid +";");
+            sqlQuerry = idb.fetchSingle(sqlFraga);
+            System.out.println("Result from database: " + sqlQuerry); // Print the result
+        } catch (InfException e) { // Print the exception stack trace for debugging
+            // Print the exception stack trace for debugging
+            return "error";
+        }
+        return sqlQuerry;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -225,7 +243,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         });
 
         cityDisplay.setEditable(false);
-        cityDisplay.setText(setDisplayText1("City",pid));
+        cityDisplay.setText(setDisplayText2());
         jScrollPane6.setViewportView(cityDisplay);
 
         deleteButton.setBackground(new java.awt.Color(102, 0, 0));
