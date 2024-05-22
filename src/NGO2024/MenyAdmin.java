@@ -423,34 +423,34 @@ public class MenyAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchPersonnalNamnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPersonnalNamnBActionPerformed
-        if(validering.fieldValidation("-1", searchField.getText())){
-        String personalNamn = searchField.getText();
+        if (validering.isEmpty(searchField.getText())) {
+            String personalNamn = searchField.getText();
 
-        if (personalNamn.contains("@")) {
-            personelLblError.setText("Vänligen använd sökknappen för Epost");
-            personelLblError.setVisible(true);
-        } else {
-            try {
-                if (personalNamn.trim().contains(" ")) {
-                    int index = personalNamn.indexOf(" ");
-                    String fornamn = personalNamn.substring(0, index);
-                    String efternamn = personalNamn.substring(index + 1);
-                    System.out.print(fornamn + efternamn);
-                    String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
-                    String dbSqlFraga = idb.fetchSingle(sqlFraga);
-                    if (dbSqlFraga != null) {
-                        new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+            if (personalNamn.contains("@")) {
+                personelLblError.setText("Vänligen använd sökknappen för Epost");
+                personelLblError.setVisible(true);
+            } else {
+                try {
+                    if (personalNamn.trim().contains(" ")) {
+                        int index = personalNamn.indexOf(" ");
+                        String fornamn = personalNamn.substring(0, index);
+                        String efternamn = personalNamn.substring(index + 1);
+                        System.out.print(fornamn + efternamn);
+                        String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "';");
+                        String dbSqlFraga = idb.fetchSingle(sqlFraga);
+                        if (dbSqlFraga != null) {
+                            new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+                        } else {
+                            personelLblError.setText("Användare med angivet namn existerar inte");
+                            personelLblError.setVisible(true);
+                        }
                     } else {
-                        personelLblError.setText("Användare med angivet namn existerar inte");
+                        personelLblError.setText("Vänligen skriv in både för- och efternamn");
                         personelLblError.setVisible(true);
                     }
-                } else {
-                    personelLblError.setText("Vänligen skriv in både för- och efternamn");
-                    personelLblError.setVisible(true);
+                } catch (Exception e) {
                 }
-            } catch (Exception e) {
             }
-        }
         }
     }//GEN-LAST:event_searchPersonnalNamnBActionPerformed
 
@@ -464,46 +464,46 @@ public class MenyAdmin extends javax.swing.JFrame {
 
     private void searchPersonalEpostBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPersonalEpostBActionPerformed
         // TODO add your handling code here:
-         if(validering.fieldValidation("-1", searchField.getText())){
-        String personalEpost = searchField.getText();
-        if (!personalEpost.contains("@")) {
-            personelLblError.setText("Vänligen använd sök namn knappen vid sök på namn");
-            personelLblError.setVisible(true);
-        } else {
-            if (validering.giltigEpost(personalEpost)) {
-                try {
-                    String sqlFraga = ("Select aid from anstalld where epost ='" + personalEpost + "';");
-                    String dbSqlFraga = idb.fetchSingle(sqlFraga);
-                    if (dbSqlFraga != null) {
-                        new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
-                    } else {
-                        personelLblError.setText("Ingen existerande anställd med angiven Epost");
-                        personelLblError.setVisible(true);
+        if (validering.isEmpty(searchField.getText())) {
+            String personalEpost = searchField.getText();
+            if (!personalEpost.contains("@")) {
+                personelLblError.setText("Vänligen använd sök namn knappen vid sök på namn");
+                personelLblError.setVisible(true);
+            } else {
+                if (validering.giltigEpost(personalEpost)) {
+                    try {
+                        String sqlFraga = ("Select aid from anstalld where epost ='" + personalEpost + "';");
+                        String dbSqlFraga = idb.fetchSingle(sqlFraga);
+                        if (dbSqlFraga != null) {
+                            new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+                        } else {
+                            personelLblError.setText("Ingen existerande anställd med angiven Epost");
+                            personelLblError.setVisible(true);
+                        }
+
+                    } catch (Exception e) {
+
                     }
-
-                } catch (Exception e) {
-
                 }
             }
         }
-         }
     }//GEN-LAST:event_searchPersonalEpostBActionPerformed
 
     private void showProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProjectButtonActionPerformed
-        if(validering.fieldValidation("-1", searchProjektField.getText())){
-        try {
-            String projektSearchText = searchProjektField.getText();
-            String projektPid = idb.fetchSingle("Select pid from projekt where projektnamn = " + projektSearchText + ";");
+        if (validering.isEmpty(searchProjektField.getText())) {
+            try {
+                String projektSearchText = searchProjektField.getText();
+                String projektPid = idb.fetchSingle("Select pid from projekt where projektnamn = " + projektSearchText + ";");
 
-            new VisaProjekt(projektPid, userAid).setVisible(true);
+                new VisaProjekt(projektPid, userAid).setVisible(true);
 
-            projectTabErrorLabel.setText("Projekt kunde ej hittas.");
-            projectTabErrorLabel.setVisible(true);
+                projectTabErrorLabel.setText("Projekt kunde ej hittas.");
+                projectTabErrorLabel.setVisible(true);
 
-        } catch (InfException ex) {
-            Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InfException ex) {
+                Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
 
-        }
+            }
         }
     }//GEN-LAST:event_showProjectButtonActionPerformed
 
@@ -522,16 +522,16 @@ public class MenyAdmin extends javax.swing.JFrame {
      * @param evt
      */
     private void AvdelningSokNamnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvdelningSokNamnButtonActionPerformed
-        if(validering.fieldValidation("-1", avdelningSokField.getText())){
-        try {
-            String avdelningSearchText = avdelningSokField.getText();
-            String avdelningId = idb.fetchSingle("Select avdid from avdelning where namn = " + avdelningSearchText + ";");
-            new VisaAvdelning(avdelningId, userAid).setVisible(true);
-        } catch (InfException ex) {
-            Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
-            avdelningErrorLabel.setText("Kunde ej hitta avdelning.");
-            avdelningErrorLabel.setVisible(true);
-        }
+        if (validering.isEmpty(avdelningSokField.getText())) {
+            try {
+                String avdelningSearchText = avdelningSokField.getText();
+                String avdelningId = idb.fetchSingle("Select avdid from avdelning where namn = " + avdelningSearchText + ";");
+                new VisaAvdelning(avdelningId, userAid).setVisible(true);
+            } catch (InfException ex) {
+                Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                avdelningErrorLabel.setText("Kunde ej hitta avdelning.");
+                avdelningErrorLabel.setVisible(true);
+            }
         }
     }//GEN-LAST:event_AvdelningSokNamnButtonActionPerformed
 
@@ -541,44 +541,44 @@ public class MenyAdmin extends javax.swing.JFrame {
      * @param evt
      */
     private void AvdelningSokIdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvdelningSokIdButtonActionPerformed
-    if(validering.fieldValidation("-1", avdelningSokField.getText())){
-        try {
-            String avdelningSearchText = avdelningSokField.getText();
-            if (avdelningSearchText.isEmpty() || avdelningSearchText.isBlank()) {
-                avdelningErrorLabel.setText("Sökfält blankt");
+        if (validering.isEmpty(avdelningSokField.getText())) {
+            try {
+                String avdelningSearchText = avdelningSokField.getText();
+                if (avdelningSearchText.isEmpty() || avdelningSearchText.isBlank()) {
+                    avdelningErrorLabel.setText("Sökfält blankt");
+                    avdelningErrorLabel.setVisible(true);
+                } else {
+                    String avdelningId = idb.fetchSingle("Select avdid from avdelning where avdid = " + avdelningSearchText + ";");
+                    new VisaAvdelning(avdelningId, userAid).setVisible(true);
+                }
+            } catch (InfException ex) {
+                Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                avdelningErrorLabel.setText("Kunde ej hitta avdelning.");
                 avdelningErrorLabel.setVisible(true);
-            } else {
-                String avdelningId = idb.fetchSingle("Select avdid from avdelning where avdid = " + avdelningSearchText + ";");
-                new VisaAvdelning(avdelningId, userAid).setVisible(true);
             }
-        } catch (InfException ex) {
-            Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
-            avdelningErrorLabel.setText("Kunde ej hitta avdelning.");
-            avdelningErrorLabel.setVisible(true);
         }
-    }
     }//GEN-LAST:event_AvdelningSokIdButtonActionPerformed
 
     private void sökaLandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sökaLandButtonActionPerformed
-         if(validering.fieldValidation("-1", sökLandField.getText())){
-        try {
-            String landSearchText = sökaLandButton.getText();
+        if (validering.isEmpty(sökLandField.getText())) {
+            try {
+                String landSearchText = sökaLandButton.getText();
 
-            if (landSearchText.isEmpty() || landSearchText.isBlank()) {
-                sökLandFelMedellande.setText("Sökfällt blankt.");
+                if (landSearchText.isEmpty() || landSearchText.isBlank()) {
+                    sökLandFelMedellande.setText("Sökfällt blankt.");
+                    sökLandFelMedellande.setVisible(true);
+                } else {
+                    String landLid = idb.fetchSingle("Select lid from land where namn = '" + landSearchText + "';");
+                    new VisaLand(landLid, userAid).setVisible(true);
+                }
+                sökLandFelMedellande.setText("Land kunde ej hittas.");
+
+            } catch (InfException ex) {
+                Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                sökLandFelMedellande.setText("Land kunde ej hittas.");
                 sökLandFelMedellande.setVisible(true);
-            } else {
-                String landLid = idb.fetchSingle("Select lid from land where namn = '" + landSearchText + "';");
-                new VisaLand(landLid, userAid).setVisible(true);
             }
-            sökLandFelMedellande.setText("Land kunde ej hittas.");
-
-        } catch (InfException ex) {
-            Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
-            sökLandFelMedellande.setText("Land kunde ej hittas.");
-            sökLandFelMedellande.setVisible(true);
         }
-         }
     }//GEN-LAST:event_sökaLandButtonActionPerformed
 
     private void SkapaNyttLandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SkapaNyttLandButtonActionPerformed
