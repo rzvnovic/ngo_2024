@@ -73,7 +73,6 @@ public class NewPersonel extends javax.swing.JFrame {
         jTxtAvdelningarna = new javax.swing.JTextArea();
         dateOfEmploymentField = new javax.swing.JTextField();
         jLblErrorMessageDate1 = new javax.swing.JLabel();
-        roleBox = new javax.swing.JComboBox<>();
         lblErrorMessageAvd1 = new javax.swing.JLabel();
         jLblErrorMessageDate2 = new javax.swing.JLabel();
         errorLabel = new javax.swing.JLabel();
@@ -149,13 +148,6 @@ public class NewPersonel extends javax.swing.JFrame {
         jLblErrorMessageDate1.setForeground(new java.awt.Color(255, 0, 0));
         jLblErrorMessageDate1.setText("Felaktigt format på datum, 1111-11-11 har lagts in per automatik.");
 
-        roleBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Handläggare"}));
-        roleBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roleBoxActionPerformed(evt);
-            }
-        });
-
         lblErrorMessageAvd1.setForeground(new java.awt.Color(255, 0, 0));
         lblErrorMessageAvd1.setText("Avdelningen existerar inte. Inget har lagts in. ");
 
@@ -186,8 +178,7 @@ public class NewPersonel extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(phoneNumField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dateOfEmploymentField))
-                            .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dateOfEmploymentField)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -226,9 +217,7 @@ public class NewPersonel extends javax.swing.JFrame {
                         .addComponent(dateOfEmploymentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTxtAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addGap(46, 46, 46)
                         .addComponent(createButton)
                         .addGap(18, 18, 18)
                         .addComponent(jLblErrorMessageDate1)
@@ -406,10 +395,6 @@ private String insertError(ArrayList<String> errorList) {
         }
     }//GEN-LAST:event_jTxtAvdelningMouseClicked
 
-    private void roleBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roleBoxActionPerformed
-
     /**
      * Metod som sätter in värden i databasen på senast skapde rad.
      *
@@ -538,7 +523,6 @@ private String insertError(ArrayList<String> errorList) {
     private javax.swing.JLabel lblPersonelDetails;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField phoneNumField;
-    private javax.swing.JComboBox<String> roleBox;
     private javax.swing.JTextField surnameField;
     // End of variables declaration//GEN-END:variables
 }

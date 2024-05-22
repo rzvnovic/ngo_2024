@@ -45,7 +45,6 @@
                               <Component id="phoneNumField" alignment="0" max="32767" attributes="0"/>
                               <Component id="dateOfEmploymentField" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="roleBox" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="34" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="345" max="-2" attributes="0"/>
@@ -97,9 +96,7 @@
                       <Component id="dateOfEmploymentField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTxtAvdelning" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="roleBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Component id="createButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLblErrorMessageDate1" min="-2" max="-2" attributes="0"/>
@@ -216,19 +213,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Felaktigt format p&#xe5; datum, 1111-11-11 har lagts in per automatik."/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="roleBox">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Admin&quot;, &quot;Handl&#xe4;ggare&quot;})" type="code"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleBoxActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblErrorMessageAvd1">
       <Properties>
