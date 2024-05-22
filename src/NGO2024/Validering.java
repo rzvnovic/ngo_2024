@@ -59,7 +59,7 @@ public class Validering {
      * @param validationText
      * @return 
      */
-    public boolean fieldValidation(String text) {
+    public boolean isEmpty(String text) {
         boolean validated = true;
         if (text.isEmpty() || text.isBlank()) {
             validated = false;
