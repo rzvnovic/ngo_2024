@@ -74,7 +74,7 @@ public class PersonalInfo extends javax.swing.JFrame {
     public String setDisplayText1(String select, String aid) {
         String sqlQuerry;
         try {
-            String sqlFraga = ("select " + select + " from anstalld where aid =" + aid + ";");
+            String sqlFraga = ("select " + select + " from anstalld where aid = " + aid + ";");
             sqlQuerry = idb.fetchSingle(sqlFraga);
         } catch (Exception e) {
             e.printStackTrace();
@@ -347,9 +347,9 @@ public class PersonalInfo extends javax.swing.JFrame {
                                 .addComponent(jLabel5))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -414,10 +414,10 @@ public class PersonalInfo extends javax.swing.JFrame {
         String newStartDate = startDateField.getText();
 
         if (validering.fieldValidation(newName, "Department Name")) {
-            updateDatabase("namn", newName, aid);
+            updateDatabase("fornamn", newName, aid);
         }
         if (validering.fieldValidation(newSurname, "Description ")) {
-            updateDatabase("beskrivning", newSurname, aid);
+            updateDatabase("efternamn", newSurname, aid);
         }
         if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
             updateDatabase("epost", newEmail, aid);
