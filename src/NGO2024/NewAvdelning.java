@@ -45,6 +45,7 @@ public class NewAvdelning extends javax.swing.JFrame {
 
         initComponents();
         countryButton.setVisible(false);
+        
     }
 
     /**
@@ -66,7 +67,7 @@ public class NewAvdelning extends javax.swing.JFrame {
         descriptionField = new javax.swing.JTextField();
         countryField = new javax.swing.JTextField();
         countryButton = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        stadErrorLabel = new javax.swing.JLabel();
         HODfield = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -146,7 +147,7 @@ public class NewAvdelning extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Kan inte ansluta stad till land, var vänligen och försök igen !");
+        stadErrorLabel.setText("Kan inte ansluta stad till land, var vänligen och försök igen !");
 
         HODfield.setText("Avdelningschef");
         HODfield.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +191,7 @@ public class NewAvdelning extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(stadErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(126, 126, 126))))
         );
         layout.setVerticalGroup(
@@ -213,7 +214,7 @@ public class NewAvdelning extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)))
+                            .addComponent(stadErrorLabel)))
                     .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addComponent(HODfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,6 +320,7 @@ public class NewAvdelning extends javax.swing.JFrame {
                     }
                 } else {
                     countryButton.setVisible(true);
+                    stadErrorLabel.setVisible(true);
                 }
             }
         } catch (InfException ex) {
@@ -464,8 +466,8 @@ public class NewAvdelning extends javax.swing.JFrame {
     private javax.swing.JTextField countryField;
     private javax.swing.JButton createButton;
     private javax.swing.JTextField descriptionField;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblDepDetails;
     private javax.swing.JTextField nameField;
+    private javax.swing.JLabel stadErrorLabel;
     // End of variables declaration//GEN-END:variables
 }
