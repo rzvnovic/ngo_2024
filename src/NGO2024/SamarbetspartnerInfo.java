@@ -66,6 +66,12 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * metod som söker i databas och returnerar sträng
+     * @param select column som skall ändras
+     * @param pid rad som skall ändras
+     * @return 
+     */
     public String setDisplayText1(String select, String pid) {
         String sqlQuerry;
         try {
@@ -79,6 +85,12 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         return sqlQuerry;
     }
     
+    /**
+     * metod som söker i databas och returnerar sträng
+     * @param select column som skall ändras
+     * @param pid rad som skall ändras
+     * @return 
+     */
     public String setDisplayText2() {
         String sqlQuerry;
         try {
@@ -142,62 +154,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nameField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nameFieldMouseClicked(evt);
-            }
-        });
-        nameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameFieldActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Information");
-
-        kontaktPersonField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                kontaktPersonFieldMouseClicked(evt);
-            }
-        });
-        kontaktPersonField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktPersonFieldActionPerformed(evt);
-            }
-        });
-
-        adressField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                adressFieldMouseClicked(evt);
-            }
-        });
-        adressField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adressFieldActionPerformed(evt);
-            }
-        });
-
-        phoneField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                phoneFieldMouseClicked(evt);
-            }
-        });
-        phoneField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneFieldActionPerformed(evt);
-            }
-        });
-
-        emailField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                emailFieldMouseClicked(evt);
-            }
-        });
-        emailField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailFieldActionPerformed(evt);
-            }
-        });
 
         adminOkButton.setText("Ok");
         adminOkButton.addActionListener(new java.awt.event.ActionListener() {
@@ -226,21 +183,9 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         emailDisplay.setText(setDisplayText1("kontaktepost",pid));
         jScrollPane7.setViewportView(emailDisplay);
 
-        branchField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                branchFieldMouseClicked(evt);
-            }
-        });
-
         branchDisplay.setEditable(false);
         branchDisplay.setText(setDisplayText1("Branch",pid));
         jScrollPane8.setViewportView(branchDisplay);
-
-        cityField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cityFieldMouseClicked(evt);
-            }
-        });
 
         cityDisplay.setEditable(false);
         cityDisplay.setText(setDisplayText2());
@@ -399,10 +344,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void adminOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminOkButtonActionPerformed
-        // TODO add your handling code here:
-        //MAKE ViSABLE IF USER == ADMIN
-        //skriv kod som implementerar detta in i databasen (ändringarna) genom idb.update() metod.
-        //TODO Koppla stad via stad tabelle!!!!!
+        
         String newName = nameField.getText();
         String newContact = kontaktPersonField.getText();
         String newAdress = adressField.getText();
@@ -410,8 +352,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         String newEmail = emailField.getText(); //OBS
         String newBranch = branchField.getText();
         String newCity = cityField.getText();
-        //if(!parameterSomSkaKollas.equals(ParameterSomFannsFrånBörjan/FårInteVaraDär){
-        //}
+
         if (validering.fieldValidation(newName, "Name")) {
             updateDatabase("namn", newName);
             nameDisplay.setText(newName);
@@ -440,12 +381,13 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             updateDatabase("Branch", newBranch);
             branchDisplay.setText(newBranch);
         }
-        //cityValidation(newCity, newPid);
-
-
     }//GEN-LAST:event_adminOkButtonActionPerformed
-    // Hantera NullPointerExecption från getText vid tomt TextField. 
 
+    /**
+     * Metod som updaterar 
+     * @param column
+     * @param value 
+     */
     private void updateDatabase(String column, String value) {
         try {
             String sqlQuerry = ("UPDATE ngo_2024.partner t SET t." + column + " = '" + value + "' WHERE t.pid = " + pid + ";");
@@ -454,72 +396,6 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailFieldActionPerformed
-
-    private void phoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneFieldActionPerformed
-
-    private void phoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneFieldMouseClicked
-        // TODO add your handling code here:
-        if (phoneField.getText().equals("Telefon")) {
-            phoneField.setText("");
-        }
-    }//GEN-LAST:event_phoneFieldMouseClicked
-
-    private void adressFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adressFieldMouseClicked
-        // TODO add your handling code here:
-        if (adressField.getText().equals("Adress")) {
-            adressField.setText("");
-        }
-    }//GEN-LAST:event_adressFieldMouseClicked
-
-    private void kontaktPersonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktPersonFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktPersonFieldActionPerformed
-
-    private void kontaktPersonFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kontaktPersonFieldMouseClicked
-        // TODO add your handling code here:
-        if (kontaktPersonField.getText().equals("Kontaktperson")) {
-            kontaktPersonField.setText("");
-        }
-    }//GEN-LAST:event_kontaktPersonFieldMouseClicked
-
-    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameFieldActionPerformed
-
-    private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
-        // TODO add your handling code here:
-        if (nameField.getText().equals("Namn")) {
-            nameField.setText("");
-        }
-    }//GEN-LAST:event_nameFieldMouseClicked
-
-    private void adressFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adressFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adressFieldActionPerformed
-
-    private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
-        if (emailField.getText().equals("Epost")) {
-            emailField.setText("");
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_emailFieldMouseClicked
-
-    private void branchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchFieldMouseClicked
-        if (branchField.getText().equals("Bransch")) {
-            branchField.setText("");
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_branchFieldMouseClicked
-
-    private void cityFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseClicked
-        if (cityField.getText().equals("Stad")) {
-            cityField.setText("");
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_cityFieldMouseClicked
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
