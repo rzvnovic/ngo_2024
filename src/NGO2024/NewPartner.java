@@ -232,23 +232,35 @@ public class NewPartner extends javax.swing.JFrame {
             idb.insert(sqlQuerry);
             if (validering.fieldValidation(newName, "Name")) {
                 insertValue("namn", newName, newPid);
+            } else {
+                insertValue("namn", "ej angivet", newPid);
             }
             if (validering.fieldValidation(newContact, "Contact")) {
                 insertValue("kontaktperson", newContact, newPid);
+            } else {
+                 insertValue("kontaktperson", "ej angivet", newPid);
             }
             if (validering.fieldValidation(newEmail, "Email")&& validering.giltigEpost(newEmail)) {
                 insertValue("kontaktepost", newEmail, newPid);
+            } else {
+                  insertValue("kontaktepost", "ej angivet", newPid);
             }
             if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                 insertValue("telefon", newPhonenumber, newPid);
+            } else {
+                insertValue("telefon", "ej angivet", newPid);
             }
             if (validering.fieldValidation(newBranch, "Adress")) {
                 insertValue("adress", newAdress, newPid);
+            } else {
+                insertValue("adress", "ej angivet", newPid);
             }
             if (validering.fieldValidation(newBranch, "Contact field of operations")) {
                 insertValue("Branch", newBranch, newPid);
+            } else { 
+                insertValue("Branch", "ej angivet", newPid);
             }
-
+//foreign key nedan..
             cityValidation(newCity, newPid);
         } catch (InfException ex) {
             Logger.getLogger(NewPartner.class.getName()).log(Level.SEVERE, null, ex);
