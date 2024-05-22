@@ -243,13 +243,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         projectListField.setEditable(false);
         projectListField.setColumns(20);
         projectListField.setRows(5);
-        try{
-            projectListField.setText(fetchProject());
-        }
-        catch(Exception e){}
         jScrollPane1.setViewportView(projectListField);
 
-        minaProjectField.setText("Mina projekt");
+        minaProjectField.setText("Projekt");
 
         showUserProjectsButton.setText("Visa mina projekt");
         showUserProjectsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +344,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(projektTabLayout.createSequentialGroup()
                         .addComponent(minaProjectField)
-                        .addGap(0, 401, Short.MAX_VALUE))
+                        .addGap(0, 431, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE))
                 .addContainerGap())
         );
