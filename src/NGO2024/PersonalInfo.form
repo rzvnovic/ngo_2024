@@ -42,13 +42,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="lblTelefonnummer" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNamn" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblEfternamn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAdress" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="lblSlutdatum" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblEpost" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -61,7 +61,7 @@
                               <Component id="surnameField" alignment="0" max="32767" attributes="0"/>
                               <Component id="adressField" alignment="0" max="32767" attributes="0"/>
                               <Component id="phoneField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPersonalInfo" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
@@ -76,12 +76,12 @@
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPersonalID" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jScrollPane7" min="-2" pref="137" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel8" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="lblAdmin" min="-2" pref="37" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jScrollPane6" min="-2" pref="137" max="-2" attributes="0"/>
                       </Group>
@@ -104,14 +104,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPersonalInfo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="nameField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNamn" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -119,7 +119,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="surnameField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEfternamn" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -127,7 +127,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="adressField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAdress" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -135,13 +135,13 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="phoneField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTelefonnummer" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEpost" min="-2" max="-2" attributes="0"/>
                               <Component id="emailField" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -160,9 +160,9 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAdmin" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblPersonalID" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -172,7 +172,7 @@
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="startDateField" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSlutdatum" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="commitButton" min="-2" max="-2" attributes="0"/>
@@ -194,7 +194,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameFieldActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblPersonalInfo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Personal information"/>
           </Properties>
@@ -398,42 +398,42 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="lblNamn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Namn"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lblEfternamn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Efternamn"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lblAdress">
           <Properties>
             <Property name="text" type="java.lang.String" value="Adress"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="lblTelefonnummer">
           <Properties>
             <Property name="text" type="java.lang.String" value="Telefonnummer"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel7">
+        <Component class="javax.swing.JLabel" name="lblSlutdatum">
           <Properties>
             <Property name="text" type="java.lang.String" value="Startdatum"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
+        <Component class="javax.swing.JLabel" name="lblAdmin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Admin"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel9">
+        <Component class="javax.swing.JLabel" name="lblPersonalID">
           <Properties>
             <Property name="text" type="java.lang.String" value="Personal ID"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel10">
+        <Component class="javax.swing.JLabel" name="lblEpost">
           <Properties>
             <Property name="text" type="java.lang.String" value="Epost"/>
           </Properties>
