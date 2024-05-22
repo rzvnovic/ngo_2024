@@ -423,6 +423,7 @@ public class MenyAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchPersonnalNamnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPersonnalNamnBActionPerformed
+        if(validering.fieldValidation("-1", searchField.getText())){
         String personalNamn = searchField.getText();
 
         if (personalNamn.contains("@")) {
@@ -449,6 +450,7 @@ public class MenyAdmin extends javax.swing.JFrame {
                 }
             } catch (Exception e) {
             }
+        }
         }
     }//GEN-LAST:event_searchPersonnalNamnBActionPerformed
 
