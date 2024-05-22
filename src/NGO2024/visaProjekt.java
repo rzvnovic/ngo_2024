@@ -18,7 +18,7 @@ import java.util.*;
  * @version 10/05/2024
  */
 public class VisaProjekt extends javax.swing.JFrame {
-
+//fel
     private InfDB idb;
 
     //tas emot från klassen anställd
