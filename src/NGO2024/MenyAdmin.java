@@ -464,6 +464,7 @@ public class MenyAdmin extends javax.swing.JFrame {
 
     private void searchPersonalEpostBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPersonalEpostBActionPerformed
         // TODO add your handling code here:
+         if(validering.fieldValidation("-1", searchField.getText())){
         String personalEpost = searchField.getText();
         if (!personalEpost.contains("@")) {
             personelLblError.setText("Vänligen använd sök namn knappen vid sök på namn");
@@ -485,9 +486,11 @@ public class MenyAdmin extends javax.swing.JFrame {
                 }
             }
         }
+         }
     }//GEN-LAST:event_searchPersonalEpostBActionPerformed
 
     private void showProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProjectButtonActionPerformed
+        if(validering.fieldValidation("-1", searchProjektField.getText())){
         try {
             String projektSearchText = searchProjektField.getText();
             String projektPid = idb.fetchSingle("Select pid from projekt where projektnamn = " + projektSearchText + ";");
@@ -500,6 +503,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         } catch (InfException ex) {
             Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
 
+        }
         }
     }//GEN-LAST:event_showProjectButtonActionPerformed
 
@@ -518,6 +522,7 @@ public class MenyAdmin extends javax.swing.JFrame {
      * @param evt
      */
     private void AvdelningSokNamnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvdelningSokNamnButtonActionPerformed
+        if(validering.fieldValidation("-1", avdelningSokField.getText())){
         try {
             String avdelningSearchText = avdelningSokField.getText();
             String avdelningId = idb.fetchSingle("Select avdid from avdelning where namn = " + avdelningSearchText + ";");
@@ -527,6 +532,7 @@ public class MenyAdmin extends javax.swing.JFrame {
             avdelningErrorLabel.setText("Kunde ej hitta avdelning.");
             avdelningErrorLabel.setVisible(true);
         }
+        }
     }//GEN-LAST:event_AvdelningSokNamnButtonActionPerformed
 
     /**
@@ -535,6 +541,7 @@ public class MenyAdmin extends javax.swing.JFrame {
      * @param evt
      */
     private void AvdelningSokIdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvdelningSokIdButtonActionPerformed
+    if(validering.fieldValidation("-1", avdelningSokField.getText())){
         try {
             String avdelningSearchText = avdelningSokField.getText();
             if (avdelningSearchText.isEmpty() || avdelningSearchText.isBlank()) {
@@ -549,10 +556,11 @@ public class MenyAdmin extends javax.swing.JFrame {
             avdelningErrorLabel.setText("Kunde ej hitta avdelning.");
             avdelningErrorLabel.setVisible(true);
         }
+    }
     }//GEN-LAST:event_AvdelningSokIdButtonActionPerformed
 
     private void sökaLandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sökaLandButtonActionPerformed
-
+         if(validering.fieldValidation("-1", sökLandField.getText())){
         try {
             String landSearchText = sökaLandButton.getText();
 
@@ -570,6 +578,7 @@ public class MenyAdmin extends javax.swing.JFrame {
             sökLandFelMedellande.setText("Land kunde ej hittas.");
             sökLandFelMedellande.setVisible(true);
         }
+         }
     }//GEN-LAST:event_sökaLandButtonActionPerformed
 
     private void SkapaNyttLandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SkapaNyttLandButtonActionPerformed
