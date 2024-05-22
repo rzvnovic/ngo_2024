@@ -52,6 +52,20 @@ public class Validering {
         }
         return validated;
     }
+    
+    /**
+     * Metod som validerar ifall fältet är tomt
+     * @param newText
+     * @param validationText
+     * @return 
+     */
+    public boolean fieldValidation(String text) {
+        boolean validated = true;
+        if (text.isEmpty() || text.isBlank()) {
+            validated = false;
+        }
+        return validated;
+    }
 
     
 

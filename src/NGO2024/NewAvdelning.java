@@ -271,6 +271,7 @@ public class NewAvdelning extends javax.swing.JFrame {
                         if (validering.fieldValidation(newName, "Name")) {
                             insertValue("namn", newName, newAvdid);
                         }
+                        
                         if (validering.fieldValidation(newHOD, "head of department")) {
                             insertValue("chef", newHOD, newAvdid);
                         }
