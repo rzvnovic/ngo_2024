@@ -48,6 +48,7 @@ public class NewProject extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         felmeddelandeProject.setVisible(false);
         countryButton.setVisible(false);
+        countryErrorLabel.setVisible(false);
     }
 
     /* public String setUserName() throws InfException{
@@ -77,6 +78,8 @@ public class NewProject extends javax.swing.JFrame {
         endDateFeild = new javax.swing.JTextField();
         countryButton = new javax.swing.JButton();
         errorLabel = new javax.swing.JLabel();
+        statusBox = new javax.swing.JComboBox<>();
+        countryErrorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,10 +149,15 @@ public class NewProject extends javax.swing.JFrame {
         errorLabel.setForeground(new java.awt.Color(244, 22, 23));
         errorLabel.setText("A");
 
+        statusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Avslutad", "Pågående", "Planerat" }));
+
+        countryErrorLabel.setText("Land kunde inte hittas, pröva igen eller lägg till land.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,22 +166,26 @@ public class NewProject extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(endDateFeild, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(budgetField)
-                            .addComponent(priorityBox, 0, 324, Short.MAX_VALUE)
-                            .addComponent(countryField)
-                            .addComponent(jScrollPane1)
-                            .addComponent(pNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(statusBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(budgetField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(priorityBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 324, Short.MAX_VALUE)
+                            .addComponent(countryField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
                                 .addComponent(countryButton))
-                            .addComponent(projectLField))
+                            .addComponent(projectLField, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
-                        .addComponent(felmeddelandeProject)))
-                .addContainerGap(47, Short.MAX_VALUE))
-            .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(felmeddelandeProject)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(countryErrorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,17 +195,21 @@ public class NewProject extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(pNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(endDateFeild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(budgetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(statusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(countryErrorLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projectLField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,129 +246,150 @@ public class NewProject extends javax.swing.JFrame {
         String newEndDate = endDateFeild.getText();
         String newBudget = budgetField.getText();
         int priority = priorityBox.getSelectedIndex();
+        int statusChosen = statusBox.getSelectedIndex();
         String newCountry = countryField.getText();
         String newProjectL = projectLField.getText();
+
+        boolean countryFound = false;
 
         String fornamn = null;
         String efternamn = null;
 
-        try {
-            int index = newProjectL.indexOf(" ");
-            fornamn = newProjectL.substring(0, index);
-            efternamn = newProjectL.substring(index + 1);
-            System.out.print(fornamn + efternamn);
+        if (newProjectL.contains(" ")) {
 
-            String newPid;
-            ArrayList<String> errorList = new ArrayList<>();
-         boolean errorFound = false;
+            try {
+                int index = newProjectL.indexOf(" ");
+                fornamn = newProjectL.substring(0, index);
+                efternamn = newProjectL.substring(index + 1);
+                System.out.print(fornamn + efternamn);
 
-            ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
+                String newPid;
+                ArrayList<String> errorList = new ArrayList<>();
+                boolean errorFound = false;
+                boolean okProjectL = false;
 
-            for (int i = 0; i < countryList.size(); i++) {
-                if (newCountry.equals(countryList.get(i))) {
+                ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
 
-                    newPid = idb.getAutoIncrement("projekt", "pid");
-                    String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
-                    idb.insert(sqlQuerry);
-                    //använd valideringsklass
-                    if (validering.fieldValidation(newPName, "Projektnamn")) {
-                        insertValue("projektnamn", newPName, newPid);
-                    } else {
-                        insertValue("projektnamn", "ej angivet", newPid);
-                        errorList.add("Projektnamn");
-                        errorFound = true;
-                    }
-                    //använd valideringsklass
-                    if (validering.fieldValidation(newDescription, "-1")) {
-                        insertValue("beskrivning", newDescription, newPid);
-                    } else {
-                        insertValue("beskrivning", "ej angivet", newPid);
-                        errorList.add("Beskrivning");
-                        errorFound = true;
-                    }
-                    //använd valideringsklass, validera datum TODO
-                    if (validering.fieldValidation(newStartDate, "Startdatum") && validering.checkDateFormat(newStartDate)) {
-                        insertValue("startdatum", newStartDate, newPid);
-                    } else {
-                        insertValue("stardatum", "ej angivet", newPid);
-                        errorList.add("Startdatum");
-                        errorFound = true;
-                    }
+                for (int i = 0; i < countryList.size(); i++) {
+                    if (newCountry.equals(countryList.get(i))) {
+                        countryFound = true;
+                        newPid = idb.getAutoIncrement("projekt", "pid");
 
-                    //använd valideringsklass, validera datum TODO
-                    if (validering.fieldValidation(newEndDate, "Slutdatum") && validering.checkDateFormat(newEndDate)) {
-                        insertValue("slutdatum", newEndDate, newPid);
-                    } else {
-                        insertValue("slutdatum", "ej angivet", newPid);
-                        errorList.add("Slutdatum");
-                        errorFound = true;
-                    }
-                    //använd valideringsklass
-                    if (validering.fieldValidation(newBudget, "Budget")) {
-                        insertValue("kostnad", newBudget, newPid);
-                    } else {
-                        insertValue("kostnad", "ej angivet", newPid);
-                        errorList.add("Budget");
-                        errorFound = true;
-                    }
-                     if(errorFound) {
-                errorLabel.setText(insertError(errorList));
-                     }
-                      
-                    //foreign key 
-                    if (!validering.checkProjektLedareAid(userAid)) {
-                        if (validering.fieldValidation(newProjectL, "Assign project leader") && !validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"))) {
-                            insertValue("projektchef", idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"), newPid);
-                        } else if (validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"))) {
-                            felmeddelandeProject.setText("Användaren är en Admin välj en handläggare!");
-                            felmeddelandeProject.setVisible(true);
+                        if (!validering.checkAdminAid(userAid)) {
+                            if (validering.fieldValidation(newProjectL, "Assign project leader") && !validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"))) {
+                                okProjectL = true;
+                            } else if (validering.checkAdminAid(idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"))) {
+                                felmeddelandeProject.setText("Användaren är en Admin välj en handläggare!");
+                                felmeddelandeProject.setVisible(true);
+                                break;
+                            } else {
+                                felmeddelandeProject.setText("Kunde inte hitta!");
+                                felmeddelandeProject.setVisible(true);
+                                break;
+                            }
+                            //foreign key här 
                         } else {
-                            felmeddelandeProject.setText("Kunde inte hitta!");
-                            felmeddelandeProject.setVisible(true);
+                            break;
                         }
-                        //foreign key här 
+
+                        if (okProjectL) {
+
+                            String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
+                            idb.insert(sqlQuerry);
+                            //använd valideringsklass
+                            insertValue("projektchef", idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';"), newPid);
+
+                            if (validering.fieldValidation(newPName, "Projektnamn")) {
+                                insertValue("projektnamn", newPName, newPid);
+                            } else {
+                                insertValue("projektnamn", "ej angivet", newPid);
+                                errorList.add("Projektnamn");
+                                errorFound = true;
+                            }
+                            //använd valideringsklass
+                            if (validering.fieldValidation(newDescription, "-1")) {
+                                insertValue("beskrivning", newDescription, newPid);
+                            } else {
+                                insertValue("beskrivning", "ej angivet", newPid);
+                                errorList.add("Beskrivning");
+                                errorFound = true;
+                            }
+                            //använd valideringsklass, validera datum TODO
+                            if (validering.fieldValidation(newStartDate, "Startdatum") && validering.checkDateFormat(newStartDate)) {
+                                insertValue("startdatum", newStartDate, newPid);
+                            } else {
+                                insertValue("startdatum", "1111-11-11", newPid);
+                                errorList.add("Startdatum");
+                                errorFound = true;
+                            }
+
+                            if (validering.fieldValidation(newEndDate, "Slutdatum") && validering.checkDateFormat(newEndDate)) {
+                                insertValue("slutdatum", newEndDate, newPid);
+                            } else {
+                                insertValue("slutdatum", "1111-11-11", newPid);
+                                errorList.add("Slutdatum");
+                                errorFound = true;
+                            }
+                            if (validering.fieldValidation(newBudget, "Budget")) {
+                                insertValue("kostnad", newBudget, newPid);
+                            } else {
+                                insertValue("kostnad", "0.0", newPid);
+                                errorList.add("Budget");
+                                errorFound = true;
+                            }
+                            if (errorFound) {
+                                errorLabel.setText(insertError(errorList));
+                            }
+
+                            //foreign key 
+                            insertValue("land", idb.fetchSingle("select lid from land where namn = '" + newCountry + "';"), newPid);
+                            //else felmeddelande.
+                            String newPriority = priorityPicker(priority);
+                            insertValue("prioritet", newPriority, newPid);
+
+                            String newStatus = statusPicker(statusChosen);
+                            insertValue("status", newStatus, newPid);
+                            break;
+                        }
                     } else {
-                        fornamn = idb.fetchSingle("select fornamn from anstalld where aid = " + userAid + ";");
-                        efternamn = idb.fetchSingle("select efternamn from anstalld where aid = " + userAid + ";");
-                        projectLField.setText(fornamn + " " + efternamn);
-                        projectLField.setEditable(false);
+                        countryFound = false;
                     }
-                    insertValue("land", idb.fetchSingle("select lid from land where namn = " + newCountry + ";"), newPid);
-                    //else felmeddelande.
-                    String newPriority = priorityPicker(priority);
-                    insertValue("prioritet", newPriority, newPid);
-                } else {
+
+                }
+                if (!countryFound) {
+                    countryErrorLabel.setVisible(true);
                     countryButton.setVisible(true);
                 }
-              
-            if(errorFound) {
-                errorLabel.setText(insertError(errorList));
-                      }
-            }
-            
-        }
-        catch (InfException ex) {
-            Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
 
-            felmeddelandeProject.setVisible(true);
-            felmeddelandeProject.setText("Kontrollera Stavning");
+                if (errorFound) {
+                    errorLabel.setText(insertError(errorList));
+                }
+
+            } catch (InfException ex) {
+                Logger.getLogger(NewProject.class.getName()).log(Level.SEVERE, null, ex);
+
+                felmeddelandeProject.setVisible(true);
+                felmeddelandeProject.setText("Kontrollera Stavning");
+            }
+        } else {
+            System.out.print("error");
         }
     }//GEN-LAST:event_createButtonActionPerformed
-private String insertError(ArrayList<String> errorList) {
-    if (errorList == null || errorList.isEmpty()) {
-        return "Inga felaktiga värden hittades."; 
-    }
-    
-    StringBuilder message = new StringBuilder();
-    for (int i = 0; i < errorList.size(); i++) {
-        if (i > 0) {
-            message.append(", ");
+    private String insertError(ArrayList<String> errorList) {
+        if (errorList == null || errorList.isEmpty()) {
+            return "Inga felaktiga värden hittades.";
         }
-        message.append(errorList.get(i));
+
+        StringBuilder message = new StringBuilder();
+        for (int i = 0; i < errorList.size(); i++) {
+            if (i > 0) {
+                message.append(", ");
+            }
+            message.append(errorList.get(i));
+        }
+
+        return "Följande rutor hade felaktiga värden: " + message.toString();
     }
-    
-    return "Följande rutor hade felaktiga värden: " + message.toString();
-   }
     private void countryFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_countryFieldMouseClicked
         if (countryField.getText().equals("Land")) {
             countryField.setText("");
@@ -377,12 +414,22 @@ private String insertError(ArrayList<String> errorList) {
     }//GEN-LAST:event_countryButtonActionPerformed
 
     private String priorityPicker(int priority) {
-        if (priority == 3) {
-            return "låg";
-        } else if (priority == 2) {
-            return "medel";
+        if (priority == 2) {
+            return "Låg";
+        } else if (priority == 1) {
+            return "Medel";
         } else {
-            return "hög";
+            return "Hög";
+        }
+    }
+
+    private String statusPicker(int priority) {
+        if (priority == 2) {
+            return "Planerat";
+        } else if (priority == 1) {
+            return "Pågående";
+        } else {
+            return "Avslutat";
         }
     }
 
@@ -461,6 +508,7 @@ private String insertError(ArrayList<String> errorList) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField budgetField;
     private javax.swing.JButton countryButton;
+    private javax.swing.JLabel countryErrorLabel;
     private javax.swing.JTextField countryField;
     private javax.swing.JButton createButton;
     private javax.swing.JTextField endDateFeild;
@@ -473,5 +521,6 @@ private String insertError(ArrayList<String> errorList) {
     private javax.swing.JComboBox<String> priorityBox;
     private javax.swing.JTextField projectLField;
     private javax.swing.JTextField startDateField;
+    private javax.swing.JComboBox<String> statusBox;
     // End of variables declaration//GEN-END:variables
 }
