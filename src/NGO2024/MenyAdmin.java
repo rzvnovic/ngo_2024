@@ -36,7 +36,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         projectTabErrorLabel.setVisible(false);
         avdelningErrorLabel.setVisible(false);
         sökLandFelMedellande.setVisible(false);
-        partnerSearchField.setVisible(false);
+        samarbetspartnerError.setVisible(false);
 
         fetchProjects();
 
