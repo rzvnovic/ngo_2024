@@ -35,16 +35,14 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="emailField" min="-2" pref="209" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jTxtAvdelning" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="nameField" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="surnameField" min="-2" pref="75" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="phoneNumField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="dateOfEmploymentField" max="32767" attributes="0"/>
+                          <Component id="jTxtAvdelning" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="nameField" min="-2" pref="75" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="surnameField" min="-2" pref="75" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="phoneNumField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="dateOfEmploymentField" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtAnsvarsomrade" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtMentor" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
                       </Group>
