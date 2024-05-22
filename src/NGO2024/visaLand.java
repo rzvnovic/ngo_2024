@@ -32,8 +32,8 @@ public class VisaLand extends javax.swing.JFrame {
      */
     public VisaLand(String lid, String userAid) throws InfException {
 
-        this.userAid = "1"; //såklart inte någon hårdkodning här
-        this.lid = "3";     //---------------||-----------------
+        this.userAid = userAid; //såklart inte någon hårdkodning här
+        this.lid = lid;     //---------------||-----------------
         validering = new Validering();
 
         try {
@@ -51,10 +51,9 @@ public class VisaLand extends javax.swing.JFrame {
     public String setDisplayText1(String select, String lid) {
         String sqlQuerry;
         try {
-            String sqlFraga = ("select " + select + " from land where lid =" + lid + ";");
+            String sqlFraga = ("select " + select + " from land where lid = " + lid + ";");
             sqlQuerry = idb.fetchSingle(sqlFraga);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (InfException e) {
             return "error";
         }
         return sqlQuerry;

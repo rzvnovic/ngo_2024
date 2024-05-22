@@ -36,7 +36,6 @@ public class NewLand extends javax.swing.JFrame {
 
         this.userAid = userAid;
         validering = new Validering();
-      
 
         try {
             idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
@@ -207,42 +206,42 @@ public class NewLand extends javax.swing.JFrame {
 
         //TODO
         String newLid;
-         ArrayList<String> errorList = new ArrayList<>();
-         boolean errorFound = false;
+        ArrayList<String> errorList = new ArrayList<>();
+        boolean errorFound = false;
 
         try {
             newLid = idb.getAutoIncrement("land", "lid");
             String sqlQuerry = ("INSERT INTO ngo_2024.land (lid) VALUES (" + newLid + ");");
             idb.insert(sqlQuerry);
-           
+
             if (validering.fieldValidation(newCountryName, "Land namn")) {
                 insertValue("namn", newCountryName, newLid);
-            } else{
+            } else {
                 insertValue("namn", "ej angivet", newLid);
                 errorList.add("namn");
                 errorFound = true;
             }
-           
+
             if (validering.fieldValidation(newPolitical, "Politisk struktur")) {
                 insertValue("politisk_struktur", newPolitical, newLid);
-            } else{
-            insertValue("politisk_struktur", "ej angivet", newLid);
-            errorList.add("politisk struktur");
-             errorFound = true;
+            } else {
+                insertValue("politisk_struktur", "ej angivet", newLid);
+                errorList.add("politisk struktur");
+                errorFound = true;
             }
             if (validering.fieldValidation(newEconomic, "Ekonomisk struktur")) {
                 insertValue("ekonomi", newEconomic, newLid);
-            } else{
+            } else {
                 insertValue("ekonomi", "ej angivet", newLid);
                 errorList.add("ekonomisk struktur");
-                 errorFound = true;
+                errorFound = true;
             }
             if (validering.fieldValidation(newTimeZone, "Tidszon")) {
                 insertValue("tidszon", newTimeZone, newLid);
-            } else{
+            } else {
                 insertValue("tidszon", "ej angivet", newLid);
                 errorList.add("tidszon");
-                 errorFound = true;
+                errorFound = true;
             }
 
             if (validering.fieldValidation(newLanguage, "Språk")) {
@@ -250,45 +249,47 @@ public class NewLand extends javax.swing.JFrame {
             } else {
                 insertValue("sprak", "ej angivet", newLid);
                 errorList.add("språk");
-                 errorFound = true;
+                errorFound = true;
             }
 
-           
             if (validering.fieldValidation(newCurrency, "Valuta")) {
                 if (newCurrency.contains(".")) {
                     insertValue("valuta", newCurrency, newLid);
                 } else {
-                        wrongFormat.setVisible(true);
+                    wrongFormat.setVisible(true);
+                    insertValue("valuta", "0.0", newLid);
+                    errorList.add("valuta");
+                    errorFound = true;
                 }
             } else {
-                  insertValue("valuta", "0.0", newLid);
-                  errorList.add("valuta");
-                   errorFound = true;
+                insertValue("valuta", "0.0", newLid);
+                errorList.add("valuta");
+                errorFound = true;
             }
 
-            if(errorFound) {
+            if (errorFound) {
                 errorLabel.setText(insertError(errorList));
             }
         } catch (InfException ex) {
             Logger.getLogger(NewLand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_createButtonActionPerformed
-    
-   private String insertError(ArrayList<String> errorList) {
-    if (errorList == null || errorList.isEmpty()) {
-        return "Inga felaktiga värden hittades."; 
-    }
-    
-    StringBuilder message = new StringBuilder();
-    for (int i = 0; i < errorList.size(); i++) {
-        if (i > 0) {
-            message.append(", ");
+
+    private String insertError(ArrayList<String> errorList) {
+        if (errorList == null || errorList.isEmpty()) {
+            return "Inga felaktiga värden hittades.";
         }
-        message.append(errorList.get(i));
+
+        StringBuilder message = new StringBuilder();
+        for (int i = 0; i < errorList.size(); i++) {
+            if (i > 0) {
+                message.append(", ");
+            }
+            message.append(errorList.get(i));
+        }
+
+        return "Följande rutor hade felaktiga värden: " + message.toString();
     }
-    
-    return "Följande rutor hade felaktiga värden: " + message.toString();
-   }
     private void timezoneFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timezoneFieldMouseClicked
         if (timezoneField.getText().equals("City")) {
             timezoneField.setText("");

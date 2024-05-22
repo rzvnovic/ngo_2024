@@ -36,6 +36,8 @@ public class NewPartner extends javax.swing.JFrame {
      */
     public NewPartner(String pid, String userAid) throws InfException {
 
+        this.userAid = userAid;
+        this.pid = pid;
         validering = new Validering();
         
         try {

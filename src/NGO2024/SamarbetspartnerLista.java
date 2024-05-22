@@ -21,7 +21,7 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
     
     public SamarbetspartnerLista(String pid, String userAid) throws InfException {
         
-        this.pid = "4";
+        this.pid = pid;
         this.userAid = userAid;
         
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");

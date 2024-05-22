@@ -65,7 +65,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         tabCountry = new javax.swing.JPanel();
         sökLandLabel = new javax.swing.JLabel();
         sökaLandButton = new javax.swing.JButton();
-        sökLandField = new javax.swing.JTextField();
+        sokLandField = new javax.swing.JTextField();
         SkapaNyttLandButton = new javax.swing.JButton();
         sökLandFelMedellande = new javax.swing.JLabel();
         tabPartner = new javax.swing.JPanel();
@@ -220,7 +220,7 @@ public class MenyAdmin extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(tabCountryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sökaLandButton)
-                            .addComponent(sökLandField, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sokLandField, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sökLandFelMedellande)
                             .addComponent(sökLandLabel))))
                 .addContainerGap(823, Short.MAX_VALUE))
@@ -231,7 +231,7 @@ public class MenyAdmin extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(sökLandLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sökLandField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sokLandField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sökaLandButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -571,9 +571,9 @@ public class MenyAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_AvdelningSokIdButtonActionPerformed
 
     private void sökaLandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sökaLandButtonActionPerformed
-        if (validering.isEmpty(sökLandField.getText())) {
+        if (validering.isEmpty(sokLandField.getText())) {
             try {
-                String landSearchText = sökaLandButton.getText();
+                String landSearchText = sokLandField.getText();
 
                 
                     String landLid = idb.fetchSingle("Select lid from land where namn = '" + landSearchText + "';");
@@ -765,9 +765,9 @@ public class MenyAdmin extends javax.swing.JFrame {
     private javax.swing.JTextField searchProjektField;
     private javax.swing.JButton showProjectButton;
     private javax.swing.JButton skapaNyttProjektButton;
+    private javax.swing.JTextField sokLandField;
     private javax.swing.JLabel sokProjektLabel;
     private javax.swing.JLabel sökLandFelMedellande;
-    private javax.swing.JTextField sökLandField;
     private javax.swing.JLabel sökLandLabel;
     private javax.swing.JButton sökaLandButton;
     private javax.swing.JPanel tabBranch;

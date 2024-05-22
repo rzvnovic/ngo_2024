@@ -32,8 +32,8 @@ public class VisaProjekt extends javax.swing.JFrame {
      */
     public VisaProjekt(String pid, String userAid) throws InfException {
 
-        this.userAid = "1"; //såklart inte någon hårdkodning här
-        this.pid = "3";     //---------------||-----------------
+        this.userAid = userAid; //såklart inte någon hårdkodning här
+        this.pid = pid;     //---------------||-----------------
         validering = new Validering();
 
         try {
