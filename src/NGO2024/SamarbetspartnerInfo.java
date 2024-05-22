@@ -124,7 +124,6 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nameField.setText("Namn");
         nameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nameFieldMouseClicked(evt);
@@ -138,7 +137,6 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
         jLabel1.setText("Information");
 
-        kontaktPersonField.setText("Kontaktperson");
         kontaktPersonField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kontaktPersonFieldMouseClicked(evt);
@@ -150,7 +148,6 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             }
         });
 
-        adressField.setText("Adress");
         adressField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 adressFieldMouseClicked(evt);
@@ -162,7 +159,6 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             }
         });
 
-        phoneField.setText("Telefon");
         phoneField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 phoneFieldMouseClicked(evt);
@@ -174,7 +170,6 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             }
         });
 
-        emailField.setText("Epost");
         emailField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 emailFieldMouseClicked(evt);
@@ -213,7 +208,6 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         emailDisplay.setText(setDisplayText1("kontaktepost",pid));
         jScrollPane7.setViewportView(emailDisplay);
 
-        branchField.setText("Bransch");
         branchField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 branchFieldMouseClicked(evt);
@@ -224,7 +218,6 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         branchDisplay.setText(setDisplayText1("Branch",pid));
         jScrollPane8.setViewportView(branchDisplay);
 
-        cityField.setText("Stad");
         cityField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cityFieldMouseClicked(evt);
