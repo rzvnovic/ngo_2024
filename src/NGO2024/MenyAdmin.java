@@ -536,7 +536,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         if (validering.isEmpty(avdelningSokField.getText())) {
             try {
                 String avdelningSearchText = avdelningSokField.getText();
-                String avdelningId = idb.fetchSingle("Select avdid from avdelning where namn = " + avdelningSearchText + ";");
+                String avdelningId = idb.fetchSingle("Select avdid from avdelning where namn = '" + avdelningSearchText + "';");
                 new VisaAvdelning(avdelningId, userAid).setVisible(true);
             } catch (InfException ex) {
                 Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
