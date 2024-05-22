@@ -25,46 +25,46 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="createButton" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="lblPersonelDetails" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="adressField" min="-2" pref="75" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="emailField" min="-2" pref="209" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jTxtAvdelning" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="nameField" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="surnameField" min="-2" pref="75" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="phoneNumField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="dateOfEmploymentField" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="roleBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLblAvdelningError" max="32767" attributes="0"/>
+                      <Component id="jLblErrorMessageDate2" min="-2" pref="354" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="createButton" min="-2" pref="79" max="-2" attributes="0"/>
-                                  <Component id="lblPersonelDetails" min="-2" max="-2" attributes="0"/>
-                                  <Component id="makeAdminCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="adressField" min="-2" pref="75" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="emailField" min="-2" pref="209" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jTxtAvdelning" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="nameField" min="-2" pref="75" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="surnameField" min="-2" pref="75" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="phoneNumField" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="dateOfEmploymentField" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblWrongFormatError" min="-2" pref="456" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLblErrorMessageDate1" min="-2" pref="456" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="205" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblErrorMessageAvd1" min="-2" pref="442" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,11 +74,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblPersonelDetails" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="325" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="nameField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -95,17 +91,23 @@
                       <Component id="dateOfEmploymentField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTxtAvdelning" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Component id="makeAdminCheckBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="roleBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="createButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="lblWrongFormatError" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLblAvdelningError" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLblErrorMessageDate1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="jLblErrorMessageDate2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="325" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <Component id="lblErrorMessageAvd1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -160,11 +162,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="makeAdminCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Admin"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblPersonelDetails">
       <Properties>
         <Property name="text" type="java.lang.String" value="Skapa ny anst&#xe4;lld"/>
@@ -204,20 +201,41 @@
         <Property name="text" type="java.lang.String" value="yyyy-mm-dd"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblWrongFormatError">
+    <Component class="javax.swing.JLabel" name="jLblErrorMessageDate1">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Felaktigt format p&#xe5; datum, v&#xe4;nligen uppdatera uppgiften i uppdateringsfunktionen."/>
+        <Property name="text" type="java.lang.String" value="Felaktigt format p&#xe5; datum, 1111-11-11 har lagts in per automatik."/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLblAvdelningError">
+    <Component class="javax.swing.JComboBox" name="roleBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Admin&quot;, &quot;Handl&#xe4;ggare&quot;})" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleBoxActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblErrorMessageAvd1">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Angivet avdelningsnummer existerar inte. V&#xe4;nligen f&#xf6;rs&#xf6;k igen. "/>
+        <Property name="text" type="java.lang.String" value="Avdelningen existerar inte. Inget har lagts in. "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblErrorMessageDate2">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="v&#xe4;nligen uppdatera uppgiften i uppdateringsfunktionen."/>
       </Properties>
     </Component>
   </SubComponents>

@@ -46,8 +46,9 @@ public class NewPersonel extends javax.swing.JFrame {
         }
 
         initComponents();
-        lblWrongFormatError.setVisible(false);
-        jLblAvdelningError.setVisible(false);
+        jLblErrorMessageDate1.setVisible(false);
+        jLblErrorMessageDate2.setVisible(false);
+        lblErrorMessageAvd1.setVisible(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -66,14 +67,15 @@ public class NewPersonel extends javax.swing.JFrame {
         emailField = new javax.swing.JTextField();
         phoneNumField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
-        makeAdminCheckBox = new javax.swing.JCheckBox();
         lblPersonelDetails = new javax.swing.JLabel();
         jTxtAvdelning = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTxtAvdelningarna = new javax.swing.JTextArea();
         dateOfEmploymentField = new javax.swing.JTextField();
-        lblWrongFormatError = new javax.swing.JLabel();
-        jLblAvdelningError = new javax.swing.JLabel();
+        jLblErrorMessageDate1 = new javax.swing.JLabel();
+        roleBox = new javax.swing.JComboBox<>();
+        lblErrorMessageAvd1 = new javax.swing.JLabel();
+        jLblErrorMessageDate2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,8 +126,6 @@ public class NewPersonel extends javax.swing.JFrame {
             }
         });
 
-        makeAdminCheckBox.setText("Admin");
-
         lblPersonelDetails.setText("Skapa ny anställd");
 
         jTxtAvdelning.setText("Avdelningsnummer");
@@ -145,11 +145,21 @@ public class NewPersonel extends javax.swing.JFrame {
 
         dateOfEmploymentField.setText("yyyy-mm-dd");
 
-        lblWrongFormatError.setForeground(new java.awt.Color(255, 0, 0));
-        lblWrongFormatError.setText("Felaktigt format på datum, vänligen uppdatera uppgiften i uppdateringsfunktionen.");
+        jLblErrorMessageDate1.setForeground(new java.awt.Color(255, 0, 0));
+        jLblErrorMessageDate1.setText("Felaktigt format på datum, 1111-11-11 har lagts in per automatik.");
 
-        jLblAvdelningError.setForeground(new java.awt.Color(255, 0, 0));
-        jLblAvdelningError.setText("Angivet avdelningsnummer existerar inte. Vänligen försök igen. ");
+        roleBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Handläggare"}));
+        roleBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleBoxActionPerformed(evt);
+            }
+        });
+
+        lblErrorMessageAvd1.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorMessageAvd1.setText("Avdelningen existerar inte. Inget har lagts in. ");
+
+        jLblErrorMessageDate2.setForeground(new java.awt.Color(255, 0, 0));
+        jLblErrorMessageDate2.setText("vänligen uppdatera uppgiften i uppdateringsfunktionen.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,35 +168,36 @@ public class NewPersonel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLblAvdelningError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPersonelDetails)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPersonelDetails)
-                                    .addComponent(makeAdminCheckBox)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTxtAvdelning, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(phoneNumField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(dateOfEmploymentField))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblWrongFormatError, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 12, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTxtAvdelning, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(phoneNumField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(dateOfEmploymentField))
+                            .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLblErrorMessageDate2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLblErrorMessageDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblErrorMessageAvd1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,9 +205,6 @@ public class NewPersonel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblPersonelDetails)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -212,15 +220,20 @@ public class NewPersonel extends javax.swing.JFrame {
                         .addComponent(dateOfEmploymentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTxtAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addComponent(makeAdminCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
+                        .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addComponent(createButton)
-                        .addGap(11, 11, 11)
-                        .addComponent(lblWrongFormatError)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLblAvdelningError)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLblErrorMessageDate1)
+                        .addGap(5, 5, 5)
+                        .addComponent(jLblErrorMessageDate2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(lblErrorMessageAvd1)
+                .addContainerGap())
         );
 
         pack();
@@ -260,7 +273,16 @@ public class NewPersonel extends javax.swing.JFrame {
             phoneNumField.setText("");
         }
     }//GEN-LAST:event_phoneNumFieldMouseClicked
-
+       
+    private int chooseRole (int role){
+        if (role == 0){
+            return 1;
+        }
+        else {
+            return 2; 
+        }
+    }
+    
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         String newName = nameField.getText();
         String newSurname = surnameField.getText();
@@ -269,6 +291,7 @@ public class NewPersonel extends javax.swing.JFrame {
         String newPhonenumber = phoneNumField.getText();
         String newEmploymentDate = dateOfEmploymentField.getText();
         String newAvdelning = jTxtAvdelning.getText();
+        
 
         try {
             if (validering.fieldValidation(newAvdelning, "Avdelning")) {
@@ -276,43 +299,62 @@ public class NewPersonel extends javax.swing.JFrame {
                     String newAid = idb.getAutoIncrement("anstalld", "aid");
                     String sqlQuerry = ("INSERT INTO ngo_2024.anstalld (aid, avdelning) VALUES (" + newAid + "," + newAvdelning + ");");
                     idb.insert(sqlQuerry);
-                    jLblAvdelningError.setVisible(false);
-
+                    
+                    
 //använd valideringsklass
                     if (validering.fieldValidation(newName, "Name")) {
                         insertValue("fornamn", newName, newAid);
+                    }
+                    else {
+                        insertValue("fornamn", "ej angivet", newAid);
                     }
                     //använd valideringsklass
                     if (validering.fieldValidation(newSurname, "Surname")) {
                         insertValue("efternamn", newSurname, newAid);
                     }
+                    else {
+                        insertValue("efternamn", "ej angivet", newAid);
+                    }
                     //använd valideringsklass, validera datum TODO
                     if (validering.fieldValidation(newAdress, "Adress")) {
                         insertValue("adress", newAdress, newAid);
+                    }
+                    else {
+                        insertValue("adress", "ej angivet", newAid);
                     }
                     //använd valideringsklass, validera datum TODO
                     if (validering.fieldValidation(newEmail, "Email")) {
                         insertValue("epost", newEmail, newAid);
                     }
+                    else {
+                        insertValue("epost", "ej angivet", newAid);
+                    }
                     //använd valideringsklass
                     if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
                         insertValue("telefon", newPhonenumber, newAid);
                     }
-                    if (validering.fieldValidation(newEmploymentDate, "Date of employment")) {
-                        if (validering.checkDateFormat(newEmploymentDate)) {
-                            insertValue("anstallningsdatum", newEmploymentDate, newAid);
-
-                        } else {
-                            lblWrongFormatError.setVisible(true);
-                        }
-
+                    else {
+                        insertValue("telefon", "ej angivet", newAid);
                     }
+                    if (validering.fieldValidation(newEmploymentDate, "Date of employment") && validering.checkDateFormat(newEmploymentDate)){
+                        
+                            insertValue("anstallningsdatum", newEmploymentDate, newAid);
+                        } 
+
+                    
+                    else {
+                            jLblErrorMessageDate1.setVisible(true);
+                            jLblErrorMessageDate2.setVisible(true);
+                            insertValue("anstallningsdatum", "1111-11-11", newAid);
+                        }
                     insertValue("losenord", generateNewPassword(), newAid);
 
-                    makeAdminCheckBox.getAccessibleContext();
-
+                    //makeAdminCheckBox.getAccessibleContext();
+                    String insertIntoAdmin = ("INSERT INTO ngo_2024.admin (aid, behorighetsniva) VALUES (" + newAid + "," + 1 + ")");
+                    idb.insert(insertIntoAdmin);
+                    
                 } else {
-                    jLblAvdelningError.setVisible(true);
+                    lblErrorMessageAvd1.setVisible(true);
                 }
             }
         } catch (InfException ex) {
@@ -326,6 +368,10 @@ public class NewPersonel extends javax.swing.JFrame {
             jTxtAvdelning.setText("");
         }
     }//GEN-LAST:event_jTxtAvdelningMouseClicked
+
+    private void roleBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleBoxActionPerformed
 
     /**
      * Metod som sätter in värden i databasen på senast skapde rad.
@@ -445,15 +491,16 @@ public class NewPersonel extends javax.swing.JFrame {
     private javax.swing.JButton createButton;
     private javax.swing.JTextField dateOfEmploymentField;
     private javax.swing.JTextField emailField;
-    private javax.swing.JLabel jLblAvdelningError;
+    private javax.swing.JLabel jLblErrorMessageDate1;
+    private javax.swing.JLabel jLblErrorMessageDate2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTxtAvdelning;
     private javax.swing.JTextArea jTxtAvdelningarna;
+    private javax.swing.JLabel lblErrorMessageAvd1;
     private javax.swing.JLabel lblPersonelDetails;
-    private javax.swing.JLabel lblWrongFormatError;
-    private javax.swing.JCheckBox makeAdminCheckBox;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField phoneNumField;
+    private javax.swing.JComboBox<String> roleBox;
     private javax.swing.JTextField surnameField;
     // End of variables declaration//GEN-END:variables
 }

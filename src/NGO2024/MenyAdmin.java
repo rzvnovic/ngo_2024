@@ -53,7 +53,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         tabWindow = new javax.swing.JTabbedPane();
         tabPersonel = new javax.swing.JPanel();
-        addNewEmployeeButton = new javax.swing.JButton();
+        addNewAdminButton = new javax.swing.JButton();
         searchField = new javax.swing.JTextField();
         searchPersonnalNamnB = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -61,6 +61,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         personelLblError = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        addNewHandlaggareButton = new javax.swing.JButton();
         tabCountry = new javax.swing.JPanel();
         sökLandLabel = new javax.swing.JLabel();
         sökaLandButton = new javax.swing.JButton();
@@ -104,10 +105,10 @@ public class MenyAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        addNewEmployeeButton.setText("Lägg till personal");
-        addNewEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+        addNewAdminButton.setText("Lägg till admin");
+        addNewAdminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNewEmployeeButtonActionPerformed(evt);
+                addNewAdminButtonActionPerformed(evt);
             }
         });
 
@@ -134,6 +135,8 @@ public class MenyAdmin extends javax.swing.JFrame {
 
         jLabel4.setText("Namn eller Epost");
 
+        addNewHandlaggareButton.setText("Lägg till handläggare");
+
         javax.swing.GroupLayout tabPersonelLayout = new javax.swing.GroupLayout(tabPersonel);
         tabPersonel.setLayout(tabPersonelLayout);
         tabPersonelLayout.setHorizontalGroup(
@@ -150,13 +153,14 @@ public class MenyAdmin extends javax.swing.JFrame {
                     .addComponent(personelLblError, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tabPersonelLayout.createSequentialGroup()
                         .addGroup(tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(addNewHandlaggareButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(searchField)
-                            .addComponent(addNewEmployeeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                            .addComponent(addNewAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchPersonnalNamnB)
                         .addGap(18, 18, 18)
                         .addComponent(searchPersonalEpostB)))
-                .addContainerGap(587, Short.MAX_VALUE))
+                .addContainerGap(606, Short.MAX_VALUE))
         );
         tabPersonelLayout.setVerticalGroup(
             tabPersonelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,8 +178,10 @@ public class MenyAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(personelLblError)
                 .addGap(18, 18, 18)
-                .addComponent(addNewEmployeeButton)
-                .addContainerGap(475, Short.MAX_VALUE))
+                .addComponent(addNewAdminButton)
+                .addGap(18, 18, 18)
+                .addComponent(addNewHandlaggareButton)
+                .addContainerGap(435, Short.MAX_VALUE))
         );
 
         tabWindow.addTab("Personal", tabPersonel);
@@ -454,13 +460,13 @@ public class MenyAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchPersonnalNamnBActionPerformed
 
-    private void addNewEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewEmployeeButtonActionPerformed
+    private void addNewAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewAdminButtonActionPerformed
         try {
             new NewPersonel().setVisible(true);
         } catch (InfException ex) {
             Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_addNewEmployeeButtonActionPerformed
+    }//GEN-LAST:event_addNewAdminButtonActionPerformed
 
     private void searchPersonalEpostBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPersonalEpostBActionPerformed
         // TODO add your handling code here:
@@ -720,7 +726,8 @@ public class MenyAdmin extends javax.swing.JFrame {
     private javax.swing.JButton AvdelningSokIdButton;
     private javax.swing.JButton AvdelningSokNamnButton;
     private javax.swing.JButton SkapaNyttLandButton;
-    private javax.swing.JButton addNewEmployeeButton;
+    private javax.swing.JButton addNewAdminButton;
+    private javax.swing.JButton addNewHandlaggareButton;
     private javax.swing.JLabel avdelningErrorLabel;
     private javax.swing.JLabel avdelningLabel;
     private javax.swing.JTextArea avdelningListaArea;
