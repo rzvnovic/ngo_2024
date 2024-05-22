@@ -138,6 +138,8 @@ public class NewProject extends javax.swing.JFrame {
 
         felmeddelandeProject.setText("Handläggare finns ej!");
 
+        startDateField.setText("yyyy-mm-dd");
+
         endDateFeild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endDateFeildActionPerformed(evt);

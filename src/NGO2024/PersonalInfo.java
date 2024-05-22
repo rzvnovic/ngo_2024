@@ -236,6 +236,7 @@ public class PersonalInfo extends javax.swing.JFrame {
             }
         });
 
+        startDateField.setText("yyyy-mm-dd");
         startDateField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startDateFieldActionPerformed(evt);

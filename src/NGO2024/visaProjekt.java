@@ -128,6 +128,7 @@ public class VisaProjekt extends javax.swing.JFrame {
             }
         });
 
+        startDateField.setText("yyyy-mm-dd");
         startDateField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 startDateFieldMouseClicked(evt);
@@ -139,6 +140,7 @@ public class VisaProjekt extends javax.swing.JFrame {
             }
         });
 
+        endDateField.setText("yyyy-mm-dd");
         endDateField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 endDateFieldMouseClicked(evt);
