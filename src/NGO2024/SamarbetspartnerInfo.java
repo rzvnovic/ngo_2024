@@ -31,7 +31,7 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     public SamarbetspartnerInfo(String pid, String userAid) throws InfException {
         
         this.userAid = userAid;
-        this.pid = "1";
+        this.pid = pid;
         
         
         validering = new Validering();
@@ -240,9 +240,9 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
                             .addComponent(kontaktPersonField)
                             .addComponent(adressField)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(108, 108, 108))
                     .addGroup(jPanel1Layout.createSequentialGroup()
