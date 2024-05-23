@@ -513,6 +513,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void avdelningSokjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdelningSokjButton2ActionPerformed
+        String dbSqlFraga = null;
+        String userAvd = null;
         if (validering.isEmpty(avdelningSokruta.getText())) {
             if (avdelningSokruta.getText().contains("@")) {
                 felmeddelandeL.setText("Vänligen använd sök ePost knappen vid ePost sökning");
@@ -526,16 +528,26 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         String efternamn = personalNamn.substring(index + 1);
                         System.out.print(fornamn + efternamn);
 
-                        String sqlFraga = ("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "' and fornamn is not null and efternamn is not null;");
-                        String dbSqlFraga = idb.fetchSingle(sqlFraga);
-                        String userAvd = idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + userAid + ";");
-                        if (validering.checkProjektLedareAid(userAid) || userAvd.equals(idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + dbSqlFraga + ";"))) {
-                            new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+                        String sqlFraga = idb.fetchSingle("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "' and fornamn is not null and efternamn is not null;");
 
+                        if (sqlFraga != null) {
+                            dbSqlFraga = idb.fetchSingle(sqlFraga);
+                            userAvd = idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + userAid + ";");
+                            if (validering.checkProjektLedareAid(userAid) || userAvd.equals(idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + dbSqlFraga + ";"))) {
+                                new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
+
+                            } else {
+                                felmeddelandeL.setText("Behörighet saknas");
+                                felmeddelandeL.setVisible(true);
+                            }
                         } else {
-                            felmeddelandeL.setText("Behörighet saknas");
+                            felmeddelandeL.setText("Kontrollera stavning");
                             felmeddelandeL.setVisible(true);
                         }
+
+                    } else {
+                        felmeddelandeL.setText("Vänligen sök med för- och efternamn");
+                        felmeddelandeL.setVisible(true);
                     }
 
                 } catch (Exception e) {
@@ -577,20 +589,18 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             if (validering.checkProjektLedareAid(userAid)) {
                 String message = fetchProject1(priorityPicker(priority));
                 String message2 = fetchProjectWereLeader(priorityPicker(priority));
-                if (!message.equals(message2)){
-                projectListField.setText(message);
-            } 
-                else {
-                  projectListField.setText(fetchProject1(priorityPicker(priority)));  
+                if (!message.equals(message2)) {
+                    projectListField.setText(message);
+                } else {
+                    projectListField.setText(fetchProject1(priorityPicker(priority)));
                 }
-}
-                else {
+            } else {
                 projectListField.setText(fetchProject1(priorityPicker(priority)));
-                }
-            
+            }
+
         } catch (InfException ex) {
             Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
-}
+        }
     }//GEN-LAST:event_showUserProjectsButtonActionPerformed
 
     private void showDeptProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDeptProjectButtonActionPerformed
@@ -605,7 +615,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private void btnFilterByDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterByDateActionPerformed
 
         try {
-            
+
             String startDatumet = startDateProjekt.getText();
             String slutDatumet = endDateProjekt.getText();
 
@@ -614,7 +624,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             }
             if (validering.fieldValidation(startDatumet, "Startdatum") && validering.fieldValidation(slutDatumet, "Slutdatum")) {
                 String resultatet = fetchProjectDates(startDatumet, slutDatumet);
-                
+
                 if (resultatet != null) {
                     projectListField.setText(resultatet);
                 } else {
@@ -701,7 +711,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         for (String projektet : projektNamnLista) {
             if (projektet.equalsIgnoreCase(ettProjekt)) {
                 projectNameFound = true;
-                
+
             }
         }
         return projectNameFound;
@@ -717,12 +727,12 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             if (sqlQuerry != null && !projektPidLista.contains(sqlQuerry)) {
                 projektPidLista.add(sqlQuerry);
             }
-        }     
-        
+        }
+
         String message = "";
         String nameMessage = "Projektnamn: ";
         String descriptionMessage = "Beskrivning: ";
-         String startMessage = "Startdatum: ";
+        String startMessage = "Startdatum: ";
         String endMessage = "Slutdatum: ";
         String costMessage = "Kostnad: ";
         String statusMessage = "Status: ";
@@ -748,17 +758,16 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
             projektNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " + projektPidLista.get(i) + " and projektnamn is not null and (status = 'Planerat' or status = 'Pågående');"));
             projektBeskrivningLista.add(idb.fetchSingle("Select beskrivning from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " + projektPidLista.get(i) + " and beskrivning is not null and (status = 'Planerat' or status = 'Pågående');"));
-            projektStartdatum.add(idb.fetchSingle("select startdatum from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " +projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');")); 
-            projektSlutdatum.add(idb.fetchSingle("select slutdatum from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " +projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
-            projektKostnad.add(idb.fetchSingle("select kostnad from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " +projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
-            projektStatus.add(idb.fetchSingle("select status from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " +projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
-            projektPrioritet.add(idb.fetchSingle("select prioritet from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " +projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
-            
-             String pid = projektPidLista.get(i);
-             
-             
+            projektStartdatum.add(idb.fetchSingle("select startdatum from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " + projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
+            projektSlutdatum.add(idb.fetchSingle("select slutdatum from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " + projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
+            projektKostnad.add(idb.fetchSingle("select kostnad from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " + projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
+            projektStatus.add(idb.fetchSingle("select status from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " + projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
+            projektPrioritet.add(idb.fetchSingle("select prioritet from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " + projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
+
+            String pid = projektPidLista.get(i);
+
             if (!projektNamnLista.isEmpty() && projektNamnLista.get(i) != null) {
-                
+
                 contentName = projektNamnLista.get(i);
                 contentBesk = projektBeskrivningLista.get(i);
                 contentStart = projektStartdatum.get(i);
@@ -771,16 +780,16 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                 contentLeaderFirst = idb.fetchSingle("Select fornamn From anstalld where aid = " + aid + ";");
                 contentLeaderLast = idb.fetchSingle("Select efternamn From anstalld where aid = " + aid + ";");
                 message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n";
-                
-            } 
-            else {
+
+            } else {
                 System.out.println("error");
             }
-         
-}
+
+        }
         return message.trim();
     }
-        /*for (int i = 0; i < projektPidLista.size(); i++) {
+
+    /*for (int i = 0; i < projektPidLista.size(); i++) {
             ArrayList<String> projektNamn = idb.fetchColumn("Select projektnamn from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and status = 'Pågående' or status = 'Planerat' and pid = " + projektPidLista.get(i) + " and projektnamn is not null)");
             ArrayList<String> projektBeskrivning = idb.fetchColumn("Select beskrivning from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and status = 'Pågående' or status = 'Planerat' and pid = " + projektPidLista.get(i) + " and projektnamn is not null)");
             
@@ -796,7 +805,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 }
         return message.trim();
         }
-    */
+     */
 
     private int priorityPicker(int priority) {
         if (priority == 0) {
