@@ -41,13 +41,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jLabel2" pref="113" max="32767" attributes="0"/>
-                      <Component id="jLabel3" pref="113" max="32767" attributes="0"/>
-                      <Component id="jLabel4" pref="113" max="32767" attributes="0"/>
-                      <Component id="jLabel5" pref="113" max="32767" attributes="0"/>
-                      <Component id="jLabel6" pref="113" max="32767" attributes="0"/>
-                      <Component id="jLabel1" max="32767" attributes="0"/>
-                      <Component id="jLabel7" max="32767" attributes="0"/>
+                      <Component id="lblPNamn" max="32767" attributes="0"/>
+                      <Component id="lblDescrip" max="32767" attributes="0"/>
+                      <Component id="lblStartdatum" max="32767" attributes="0"/>
+                      <Component id="lblSlutdatum" max="32767" attributes="0"/>
+                      <Component id="lblKostnad" max="32767" attributes="0"/>
+                      <Component id="lblProjektL" max="32767" attributes="0"/>
+                      <Component id="lblLäggTill" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -115,7 +115,7 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="projNameField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPNamn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -123,7 +123,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="desField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDescrip" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -131,7 +131,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="startDateField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblStartdatum" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -139,7 +139,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="endDateField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSlutdatum" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -147,7 +147,7 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="costField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblKostnad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -165,16 +165,18 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="projectLedareField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="projektLeadDisplay" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="projectLedareField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblProjektL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="deleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="laggTillHandlaggareField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblLäggTill" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="laggTillButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -422,27 +424,27 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changePButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="lblPNamn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Projektnamn"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lblDescrip">
           <Properties>
             <Property name="text" type="java.lang.String" value="Beskrivning"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lblStartdatum">
           <Properties>
             <Property name="text" type="java.lang.String" value="Startdatum"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="lblSlutdatum">
           <Properties>
             <Property name="text" type="java.lang.String" value="Slutdatum"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="lblKostnad">
           <Properties>
             <Property name="text" type="java.lang.String" value="Kostnad"/>
           </Properties>
@@ -463,7 +465,7 @@
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblProjektL">
           <Properties>
             <Property name="text" type="java.lang.String" value="Projektledare"/>
           </Properties>
@@ -472,7 +474,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="laggTillHandlaggareField">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel7">
+        <Component class="javax.swing.JLabel" name="lblL&#xe4;ggTill">
           <Properties>
             <Property name="text" type="java.lang.String" value="Lagg till handl&#xe4;ggare"/>
           </Properties>

@@ -11,7 +11,7 @@ import oru.inf.InfException;
 import java.util.*;
 
 /**
- * Klass som öppnar fönster för personalinfo med vissa gömda åtkomster för
+ * Klass som öppnar fönster för avdelningsinfo med vissa gömda åtkomster för
  * handledare. TODO: all data bör valideras genom valideringsklass.
  *
  * @author Cyrus 08/05/2024
@@ -353,7 +353,7 @@ public class VisaAvdelning extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_avdelningNFieldActionPerformed
     /**
-     * knappen gör en del saker kan vara värt att splitta i flera metoder.
+     *
      *
      * @param evt
      */
@@ -474,7 +474,7 @@ public class VisaAvdelning extends javax.swing.JFrame {
     }//GEN-LAST:event_emailFieldMouseClicked
 
     /**
-     * Metod som tar bort profilen som sökts up.
+     * Metod som tar bort avdelningen  som sökts up.
      *
      * @param evt
      */
