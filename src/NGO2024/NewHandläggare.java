@@ -319,17 +319,20 @@ public class NewHandläggare extends javax.swing.JFrame {
     }//GEN-LAST:event_phoneNumFieldMouseClicked
        
    
-    
+    /**
+     * Metod som tar text från fälten och lägger in i databasen.
+     * @param evt 
+     */
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        String newName = nameField.getText();
-        String newSurname = surnameField.getText();
-        String newAdress = adressField.getText();
-        String newEmail = emailField.getText();
-        String newPhonenumber = phoneNumField.getText();
-        String newEmploymentDate = dateOfEmploymentField.getText();
-        String newAvdelning = jTxtAvdelning.getText();
-        String newMentor = txtMentor.getText();
-        String newAnsvarsomrade = txtAnsvarsomrade.getText();
+        String newName = nameField.getText().trim();
+        String newSurname = surnameField.getText().trim();
+        String newAdress = adressField.getText().trim();
+        String newEmail = emailField.getText().trim();
+        String newPhonenumber = phoneNumField.getText().trim();
+        String newEmploymentDate = dateOfEmploymentField.getText().trim();
+        String newAvdelning = jTxtAvdelning.getText().trim();
+        String newMentor = txtMentor.getText().trim();
+        String newAnsvarsomrade = txtAnsvarsomrade.getText().trim();
         
 
         try {
@@ -458,7 +461,11 @@ public class NewHandläggare extends javax.swing.JFrame {
         }
         return newPassword;
     }
-
+/**
+ * Metod som listar alla avdelningar kopplade till användaren/userAid.
+ * @return
+ * @throws InfException 
+ */
     public String fetchAvdelningar() throws InfException {
         ArrayList<String> avdelningsNamn = idb.fetchColumn("Select namn from avdelning;");
         ArrayList<String> avdelningsNummer = idb.fetchColumn("Select avdid from avdelning;");
@@ -473,7 +480,12 @@ public class NewHandläggare extends javax.swing.JFrame {
         }
         return message.trim();
     }
-
+/**
+ * Metod som checkar ifall avdelning existerar.
+ * @param avdelning
+ * @returns true ifall avdelning existerar annars false.
+ * @throws InfException 
+ */
     public Boolean checkValidAvdelning(String avdelning) throws InfException {
         {
             Boolean avdelningExist = false;
@@ -488,7 +500,12 @@ public class NewHandläggare extends javax.swing.JFrame {
             return avdelningExist;
         }
     }
-    
+    /**
+     * Metod som kollar ifall aid i mentor fältet går att lägga in.
+     * @param mentor
+     * @return true or false.
+     * @throws InfException 
+     */
      public Boolean checkValidMentor(String mentor) throws InfException {
         {
             Boolean mentorFound = false;

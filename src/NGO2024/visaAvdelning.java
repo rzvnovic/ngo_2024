@@ -359,13 +359,13 @@ public class VisaAvdelning extends javax.swing.JFrame {
      */
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
 
-        String newAvName = avdelningNField.getText();
-        String newDescription = desField.getText();
-        String newAdress = adressField.getText();
-        String newPhonenumber = phoneField.getText();
-        String newEmail = emailField.getText();
-        String newCity = cityField.getText();
-        String newChef = chefField.getText();
+        String newAvName = avdelningNField.getText().trim();
+        String newDescription = desField.getText().trim();
+        String newAdress = adressField.getText().trim();
+        String newPhonenumber = phoneField.getText().trim();
+        String newEmail = emailField.getText().trim();
+        String newCity = cityField.getText().trim();
+        String newChef = chefField.getText().trim();
         
         if (validering.fieldValidation(newAvName, "Department Name")) {
             updateDatabase("namn", newAvName, avdid);

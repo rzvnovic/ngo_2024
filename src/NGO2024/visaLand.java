@@ -328,12 +328,12 @@ public class VisaLand extends javax.swing.JFrame {
      */
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
 
-        String newLandName = nameField.getText();
-        String newLanguage = languageField.getText();
-        String newCurrency = currencyField.getText();
-        String newTimezone = timezoneField.getText();
-        String newPolitical = politicalField.getText();
-        String newEconomical = economicalField.getText();
+        String newLandName = nameField.getText().trim();
+        String newLanguage = languageField.getText().trim();
+        String newCurrency = currencyField.getText().trim();
+        String newTimezone = timezoneField.getText().trim();
+        String newPolitical = politicalField.getText().trim();
+        String newEconomical = economicalField.getText().trim();
         
         //OBS
         if (validering.fieldValidation(newLandName, " name ")) {

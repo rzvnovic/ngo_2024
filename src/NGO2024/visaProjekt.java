@@ -447,12 +447,12 @@ public class VisaProjekt extends javax.swing.JFrame {
      */
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
 
-        String newProjN = projNameField.getText();
-        String newDescription = desField.getText();
-        String newStartDate = startDateField.getText();
-        String newEndDate = endDateField.getText();
-        String newCost = costField.getText();
-        String newProjektLedare = projectLedareField.getText();
+        String newProjN = projNameField.getText().trim();
+        String newDescription = desField.getText().trim();
+        String newStartDate = startDateField.getText().trim();
+        String newEndDate = endDateField.getText().trim();
+        String newCost = costField.getText().trim();
+        String newProjektLedare = projectLedareField.getText().trim();
         int status = statusButton.getSelectedIndex();
         int priority = priorityBox.getSelectedIndex();
         String newPriority = null;
@@ -665,21 +665,28 @@ public class VisaProjekt extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_projektLeadDisplayActionPerformed
 
+    /**
+     * Lägger till en handledare i ans_proj och därmed i projektet.
+     * @param evt 
+     */
     private void laggTillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillButtonActionPerformed
-        String newHandlaggare = laggTillHandlaggareField.getText();
+        String newHandlaggare = laggTillHandlaggareField.getText().trim();
         if (newHandlaggare.trim().contains(" ")) {
             try {
                 int index = newHandlaggare.indexOf(" ");
                 String fornamn = newHandlaggare.substring(0, index);
                 String efternamn = newHandlaggare.substring(index + 1);
                 String aid = idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';");
+                if(aid != null){
                 if (!validering.checkAdminAid(aid)) {
                     idb.insert("INSERT INTO ngo_2024.ans_proj (pid, aid) VALUES (" + pid + ", " + aid + ");");
-                    projektLeadDisplay.setText(fornamn + " " + efternamn);
                 } else {
-                    //error
-                    //välj en handläggare som skall läggas till.
+                    
                     laggTillErrorLabel.setText("Välj en handläggare anställd");
+                }
+                }
+                else{
+                    laggTillErrorLabel.setText("Kunde inte hitta handläggare.");
                 }
             } catch (InfException ex) {
                 Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
@@ -687,7 +694,6 @@ public class VisaProjekt extends javax.swing.JFrame {
             }
         } else {
             laggTillErrorLabel.setText("Felaktikt format.");
-            //vanligen ange för och efternamn
         }
     }//GEN-LAST:event_laggTillButtonActionPerformed
 

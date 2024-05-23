@@ -299,15 +299,15 @@ public class NewProject extends javax.swing.JFrame {
     }//GEN-LAST:event_budgetFieldMouseClicked
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        String newPName = pNameField.getText();
-        String newDescription = pDescriptionField.getText();
-        String newStartDate = startDateField.getText();
-        String newEndDate = endDateFeild.getText();
-        String newBudget = budgetField.getText();
+        String newPName = pNameField.getText().trim();
+        String newDescription = pDescriptionField.getText().trim();
+        String newStartDate = startDateField.getText().trim();
+        String newEndDate = endDateFeild.getText().trim();
+        String newBudget = budgetField.getText().trim();
         int priority = priorityBox.getSelectedIndex();
         int statusChosen = statusBox.getSelectedIndex();
-        String newCountry = countryField.getText();
-        String newProjectL = projectLField.getText();
+        String newCountry = countryField.getText().trim();
+        String newProjectL = projectLField.getText().trim();
 
         boolean countryFound = false;
 

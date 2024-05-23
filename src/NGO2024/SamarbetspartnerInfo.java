@@ -46,7 +46,9 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
        
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
+/**
+ * metod som ändrar synlighet baserat på userAid.
+ */
     public void adminVissebillity() {
         if (validering.checkAdminAid(userAid)) {
 
@@ -345,13 +347,13 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
 
     private void adminOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminOkButtonActionPerformed
         
-        String newName = nameField.getText();
-        String newContact = kontaktPersonField.getText();
-        String newAdress = adressField.getText();
-        String newPhonenumber = phoneField.getText();
-        String newEmail = emailField.getText(); //OBS
-        String newBranch = branchField.getText();
-        String newCity = cityField.getText();
+        String newName = nameField.getText().trim();
+        String newContact = kontaktPersonField.getText().trim();
+        String newAdress = adressField.getText().trim();
+        String newPhonenumber = phoneField.getText().trim();
+        String newEmail = emailField.getText().trim(); //OBS
+        String newBranch = branchField.getText().trim();
+        String newCity = cityField.getText().trim();
 
         if (validering.fieldValidation(newName, "Name")) {
             updateDatabase("namn", newName);

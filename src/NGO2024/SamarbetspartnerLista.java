@@ -140,7 +140,7 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        String namn = namnField.getText();
+        String namn = namnField.getText().trim();
         
         try {
             String sqlFraga = idb.fetchSingle("SELECT pid FROM partner WHERE namn = '" + namn +"';");
@@ -157,7 +157,7 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-        String namn = namnField.getText();
+        String namn = namnField.getText().trim();
         
         try {
             String sqlFraga = idb.fetchSingle("SELECT pid FROM partner WHERE namn = '" + namn +"';");
@@ -174,7 +174,11 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_deleteButtonActionPerformed
-
+/**
+ * Metod som öppnar NewPartner fliken.
+ * @param evt 
+ */
+    
     private void createNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewButtonActionPerformed
         try {
             // TODO add your handling code here:
@@ -222,7 +226,11 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
             }
         });
     }
-    
+    /**
+     * Metod som tar alla projekt där userAid förekommer och spara dem i en Array.
+     * @return En String med alla värden.
+     * @throws InfException 
+     */
     public String fetchUserProjects() throws InfException {
         ArrayList<String> samarbetsPartnerNamn = idb.fetchColumn("select namn from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = 4))");
         ArrayList<String> samarbetsPartnerKontaktPerson = idb.fetchColumn("select kontaktperson from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = 4))");
