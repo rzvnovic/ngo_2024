@@ -18,6 +18,7 @@ import javax.swing.JFrame;
  * @author Cyrus 08/05/2024
  * @version 10/05/2024
  */
+
 public class VisaProjekt extends javax.swing.JFrame {
 //fel
     private InfDB idb;
@@ -134,6 +135,10 @@ public class VisaProjekt extends javax.swing.JFrame {
         projektLeadDisplay = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         errorLabel = new javax.swing.JLabel();
+        laggTillHandlaggareField = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        laggTillButton = new javax.swing.JButton();
+        laggTillErrorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -279,6 +284,17 @@ public class VisaProjekt extends javax.swing.JFrame {
 
         jLabel1.setText("Projektledare");
 
+        jLabel7.setText("Lagg till handläggare");
+
+        laggTillButton.setText("Lägg till");
+        laggTillButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laggTillButtonActionPerformed(evt);
+            }
+        });
+
+        laggTillErrorLabel.setText("jLabel8");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -286,12 +302,13 @@ public class VisaProjekt extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -305,9 +322,12 @@ public class VisaProjekt extends javax.swing.JFrame {
                             .addComponent(endDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                             .addComponent(changePButton)
                             .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(projectLedareField))
+                            .addComponent(projectLedareField)
+                            .addComponent(laggTillHandlaggareField))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(laggTillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(deleteButton))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -327,7 +347,10 @@ public class VisaProjekt extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(299, 299, 299)
-                        .addComponent(jScrollPane7)))
+                        .addComponent(jScrollPane7))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(laggTillErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -382,13 +405,22 @@ public class VisaProjekt extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(commitButton)
-                    .addComponent(deleteButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(deleteButton)
+                    .addComponent(laggTillHandlaggareField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(laggTillButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(changePButton)
-                    .addComponent(errorLabel))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(errorLabel)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(laggTillErrorLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(commitButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(changePButton)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -425,45 +457,43 @@ public class VisaProjekt extends javax.swing.JFrame {
         int priority = priorityBox.getSelectedIndex();
         String newPriority = null;
         String newStatus = null;
-        
-        
+
         if (validering.fieldValidation(newProjN, "Department Name")) {
             updateDatabase("projektnamn", newProjN, pid);
-                    projektNamnDisplay.setText(newProjN);
+            projektNamnDisplay.setText(newProjN);
 
         }
         if (validering.fieldValidation(newDescription, "Description ")) {
             updateDatabase("beskrivning", newDescription, pid);
-                    desDisplay.setText(newDescription);
+            desDisplay.setText(newDescription);
 
         }
         if (validering.fieldValidation(newStartDate, "yyyy-mm-dd") && validering.checkDateFormat(newStartDate)) {
             updateDatabase("startdatum", newStartDate, pid);
-                    startDateDisplay.setText(newStartDate);
+            startDateDisplay.setText(newStartDate);
 
         }
         if (validering.fieldValidation(newEndDate, "yyyy-mm-dd") && validering.checkDateFormat(newEndDate)) {
             updateDatabase("slutdatum", newEndDate, pid);
-                    endDateDisplay.setText(newEndDate);
+            endDateDisplay.setText(newEndDate);
 
         }
         if (validering.fieldValidation(newCost, "Cost")) {
             updateDatabase("kostnad", newCost, pid);
-                    costDisplay.setText(newCost);
+            costDisplay.setText(newCost);
 
         }
-        if (validering.fieldValidation(newProjektLedare, "Projektledare")){
+        if (validering.fieldValidation(newProjektLedare, "Projektledare")) {
             if (newProjektLedare.trim().contains(" ")) {
                 try {
                     int index = newProjektLedare.indexOf(" ");
                     String fornamn = newProjektLedare.substring(0, index);
                     String efternamn = newProjektLedare.substring(index + 1);
-                    String aid = idb.fetchSingle("select aid from anstalld where fornamn = '"+fornamn+"' and efternamn = '"+efternamn+"';");
-                    if(!validering.checkAdminAid(aid)){
-                        idb.update("UPDATE ngo_2024.projekt t SET t.projektchef = "+aid+" WHERE t.pid = "+pid+";");
-                        projektLeadDisplay.setText(fornamn +" "+ efternamn);
-                    }
-                    else{
+                    String aid = idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';");
+                    if (!validering.checkAdminAid(aid)) {
+                        idb.update("UPDATE ngo_2024.projekt t SET t.projektchef = " + aid + " WHERE t.pid = " + pid + ";");
+                        projektLeadDisplay.setText(fornamn + " " + efternamn);
+                    } else {
                         //error
                         //välj en handläggare som projektledare.
                         errorLabel.setText("Välj en handläggare som projektleadare");
@@ -471,7 +501,7 @@ public class VisaProjekt extends javax.swing.JFrame {
                 } catch (InfException ex) {
                     Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else{
+            } else {
                 errorLabel.setText("Felaktikt format.");
                 //vanligen ange för och efternamn
             }
@@ -480,9 +510,8 @@ public class VisaProjekt extends javax.swing.JFrame {
         updateDatabase("status", newStatus, pid);
         newPriority = priorityPicker(priority);
         updateDatabase("prioritet", newPriority, pid);
-        
-        //cityValidation(newCity, newAvdid);
 
+        //cityValidation(newCity, newAvdid);
         statusDisplay.setText(newStatus);
         prioDisplay.setText(newPriority);
 
@@ -514,7 +543,7 @@ public class VisaProjekt extends javax.swing.JFrame {
         }
     }
 
-   private String statusPicker(int status) {
+    private String statusPicker(int status) {
         if (status == 3) {
             return "plannerad";
         } else if (status == 2) {
@@ -522,7 +551,9 @@ public class VisaProjekt extends javax.swing.JFrame {
         } else {
             return "avslutad";
         }
-    } /**
+    }
+
+    /**
      * metod tar bort text från fältet om det klickas
      *
      * @param evt
@@ -590,11 +621,11 @@ public class VisaProjekt extends javax.swing.JFrame {
         String deleteHallProject = ("DELETE FROM ngo_2024.proj_hallbarhet WHERE pid =" + pid + ";");
         String deleteAnsProject = ("DELETE FROM ngo_2024.ans_proj WHERE pid =" + pid + ";");
         String deleteProject = ("DELETE FROM ngo_2024.projekt WHERE pid =" + pid + ";");
-        
+
         try {
             idb.delete(deleteAnsProject);
             idb.delete(deleteHallProject);
-            idb.delete(deleteProjpartner);            
+            idb.delete(deleteProjpartner);
             idb.delete(deleteProject);
         } catch (InfException ex) {
             Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
@@ -634,47 +665,73 @@ public class VisaProjekt extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_projektLeadDisplayActionPerformed
 
+    private void laggTillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillButtonActionPerformed
+        String newHandlaggare = laggTillHandlaggareField.getText();
+        if (newHandlaggare.trim().contains(" ")) {
+            try {
+                int index = newHandlaggare.indexOf(" ");
+                String fornamn = newHandlaggare.substring(0, index);
+                String efternamn = newHandlaggare.substring(index + 1);
+                String aid = idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';");
+                if (!validering.checkAdminAid(aid)) {
+                    idb.insert("INSERT INTO ngo_2024.ans_proj (pid, aid) VALUES (" + pid + ", " + aid + ");");
+                    projektLeadDisplay.setText(fornamn + " " + efternamn);
+                } else {
+                    //error
+                    //välj en handläggare som skall läggas till.
+                    laggTillErrorLabel.setText("Välj en handläggare anställd");
+                }
+            } catch (InfException ex) {
+                Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
+                laggTillErrorLabel.setText("Handlaggare redan tillagd.");
+            }
+        } else {
+            laggTillErrorLabel.setText("Felaktikt format.");
+            //vanligen ange för och efternamn
+        }
+    }//GEN-LAST:event_laggTillButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        InfDB idb = null;
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    InfDB idb = null;
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-       
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new VisaProjekt(pid, userAid).setVisible(true);
-                    Validering validering = new Validering();
-                } catch (InfException ex) {
-                    Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(VisaProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            try {
+                new VisaProjekt(pid, userAid).setVisible(true);
+                Validering validering = new Validering();
+            } catch (InfException ex) {
+                Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton changePButton;
@@ -693,6 +750,7 @@ public class VisaProjekt extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -701,6 +759,9 @@ public class VisaProjekt extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JButton laggTillButton;
+    private javax.swing.JLabel laggTillErrorLabel;
+    private javax.swing.JTextField laggTillHandlaggareField;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JTextPane prioDisplay;
     private javax.swing.JComboBox<String> priorityBox;

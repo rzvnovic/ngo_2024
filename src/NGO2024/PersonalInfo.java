@@ -33,8 +33,8 @@ public class PersonalInfo extends javax.swing.JFrame {
      */
     public PersonalInfo(String aid, String userAid) throws InfException {
 
-        this.userAid = userAid;
-        this.aid = aid;
+        this.userAid = "6";
+        this.aid = "13";
         validering = new Validering();
 
         try {
@@ -588,6 +588,12 @@ public class PersonalInfo extends javax.swing.JFrame {
                     idb.delete("delete from ngo_2024.admin where aid = " + aid + ";");
 
                 } else {
+                    ArrayList<String> arMentorLista = idb.fetchColumn("Select aid from handlaggare where mentor = "+aid+";");
+                    if(!arMentorLista.isEmpty()){
+                    for(String aid : arMentorLista){
+                    idb.update("UPDATE ngo_2024.handlaggare t SET t.mentor = null WHERE t.aid = "+aid+";");
+                    }
+                    }
                     idb.delete("delete from ngo_2024.handlaggare where aid = " + aid + ";");
                 }
                 idb.delete("delete from ngo_2024.anstalld where aid = " + aid + ";");
