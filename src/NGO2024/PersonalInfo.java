@@ -4,7 +4,6 @@
  */
 package NGO2024;
 
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
@@ -35,7 +34,7 @@ public class PersonalInfo extends javax.swing.JFrame {
     public PersonalInfo(String aid, String userAid) throws InfException {
 
         this.userAid = userAid;
-        this.aid = aid;    
+        this.aid = aid;
         validering = new Validering();
 
         try {
@@ -61,7 +60,7 @@ public class PersonalInfo extends javax.swing.JFrame {
             emailField.setVisible(false);
             generateNewPassword.setVisible(false);
             deleteButton.setVisible(false);
-            
+
         }
     }
 
@@ -430,25 +429,24 @@ public class PersonalInfo extends javax.swing.JFrame {
         if (validering.fieldValidation(newAdress, "Adress")) {
             updateDatabase("adress", newAdress, aid);
         }
-        if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)){
+        if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
             updateDatabase("anstallningsdatum", newStartDate, aid);
         }
-        
-        //cityValidation(newCity, newAvdid);
 
-            nameDisplay.setText(newName);
-            surnameDisplay.setText(newSurname);
-            adressDisplay.setText(newAdress);
-            phonenumberDisplay.setText(newPhonenumber);
-            emailDisplay.setText(newEmail);
+        //cityValidation(newCity, newAvdid);
+        nameDisplay.setText(newName);
+        surnameDisplay.setText(newSurname);
+        adressDisplay.setText(newAdress);
+        phonenumberDisplay.setText(newPhonenumber);
+        emailDisplay.setText(newEmail);
     }//GEN-LAST:event_commitButtonActionPerformed
     /**
-     * 
-     * TODO: FIXA VALIDERINGEN
-     * metod som uppdaterar databasen med information som är inmatat i ett fält.
      *
-     * 
-     * 
+     * TODO: FIXA VALIDERINGEN metod som uppdaterar databasen med information
+     * som är inmatat i ett fält.
+     *
+     *
+     *
      * @param column vilken kolumn som bör uppdateras
      * @param value vad cellen skall uppdateras med
      * @param aid vilken aid som ändringen ska ske på
@@ -564,14 +562,21 @@ public class PersonalInfo extends javax.swing.JFrame {
      * @param evt
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
-        // TODO tar bort profilen ur tabellen genom idb.delete()
-        String sqlQueery = ("DELETE FROM ngo_2024.anstalld WHERE aid =" + aid + ";");
         try {
-            idb.delete(sqlQueery);
+            // TODO add your handling code here:
+            // TODO tar bort profilen ur tabellen genom idb.delete()
+            if (validering.checkAdminAid(aid)) {
+                idb.delete("delete from ngo_2024.admin where aid = "+aid+";");
+
+            } else {
+                idb.delete("delete from ngo_2024.handlaggare where aid= "+aid+";");
+            }
+            idb.delete("delete from ngo_2024.anstalld where aid = "+aid+";");
         } catch (InfException ex) {
             Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void startDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateFieldActionPerformed
