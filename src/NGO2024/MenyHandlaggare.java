@@ -874,6 +874,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     }
 
     public String fetchPartnersInProjects() throws InfException {
+        
         ArrayList<String> samarbetsPartnerNamn = idb.fetchColumn("select namn from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from ans_proj where aid in (select aid from anstalld where aid = '" + userAid + "')))");
         ArrayList<String> samarbetsPartnerKontaktPerson = idb.fetchColumn("select kontaktperson from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from ans_proj where aid in (select aid from anstalld where aid ='" + userAid + "')))");
         ArrayList<String> samarbetsPartnerKontaktEpost = idb.fetchColumn("select kontaktepost from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from ans_proj where aid in (select aid from anstalld where aid ='" + userAid + "')))");
@@ -887,10 +888,40 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                     .append("\nEpost: ").append(samarbetsPartnerKontaktEpost.get(i))
                     .append("\nTelefon: ").append(samarbetsPartnerTelefon.get(i)).append("\nAdress: ").append(samarbetsPartnerAdress.get(i)).append("\nBranch: ").append(samarbetsPartnerBranch.get(i)).append("\n");
         }
+        if(validering.checkProjektLedareAid(userAid)){
+            ArrayList<String> samarbetsPartnerNamnChef = idb.fetchColumn ("select namn from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
+            ArrayList<String> samarbetsPartnerKontaktPersonChef = idb.fetchColumn("select kontaktperson from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
+            ArrayList<String> samarbetsPartnerKontaktEpostChef = idb.fetchColumn("select kontaktepost from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
+            ArrayList<String> samarbetsPartnerTelefonChef = idb.fetchColumn("select telefon from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
+            ArrayList<String> samarbetsPartnerAdressChef = idb.fetchColumn("select adress from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
+            ArrayList<String> samarbetsPartnerBranchChef = idb.fetchColumn("select branch from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
+            if (!samarbetsPartnerNamn.equals(samarbetsPartnerNamnChef)){
+            for (int i = 0; i < samarbetsPartnerNamnChef.size(); i++) {
+                message.append("\nNamn: ").append(samarbetsPartnerNamnChef.get(i))
+                    .append("\nKontaktperson: ").append(samarbetsPartnerKontaktPersonChef.get(i))
+                        .append("\nEpost: ").append(samarbetsPartnerKontaktEpostChef.get(i))
+                        .append("\nTelefon: ").append(samarbetsPartnerTelefonChef.get(i))
+                        .append("\nAdress: ").append(samarbetsPartnerAdressChef.get(i))
+                .append("\nBranch: ").append(samarbetsPartnerBranchChef.get(i)).append("\n");
 
+            }
+        }
+        }
         return message.toString().trim();
 
     }
+    
+      public Boolean checkProjektLedareAndAnstalld(String userAid) throws InfException {
+        Boolean inBothTables = false; 
+        String findUserAid = idb.fetchSingle("select projektchef from projekt where projektchef in (select aid from ans_proj where aid = " + userAid +";");
+        if (findUserAid != null){
+            inBothTables = true; 
+        }
+        return inBothTables; 
+    }
+    
+  
+    
 
     /**
      *
