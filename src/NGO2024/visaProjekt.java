@@ -463,7 +463,7 @@ public class VisaProjekt extends javax.swing.JFrame {
                     String efternamn = newProjektLedare.substring(index + 1);
                     String aid = idb.fetchSingle("select aid from anstalld where fornamn = '"+fornamn+"' and efternamn = '"+efternamn+"';");
                     if(!validering.checkAdminAid(aid)){
-                        idb.update("UPDATE ngo_2024.projekt t SET t.projektledare = '" + aid + "' WHERE t.pid = " + pid + ";");
+                        idb.update("UPDATE ngo_2024.projekt t SET t.projektledare = " + aid + " WHERE t.pid = " + pid + ";");
                         projektLeadDisplay.setText(fornamn +" "+ efternamn);
                     }
                     else{
