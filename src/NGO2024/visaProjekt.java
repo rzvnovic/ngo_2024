@@ -665,6 +665,10 @@ public class VisaProjekt extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_projektLeadDisplayActionPerformed
 
+    /**
+     * Lägger till en handledare i ans_proj och därmed i projektet.
+     * @param evt 
+     */
     private void laggTillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillButtonActionPerformed
         String newHandlaggare = laggTillHandlaggareField.getText();
         if (newHandlaggare.trim().contains(" ")) {
@@ -673,13 +677,16 @@ public class VisaProjekt extends javax.swing.JFrame {
                 String fornamn = newHandlaggare.substring(0, index);
                 String efternamn = newHandlaggare.substring(index + 1);
                 String aid = idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';");
+                if(aid != null){
                 if (!validering.checkAdminAid(aid)) {
                     idb.insert("INSERT INTO ngo_2024.ans_proj (pid, aid) VALUES (" + pid + ", " + aid + ");");
-                    projektLeadDisplay.setText(fornamn + " " + efternamn);
                 } else {
-                    //error
-                    //välj en handläggare som skall läggas till.
+                    
                     laggTillErrorLabel.setText("Välj en handläggare anställd");
+                }
+                }
+                else{
+                    laggTillErrorLabel.setText("Kunde inte hitta handläggare.");
                 }
             } catch (InfException ex) {
                 Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
@@ -687,7 +694,6 @@ public class VisaProjekt extends javax.swing.JFrame {
             }
         } else {
             laggTillErrorLabel.setText("Felaktikt format.");
-            //vanligen ange för och efternamn
         }
     }//GEN-LAST:event_laggTillButtonActionPerformed
 
