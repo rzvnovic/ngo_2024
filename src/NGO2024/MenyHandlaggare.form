@@ -291,12 +291,12 @@
                                               <Component id="sökLabelProj" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lblStartdatum" min="-2" max="-2" attributes="0"/>
                                                       <Component id="startDateProjekt" min="-2" pref="100" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lblSlutdatum" min="-2" max="-2" attributes="0"/>
                                                       <Component id="endDateProjekt" min="-2" pref="99" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
@@ -357,8 +357,8 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblStartdatum" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblSlutdatum" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -529,12 +529,12 @@
                     <Property name="text" type="java.lang.String" value="Total kostnad av projekt"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel1">
+                <Component class="javax.swing.JLabel" name="lblStartdatum">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Startdatum"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel3">
+                <Component class="javax.swing.JLabel" name="lblSlutdatum">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Slutdatum"/>
                   </Properties>

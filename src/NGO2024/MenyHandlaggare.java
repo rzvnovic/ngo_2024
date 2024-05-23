@@ -27,7 +27,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     public MenyHandlaggare(String userAid) throws InfException {
         idb = new InfDB("ngo_2024", "3306", "dbAdmin2024", "dbAdmin2024PW");
         //this.userAid = userAid;
-        this.userAid = userAid;
+        this.userAid = "1";
         validering = new Validering();
 
         initComponents();
@@ -104,8 +104,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         dateFormatWrongError = new javax.swing.JLabel();
         errorMsgProjekt = new javax.swing.JLabel();
         jLblTotalCostProject = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblStartdatum = new javax.swing.JLabel();
+        lblSlutdatum = new javax.swing.JLabel();
         samarbetspartnerTab2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         samarbetsPartnersInfojTextArea = new javax.swing.JTextArea();
@@ -309,9 +309,9 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         jLblTotalCostProject.setText("Total kostnad av projekt");
 
-        jLabel1.setText("Startdatum");
+        lblStartdatum.setText("Startdatum");
 
-        jLabel3.setText("Slutdatum");
+        lblSlutdatum.setText("Slutdatum");
 
         javax.swing.GroupLayout projektTabLayout = new javax.swing.GroupLayout(projektTab);
         projektTab.setLayout(projektTabLayout);
@@ -350,11 +350,11 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                                     .addComponent(sökLabelProj, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(projektTabLayout.createSequentialGroup()
                                         .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
+                                            .addComponent(lblStartdatum)
                                             .addComponent(startDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
+                                            .addComponent(lblSlutdatum)
                                             .addComponent(endDateProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -399,8 +399,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                             .addComponent(jScrollPane4))
                         .addGap(18, 18, 18)
                         .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
+                            .addComponent(lblStartdatum)
+                            .addComponent(lblSlutdatum))
                         .addGap(5, 5, 5)
                         .addGroup(projektTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(startDateProjekt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -605,6 +605,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private void btnFilterByDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterByDateActionPerformed
 
         try {
+            
             String startDatumet = startDateProjekt.getText();
             String slutDatumet = endDateProjekt.getText();
 
@@ -613,6 +614,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             }
             if (validering.fieldValidation(startDatumet, "Startdatum") && validering.fieldValidation(slutDatumet, "Slutdatum")) {
                 String resultatet = fetchProjectDates(startDatumet, slutDatumet);
+                
                 if (resultatet != null) {
                     projectListField.setText(resultatet);
                 } else {
@@ -706,25 +708,95 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     }
 
     private String fetchProjectDates(String startDate, String endDate) throws InfException {
+        String avdId = idb.fetchSingle("Select avdelning from anstalld where aid =" + userAid + ";");
+        ArrayList<String> aidList = idb.fetchColumn("Select aid from anstalld where avdelning =" + avdId + ";");
+        ArrayList<String> projektPidLista = new ArrayList<>();
 
-        ArrayList<String> projektNamn = idb.fetchColumn("Select projektnamn from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and (status = 'Pågående' or status = 'Planerat')");
-        ArrayList<String> projektBeskrivning = idb.fetchColumn("Select beskrivning from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and (status = 'Pågående' or status = 'Planerat')");
-
-        if (projektNamn.isEmpty() || projektBeskrivning.isEmpty()) {
-            return null;
-        }
+        for (int i = 0; i < aidList.size(); i++) {
+            String sqlQuerry = idb.fetchSingle("Select pid from ans_proj where aid = " + aidList.get(i) + " ;");
+            if (sqlQuerry != null && !projektPidLista.contains(sqlQuerry)) {
+                projektPidLista.add(sqlQuerry);
+            }
+        }     
+        
         String message = "";
-        String projectName = null;
-        String projectInfo = null;
+        String nameMessage = "Projektnamn: ";
+        String descriptionMessage = "Beskrivning: ";
+         String startMessage = "Startdatum: ";
+        String endMessage = "Slutdatum: ";
+        String costMessage = "Kostnad: ";
+        String statusMessage = "Status: ";
+        String priorityMessage = "Prioritet: ";
+        String leaderMessage = "Projektchef: ";
+        String contentName = null;
+        String contentBesk = null;
+        String contentStart = null;
+        String contentEnd = null;
+        String contentCost = null;
+        String contentStatus = null;
+        String contentPriority = null;
+        String contentLeaderFirst = null;
+        String contentLeaderLast = null;
+        ArrayList<String> projektStartdatum = new ArrayList<>();
+        ArrayList<String> projektSlutdatum = new ArrayList<>();
+        ArrayList<String> projektKostnad = new ArrayList<>();
+        ArrayList<String> projektStatus = new ArrayList<>();
+        ArrayList<String> projektPrioritet = new ArrayList<>();
+        ArrayList<String> projektNamnLista = new ArrayList<>();
+        ArrayList<String> projektBeskrivningLista = new ArrayList<>();
+        for (int i = 0; i < projektPidLista.size(); i++) {
 
-        for (int i = 0; i < projektNamn.size(); i++) {
-            projectName = projektNamn.get(i);
-            projectInfo = projektBeskrivning.get(i);
-            message = message + "\n" + projectName + "\n" + projectInfo + "\n";
-        }
+            projektNamnLista.add(idb.fetchSingle("Select projektnamn from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " + projektPidLista.get(i) + " and projektnamn is not null and (status = 'Planerat' or status = 'Pågående');"));
+            projektBeskrivningLista.add(idb.fetchSingle("Select beskrivning from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " + projektPidLista.get(i) + " and beskrivning is not null and (status = 'Planerat' or status = 'Pågående');"));
+            projektStartdatum.add(idb.fetchSingle("select startdatum from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " +projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');")); 
+            projektSlutdatum.add(idb.fetchSingle("select slutdatum from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " +projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
+            projektKostnad.add(idb.fetchSingle("select kostnad from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " +projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
+            projektStatus.add(idb.fetchSingle("select status from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " +projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
+            projektPrioritet.add(idb.fetchSingle("select prioritet from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and pid = " +projektPidLista.get(i) + " and startdatum is not null and (status = 'Planerat' or status = 'Pågående');"));
+            
+             String pid = projektPidLista.get(i);
+             
+             
+            if (!projektNamnLista.isEmpty() && projektNamnLista.get(i) != null) {
+                
+                contentName = projektNamnLista.get(i);
+                contentBesk = projektBeskrivningLista.get(i);
+                contentStart = projektStartdatum.get(i);
+                contentEnd = projektSlutdatum.get(i);
+                contentCost = projektKostnad.get(i);
+                contentStatus = projektStatus.get(i);
+                contentPriority = projektPrioritet.get(i);
+                String aid = idb.fetchSingle("SELECT projektchef FROM projekt WHERE pid = '" + projektPidLista.get(i) + "';");
+
+                contentLeaderFirst = idb.fetchSingle("Select fornamn From anstalld where aid = " + aid + ";");
+                contentLeaderLast = idb.fetchSingle("Select efternamn From anstalld where aid = " + aid + ";");
+                message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n";
+                
+            } 
+            else {
+                System.out.println("error");
+            }
+         
+}
         return message.trim();
-
     }
+        /*for (int i = 0; i < projektPidLista.size(); i++) {
+            ArrayList<String> projektNamn = idb.fetchColumn("Select projektnamn from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and status = 'Pågående' or status = 'Planerat' and pid = " + projektPidLista.get(i) + " and projektnamn is not null)");
+            ArrayList<String> projektBeskrivning = idb.fetchColumn("Select beskrivning from projekt where startdatum >= '" + startDate + "' and slutdatum <= '" + endDate + "' and status = 'Pågående' or status = 'Planerat' and pid = " + projektPidLista.get(i) + " and projektnamn is not null)");
+            
+            String pid = projektPidLista.get(i);
+            if (!projektNamn.isEmpty()) {
+                projectName = projektNamn.get(i);
+                projectInfo = projektBeskrivning.get(i);
+            
+            message = message + "\n" + projectName + "\n" + projectInfo + "\n";
+        } else {
+                return " ";
+            }
+}
+        return message.trim();
+        }
+    */
 
     private int priorityPicker(int priority) {
         if (priority == 0) {
@@ -1263,9 +1335,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JLabel filterProjectsDateError;
     private javax.swing.JTextArea hallbarhetsMalTextArea;
     private javax.swing.JPanel hållbarhetsmalTab;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLblMoney;
     private javax.swing.JLabel jLblSökHandläggare;
     private javax.swing.JLabel jLblTotalCostProject;
@@ -1278,6 +1348,8 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JLabel lblAktivaHallbarhetsmal;
     private javax.swing.JLabel lblInfo;
+    private javax.swing.JLabel lblSlutdatum;
+    private javax.swing.JLabel lblStartdatum;
     private javax.swing.JLabel minaProjectField;
     private javax.swing.JLabel personalList;
     private javax.swing.JComboBox<String> priorityBox;
