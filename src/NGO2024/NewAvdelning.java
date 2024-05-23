@@ -297,8 +297,13 @@ public class NewAvdelning extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_contactPhoneFieldMouseClicked
 
+    /**
+     * Metod som tar text från fälten och lägger in i databasen.
+     * Den validerar varje fält och ser till att det inte är blankt. 
+     * @param evt 
+     */
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-
+       
         try {
             String newName = nameField.getText().trim();
             String newEmail = contactEmailField.getText().trim();
@@ -394,7 +399,12 @@ public class NewAvdelning extends javax.swing.JFrame {
             Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_createButtonActionPerformed
-
+    /**
+     * Metod tar fram titeln där fält har inte kunnat lägga till. 
+     * 
+     * @param errorList
+     * @return String med titlarna.
+     */
     private String insertError(ArrayList<String> errorList) {
     if (errorList == null || errorList.isEmpty()) {
         return "Inga felaktiga värden hittades."; 
@@ -433,8 +443,12 @@ public class NewAvdelning extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_HODfieldActionPerformed
-
+    /**
+     * Öppnar Newland fönster.
+     * @param evt 
+     */
     private void countryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryButtonActionPerformed
+       
         try {
             new NewLand(userAid).setVisible(true);
             // TODO add your handling code here:
@@ -463,33 +477,20 @@ public class NewAvdelning extends javax.swing.JFrame {
             HODfield.setText("");
         }
     }//GEN-LAST:event_HODfieldMouseClicked
-
-    private boolean fieldValidation(String newText, String validationText) {
-        boolean validated = true;
-        if (newText.equals(validationText) || newText.isEmpty() || newText.isBlank()) {
-            return validated = false;
-        }
-        return validated;
-    }
+    
+  /**
+   * Metod som lägger in värdena i databasen.
+   * @param column
+   * @param value
+   * @param newAvdid
+   * @throws InfException 
+   */
 
     private void insertValue(String column, String value, String newAvdid) throws InfException {
         String sqlQuerry = ("UPDATE ngo_2024.avdelning t SET t." + column + " = '" + value + "' WHERE t.avdid = " + newAvdid + ";");
         idb.update(sqlQuerry);
     }
-
-    private void cityValidation(String newCity, String newAvdid) throws InfException {
-        ArrayList<String> cityList = idb.fetchColumn("Select namn from stad;");
-        for (String cityName : cityList) {
-            if (cityName.equals(newCity)) {
-                String sid = idb.fetchSingle("select sid from stad where namn =" + newCity + ";");
-                idb.update("UPDATE ngo_2024.avdelning t SET t.stad = " + sid + " WHERE t.avdid = " + newAvdid + ";");
-                return;
-            }
-        }
-
-        //Todo gör synliga rutor
-        //alt gör så användaren får mata in land   
-    }
+  
 
     /**
      * @param args the command line arguments
