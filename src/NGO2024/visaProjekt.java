@@ -32,8 +32,8 @@ public class VisaProjekt extends javax.swing.JFrame {
      */
     public VisaProjekt(String pid, String userAid) throws InfException {
 
-        this.userAid = userAid; //såklart inte någon hårdkodning här
-        this.pid = pid;     //---------------||-----------------
+        this.userAid = "6"; //såklart inte någon hårdkodning här
+        this.pid = "1";     //---------------||-----------------
         validering = new Validering();
 
         try {
@@ -279,8 +279,6 @@ public class VisaProjekt extends javax.swing.JFrame {
 
         jLabel1.setText("Projektledare");
 
-        errorLabel.setText("jLabel7");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -315,17 +313,16 @@ public class VisaProjekt extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(233, 233, 233)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(errorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(projektLeadDisplay, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                                                .addComponent(jScrollPane2)
-                                                .addComponent(jScrollPane3)
-                                                .addComponent(jScrollPane4)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                                            .addComponent(jScrollPane2)
+                                            .addComponent(jScrollPane3)
+                                            .addComponent(jScrollPane4))
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -463,7 +460,7 @@ public class VisaProjekt extends javax.swing.JFrame {
                     String efternamn = newProjektLedare.substring(index + 1);
                     String aid = idb.fetchSingle("select aid from anstalld where fornamn = '"+fornamn+"' and efternamn = '"+efternamn+"';");
                     if(!validering.checkAdminAid(aid)){
-                        idb.update("UPDATE ngo_2024.projekt t SET t.projektledare = " + aid + " WHERE t.pid = " + pid + ";");
+                        idb.update("UPDATE ngo_2024.projekt t SET t.projektchef = "+aid+" WHERE t.pid = "+pid+";");
                         projektLeadDisplay.setText(fornamn +" "+ efternamn);
                     }
                     else{
