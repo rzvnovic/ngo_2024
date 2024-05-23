@@ -266,7 +266,10 @@ public class NewPartner extends javax.swing.JFrame {
             branchField.setText("");
         }
     }//GEN-LAST:event_branchFieldMouseClicked
-
+/**
+ * Metod som tar in värdena från fälten. Och validerar dem.
+ * @param evt 
+ */
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         String newName = nameField.getText().trim();
         String newContact = contactField.getText().trim();

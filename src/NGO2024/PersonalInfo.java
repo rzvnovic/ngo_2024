@@ -460,8 +460,7 @@ public class PersonalInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_commitButtonActionPerformed
     /**
      *
-     * TODO: FIXA VALIDERINGEN metod som uppdaterar databasen med information
-     * som är inmatat i ett fält.
+     * Upddaterar databasen med det som står i fälten.
      *
      *
      *
@@ -548,7 +547,7 @@ public class PersonalInfo extends javax.swing.JFrame {
      * @param evt
      */
     private void generateNewPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateNewPasswordActionPerformed
-        // TODO add your handling code here:
+        
         // TODO PROGRAMMERA SÅ ETT RANDOM LÖSEN SKAPAS OCH LÄGG IN I DATABAS UNDER RÄTT AID.
         String lowercase = "abcdefghijklmnopqrstuvwxyz";
         String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

@@ -231,7 +231,10 @@ public class NewLand extends javax.swing.JFrame {
             countryName.setText("");
         }
     }//GEN-LAST:event_countryNameMouseClicked
-
+/**
+ * metod som tar in värdena från fälten och validerar dem. Kallar insert metod om validerat.
+ * @param evt 
+ */
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         String newCountryName = countryName.getText().trim();
         String newPolitical = politicField.getText().trim();
@@ -343,7 +346,13 @@ public class NewLand extends javax.swing.JFrame {
     private void languageFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_languageFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_languageFieldActionPerformed
-
+/**
+ * metod som lägger in värden i databasen.
+ * @param column
+ * @param value
+ * @param newLid
+ * @throws InfException 
+ */
     private void insertValue(String column, String value, String newLid) throws InfException {
         String sqlQuerry = ("UPDATE ngo_2024.land t SET t." + column + " = '" + value + "' WHERE t.lid = " + newLid + ";");
         idb.update(sqlQuerry);

@@ -46,7 +46,9 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
        
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
+/**
+ * metod som ändrar synlighet baserat på userAid.
+ */
     public void adminVissebillity() {
         if (validering.checkAdminAid(userAid)) {
 
