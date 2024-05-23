@@ -133,6 +133,7 @@ public class VisaProjekt extends javax.swing.JFrame {
         projectLedareField = new javax.swing.JTextField();
         projektLeadDisplay = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -278,6 +279,8 @@ public class VisaProjekt extends javax.swing.JFrame {
 
         jLabel1.setText("Projektledare");
 
+        errorLabel.setText("jLabel7");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -306,22 +309,24 @@ public class VisaProjekt extends javax.swing.JFrame {
                             .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(projectLedareField))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deleteButton))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(233, 233, 233)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(projektLeadDisplay, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                                            .addComponent(jScrollPane2)
-                                            .addComponent(jScrollPane3)
-                                            .addComponent(jScrollPane4))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(projektLeadDisplay, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(deleteButton))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                                                .addComponent(jScrollPane2)
+                                                .addComponent(jScrollPane3)
+                                                .addComponent(jScrollPane4)))
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(299, 299, 299)
@@ -383,7 +388,9 @@ public class VisaProjekt extends javax.swing.JFrame {
                     .addComponent(commitButton)
                     .addComponent(deleteButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(changePButton)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(changePButton)
+                    .addComponent(errorLabel))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -421,8 +428,8 @@ public class VisaProjekt extends javax.swing.JFrame {
         int priority = priorityBox.getSelectedIndex();
         String newPriority = null;
         String newStatus = null;
-        //OBS
-        String newPid = null;
+        
+        
         if (validering.fieldValidation(newProjN, "Department Name")) {
             updateDatabase("projektnamn", newProjN, pid);
                     projektNamnDisplay.setText(newProjN);
@@ -462,12 +469,13 @@ public class VisaProjekt extends javax.swing.JFrame {
                     else{
                         //error
                         //välj en handläggare som projektledare.
+                        errorLabel.setText("Välj en handläggare som projektleadare");
                     }
                 } catch (InfException ex) {
                     Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else{
-                //fel meddelande ej space i namn
+                errorLabel.setText("Felaktikt format.");
                 //vanligen ange för och efternamn
             }
         }
@@ -674,6 +682,7 @@ public class VisaProjekt extends javax.swing.JFrame {
     private javax.swing.JTextField desField;
     private javax.swing.JTextPane endDateDisplay;
     private javax.swing.JTextField endDateField;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
