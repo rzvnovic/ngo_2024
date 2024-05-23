@@ -546,21 +546,37 @@ public class MenyAdmin extends javax.swing.JFrame {
     private void showProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProjectButtonActionPerformed
         if (validering.isEmpty(searchProjektField.getText())) {
             try {
+                
                 String projektSearchText = searchProjektField.getText();
-                String projektPid = idb.fetchSingle("Select pid from projekt where projektnamn = " + projektSearchText + ";");
+                String projektPid = idb.fetchSingle("Select pid from projekt where projektnamn = '" + projektSearchText + "';");
+                if (checkProjectName(projektSearchText)){
 
                 new VisaProjekt(projektPid, userAid).setVisible(true);
-
+                projectTabErrorLabel.setVisible(false);
+                }
+                else {
                 projectTabErrorLabel.setText("Projekt kunde ej hittas.");
                 projectTabErrorLabel.setVisible(true);
-
+            }
             } catch (InfException ex) {
                 Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
 
             }
         }
     }//GEN-LAST:event_showProjectButtonActionPerformed
-
+    
+    private Boolean checkProjectName(String ettProjekt) throws InfException {
+        ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt");
+        Boolean projectNameFound = false;
+        for (String projektet : projektNamnLista) {
+            if (projektet.equalsIgnoreCase(ettProjekt)) {
+                projectNameFound = true;
+                break;
+            }
+        }
+        return projectNameFound;
+    }
+    
     private void skapaNyttProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaNyttProjektButtonActionPerformed
 
         try {
