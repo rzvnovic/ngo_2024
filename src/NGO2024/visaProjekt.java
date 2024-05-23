@@ -46,6 +46,12 @@ public class VisaProjekt extends javax.swing.JFrame {
 
     }
 
+    /**
+     * sätter text på alla fält utom projektledare
+     * @param select
+     * @param pid
+     * @return 
+     */
     public String setDisplayText1(String select, String pid) {
         String sqlQuerry;
         try {
@@ -57,7 +63,26 @@ public class VisaProjekt extends javax.swing.JFrame {
         }
         return sqlQuerry;
     }
-
+    
+    /**
+     * sätter text på fältet projektledare 
+     * @param pid
+     * @return 
+     */
+    public String setDisplayText2(String pid) {
+        String fornamn = null;
+        String efternamn = null;
+        try {
+            String leaderPid = idb.fetchSingle("select projektchef from projekt where pid = "+pid+";");
+            fornamn = idb.fetchSingle("select fornamn from anstalld where aid = " +leaderPid+ ";");
+            efternamn = idb.fetchSingle("select efternamn from anstalld where aid = " +leaderPid+ ";");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+        return (fornamn + " " + efternamn);
+    }
+    
     /**
      * metod som tar emot aid och returnerar en sträng baserat på validering
      * klassens checkAdminAid
@@ -80,7 +105,6 @@ public class VisaProjekt extends javax.swing.JFrame {
         desField = new javax.swing.JTextField();
         startDateField = new javax.swing.JTextField();
         endDateField = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         costField = new javax.swing.JTextField();
         commitButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -106,6 +130,9 @@ public class VisaProjekt extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        projectLedareField = new javax.swing.JTextField();
+        projektLeadDisplay = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,54 +267,66 @@ public class VisaProjekt extends javax.swing.JFrame {
 
         jLabel6.setText("Kostnad");
 
+        try{
+            projektLeadDisplay.setText(setDisplayText2(pid));
+        }catch(Exception e){}
+        projektLeadDisplay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projektLeadDisplayActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Projektledare");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(changePButton)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(costField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(costField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                             .addComponent(statusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(projNameField)
-                                .addComponent(desField)
-                                .addComponent(startDateField)
-                                .addComponent(endDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
-                            .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(projNameField)
+                            .addComponent(desField)
+                            .addComponent(startDateField)
+                            .addComponent(endDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                            .addComponent(changePButton)
+                            .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(projectLedareField))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(233, 233, 233)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane2)
-                                        .addComponent(jScrollPane3)
-                                        .addComponent(jScrollPane4))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                                            .addComponent(jScrollPane2)
+                                            .addComponent(jScrollPane3)
+                                            .addComponent(jScrollPane4))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(projektLeadDisplay, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(deleteButton)
-                                .addGap(35, 35, 35))))
-                    .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deleteButton))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(299, 299, 299)
+                        .addComponent(jScrollPane7)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,28 +359,32 @@ public class VisaProjekt extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(costField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteButton))
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(statusButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(commitButton)))
+                        .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(projectLedareField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projektLeadDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(commitButton)
+                    .addComponent(deleteButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(changePButton)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -373,6 +416,7 @@ public class VisaProjekt extends javax.swing.JFrame {
         String newStartDate = startDateField.getText();
         String newEndDate = endDateField.getText();
         String newCost = costField.getText();
+        String newProjektLedare = projectLedareField.getText();
         int status = statusButton.getSelectedIndex();
         int priority = priorityBox.getSelectedIndex();
         String newPriority = null;
@@ -403,6 +447,29 @@ public class VisaProjekt extends javax.swing.JFrame {
             updateDatabase("kostnad", newCost, pid);
                     costDisplay.setText(newCost);
 
+        }
+        if (validering.fieldValidation(newProjektLedare, "Projektledare")){
+            if (newProjektLedare.trim().contains(" ")) {
+                try {
+                    int index = newProjektLedare.indexOf(" ");
+                    String fornamn = newProjektLedare.substring(0, index);
+                    String efternamn = newProjektLedare.substring(index + 1);
+                    String aid = idb.fetchSingle("select aid from anstalld where fornamn = '"+fornamn+"' and efternamn = '"+efternamn+"';");
+                    if(!validering.checkAdminAid(aid)){
+                        idb.update("UPDATE ngo_2024.projekt t SET t.projektledare = '" + aid + "' WHERE t.pid = " + pid + ";");
+                        projektLeadDisplay.setText(fornamn +" "+ efternamn);
+                    }
+                    else{
+                        //error
+                        //välj en handläggare som projektledare.
+                    }
+                } catch (InfException ex) {
+                    Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                //fel meddelande ej space i namn
+                //vanligen ange för och efternamn
+            }
         }
         newStatus = statusPicker(status);
         updateDatabase("status", newStatus, pid);
@@ -551,6 +618,10 @@ public class VisaProjekt extends javax.swing.JFrame {
 
     }//GEN-LAST:event_changePButtonActionPerformed
 
+    private void projektLeadDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektLeadDisplayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_projektLeadDisplayActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -603,6 +674,7 @@ public class VisaProjekt extends javax.swing.JFrame {
     private javax.swing.JTextField desField;
     private javax.swing.JTextPane endDateDisplay;
     private javax.swing.JTextField endDateField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -616,11 +688,12 @@ public class VisaProjekt extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JTextPane prioDisplay;
     private javax.swing.JComboBox<String> priorityBox;
     private javax.swing.JTextField projNameField;
+    private javax.swing.JTextField projectLedareField;
+    private javax.swing.JTextField projektLeadDisplay;
     private javax.swing.JTextPane projektNamnDisplay;
     private javax.swing.JTextPane startDateDisplay;
     private javax.swing.JTextField startDateField;

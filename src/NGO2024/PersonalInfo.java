@@ -588,7 +588,7 @@ public class PersonalInfo extends javax.swing.JFrame {
                     idb.delete("delete from ngo_2024.admin where aid = " + aid + ";");
 
                 } else {
-                    idb.delete("delete from ngo_2024.handlaggare where aid= " + aid + ";");
+                    idb.delete("delete from ngo_2024.handlaggare where aid = " + aid + ";");
                 }
                 idb.delete("delete from ngo_2024.anstalld where aid = " + aid + ";");
             } catch (InfException ex) {
