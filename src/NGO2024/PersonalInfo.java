@@ -416,29 +416,35 @@ public class PersonalInfo extends javax.swing.JFrame {
 
         if (validering.fieldValidation(newName, "Department Name")) {
             updateDatabase("fornamn", newName, aid);
+                    nameDisplay.setText(newName);
+
         }
         if (validering.fieldValidation(newSurname, "Description ")) {
             updateDatabase("efternamn", newSurname, aid);
+                    surnameDisplay.setText(newSurname);
+
         }
         if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
             updateDatabase("epost", newEmail, aid);
+            emailDisplay.setText(newEmail);
         }
         if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
             updateDatabase("telefon", newPhonenumber, aid);
+                    phonenumberDisplay.setText(newPhonenumber);
+
         }
         if (validering.fieldValidation(newAdress, "Adress")) {
             updateDatabase("adress", newAdress, aid);
+                    adressDisplay.setText(newAdress);
+
         }
         if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
             updateDatabase("anstallningsdatum", newStartDate, aid);
+            startDateDisplay.setText(newStartDate);
         }
 
         //cityValidation(newCity, newAvdid);
-        nameDisplay.setText(newName);
-        surnameDisplay.setText(newSurname);
-        adressDisplay.setText(newAdress);
-        phonenumberDisplay.setText(newPhonenumber);
-        emailDisplay.setText(newEmail);
+        
     }//GEN-LAST:event_commitButtonActionPerformed
     /**
      *
