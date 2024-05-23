@@ -32,8 +32,8 @@ public class VisaAvdelning extends javax.swing.JFrame {
      */
     public VisaAvdelning(String avdid, String userAid) throws InfException {
 
-        this.userAid = userAid; //såklart inte någon hårdkodning här
-        this.avdid = avdid;     //---------------||-----------------
+        this.userAid = userAid; 
+        this.avdid = avdid;     
         validering = new Validering();
 
         try {
@@ -80,7 +80,7 @@ public class VisaAvdelning extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         avdelningNField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblInformation = new javax.swing.JLabel();
         desField = new javax.swing.JTextField();
         adressField = new javax.swing.JTextField();
         phoneField = new javax.swing.JTextField();
@@ -104,13 +104,13 @@ public class VisaAvdelning extends javax.swing.JFrame {
         deleteButton = new javax.swing.JButton();
         cityField = new javax.swing.JTextField();
         chefField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblBeskrivning = new javax.swing.JLabel();
+        lblAvdelningsnamn = new javax.swing.JLabel();
+        lblAdress = new javax.swing.JLabel();
+        lblTelefonnummer = new javax.swing.JLabel();
+        lblEpost = new javax.swing.JLabel();
+        lblStad = new javax.swing.JLabel();
+        lblChef = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,7 +125,7 @@ public class VisaAvdelning extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Information");
+        lblInformation.setText("Information");
 
         desField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -217,19 +217,19 @@ public class VisaAvdelning extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Beskrivning");
+        lblBeskrivning.setText("Beskrivning");
 
-        jLabel3.setText("Avdelningsnamn");
+        lblAvdelningsnamn.setText("Avdelningsnamn");
 
-        jLabel4.setText("Adress");
+        lblAdress.setText("Adress");
 
-        jLabel5.setText("Telefonnummer");
+        lblTelefonnummer.setText("Telefonnummer");
 
-        jLabel6.setText("Epost");
+        lblEpost.setText("Epost");
 
-        jLabel7.setText("Stad");
+        lblStad.setText("Stad");
 
-        jLabel8.setText("Avdelningschef");
+        lblChef.setText("Avdelningschef");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -238,16 +238,16 @@ public class VisaAvdelning extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStad, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblChef, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(avdelningNField)
                         .addComponent(desField)
                         .addComponent(adressField)
@@ -273,14 +273,14 @@ public class VisaAvdelning extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(16, 16, 16)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAvdelningsnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(637, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jLabel1)
+                .addComponent(lblInformation)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(avdelningNField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,25 +289,25 @@ public class VisaAvdelning extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(desField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(lblBeskrivning, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4))
+                        .addComponent(lblAdress))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
+                        .addComponent(lblTelefonnummer))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6))
+                        .addComponent(lblEpost))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,18 +320,18 @@ public class VisaAvdelning extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
+                            .addComponent(lblStad))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(chefField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
+                            .addComponent(lblChef))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(commitButton)))
                 .addContainerGap(108, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(90, 90, 90)
-                    .addComponent(jLabel3)
+                    .addComponent(lblAvdelningsnamn)
                     .addContainerGap(334, Short.MAX_VALUE)))
         );
 
@@ -366,47 +366,37 @@ public class VisaAvdelning extends javax.swing.JFrame {
         String newEmail = emailField.getText();
         String newCity = cityField.getText();
         String newChef = chefField.getText();
-        //OBS
-        String newAvdid = null;
-        try {
-            newAvdid = idb.getAutoIncrement("avdelning", "Avdid");
-            String sqlQuerry = ("INSERT INTO ngo_2024.avdelning (Avdid) VALUES (" + newAvdid + ");");
-            idb.insert(sqlQuerry);
-            if (validering.fieldValidation(newAvName, "Department Name")) {
-                updateDatabase("namn", newAvName, newAvdid);
-            }
-            if (validering.fieldValidation(newDescription, "Description ")) {
-                updateDatabase("beskrivning", newDescription, newAvdid);
-            }
-            if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
-                updateDatabase("epost", newEmail, newAvdid);
-            }
-            if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
-                updateDatabase("telefon", newPhonenumber, newAvdid);
-            }
-            if (validering.fieldValidation(newAdress, "Adress")) {
-                updateDatabase("adress", newAdress, newAvdid);
-            }
-            if (validering.fieldValidation(newCity, "City")) {
-                updateDatabase("stad", newCity, newAvdid);
-            }
-            if (validering.fieldValidation(newChef, "Boss")) {
-                updateDatabase("chef", newChef, newAvdid);
-            }
-
-            //cityValidation(newCity, newAvdid);
-        } catch (InfException ex) {
-            Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+        
+        if (validering.fieldValidation(newAvName, "Department Name")) {
+            updateDatabase("namn", newAvName, avdid);
+            avdelningDisplay.setText(newAvName);
         }
-
-        avdelningDisplay.setText(newAvName);
-        desDisplay.setText(newDescription);
-        adressDisplay.setText(newAdress);
-        phonenumberDisplay.setText(newPhonenumber);
-        emailDisplay.setText(newEmail);
-        cityDisplay.setText(newCity);
-        chefDisplay.setText(newChef);
+        if (validering.fieldValidation(newDescription, "Description ")) {
+            updateDatabase("beskrivning", newDescription, avdid);
+            desDisplay.setText(newDescription);
+        }
+        if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
+            updateDatabase("epost", newEmail, avdid);
+            emailDisplay.setText(newEmail);
+        }
+        if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
+            updateDatabase("telefon", newPhonenumber, avdid);
+            phonenumberDisplay.setText(newPhonenumber);
+        }
+        if (validering.fieldValidation(newAdress, "Adress")) {
+            updateDatabase("adress", newAdress, avdid);
+            adressDisplay.setText(newAdress);
+        }
+        if (validering.fieldValidation(newCity, "City")) {
+            updateDatabase("stad", newCity, avdid);
+            cityDisplay.setText(newCity);
+        }
+        if (validering.fieldValidation(newChef, "Boss")) {
+            updateDatabase("chef", newChef, avdid);
+            chefDisplay.setText(newChef);
+        }
     
+
 
 
     }//GEN-LAST:event_commitButtonActionPerformed
@@ -641,14 +631,6 @@ public class VisaAvdelning extends javax.swing.JFrame {
     private javax.swing.JTextField desField;
     private javax.swing.JTextPane emailDisplay;
     private javax.swing.JTextField emailField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -658,6 +640,14 @@ public class VisaAvdelning extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblAdress;
+    private javax.swing.JLabel lblAvdelningsnamn;
+    private javax.swing.JLabel lblBeskrivning;
+    private javax.swing.JLabel lblChef;
+    private javax.swing.JLabel lblEpost;
+    private javax.swing.JLabel lblInformation;
+    private javax.swing.JLabel lblStad;
+    private javax.swing.JLabel lblTelefonnummer;
     private javax.swing.JTextField phoneField;
     private javax.swing.JTextPane phonenumberDisplay;
     // End of variables declaration//GEN-END:variables

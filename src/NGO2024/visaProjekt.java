@@ -76,7 +76,7 @@ public class VisaProjekt extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         projNameField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblInfo = new javax.swing.JLabel();
         desField = new javax.swing.JTextField();
         startDateField = new javax.swing.JTextField();
         endDateField = new javax.swing.JTextField();
@@ -84,19 +84,19 @@ public class VisaProjekt extends javax.swing.JFrame {
         costField = new javax.swing.JTextField();
         commitButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        avdelningDisplay = new javax.swing.JTextPane();
+        projektNamnDisplay = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         desDisplay = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        adressDisplay = new javax.swing.JTextPane();
+        startDateDisplay = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        phonenumberDisplay = new javax.swing.JTextPane();
+        endDateDisplay = new javax.swing.JTextPane();
         jScrollPane5 = new javax.swing.JScrollPane();
-        emailDisplay = new javax.swing.JTextPane();
+        costDisplay = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        cityDisplay = new javax.swing.JTextPane();
+        statusDisplay = new javax.swing.JTextPane();
         jScrollPane7 = new javax.swing.JScrollPane();
-        chefDisplay = new javax.swing.JTextPane();
+        prioDisplay = new javax.swing.JTextPane();
         deleteButton = new javax.swing.JButton();
         priorityBox = new javax.swing.JComboBox<>();
         statusButton = new javax.swing.JComboBox<>();
@@ -120,7 +120,7 @@ public class VisaProjekt extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Information");
+        lblInfo.setText("Information");
 
         desField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -170,33 +170,33 @@ public class VisaProjekt extends javax.swing.JFrame {
             }
         });
 
-        avdelningDisplay.setEditable(false);
-        avdelningDisplay.setText(setDisplayText1("projektnamn", pid));
-        jScrollPane1.setViewportView(avdelningDisplay);
+        projektNamnDisplay.setEditable(false);
+        projektNamnDisplay.setText(setDisplayText1("projektnamn", pid));
+        jScrollPane1.setViewportView(projektNamnDisplay);
 
         desDisplay.setEditable(false);
         desDisplay.setText(setDisplayText1("beskrivning", pid));
         jScrollPane2.setViewportView(desDisplay);
 
-        adressDisplay.setEditable(false);
-        adressDisplay.setText(setDisplayText1("startdatum", pid));
-        jScrollPane3.setViewportView(adressDisplay);
+        startDateDisplay.setEditable(false);
+        startDateDisplay.setText(setDisplayText1("startdatum", pid));
+        jScrollPane3.setViewportView(startDateDisplay);
 
-        phonenumberDisplay.setEditable(false);
-        phonenumberDisplay.setText(setDisplayText1("slutdatum" , pid));
-        jScrollPane4.setViewportView(phonenumberDisplay);
+        endDateDisplay.setEditable(false);
+        endDateDisplay.setText(setDisplayText1("slutdatum" , pid));
+        jScrollPane4.setViewportView(endDateDisplay);
 
-        emailDisplay.setEditable(false);
-        emailDisplay.setText(setDisplayText1("kostnad", pid));
-        jScrollPane5.setViewportView(emailDisplay);
+        costDisplay.setEditable(false);
+        costDisplay.setText(setDisplayText1("kostnad", pid));
+        jScrollPane5.setViewportView(costDisplay);
 
-        cityDisplay.setEditable(false);
-        cityDisplay.setText(setDisplayText1(("status"),pid));
-        jScrollPane6.setViewportView(cityDisplay);
+        statusDisplay.setEditable(false);
+        statusDisplay.setText(setDisplayText1(("status"),pid));
+        jScrollPane6.setViewportView(statusDisplay);
 
-        chefDisplay.setEditable(false);
-        chefDisplay.setText(setDisplayText1("prioritet", pid));
-        jScrollPane7.setViewportView(chefDisplay);
+        prioDisplay.setEditable(false);
+        prioDisplay.setText(setDisplayText1("prioritet", pid));
+        jScrollPane7.setViewportView(prioDisplay);
 
         deleteButton.setBackground(new java.awt.Color(102, 0, 0));
         deleteButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -260,7 +260,7 @@ public class VisaProjekt extends javax.swing.JFrame {
                             .addComponent(costField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(statusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(projNameField)
                                 .addComponent(desField)
                                 .addComponent(startDateField)
@@ -293,7 +293,7 @@ public class VisaProjekt extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jLabel1)
+                .addComponent(lblInfo)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -379,44 +379,40 @@ public class VisaProjekt extends javax.swing.JFrame {
         String newStatus = null;
         //OBS
         String newPid = null;
-        try {
-            newPid = idb.getAutoIncrement("avdelning", "pid");
-            String sqlQuerry = ("INSERT INTO ngo_2024.projekt (pid) VALUES (" + newPid + ");");
-            idb.insert(sqlQuerry);
-            if (validering.fieldValidation(newProjN, "Department Name")) {
-                updateDatabase("projektnamn", newProjN, newPid);
-            }
-            if (validering.fieldValidation(newDescription, "Description ")) {
-                updateDatabase("beskrivning", newDescription, newPid);
-            }
-            if (validering.fieldValidation(newCost, "Start Date") && validering.checkDateFormat(newStartDate)) {
-                updateDatabase("startdatum", newCost, newPid);
-            }
-            if (validering.fieldValidation(newEndDate, "End Date") && validering.checkDateFormat(newEndDate)) {
-                updateDatabase("slutdatum", newEndDate, newPid);
-            }
-            if (validering.fieldValidation(newStartDate, "Cost")) {
-                updateDatabase("kostnad", newStartDate, newPid);
-            }
-            
-            newStatus = statusPicker(status);
-            updateDatabase("status", newStatus, newPid);
+        if (validering.fieldValidation(newProjN, "Department Name")) {
+            updateDatabase("projektnamn", newProjN, pid);
+                    projektNamnDisplay.setText(newProjN);
 
-             newPriority = priorityPicker(priority);
-            updateDatabase("prioritet", newPriority, newPid);
-
-            //cityValidation(newCity, newAvdid);
-        } catch (InfException ex) {
-            Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if (validering.fieldValidation(newDescription, "Description ")) {
+            updateDatabase("beskrivning", newDescription, pid);
+                    desDisplay.setText(newDescription);
 
-        avdelningDisplay.setText(newProjN);
-        desDisplay.setText(newDescription);
-        adressDisplay.setText(newStartDate);
-        phonenumberDisplay.setText(newEndDate);
-        emailDisplay.setText(newCost);
-        cityDisplay.setText(newStatus);
-        chefDisplay.setText(newPriority);
+        }
+        if (validering.fieldValidation(newStartDate, "yyyy-mm-dd") && validering.checkDateFormat(newStartDate)) {
+            updateDatabase("startdatum", newStartDate, pid);
+                    startDateDisplay.setText(newStartDate);
+
+        }
+        if (validering.fieldValidation(newEndDate, "yyyy-mm-dd") && validering.checkDateFormat(newEndDate)) {
+            updateDatabase("slutdatum", newEndDate, pid);
+                    endDateDisplay.setText(newEndDate);
+
+        }
+        if (validering.fieldValidation(newCost, "Cost")) {
+            updateDatabase("kostnad", newCost, pid);
+                    costDisplay.setText(newCost);
+
+        }
+        newStatus = statusPicker(status);
+        updateDatabase("status", newStatus, pid);
+        newPriority = priorityPicker(priority);
+        updateDatabase("prioritet", newPriority, pid);
+        
+        //cityValidation(newCity, newAvdid);
+
+        statusDisplay.setText(newStatus);
+        prioDisplay.setText(newPriority);
 
 
     }//GEN-LAST:event_commitButtonActionPerformed
@@ -598,19 +594,15 @@ public class VisaProjekt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextPane adressDisplay;
-    private javax.swing.JTextPane avdelningDisplay;
     private javax.swing.JButton changePButton;
-    private javax.swing.JTextPane chefDisplay;
-    private javax.swing.JTextPane cityDisplay;
     private javax.swing.JButton commitButton;
+    private javax.swing.JTextPane costDisplay;
     private javax.swing.JTextField costField;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextPane desDisplay;
     private javax.swing.JTextField desField;
-    private javax.swing.JTextPane emailDisplay;
+    private javax.swing.JTextPane endDateDisplay;
     private javax.swing.JTextField endDateField;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -625,10 +617,14 @@ public class VisaProjekt extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextPane phonenumberDisplay;
+    private javax.swing.JLabel lblInfo;
+    private javax.swing.JTextPane prioDisplay;
     private javax.swing.JComboBox<String> priorityBox;
     private javax.swing.JTextField projNameField;
+    private javax.swing.JTextPane projektNamnDisplay;
+    private javax.swing.JTextPane startDateDisplay;
     private javax.swing.JTextField startDateField;
     private javax.swing.JComboBox<String> statusButton;
+    private javax.swing.JTextPane statusDisplay;
     // End of variables declaration//GEN-END:variables
 }

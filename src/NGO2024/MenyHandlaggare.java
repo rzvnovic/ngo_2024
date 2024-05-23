@@ -243,6 +243,10 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         projectListField.setEditable(false);
         projectListField.setColumns(20);
         projectListField.setRows(5);
+        try {
+            projectListField.setText(fetchProject1(4));
+        }
+        catch (InfException e) {}
         jScrollPane1.setViewportView(projectListField);
 
         minaProjectField.setText("Projekt");
@@ -464,7 +468,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(HandläggarMeny, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+                .addComponent(HandläggarMeny)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -1016,60 +1020,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         return message.trim();
     }
 
-    /**
-     * Ej nöjd.
-     *
-     * Lägg till param (-1.alla, 0.dina, 1.avdelning)
-     *
-     *
-     * @return
-     * @throws InfException
-     */
-    public String fetchProject() throws InfException {
-        ArrayList<String> projektNamnLista = idb.fetchColumn("Select projektnamn from projekt;");
-        ArrayList<String> projektBeskrivningLista = idb.fetchColumn("Select beskrivning from projekt;");
-        ArrayList<String> projektStartdatum = idb.fetchColumn("Select startdatum from projekt;");
-        ArrayList<String> projektSlutdatum = idb.fetchColumn("Select slutdatum from projekt;");
-        ArrayList<String> projektKostnad = idb.fetchColumn("Select kostnad from projekt;");
-        ArrayList<String> projektStatus = idb.fetchColumn("Select status from projekt;");
-        ArrayList<String> projektPrioritet = idb.fetchColumn("Select prioritet from projekt;");
-        ArrayList<String> projektLedareFornamn = idb.fetchColumn("select fornamn from anstalld where aid in (select projektchef from projekt);");
-        ArrayList<String> projektLedareEfternamn = idb.fetchColumn("select efternamn from anstalld where aid in (select projektchef from projekt);");
-
-        String message = "";
-        String nameMessage = "Projektnamn: ";
-        String descriptionMessage = "Beskrivning: ";
-        String startMessage = "Startdatum: ";
-        String endMessage = "Slutdatum: ";
-        String costMessage = "Kostnad: ";
-        String statusMessage = "Status: ";
-        String priorityMessage = "Prioritet: ";
-        String leaderMessage = "Projektchef: ";
-        String contentName = null;
-        String contentBesk = null;
-        String contentStart = null;
-        String contentEnd = null;
-        String contentCost = null;
-        String contentStatus = null;
-        String contentPriority = null;
-        String contentLeaderFirst = null;
-        String contentLeaderLast = null;
-
-        for (int i = 0; i < projektNamnLista.size(); i++) {
-            contentName = projektNamnLista.get(i);
-            contentBesk = projektBeskrivningLista.get(i);
-            contentStart = projektStartdatum.get(i);
-            contentEnd = projektSlutdatum.get(i);
-            contentCost = projektKostnad.get(i);
-            contentStatus = projektStatus.get(i);
-            contentPriority = projektPrioritet.get(i);
-            contentLeaderFirst = projektLedareFornamn.get(i);
-            contentLeaderLast = projektLedareEfternamn.get(i);
-            message = message + "\n" + nameMessage + contentName + "\n" + descriptionMessage + contentBesk + "\n" + startMessage + contentStart + "\n" + endMessage + contentEnd + "\n" + costMessage + contentCost + "\n" + statusMessage + contentStatus + "\n" + priorityMessage + contentPriority + "\n" + leaderMessage + contentLeaderFirst + " " + contentLeaderLast + "\n";
-        }
-
-        return message.trim();
-    }
+    
 
     /**
      * Metod som räknar ut användrens totala budget över alla rader där AID

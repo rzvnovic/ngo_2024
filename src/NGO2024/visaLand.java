@@ -32,8 +32,8 @@ public class VisaLand extends javax.swing.JFrame {
      */
     public VisaLand(String lid, String userAid) throws InfException {
 
-        this.userAid = userAid; //såklart inte någon hårdkodning här
-        this.lid = lid;     //---------------||-----------------
+        this.userAid = userAid; 
+        this.lid = lid;    
         validering = new Validering();
 
         try {
@@ -338,35 +338,28 @@ public class VisaLand extends javax.swing.JFrame {
         //OBS
         if (validering.fieldValidation(newLandName, " name ")) {
             updateDatabase("namn", newLandName, lid);
+            nameDisplay.setText(newLandName);
         }
         if (validering.fieldValidation(newLanguage, "Language ")) {
             updateDatabase("sprak", newLanguage, lid);
+            languageDisplay.setText(newLanguage);
         }
         if (validering.fieldValidation(newCurrency, "Currency")) {
             updateDatabase("valuta", newCurrency, lid);
+            currencyDisplay.setText(newCurrency);
         }
         if (validering.fieldValidation(newTimezone, "Timezone")) {
             updateDatabase("tidszon", newTimezone, lid);
+            timezoneDisplay.setText(newTimezone);
         }
         if (validering.fieldValidation(newPolitical, "Political structure")) {
             updateDatabase("politisk_struktur", newPolitical, lid);
+            politicDisplay.setText(newPolitical);
         }
         if (validering.fieldValidation(newEconomical, "Economical Structure")) {
             updateDatabase("ekonomi ", newEconomical, lid);
+            economicalDisplay.setText(newEconomical);
         }
-        
-        
-        
-        //cityValidation(newCity, newAvdid);
-
-        nameDisplay.setText(newLandName);
-        languageDisplay.setText(newLanguage);
-        currencyDisplay.setText(newCurrency);
-        timezoneDisplay.setText(newTimezone);
-        politicDisplay.setText(newPolitical);
-        economicalDisplay.setText(newEconomical);
-        
-    
 
 
     }//GEN-LAST:event_commitButtonActionPerformed
