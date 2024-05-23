@@ -575,15 +575,22 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             //checkProjektledare, om projektledare, kör inte bara fetchProject1 utan även ny metod fetch projectWereLeader.
             int priority = priorityBox.getSelectedIndex();
             if (validering.checkProjektLedareAid(userAid)) {
-                String message = fetchProject1(priorityPicker(priority)) + fetchProjectWereLeader(priorityPicker(priority));
+                String message = fetchProject1(priorityPicker(priority));
+                String message2 = fetchProjectWereLeader(priorityPicker(priority));
+                if (!message.equals(message2)){
                 projectListField.setText(message);
-            } else {
+            } 
+                else {
+                  projectListField.setText(fetchProject1(priorityPicker(priority)));  
+                }
+}
+                else {
                 projectListField.setText(fetchProject1(priorityPicker(priority)));
-
-            }
+                }
+            
         } catch (InfException ex) {
             Logger.getLogger(MenyHandlaggare.class.getName()).log(Level.SEVERE, null, ex);
-        }
+}
     }//GEN-LAST:event_showUserProjectsButtonActionPerformed
 
     private void showDeptProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDeptProjectButtonActionPerformed
@@ -692,7 +699,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         for (String projektet : projektNamnLista) {
             if (projektet.equalsIgnoreCase(ettProjekt)) {
                 projectNameFound = true;
-                break;
+                
             }
         }
         return projectNameFound;
