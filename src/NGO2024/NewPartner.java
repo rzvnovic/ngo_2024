@@ -268,13 +268,13 @@ public class NewPartner extends javax.swing.JFrame {
     }//GEN-LAST:event_branchFieldMouseClicked
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        String newName = nameField.getText();
-        String newContact = contactField.getText();
-        String newEmail = contactEmailField.getText();
-        String newPhonenumber = contactPhoneField.getText();
-        String newAdress = adressField.getText();
-        String newBranch = branchField.getText();
-        String newCity = cityField.getText();
+        String newName = nameField.getText().trim();
+        String newContact = contactField.getText().trim();
+        String newEmail = contactEmailField.getText().trim();
+        String newPhonenumber = contactPhoneField.getText().trim();
+        String newAdress = adressField.getText().trim();
+        String newBranch = branchField.getText().trim();
+        String newCity = cityField.getText().trim();
 
         String newPid;
         ArrayList<String> errorList = new ArrayList<>();

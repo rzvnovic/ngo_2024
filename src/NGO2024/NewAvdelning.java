@@ -300,14 +300,14 @@ public class NewAvdelning extends javax.swing.JFrame {
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
 
         try {
-            String newName = nameField.getText();
-            String newEmail = contactEmailField.getText();
-            String newPhonenumber = contactPhoneField.getText();
-            String newAdress = adressField.getText();
-            String newHOD = countryField.getText();
-            String newCity = cityField.getText();
-            String newDescription = descriptionField.getText();
-            String newCountry = countryField.getText();
+            String newName = nameField.getText().trim();
+            String newEmail = contactEmailField.getText().trim();
+            String newPhonenumber = contactPhoneField.getText().trim();
+            String newAdress = adressField.getText().trim();
+            String newHOD = countryField.getText().trim();
+            String newCity = cityField.getText().trim();
+            String newDescription = descriptionField.getText().trim();
+            String newCountry = countryField.getText().trim();
             ArrayList<String> countryList = idb.fetchColumn("SELECT namn FROM land;");
 
             for (int i = 0; i < countryList.size(); i++) {

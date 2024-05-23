@@ -419,12 +419,12 @@ public class PersonalInfo extends javax.swing.JFrame {
      */
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
 
-        String newName = nameField.getText();
-        String newSurname = surnameField.getText();
-        String newAdress = adressField.getText();
-        String newPhonenumber = phoneField.getText();
-        String newEmail = emailField.getText(); //OBS
-        String newStartDate = startDateField.getText();
+        String newName = nameField.getText().trim();
+        String newSurname = surnameField.getText().trim();
+        String newAdress = adressField.getText().trim();
+        String newPhonenumber = phoneField.getText().trim();
+        String newEmail = emailField.getText().trim(); //OBS
+        String newStartDate = startDateField.getText().trim();
 
         if (validering.fieldValidation(newName, "Department Name")) {
             updateDatabase("fornamn", newName, aid);

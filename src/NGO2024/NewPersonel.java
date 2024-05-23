@@ -316,13 +316,13 @@ public class NewPersonel extends javax.swing.JFrame {
     }
     
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        String newName = nameField.getText();
-        String newSurname = surnameField.getText();
-        String newAdress = adressField.getText();
-        String newEmail = emailField.getText();
-        String newPhonenumber = phoneNumField.getText();
-        String newEmploymentDate = dateOfEmploymentField.getText();
-        String newAvdelning = jTxtAvdelning.getText();
+        String newName = nameField.getText().trim();
+        String newSurname = surnameField.getText().trim();
+        String newAdress = adressField.getText().trim();
+        String newEmail = emailField.getText().trim();
+        String newPhonenumber = phoneNumField.getText().trim();
+        String newEmploymentDate = dateOfEmploymentField.getText().trim();
+        String newAvdelning = jTxtAvdelning.getText().trim();
         
          ArrayList<String> errorList = new ArrayList<>();
          boolean errorFound = false;

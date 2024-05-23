@@ -233,12 +233,12 @@ public class NewLand extends javax.swing.JFrame {
     }//GEN-LAST:event_countryNameMouseClicked
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        String newCountryName = countryName.getText();
-        String newPolitical = politicField.getText();
-        String newEconomic = economicField.getText();
-        String newCurrency = currencyField.getText();
-        String newTimeZone = timezoneField.getText();
-        String newLanguage = languageField.getText();
+        String newCountryName = countryName.getText().trim();
+        String newPolitical = politicField.getText().trim();
+        String newEconomic = economicField.getText().trim();
+        String newCurrency = currencyField.getText().trim();
+        String newTimeZone = timezoneField.getText().trim();
+        String newLanguage = languageField.getText().trim();
 
         //TODO
         String newLid;

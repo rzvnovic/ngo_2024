@@ -140,7 +140,7 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        String namn = namnField.getText();
+        String namn = namnField.getText().trim();
         
         try {
             String sqlFraga = idb.fetchSingle("SELECT pid FROM partner WHERE namn = '" + namn +"';");
@@ -157,7 +157,7 @@ public class SamarbetspartnerLista extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-        String namn = namnField.getText();
+        String namn = namnField.getText().trim();
         
         try {
             String sqlFraga = idb.fetchSingle("SELECT pid FROM partner WHERE namn = '" + namn +"';");
