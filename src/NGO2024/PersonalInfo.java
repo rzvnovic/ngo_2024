@@ -4,7 +4,6 @@
  */
 package NGO2024;
 
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
@@ -35,7 +34,7 @@ public class PersonalInfo extends javax.swing.JFrame {
     public PersonalInfo(String aid, String userAid) throws InfException {
 
         this.userAid = userAid;
-        this.aid = aid;    
+        this.aid = aid;
         validering = new Validering();
 
         try {
@@ -44,7 +43,14 @@ public class PersonalInfo extends javax.swing.JFrame {
             Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+                    deleteButton.setVisible(false);
+
         adminVissebillity();
+        
+        if(!validering.checkAdminAid(userAid) && userAid != aid){
+            commitButton.setVisible(false);
+            generateNewPassword.setVisible(false);
+        }
         newPasswordDisplay.setVisible(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -56,12 +62,12 @@ public class PersonalInfo extends javax.swing.JFrame {
      */
     public void adminVissebillity() {
         if (validering.checkAdminAid(userAid)) {
-            commitButton.setVisible(false);
+                        deleteButton.setVisible(true);
+
         } else {
             emailField.setVisible(false);
-            generateNewPassword.setVisible(false);
-            deleteButton.setVisible(false);
             
+
         }
     }
 
@@ -417,38 +423,43 @@ public class PersonalInfo extends javax.swing.JFrame {
 
         if (validering.fieldValidation(newName, "Department Name")) {
             updateDatabase("fornamn", newName, aid);
+                    nameDisplay.setText(newName);
+
         }
         if (validering.fieldValidation(newSurname, "Description ")) {
             updateDatabase("efternamn", newSurname, aid);
+                    surnameDisplay.setText(newSurname);
+
         }
         if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
             updateDatabase("epost", newEmail, aid);
+            emailDisplay.setText(newEmail);
         }
         if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
             updateDatabase("telefon", newPhonenumber, aid);
+                    phonenumberDisplay.setText(newPhonenumber);
+
         }
         if (validering.fieldValidation(newAdress, "Adress")) {
             updateDatabase("adress", newAdress, aid);
-        }
-        if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)){
-            updateDatabase("anstallningsdatum", newStartDate, aid);
-        }
-        
-        //cityValidation(newCity, newAvdid);
+                    adressDisplay.setText(newAdress);
 
-            nameDisplay.setText(newName);
-            surnameDisplay.setText(newSurname);
-            adressDisplay.setText(newAdress);
-            phonenumberDisplay.setText(newPhonenumber);
-            emailDisplay.setText(newEmail);
+        }
+        if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
+            updateDatabase("anstallningsdatum", newStartDate, aid);
+            startDateDisplay.setText(newStartDate);
+        }
+
+        //cityValidation(newCity, newAvdid);
+        
     }//GEN-LAST:event_commitButtonActionPerformed
     /**
-     * 
-     * TODO: FIXA VALIDERINGEN
-     * metod som uppdaterar databasen med information som är inmatat i ett fält.
      *
-     * 
-     * 
+     * TODO: FIXA VALIDERINGEN metod som uppdaterar databasen med information
+     * som är inmatat i ett fält.
+     *
+     *
+     *
      * @param column vilken kolumn som bör uppdateras
      * @param value vad cellen skall uppdateras med
      * @param aid vilken aid som ändringen ska ske på
@@ -564,14 +575,21 @@ public class PersonalInfo extends javax.swing.JFrame {
      * @param evt
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
-        // TODO tar bort profilen ur tabellen genom idb.delete()
-        String sqlQueery = ("DELETE FROM ngo_2024.anstalld WHERE aid =" + aid + ";");
         try {
-            idb.delete(sqlQueery);
+            // TODO add your handling code here:
+            // TODO tar bort profilen ur tabellen genom idb.delete()
+            if (validering.checkAdminAid(aid)) {
+                idb.delete("delete from ngo_2024.admin where aid = "+aid+";");
+
+            } else {
+                idb.delete("delete from ngo_2024.handlaggare where aid= "+aid+";");
+            }
+            idb.delete("delete from ngo_2024.anstalld where aid = "+aid+";");
         } catch (InfException ex) {
             Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void startDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateFieldActionPerformed
