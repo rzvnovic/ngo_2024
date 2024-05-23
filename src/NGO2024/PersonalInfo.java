@@ -43,7 +43,14 @@ public class PersonalInfo extends javax.swing.JFrame {
             Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+                    deleteButton.setVisible(false);
+
         adminVissebillity();
+        
+        if(!validering.checkAdminAid(userAid) && userAid != aid){
+            commitButton.setVisible(false);
+            generateNewPassword.setVisible(false);
+        }
         newPasswordDisplay.setVisible(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -55,11 +62,11 @@ public class PersonalInfo extends javax.swing.JFrame {
      */
     public void adminVissebillity() {
         if (validering.checkAdminAid(userAid)) {
-            commitButton.setVisible(false);
+                        deleteButton.setVisible(true);
+
         } else {
             emailField.setVisible(false);
-            generateNewPassword.setVisible(false);
-            deleteButton.setVisible(false);
+            
 
         }
     }
