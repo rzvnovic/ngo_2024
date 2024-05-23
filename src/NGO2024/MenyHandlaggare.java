@@ -571,16 +571,14 @@ public class MenyHandlaggare extends javax.swing.JFrame {
      */
     private void showUserProjectsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showUserProjectsButtonActionPerformed
         try {
-            
+
             //checkProjektledare, om projektledare, kör inte bara fetchProject1 utan även ny metod fetch projectWereLeader.
-            
             int priority = priorityBox.getSelectedIndex();
-            if(validering.checkProjektLedareAid(userAid)){
-            String message = fetchProject1(priorityPicker(priority)) + fetchProjectWereLeader(priorityPicker(priority));
-            projectListField.setText(message);
-            }
-            else{
-                        projectListField.setText(fetchProject1(priorityPicker(priority)));
+            if (validering.checkProjektLedareAid(userAid)) {
+                String message = fetchProject1(priorityPicker(priority)) + fetchProjectWereLeader(priorityPicker(priority));
+                projectListField.setText(message);
+            } else {
+                projectListField.setText(fetchProject1(priorityPicker(priority)));
 
             }
         } catch (InfException ex) {
@@ -874,7 +872,7 @@ public class MenyHandlaggare extends javax.swing.JFrame {
     }
 
     public String fetchPartnersInProjects() throws InfException {
-        
+
         ArrayList<String> samarbetsPartnerNamn = idb.fetchColumn("select namn from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from ans_proj where aid in (select aid from anstalld where aid = '" + userAid + "')))");
         ArrayList<String> samarbetsPartnerKontaktPerson = idb.fetchColumn("select kontaktperson from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from ans_proj where aid in (select aid from anstalld where aid ='" + userAid + "')))");
         ArrayList<String> samarbetsPartnerKontaktEpost = idb.fetchColumn("select kontaktepost from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from ans_proj where aid in (select aid from anstalld where aid ='" + userAid + "')))");
@@ -888,40 +886,37 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                     .append("\nEpost: ").append(samarbetsPartnerKontaktEpost.get(i))
                     .append("\nTelefon: ").append(samarbetsPartnerTelefon.get(i)).append("\nAdress: ").append(samarbetsPartnerAdress.get(i)).append("\nBranch: ").append(samarbetsPartnerBranch.get(i)).append("\n");
         }
-        if(validering.checkProjektLedareAid(userAid)){
-            ArrayList<String> samarbetsPartnerNamnChef = idb.fetchColumn ("select namn from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
+        if (validering.checkProjektLedareAid(userAid)) {
+            ArrayList<String> samarbetsPartnerNamnChef = idb.fetchColumn("select namn from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
             ArrayList<String> samarbetsPartnerKontaktPersonChef = idb.fetchColumn("select kontaktperson from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
             ArrayList<String> samarbetsPartnerKontaktEpostChef = idb.fetchColumn("select kontaktepost from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
             ArrayList<String> samarbetsPartnerTelefonChef = idb.fetchColumn("select telefon from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
             ArrayList<String> samarbetsPartnerAdressChef = idb.fetchColumn("select adress from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
             ArrayList<String> samarbetsPartnerBranchChef = idb.fetchColumn("select branch from partner where pid in (select partner_pid from projekt_partner where pid in (select pid from projekt where projektchef = " + userAid + "))");
-            if (!samarbetsPartnerNamn.equals(samarbetsPartnerNamnChef)){
-            for (int i = 0; i < samarbetsPartnerNamnChef.size(); i++) {
-                message.append("\nNamn: ").append(samarbetsPartnerNamnChef.get(i))
-                    .append("\nKontaktperson: ").append(samarbetsPartnerKontaktPersonChef.get(i))
-                        .append("\nEpost: ").append(samarbetsPartnerKontaktEpostChef.get(i))
-                        .append("\nTelefon: ").append(samarbetsPartnerTelefonChef.get(i))
-                        .append("\nAdress: ").append(samarbetsPartnerAdressChef.get(i))
-                .append("\nBranch: ").append(samarbetsPartnerBranchChef.get(i)).append("\n");
+            if (!samarbetsPartnerNamn.equals(samarbetsPartnerNamnChef)) {
+                for (int i = 0; i < samarbetsPartnerNamnChef.size(); i++) {
+                    message.append("\nNamn: ").append(samarbetsPartnerNamnChef.get(i))
+                            .append("\nKontaktperson: ").append(samarbetsPartnerKontaktPersonChef.get(i))
+                            .append("\nEpost: ").append(samarbetsPartnerKontaktEpostChef.get(i))
+                            .append("\nTelefon: ").append(samarbetsPartnerTelefonChef.get(i))
+                            .append("\nAdress: ").append(samarbetsPartnerAdressChef.get(i))
+                            .append("\nBranch: ").append(samarbetsPartnerBranchChef.get(i)).append("\n");
 
+                }
             }
-        }
         }
         return message.toString().trim();
 
     }
-    
-      public Boolean checkProjektLedareAndAnstalld(String userAid) throws InfException {
-        Boolean inBothTables = false; 
-        String findUserAid = idb.fetchSingle("select projektchef from projekt where projektchef in (select aid from ans_proj where aid = " + userAid +";");
-        if (findUserAid != null){
-            inBothTables = true; 
+
+    public Boolean checkProjektLedareAndAnstalld(String userAid) throws InfException {
+        Boolean inBothTables = false;
+        String findUserAid = idb.fetchSingle("select projektchef from projekt where projektchef in (select aid from ans_proj where aid = " + userAid + ";");
+        if (findUserAid != null) {
+            inBothTables = true;
         }
-        return inBothTables; 
+        return inBothTables;
     }
-    
-  
-    
 
     /**
      *
@@ -1002,12 +997,13 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         return message.trim();
     }
-    
+
     /**
      * metod som skrivet ut alla projekt där userAid finns som projektledare
+     *
      * @param prio
      * @return
-     * @throws InfException 
+     * @throws InfException
      */
     public String fetchProjectWereLeader(int prio) throws InfException {
         //ledare är EJ deltagare, utan strikt ledare.
@@ -1074,12 +1070,14 @@ public class MenyHandlaggare extends javax.swing.JFrame {
 
         return message.trim();
     }
-    
+
     /**
-     * metod som tar nuvarende index i prioritet och skrivet ut en lista med alla projekt
+     * metod som tar nuvarende index i prioritet och skrivet ut en lista med
+     * alla projekt
+     *
      * @param prio
      * @return
-     * @throws InfException 
+     * @throws InfException
      */
     public String fetchAvdelningProjekt(int prio) throws InfException {
         String avdId = idb.fetchSingle("Select avdelning from anstalld where aid =" + userAid + ";");
@@ -1162,12 +1160,10 @@ public class MenyHandlaggare extends javax.swing.JFrame {
         return message.trim();
     }
 
-    
-
     /**
      * Metod som räknar ut användrens totala budget över alla rader där AID
-     * förkommer.
-     * Kravspec föreslår att det skalldu vara totalbudget på projekt där användaren varit projektledare
+     * förkommer. Kravspec föreslår att det skalldu vara totalbudget på projekt
+     * där användaren varit projektledare
      *
      * @return String totalabudget
      * @throws InfException
