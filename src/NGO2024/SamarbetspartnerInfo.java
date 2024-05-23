@@ -400,9 +400,13 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
         // TODO tar bort profilen ur tabellen genom idb.delete()
-        String sqlQueery = ("DELETE FROM ngo_2024.partner WHERE pid =" + pid + ";");
+        String deletePartner = ("DELETE FROM ngo_2024.partner WHERE pid =" + pid + ";");
+        String deletePartnProj = ("DELETE FROM ngo_2024.projekt_partner WHERE partner_pid = " + pid + ";");
         try {
-            idb.delete(sqlQueery);
+                        idb.delete(deletePartnProj);
+
+            idb.delete(deletePartner);
+            
         } catch (InfException ex) {
             Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
         }

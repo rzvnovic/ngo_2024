@@ -32,8 +32,8 @@ public class VisaProjekt extends javax.swing.JFrame {
      */
     public VisaProjekt(String pid, String userAid) throws InfException {
 
-        this.userAid = "6"; //såklart inte någon hårdkodning här
-        this.pid = "1";     //---------------||-----------------
+        this.userAid = userAid; //såklart inte någon hårdkodning här
+        this.pid = pid;     //---------------||-----------------
         validering = new Validering();
 
         try {
@@ -586,9 +586,16 @@ public class VisaProjekt extends javax.swing.JFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
         // TODO tar bort profilen ur tabellen genom idb.delete()
-        String sqlQueery = ("DELETE FROM ngo_2024.projekt WHERE pid =" + pid + ";");
+        String deleteProjpartner = ("DELETE FROM ngo_2024.projekt_partner WHERE pid =" + pid + ";");
+        String deleteHallProject = ("DELETE FROM ngo_2024.proj_hallbarhet WHERE pid =" + pid + ";");
+        String deleteAnsProject = ("DELETE FROM ngo_2024.ans_proj WHERE pid =" + pid + ";");
+        String deleteProject = ("DELETE FROM ngo_2024.projekt WHERE pid =" + pid + ";");
+        
         try {
-            idb.delete(sqlQueery);
+            idb.delete(deleteAnsProject);
+            idb.delete(deleteHallProject);
+            idb.delete(deleteProjpartner);            
+            idb.delete(deleteProject);
         } catch (InfException ex) {
             Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
         }
