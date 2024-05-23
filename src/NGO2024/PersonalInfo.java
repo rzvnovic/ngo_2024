@@ -43,15 +43,16 @@ public class PersonalInfo extends javax.swing.JFrame {
             Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
-                    deleteButton.setVisible(false);
+        deleteButton.setVisible(false);
 
         adminVissebillity();
-        
-        if(!validering.checkAdminAid(userAid) && userAid != aid){
+
+        if (!validering.checkAdminAid(userAid) && userAid != aid) {
             commitButton.setVisible(false);
             generateNewPassword.setVisible(false);
         }
         newPasswordDisplay.setVisible(false);
+        deleteEmployeeErrorLabel.setVisible(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
@@ -62,11 +63,10 @@ public class PersonalInfo extends javax.swing.JFrame {
      */
     public void adminVissebillity() {
         if (validering.checkAdminAid(userAid)) {
-                        deleteButton.setVisible(true);
+            deleteButton.setVisible(true);
 
         } else {
             emailField.setVisible(false);
-            
 
         }
     }
@@ -150,6 +150,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         lblAdmin = new javax.swing.JLabel();
         lblPersonalID = new javax.swing.JLabel();
         lblEpost = new javax.swing.JLabel();
+        deleteEmployeeErrorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -270,6 +271,8 @@ public class PersonalInfo extends javax.swing.JFrame {
 
         lblEpost.setText("Epost");
 
+        deleteEmployeeErrorLabel.setText("Kunde ej ta bort personal, personal är för nuvarande projektledare.");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -290,7 +293,7 @@ public class PersonalInfo extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(startDateField)
                             .addComponent(emailField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(generateNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                            .addComponent(generateNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                             .addComponent(nameField)
                             .addComponent(surnameField)
                             .addComponent(adressField)
@@ -301,27 +304,27 @@ public class PersonalInfo extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(newPasswordDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)))
                 .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblPersonalID)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblPersonalID)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane8)
+                        .addComponent(jScrollPane5)
+                        .addComponent(jScrollPane4)
+                        .addComponent(jScrollPane3)
+                        .addComponent(jScrollPane2)
+                        .addComponent(jScrollPane1)
+                        .addComponent(deleteEmployeeErrorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +390,9 @@ public class PersonalInfo extends javax.swing.JFrame {
                         .addComponent(generateNewPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(newPasswordDisplay)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteEmployeeErrorLabel)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -423,12 +428,12 @@ public class PersonalInfo extends javax.swing.JFrame {
 
         if (validering.fieldValidation(newName, "Department Name")) {
             updateDatabase("fornamn", newName, aid);
-                    nameDisplay.setText(newName);
+            nameDisplay.setText(newName);
 
         }
         if (validering.fieldValidation(newSurname, "Description ")) {
             updateDatabase("efternamn", newSurname, aid);
-                    surnameDisplay.setText(newSurname);
+            surnameDisplay.setText(newSurname);
 
         }
         if (validering.fieldValidation(newEmail, "Email") && validering.giltigEpost(newEmail)) {
@@ -437,12 +442,12 @@ public class PersonalInfo extends javax.swing.JFrame {
         }
         if (validering.fieldValidation(newPhonenumber, "Phonenumber")) {
             updateDatabase("telefon", newPhonenumber, aid);
-                    phonenumberDisplay.setText(newPhonenumber);
+            phonenumberDisplay.setText(newPhonenumber);
 
         }
         if (validering.fieldValidation(newAdress, "Adress")) {
             updateDatabase("adress", newAdress, aid);
-                    adressDisplay.setText(newAdress);
+            adressDisplay.setText(newAdress);
 
         }
         if (validering.fieldValidation(newStartDate, "Start Date") && validering.checkDateFormat(newStartDate)) {
@@ -451,7 +456,7 @@ public class PersonalInfo extends javax.swing.JFrame {
         }
 
         //cityValidation(newCity, newAvdid);
-        
+
     }//GEN-LAST:event_commitButtonActionPerformed
     /**
      *
@@ -575,21 +580,24 @@ public class PersonalInfo extends javax.swing.JFrame {
      * @param evt
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        try {
-            // TODO add your handling code here:
-            // TODO tar bort profilen ur tabellen genom idb.delete()
-            if (validering.checkAdminAid(aid)) {
-                idb.delete("delete from ngo_2024.admin where aid = "+aid+";");
+        if (!validering.checkProjektLedareAid(aid)) {
+            try {
+                // TODO add your handling code here:
+                // TODO tar bort profilen ur tabellen genom idb.delete()
+                if (validering.checkAdminAid(aid)) {
+                    idb.delete("delete from ngo_2024.admin where aid = " + aid + ";");
 
-            } else {
-                idb.delete("delete from ngo_2024.handlaggare where aid= "+aid+";");
+                } else {
+                    idb.delete("delete from ngo_2024.handlaggare where aid= " + aid + ";");
+                }
+                idb.delete("delete from ngo_2024.anstalld where aid = " + aid + ";");
+            } catch (InfException ex) {
+                Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
             }
-            idb.delete("delete from ngo_2024.anstalld where aid = "+aid+";");
-        } catch (InfException ex) {
-            Logger.getLogger(PersonalInfo.class.getName()).log(Level.SEVERE, null, ex);
+
+        } else {
+            deleteEmployeeErrorLabel.setVisible(true);
         }
-
-
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void startDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateFieldActionPerformed
@@ -653,6 +661,7 @@ public class PersonalInfo extends javax.swing.JFrame {
     private javax.swing.JTextField adressField;
     private javax.swing.JButton commitButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel deleteEmployeeErrorLabel;
     private javax.swing.JTextPane emailDisplay;
     private javax.swing.JTextField emailField;
     private javax.swing.JTextPane employeeIdDisplay;

@@ -56,7 +56,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="startDateField" max="32767" attributes="0"/>
                               <Component id="emailField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="generateNewPassword" alignment="0" pref="269" max="32767" attributes="0"/>
+                              <Component id="generateNewPassword" alignment="0" pref="213" max="32767" attributes="0"/>
                               <Component id="nameField" alignment="0" max="32767" attributes="0"/>
                               <Component id="surnameField" alignment="0" max="32767" attributes="0"/>
                               <Component id="adressField" alignment="0" max="32767" attributes="0"/>
@@ -70,33 +70,33 @@
                               <Component id="commitButton" min="-2" pref="79" max="-2" attributes="0"/>
                               <Component id="newPasswordDisplay" min="-2" pref="212" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="81" max="32767" attributes="0"/>
+                          <EmptySpace pref="25" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="lblPersonalID" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jScrollPane7" min="-2" pref="137" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lblPersonalID" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jScrollPane7" min="-2" pref="137" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblAdmin" min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jScrollPane6" min="-2" pref="137" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane8" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane5" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="deleteEmployeeErrorLabel" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblAdmin" min="-2" pref="37" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jScrollPane6" min="-2" pref="137" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jScrollPane8" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
-                          <Component id="deleteButton" min="-2" pref="79" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="deleteButton" min="-2" pref="79" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="89" max="32767" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -182,7 +182,9 @@
                           <Component id="newPasswordDisplay" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="99" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="deleteEmployeeErrorLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="77" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -436,6 +438,11 @@
         <Component class="javax.swing.JLabel" name="lblEpost">
           <Properties>
             <Property name="text" type="java.lang.String" value="Epost"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteEmployeeErrorLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Kunde ej ta bort personal, personal &#xe4;r f&#xf6;r nuvarande projektledare."/>
           </Properties>
         </Component>
       </SubComponents>
