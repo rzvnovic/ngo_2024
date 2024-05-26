@@ -33,8 +33,8 @@ public class PersonalInfo extends javax.swing.JFrame {
      */
     public PersonalInfo(String aid, String userAid) throws InfException {
 
-        this.userAid = "6";
-        this.aid = "13";
+        this.userAid = userAid;
+        this.aid = aid;
         validering = new Validering();
 
         try {
