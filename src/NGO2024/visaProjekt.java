@@ -139,6 +139,7 @@ public class VisaProjekt extends javax.swing.JFrame {
         lblLäggTill = new javax.swing.JLabel();
         laggTillButton = new javax.swing.JButton();
         laggTillErrorLabel = new javax.swing.JLabel();
+        taBortHButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -284,7 +285,7 @@ public class VisaProjekt extends javax.swing.JFrame {
 
         lblProjektL.setText("Projektledare");
 
-        lblLäggTill.setText("Lagg till handläggare");
+        lblLäggTill.setText("<html> Lagg till / ta bort <br> handläggare <html>");
 
         laggTillButton.setText("Lägg till");
         laggTillButton.addActionListener(new java.awt.event.ActionListener() {
@@ -293,7 +294,12 @@ public class VisaProjekt extends javax.swing.JFrame {
             }
         });
 
-        laggTillErrorLabel.setText("jLabel8");
+        taBortHButton.setText("Ta bort");
+        taBortHButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taBortHButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -328,6 +334,8 @@ public class VisaProjekt extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(laggTillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(taBortHButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(deleteButton))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -347,7 +355,7 @@ public class VisaProjekt extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(priorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(299, 299, 299)
-                        .addComponent(jScrollPane7))
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(laggTillErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -409,7 +417,8 @@ public class VisaProjekt extends javax.swing.JFrame {
                     .addComponent(deleteButton)
                     .addComponent(laggTillHandlaggareField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLäggTill)
-                    .addComponent(laggTillButton))
+                    .addComponent(laggTillButton)
+                    .addComponent(taBortHButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -421,7 +430,7 @@ public class VisaProjekt extends javax.swing.JFrame {
                 .addComponent(commitButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(changePButton)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -681,6 +690,7 @@ public class VisaProjekt extends javax.swing.JFrame {
                 if(aid != null){
                 if (!validering.checkAdminAid(aid)) {
                     idb.insert("INSERT INTO ngo_2024.ans_proj (pid, aid) VALUES (" + pid + ", " + aid + ");");
+                    laggTillErrorLabel.setText("Handläggaren "+ fornamn + " " + efternamn + " har lagts till");
                 } else {
                     
                     laggTillErrorLabel.setText("Välj en handläggare anställd");
@@ -697,6 +707,35 @@ public class VisaProjekt extends javax.swing.JFrame {
             laggTillErrorLabel.setText("Felaktikt format.");
         }
     }//GEN-LAST:event_laggTillButtonActionPerformed
+
+    private void taBortHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortHButtonActionPerformed
+   String newHandlaggare = laggTillHandlaggareField.getText().trim();
+        if (newHandlaggare.trim().contains(" ")) {
+            try {
+                int index = newHandlaggare.indexOf(" ");
+                String fornamn = newHandlaggare.substring(0, index);
+                String efternamn = newHandlaggare.substring(index + 1);
+                String aid = idb.fetchSingle("select aid from anstalld where fornamn = '" + fornamn + "' and efternamn = '" + efternamn + "';");
+                if(aid != null){
+                if (!validering.checkAdminAid(aid)) {
+                    idb.delete("DELETE FROM ngo_2024.ans_proj WHERE pid = (" + pid + ") AND ( " + aid + ");");
+                    laggTillErrorLabel.setText("Handläggaren "+ fornamn + " " + efternamn + " har tagits bort");
+                } else {
+                    
+                    laggTillErrorLabel.setText("Välj en handläggare anställd");
+                }
+                }
+                else{
+                    laggTillErrorLabel.setText("Kunde inte hitta handläggare.");
+                }
+            } catch (InfException ex) {
+                Logger.getLogger(VisaProjekt.class.getName()).log(Level.SEVERE, null, ex);
+                laggTillErrorLabel.setText("Handlaggare redan tillagd.");
+            }
+        } else {
+            laggTillErrorLabel.setText("Felaktikt format.");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_taBortHButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -780,5 +819,6 @@ public class VisaProjekt extends javax.swing.JFrame {
     private javax.swing.JTextField startDateField;
     private javax.swing.JComboBox<String> statusButton;
     private javax.swing.JTextPane statusDisplay;
+    private javax.swing.JButton taBortHButton;
     // End of variables declaration//GEN-END:variables
 }
