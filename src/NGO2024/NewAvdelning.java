@@ -371,13 +371,15 @@ public class NewAvdelning extends javax.swing.JFrame {
                         }
                         // foreign key blir annorlunda
                         if (validering.fieldValidation(newCity, "City")) {
-                            insertValue("stad", idb.fetchSingle("select sid from stad where namn = '" + newCity + "';"), newAvdid);
+                            String collectNewCity = idb.fetchSingle("select sid from stad where namn = '" + newCity + "';");
+                            insertValue("stad", collectNewCity, newAvdid);
                         }
+                        
                         if (validering.fieldValidation(newDescription, "Description")) {
 
                             insertValue("beskrivning", newDescription, newAvdid);
                         } else {
-                            insertValue("beksrivning", "ej angivet", newAvdid);
+                            insertValue("beskrivning", "ej angivet", newAvdid);
                             errorList.add("Beskrivning");
                             errorFound = true;
                         }
