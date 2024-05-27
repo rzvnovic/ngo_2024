@@ -528,10 +528,10 @@ public class MenyHandlaggare extends javax.swing.JFrame {
                         String efternamn = personalNamn.substring(index + 1);
                         System.out.print(fornamn + efternamn);
 
-                        String sqlFraga = idb.fetchSingle("Select aid from anstalld where fornamn='" + fornamn + "' and efternamn = '" + efternamn + "' and fornamn is not null and efternamn is not null;");
+                        String sqlFraga = idb.fetchSingle("Select aid from anstalld where fornamn= '" + fornamn + "' and efternamn = '" + efternamn + "';");
 
                         if (sqlFraga != null) {
-                            dbSqlFraga = idb.fetchSingle(sqlFraga);
+                            dbSqlFraga = sqlFraga;
                             userAvd = idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + userAid + ";");
                             if (validering.checkProjektLedareAid(userAid) || userAvd.equals(idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + dbSqlFraga + ";"))) {
                                 new PersonalInfo(dbSqlFraga, userAid).setVisible(true);
