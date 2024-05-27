@@ -354,7 +354,8 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
         String newEmail = emailField.getText().trim(); //OBS
         String newBranch = branchField.getText().trim();
         String newCity = cityField.getText().trim();
-
+        String newPid= null;
+try{
         if (validering.fieldValidation(newName, "Name")) {
             updateDatabase("namn", newName);
             nameDisplay.setText(newName);
@@ -376,13 +377,16 @@ public class SamarbetspartnerInfo extends javax.swing.JFrame {
             adressDisplay.setText(newAdress);
         }
         if (validering.fieldValidation(newCity, "City")) {
-            updateDatabase("stad", newCity);
-            cityDisplay.setText(newCity);
+        updateDatabase("stad", idb.fetchSingle("select sid from stad where namn = '" + newCity + "';"));
         }
         if (validering.fieldValidation(newBranch, "Branch")) {
             updateDatabase("Branch", newBranch);
             branchDisplay.setText(newBranch);
         }
+         } catch (InfException ex) {
+                        Logger.getLogger(NewAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+        
     }//GEN-LAST:event_adminOkButtonActionPerformed
 
     /**

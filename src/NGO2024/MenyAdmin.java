@@ -21,6 +21,8 @@ public class MenyAdmin extends javax.swing.JFrame {
     private InfDB idb;
     private static String aid;
     private static Validering validering;
+    private static String pid;
+    private static String newCity;
 
     /**
      * Creates new form NewJFrame
@@ -269,6 +271,11 @@ public class MenyAdmin extends javax.swing.JFrame {
         });
 
         createNewPartnerButton.setText("Lägg till partner");
+        createNewPartnerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewPartnerButtonActionPerformed(evt);
+            }
+        });
 
         samarbetspartnerError.setForeground(new java.awt.Color(244, 22, 22));
         samarbetspartnerError.setText("Felmeddelande");
@@ -748,6 +755,17 @@ public class MenyAdmin extends javax.swing.JFrame {
             sökLandFelMedellande.setVisible(true);
         }
     }//GEN-LAST:event_sokPartnerIDButtonActionPerformed
+
+    private void createNewPartnerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewPartnerButtonActionPerformed
+try {
+      
+            new NewPartner(newCity, pid).setVisible(true);
+          
+        } catch (InfException ex) {
+            Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
+             
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_createNewPartnerButtonActionPerformed
 
     public String fetchPartnersInProjects() throws InfException {
         ArrayList<String> samarbetsPartnerNamn = idb.fetchColumn("select namn from partner where namn is not null");

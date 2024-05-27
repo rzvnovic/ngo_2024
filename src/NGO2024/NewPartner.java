@@ -132,6 +132,11 @@ public class NewPartner extends javax.swing.JFrame {
                 cityFieldMouseEntered(evt);
             }
         });
+        cityField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityFieldActionPerformed(evt);
+            }
+        });
 
         adressField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -368,6 +373,10 @@ private String insertError(ArrayList<String> errorList) {
     private void cityFieldMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityFieldMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_cityFieldMouseEntered
+
+    private void cityFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityFieldActionPerformed
 
     /*private boolean fieldValidation(String newText, String validationText) {
         boolean validated = true;
