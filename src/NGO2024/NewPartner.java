@@ -338,7 +338,16 @@ public class NewPartner extends javax.swing.JFrame {
              }
              
 //foreign key nedan..
-            cityValidation(newCity, newPid);
+            //cityValidation(newCity, newPid);
+            if (cityValidation(newCity, newPid) == true) {
+                String sid = idb.fetchSingle("select sid from stad where namn = '" + newCity + "';");
+                idb.update("UPDATE ngo_2024.partner t SET t.stad = " + sid + " WHERE t.pid = " + newPid + ";");
+            }
+            else {
+                idb.update("UPDATE ngo_2024.partner t SET t.stad = 1 WHERE t.pid = " + newPid + ";");
+                errorLabel.setText("Angiven stad existerar inte i systemet. Stad ID 1 har lagts till istället.");
+            }
+           
         } catch (InfException ex) {
             Logger.getLogger(NewPartner.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -390,16 +399,32 @@ private String insertError(ArrayList<String> errorList) {
         String sqlQuerry = ("UPDATE ngo_2024.partner t SET t."+column+" = '" + value + "' WHERE t.pid = " + newPid + ";");
         idb.update(sqlQuerry);
     }
-
-    private void cityValidation(String newCity, String newPid) throws InfException {
+    
+    //GAMLA CITYVALIDATION
+    /*private void cityValidation(String newCity, String newPid) throws InfException {
         ArrayList<String> cityList = idb.fetchColumn("Select namn from stad;");
+        
         for (String cityName : cityList) {
-            if (cityName.equals(newCity)) {
-                String sid = idb.fetchSingle("select sid from stad where namn =" + newCity + ";");
+            if (cityName.equalsIgnoreCase(newCity)) {
+                String sid = idb.fetchSingle("select sid from stad where namn = '" + newCity + "';");
                 idb.update("UPDATE ngo_2024.partner t SET t.stad = " + sid + " WHERE t.pid = " + newPid + ";");
                 return;
             }
+            
+        }*/
+        
+        private Boolean cityValidation(String newCity, String newPid) throws InfException {
+        ArrayList<String> cityList = idb.fetchColumn("Select namn from stad;");
+        Boolean cityFound = false; 
+        for (String cityName : cityList) {
+            if (cityName.equalsIgnoreCase(newCity)) {
+                cityFound = true; 
+                
+                
+            }
+           
         }
+        return cityFound; 
         //Todo gör synliga rutor
         //alt gör så användaren får mata in land   
     }
