@@ -589,11 +589,10 @@ public class MenyHandlaggare extends javax.swing.JFrame {
             if (validering.checkProjektLedareAid(userAid)) {
                 String message = fetchProject1(priorityPicker(priority));
                 String message2 = fetchProjectWereLeader(priorityPicker(priority));
-                if (!message.equals(message2)) {
-                    projectListField.setText(message);
-                } else {
-                    projectListField.setText(fetchProject1(priorityPicker(priority)));
-                }
+                
+                projectListField.setText(message + message2);
+
+                
             } else {
                 projectListField.setText(fetchProject1(priorityPicker(priority)));
             }
