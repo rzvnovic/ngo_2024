@@ -91,6 +91,7 @@ public class MenyAdmin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         AvdelningSokIdButton = new javax.swing.JButton();
         sökIdError = new javax.swing.JLabel();
+        laggTillAvdelningButton = new javax.swing.JButton();
         tabProject = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaprojectInformation = new javax.swing.JTextArea();
@@ -364,6 +365,13 @@ public class MenyAdmin extends javax.swing.JFrame {
         sökIdError.setForeground(new java.awt.Color(244, 22, 22));
         sökIdError.setText("Detta id existerar inte");
 
+        laggTillAvdelningButton.setText("Lägg till");
+        laggTillAvdelningButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laggTillAvdelningButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tabBranchLayout = new javax.swing.GroupLayout(tabBranch);
         tabBranch.setLayout(tabBranchLayout);
         tabBranchLayout.setHorizontalGroup(
@@ -379,7 +387,10 @@ public class MenyAdmin extends javax.swing.JFrame {
                                 .addComponent(AvdelningSokNamnButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(AvdelningSokIdButton))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(tabBranchLayout.createSequentialGroup()
+                                .addComponent(laggTillAvdelningButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(avdelningErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -399,8 +410,13 @@ public class MenyAdmin extends javax.swing.JFrame {
                         .addGroup(tabBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AvdelningSokNamnButton)
                             .addComponent(AvdelningSokIdButton))
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(tabBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabBranchLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(tabBranchLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(laggTillAvdelningButton))))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(avdelningErrorLabel)
@@ -767,6 +783,17 @@ try {
         }          // TODO add your handling code here:
     }//GEN-LAST:event_createNewPartnerButtonActionPerformed
 
+    private void laggTillAvdelningButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillAvdelningButtonActionPerformed
+        try {
+      
+            new NewAvdelning().setVisible(true);
+          
+        } catch (InfException ex) {
+            Logger.getLogger(MenyAdmin.class.getName()).log(Level.SEVERE, null, ex);
+             
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_laggTillAvdelningButtonActionPerformed
+
     public String fetchPartnersInProjects() throws InfException {
         ArrayList<String> samarbetsPartnerNamn = idb.fetchColumn("select namn from partner where namn is not null");
         ArrayList<String> samarbetsPartnerKontaktPerson = idb.fetchColumn("select kontaktperson from partner where kontaktperson is not null");
@@ -914,6 +941,7 @@ try {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton laggTillAvdelningButton;
     private javax.swing.JTextField partnerSearchField;
     private javax.swing.JLabel personelLblError;
     private javax.swing.JLabel projectTabErrorLabel;
